@@ -86,12 +86,40 @@ require('packer').startup {
       function()
       end
     }
-    use { 'nvim-lua/plenary.nvim', config =
+    use { 'nvim-telescope/telescope.nvim',
+      requires = { 
+        {'sharkdp/fd'}, 
+        {'nvim-lua/plenary.nvim'} 
+      }, config =
       function()
+        require('telescope').setup{
+          defaults = {
+            -- Default configuration for telescope goes here:
+            -- config_key = value,
+            -- ..
+          },
+          pickers = {
+            -- Default configuration for builtin pickers goes here:
+            -- picker_name = {
+            --   picker_config_key = value,
+            --   ...
+            -- }
+            -- Now the picker_config_key will be applied every time you call this
+            -- builtin picker
+          },
+          extensions = {
+            -- Your extension configuration goes here:
+            -- extension_name = {
+            --   extension_config_key = value,
+            -- }
+            -- please take a look at the readme of the extension you want to configure
+          }
+        }
       end
     }
-    use { 'nvim-telescope/telescope.nvim', config =
+    use { 'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sqlite.lua'}, config = 
       function()
+        require'telescope'.load_extension('frecency')
       end
     }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config =
