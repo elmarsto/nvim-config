@@ -20,8 +20,17 @@ map <leader>p :call TogglePaste()<cr>
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
+nnoremap  :Telescope grep_string <cr>
+nnoremap <M-C-P> :Telescope find_files <cr>
+nnoremap  :Telescope registers <cr>
+nnoremap  :Telescope file_browser <cr>
 nnoremap Q @@
-command! Vimrc :e ~/lattice-nix/home-manager/vimrc
+command! LatticeVim :e ~/code/mine/lattice-nix/nvim-config/lattice.vim <cr>
+command! LatticeLua :e ~/code/mine/lattice-nix/nvim-config/lattice.lua <cr>
+command! Navaruk :cd ~/Navaruk <cr>
+command! CodeMine :cd ~/code/mine <cr>
+command! CodeOurs :cd ~/code/ours <cr>
+command! CodeTheirs :cd ~/code/theirs <cr>
 command! WP :Limelight | :Goyo | :SoftPencil
 command! NoWP :NoPencil | :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
