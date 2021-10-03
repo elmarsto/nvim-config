@@ -11,5 +11,5 @@ require('packer').startup {
   end
 }
 EOF
-:luafile ~/.config/nvim/lattice.lua
-:so ~/.config/nvim/lattice.vim
+:luafile lattice.lua
+:so lattice.vim
