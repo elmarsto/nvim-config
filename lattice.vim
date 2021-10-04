@@ -49,10 +49,10 @@ nnoremap <C-=> :Telescope jumplist <cr>
 nnoremap <C-'> :Telescope marks<cr>
 nnoremap <C-,> :Telescope loclist<cr>
 nnoremap <C-.> :Telescope quickfix<cr>
-nnoremap <C-P> :Telescope find_files <cr>
+nnoremap <C-M-O> :Telescope find_files <cr>
 nnoremap <M-C-P> :Telescope git_files <cr>
-nnoremap <M-C-[> :Telescope git_commits <cr>
-nnoremap <M-C-]> :Telescope git_bcommits <cr>
+nnoremap <M-C-[> :Telescope git_bcommits <cr>
+nnoremap <M-C-]> :Telescope git_commits <cr>
 nnoremap <M-C-\> :Telescope git_branches <cr>
 nnoremap <M-C-=> :Telescope lsp_workspace_symbols <cr>
 nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
