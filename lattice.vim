@@ -40,15 +40,15 @@ command! NoVa :Goyo! | :Limelight!
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
-nnoremap <C-/> :Telescope grep_string <cr>
+nnoremap <C-_> :Telescope grep_string <cr>
 nnoremap <M-/> :Telescope search_history <cr>
 nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <C-]> :Telescope registers <cr>
 nnoremap <C-\> :Telescope file_browser <cr>
-nnoremap <C-=> :Telescope symbols <cr>
-nnoremap <C-_> :Telescope jumplist <cr>
+nnoremap <C-=> :Telescope jumplist <cr>
 nnoremap <C-'> :Telescope marks<cr>
-nnoremap <C-;> :Telescope quickfix<cr>
+nnoremap <C-,> :Telescope loclist<cr>
+nnoremap <C-.> :Telescope quickfix<cr>
 nnoremap <C-P> :Telescope find_files <cr>
 nnoremap <M-C-P> :Telescope git_files <cr>
 nnoremap <M-C-[> :Telescope git_commits <cr>
