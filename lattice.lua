@@ -6,12 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require('packer').startup {
   function(use)
-    -- TODO alphabetize
-    use 'wbthomason/packer.nvim' -- self-control
-    use 'svermeulen/vimpeccable' -- TODO: use this to rewirite lattice.vim here in lattice.lua
     use 'bfredl/nvim-luadev'
-    use 'rafcamlet/nvim-luapad'
-    -- end alphabetization TODO
     use {
       'APZelos/blamer.nvim', config =
       function()
@@ -140,6 +135,7 @@ require('packer').startup {
     }
     use { 'neovim/nvim-lspconfig', config =
       function()
+        local lattice_local = require'lattice_local'
         local nvim_lsp = require("lspconfig")
         nvim_lsp.cssls.setup {}
         nvim_lsp.html.setup {}
@@ -156,7 +152,6 @@ require('packer').startup {
           },
         }
 				local sumneko_runtime_path = vim.split(package.path, ';')
-        local lattice_local = require'lattice_local'
 				table.insert(sumneko_runtime_path, "lua/?.lua")
 				table.insert(sumneko_runtime_path, "lua/?/init.lua")
         nvim_lsp.sumneko_lua.setup {
@@ -283,11 +278,14 @@ require('packer').startup {
       function()
       end
     }
+    use 'rafcamlet/nvim-luapad'
+    use 'svermeulen/vimpeccable' -- TODO: use this to rewirite lattice.vim here in lattice.lua
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'tyru/open-browser.vim'
     use 'vim-pandoc/vim-pandoc-syntax'
     use 'wannesm/wmgraphviz.vim'
+    use 'wbthomason/packer.nvim' -- self-control
   end
 }
