@@ -10,12 +10,7 @@ require('packer').startup {
     use 'wbthomason/packer.nvim' -- self-control
     use 'svermeulen/vimpeccable' -- TODO: use this to rewirite lattice.vim here in lattice.lua
     use 'bfredl/nvim-luadev'
-    use {
-      'rafcamlet/nvim-luapad', config =
-      function()
-        require('luapad').init()
-      end
-    }
+    use 'rafcamlet/nvim-luapad'
     -- end alphabetization TODO
     use {
       'APZelos/blamer.nvim', config =
