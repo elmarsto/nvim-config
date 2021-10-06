@@ -139,7 +139,9 @@ require('packer').startup {
         local nvim_lsp = require("lspconfig")
         nvim_lsp.cssls.setup {}
         nvim_lsp.html.setup {}
-        nvim_lsp.jsonls.setup {}
+        nvim_lsp.jsonls.setup {
+          cmd = { lattice_local.jsonls.bin, "--stdio" }
+        }
         nvim_lsp.pyright.setup {}
         nvim_lsp.rnix.setup {}
         nvim_lsp.rust_analyzer.setup {

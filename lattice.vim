@@ -2,14 +2,21 @@ colorscheme seoul256
 highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 set autoread
-set expandtab
+set backspace=indent,eol,start  
+
+"" Tabs. May be overridden by autocmd rules 
+set autoindent 
+set smartindent 
+set tabstop=2 
+set softtabstop=2 
+set shiftwidth=2 
+set expandtab 
+set smarttab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
 set lazyredraw
 set mouse=a
 set signcolumn=yes
-set sw=2
-set ts=2
 set undofile
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
