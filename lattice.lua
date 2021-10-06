@@ -6,10 +6,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require('packer').startup {
   function(use)
+    -- TODO alphabetize
     use 'wbthomason/packer.nvim' -- self-control
+    use 'svermeulen/vimpeccable' -- TODO: use this to rewirite lattice.vim here in lattice.lua
+    use 'bfredl/nvim-luadev'
+    use {
+      'rafcamlet/nvim-luapad', config =
+      function()
+        require('luapad').init()
+      end
+    }
+    -- end alphabetization TODO
     use {
       'APZelos/blamer.nvim', config =
-      function() 
+      function()
       end
     }
     use  'chrisbra/csv.vim'
@@ -17,30 +27,30 @@ require('packer').startup {
     use 'dmix/elvish.vim'
     use {
       'ellisonleao/glow.nvim', config =
-      function() 
+      function()
       end
     }
     use 'embear/vim-localvimrc'
     use {
-      'folke/lsp-colors.nvim', config = 
-      function() 
+      'folke/lsp-colors.nvim', config =
+      function()
       end
     }
-    use { 
-      'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons", config = 
-      function() 
+    use {
+      'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons", config =
+      function()
         require'trouble'.setup {}
       end
     }
-    use { 'glepnir/lspsaga.nvim', config = 
+    use { 'glepnir/lspsaga.nvim', config =
       function ()
         require'lspsaga'.init_lsp_saga()
       end
     }
     use {
-      'glepnir/galaxyline.nvim', requires = {'kyazdani42/nvim-web-devicons'}, config = 
-      function() 
-        require'lattice_line' 
+      'glepnir/galaxyline.nvim', requires = {'kyazdani42/nvim-web-devicons'}, config =
+      function()
+        require'lattice_line'
       end
     }
     use 'godlygeek/tabular'
@@ -76,7 +86,7 @@ require('packer').startup {
     use 'junegunn/limelight.vim'
     use 'junegunn/seoul256.vim'
     use 'kana/vim-textobj-user'
-    use { 
+    use {
       'karb94/neoscroll.nvim', config =
       function()
         require('neoscroll').setup({
@@ -88,6 +98,43 @@ require('packer').startup {
     use { 'kosayoda/nvim-lightbulb', config =
       function()
         vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+				-- Showing defaults
+				require'nvim-lightbulb'.update_lightbulb {
+						sign = {
+								enabled = true,
+								priority = 10,
+						},
+						float = {
+								enabled = true,
+								-- Text to show in the popup float
+								-- Available keys for window options:
+								-- - height     of floating window
+								-- - width      of floating window
+								-- - wrap_at    character to wrap at for computing height
+								-- - max_width  maximal width of floating window
+								-- - max_height maximal height of floating window
+								-- - pad_left   number of columns to pad contents at left
+								-- - pad_right  number of columns to pad contents at right
+								-- - pad_top    number of lines to pad contents at top
+								-- - pad_bottom number of lines to pad contents at bottom
+								-- - offset_x   x-axis offset of the floating window
+								-- - offset_y   y-axis offset of the floating window
+								-- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
+								-- - winblend   transparency of the window (0-100)
+								win_opts = {},
+						},
+						virtual_text = {
+								enabled = true,
+								-- Text to show at virtual text
+								hl_mode = "replace",
+						},
+						status_text = {
+								enabled = true,
+								-- Text to provide when no actions are available
+								text_unavailable = ""
+						}
+				}
+   
       end
     }
     use 'lotabout/skim.vim'
@@ -151,9 +198,9 @@ require('packer').startup {
       end
     }
     use { 'nvim-telescope/telescope.nvim',
-      requires = { 
-        {'sharkdp/fd'}, 
-        {'nvim-lua/plenary.nvim'} 
+      requires = {
+        {'sharkdp/fd'},
+        {'nvim-lua/plenary.nvim'}
       }, config =
       function()
         require('telescope').setup{ }
@@ -170,7 +217,7 @@ require('packer').startup {
           filetype = "diff"
         }
         require'nvim-treesitter.configs'.setup {
-          ensure_installed = {  
+          ensure_installed = {
 						"c",
 						"cpp",
 						"css",

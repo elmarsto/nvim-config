@@ -1,3 +1,0 @@
-lattice = {
-  sumneko = "FIXME",
-}
