@@ -194,6 +194,7 @@ require('packer').startup {
       end
     }
     use 'nvim-lua/lsp-status.nvim'
+    use { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' }
     use 'nvim-telescope/telescope-node-modules.nvim'
     use { 'nvim-telescope/telescope-packer.nvim', requires = 'wbthomason/packer.nvim' }
     use { 'nvim-telescope/telescope.nvim',
@@ -201,15 +202,17 @@ require('packer').startup {
         'sharkdp/fd',
         'nvim-lua/plenary.nvim',
         'AckslD/nvim-neoclip.lua',
-        'nvim-telescope/telescope-packer.nvim',
+        'nvim-telescope/telescope-frecency.nvim',
         'nvim-telescope/telescope-node-modules.nvim',
+        'nvim-telescope/telescope-packer.nvim',
       }, config =
       function()
         local tscope = require('telescope')
         tscope.setup()
-        -- tscope.load_extension'node_modules'
-        tscope.load_extension'packer'
+        tscope.load_extension'frecency'
         tscope.load_extension'neoclip'
+        tscope.load_extension'packer' -- kinda broken
+        -- tscope.load_extension'node_modules' -- broken
       end
     }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config =
@@ -264,18 +267,6 @@ require('packer').startup {
       function()
       end
     }
-    use { 'oberblastmeister/neuron.nvim', config =
-      function()
-				-- these are all the default values
-				require'neuron'.setup {
-						virtual_titles = true,
-						mappings = true,
-						run = nil, -- function to run when in neuron dir
-						neuron_dir = "~/Navaruk", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
-						leader = "gz", -- the leader key to for all mappings, remember with 'go zettel'
-				}
-      end
-    }
     use { 'onsails/lspkind-nvim', config =
       function()
       end
@@ -295,11 +286,28 @@ require('packer').startup {
       end
     }
     use 'rafcamlet/nvim-luapad'
+    use { 'TimUntersberger/neogit', requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim'
+    }, config =
+      function()
+        require'neogit'.setup({
+          integrations = {
+            diffview = true
+          }
+        })
+      end
+    }
     use { 'tami5/sqlite.lua', config =
       function()
         local lattice_local = require'lattice_local'
         vim.g.sqlite_clib_path = lattice_local.sqlite.lib
       end
+    }
+    use { 'tanvirtin/vgit.nvim', requires = 'nvim-lua/plenary.nvim', config =
+      function()
+        require('vgit').setup()
+      end,
     }
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
