@@ -6,12 +6,21 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require('packer').startup {
   function(use)
-    use 'bfredl/nvim-luadev'
+    use {
+      'AckslD/nvim-neoclip.lua',
+      requires = { {'tami5/sqlite.lua', module = 'sqlite'} },
+      config = function()
+        require('neoclip').setup({
+          enable_persistant_history = true, -- sic
+        })
+      end,
+    }
     use {
       'APZelos/blamer.nvim', config =
       function()
       end
     }
+    use 'bfredl/nvim-luadev'
     use  'chrisbra/csv.vim'
     use 'dense-analysis/ale'
     use 'dmix/elvish.vim'
@@ -124,7 +133,6 @@ require('packer').startup {
 								text_unavailable = ""
 						}
 				}
-   
       end
     }
     use 'lotabout/skim.vim'
@@ -185,17 +193,23 @@ require('packer').startup {
         nvim_lsp.tsserver.setup {}
       end
     }
-    use { 'nvim-lua/lsp-status.nvim', config =
-      function()
-      end
-    }
+    use 'nvim-lua/lsp-status.nvim'
+    use 'nvim-telescope/telescope-node-modules.nvim'
+    use { 'nvim-telescope/telescope-packer.nvim', requires = 'wbthomason/packer.nvim' }
     use { 'nvim-telescope/telescope.nvim',
       requires = {
-        {'sharkdp/fd'},
-        {'nvim-lua/plenary.nvim'}
+        'sharkdp/fd',
+        'nvim-lua/plenary.nvim',
+        'AckslD/nvim-neoclip.lua',
+        'nvim-telescope/telescope-packer.nvim',
+        'nvim-telescope/telescope-node-modules.nvim',
       }, config =
       function()
-        require('telescope').setup{ }
+        local tscope = require('telescope')
+        tscope.setup()
+        -- tscope.load_extension'node_modules'
+        tscope.load_extension'packer'
+        tscope.load_extension'neoclip'
       end
     }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config =
@@ -281,7 +295,12 @@ require('packer').startup {
       end
     }
     use 'rafcamlet/nvim-luapad'
-    use 'svermeulen/vimpeccable' -- TODO: use this to rewirite lattice.vim here in lattice.lua
+    use { 'tami5/sqlite.lua', config =
+      function()
+        local lattice_local = require'lattice_local'
+        vim.g.sqlite_clib_path = lattice_local.sqlite.lib
+      end
+    }
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'

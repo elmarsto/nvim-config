@@ -6,5 +6,8 @@ return {
     },
     jsonls = { -- aboslute paths only, no expansion of ~, no expansion of $HOME
       bin = "vscode-json-language-server",
+    },
+    sqlite = {
+      lib = "libsqlite3.so",
     }
 }
