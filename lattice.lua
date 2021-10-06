@@ -1,5 +1,12 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
+end
 require('packer').startup {
   function(use)
+    use 'wbthomason/packer.nvim' -- self-control
     use {
       'APZelos/blamer.nvim', config =
       function() 
@@ -20,7 +27,7 @@ require('packer').startup {
       end
     }
     use { 
-      'folke/trouble.nvim', config = 
+      'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons", config = 
       function() 
         require'trouble'.setup {}
       end
@@ -28,6 +35,12 @@ require('packer').startup {
     use { 'glepnir/lspsaga.nvim', config = 
       function ()
         require'lspsaga'.init_lsp_saga()
+      end
+    }
+    use {
+      'glepnir/galaxyline.nvim', requires = {'kyazdani42/nvim-web-devicons'}, config = 
+      function() 
+        require'lattice_line' 
       end
     }
     use 'godlygeek/tabular'
@@ -77,17 +90,6 @@ require('packer').startup {
         vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
       end
     }
-    use { 'kyazdani42/nvim-web-devicons', config =
-      function()
-        require'nvim-web-devicons'.setup {
-           override = {
-             -- your personnal icons can go here (to override)
-             -- DevIcon will be appended to `name`
-           };
-           default = true;
-          }
-      end
-    }
     use 'lotabout/skim.vim'
     use 'mbbill/undotree'
     use { 'mfussenegger/nvim-dap', config =
@@ -111,52 +113,37 @@ require('packer').startup {
             },
           },
         }
-        nvim_lsp.sqls.setup {}
-        nvim_lsp.sumneko_lua.setup{}
+				local sumneko_runtime_path = vim.split(package.path, ';')
+        local lattice_local = require'lattice_local'
+				table.insert(sumneko_runtime_path, "lua/?.lua")
+				table.insert(sumneko_runtime_path, "lua/?/init.lua")
+        nvim_lsp.sumneko_lua.setup {
+          cmd = { lattice_local.sumneko.bin, "-E", lattice_local.sumneko.main  },
+					settings = {
+						Lua = {
+							runtime = {
+								-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+								version = 'LuaJIT',
+								-- Setup your lua path
+								path = sumneko_runtime_path,
+							},
+							diagnostics = {
+								-- Get the language server to recognize the `vim` global
+								globals = {'vim'},
+							},
+							workspace = {
+								-- Make the server aware of Neovim runtime files
+								library = vim.api.nvim_get_runtime_file("", true),
+							},
+							-- Do not send telemetry data containing a randomized but unique identifier
+							telemetry = {
+								enable = false,
+							},
+						},
+					}
+        }
         nvim_lsp.svelte.setup{}
         nvim_lsp.tsserver.setup {}
-        local on_attach = function(client, bufnr)
-          local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-          local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-          -- Enable completion triggered by <c-x><c-o>
-          buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-          -- Mappings.
-          local opts = { noremap=true, silent=true }
-
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
-          buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-          buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-          buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-          buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-          buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-          buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-          buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-          buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-          buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-          buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-          buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-          buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-          buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-          buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-          buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-          buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-        end
-
-        -- Use a loop to conveniently call 'setup' on multiple servers and
-        -- map buffer local keybindings when the language server attaches
-        local servers = { 'ccls', 'html','jsonls','pyright','rnix','rust_analyzer','sqls','sumneko_lua','svelte','tsserver' };
-        for _, lsp in ipairs(servers) do
-          nvim_lsp[lsp].setup {
-            on_attach = on_attach,
-            flags = {
-              debounce_text_changes = 150,
-            }
-          }
-        end
-
       end
     }
     use { 'nvim-lua/lsp-status.nvim', config =
@@ -169,48 +156,12 @@ require('packer').startup {
         {'nvim-lua/plenary.nvim'} 
       }, config =
       function()
-        require('telescope').setup{
-          defaults = {
-            -- Default configuration for telescope goes here:
-            -- config_key = value,
-            -- ..
-          },
-          pickers = {
-            -- Default configuration for builtin pickers goes here:
-            -- picker_name = {
-            --   picker_config_key = value,
-            --   ...
-            -- }
-            -- Now the picker_config_key will be applied every time you call this
-            -- builtin picker
-          },
-          extensions = {
-            -- Your extension configuration goes here:
-            -- extension_name = {
-            --   extension_config_key = value,
-            -- }
-            -- please take a look at the readme of the extension you want to configure
-          }
-        }
-      end
-    }
-    use { 'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sqlite.lua'}, config = 
-      function()
-        require'telescope'.load_extension('frecency')
+        require('telescope').setup{ }
       end
     }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config =
       function()
         local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-        -- FIXME
-        parser_config.sql =  {
-          install_info = {
-            url = "https://github.com/DerekStride/tree-sitter-sql",
-            files = { "src/parser.c" }
-          },
-          filetype = "sql"
-        }
-        -- FIXME
         parser_config.diff = {
           install_info = {
             url = "https://github.com/vigoux/tree-sitter-diff",
@@ -232,7 +183,6 @@ require('packer').startup {
 						"nix",
 						"python",
 						"rust",
-            "sql",
 						"svelte",
 						"typescript",
 						"tsx",
@@ -255,7 +205,6 @@ require('packer').startup {
 						},
 					},
         }
-
       end
     }
     use { 'nvim-treesitter/nvim-treesitter-textobjects', config =
