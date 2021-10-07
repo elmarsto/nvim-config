@@ -141,6 +141,11 @@ require('packer').startup {
       function()
       end
     }
+    use { 'norcalli/nvim-colorizer.lua', config =
+      function()
+        require'colorizer'.setup()
+      end
+    }
     use { 'neovim/nvim-lspconfig', config =
       function()
         local lattice_local = require'lattice_local'

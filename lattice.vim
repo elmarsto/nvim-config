@@ -18,6 +18,7 @@ set lazyredraw
 set mouse=a
 set signcolumn=yes
 set undofile
+set termguicolors
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 augroup pandoc_syntax
