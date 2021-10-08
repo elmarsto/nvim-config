@@ -344,7 +344,6 @@ require('packer').startup {
       function()
       end
     }
-    use 'plasticboy/vim-markdown'
     use 'preservim/vim-colors-pencil'
     use 'preservim/vim-lexical'
     use 'preservim/vim-pencil'

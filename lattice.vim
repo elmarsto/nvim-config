@@ -19,6 +19,7 @@ set mouse=a
 set signcolumn=yes
 set undofile
 set termguicolors
+let g:markdown_folding=1
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 augroup pandoc_syntax
@@ -36,11 +37,11 @@ endfunction
 map <leader>p :call TogglePaste()<cr>
 command! LatticeVim :e ~/code/mine/lattice-nix/nvim-config/lattice.vim
 command! LatticeLua :e ~/code/mine/lattice-nix/nvim-config/lattice.lua
-command! Navaruk :cd ~/Navaruk <cr>
-command! Workvault :cd ~/workvault <cr>
-command! CodeMine :cd ~/code/mine <cr>
-command! CodeOurs :cd ~/code/ours <cr>
-command! CodeTheirs :cd ~/code/theirs <cr>
+command! Navaruk :cd ~/Navaruk
+command! Workvault :cd ~/workvault | :e ~/workvault/workbench.md
+command! CodeMine :cd ~/code/mine
+command! CodeOurs :cd ~/code/ours
+command! CodeTheirs :cd ~/code/theirs
 command! WP :Limelight | :Goyo | :SoftPencil
 command! TelePacker :lua require('telescope').extensions.packer.plugins()
 command! NoWP :NoPencil | :Goyo! | :Limelight!
