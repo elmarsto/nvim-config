@@ -105,6 +105,7 @@ require('packer').startup {
         require'colorizer'.setup()
       end
     }
+    use 'neomake/neomake'
     use { 'neovim/nvim-lspconfig', config =
       function()
         local lattice_local = require'lattice_local'
