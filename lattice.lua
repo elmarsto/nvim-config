@@ -265,7 +265,7 @@ require('packer').startup {
       end
     }
     use 'nvim-lua/lsp-status.nvim'
-    use { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' }
+    -- use { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' }
     use 'nvim-telescope/telescope-node-modules.nvim'
     use { 'nvim-telescope/telescope-packer.nvim', requires = 'wbthomason/packer.nvim' }
     use { 'nvim-telescope/telescope.nvim',
@@ -273,14 +273,14 @@ require('packer').startup {
         'sharkdp/fd',
         'nvim-lua/plenary.nvim',
         -- 'AckslD/nvim-neoclip.lua',
-        'nvim-telescope/telescope-frecency.nvim',
+        -- 'nvim-telescope/telescope-frecency.nvim',
         'nvim-telescope/telescope-node-modules.nvim',
         'nvim-telescope/telescope-packer.nvim',
       }, config =
       function()
         local tscope = require('telescope')
         tscope.setup()
-        tscope.load_extension'frecency'
+        -- tscope.load_extension'frecency'
         --tscope.load_extension'neoclip'
         tscope.load_extension'packer' -- kinda broken
         -- tscope.load_extension'node_modules' -- broken
@@ -369,12 +369,12 @@ require('packer').startup {
         })
       end
     }
-    use { 'tami5/sqlite.lua', config =
-      function()
-        local lattice_local = require'lattice_local'
-        vim.g.sqlite_clib_path = lattice_local.sqlite.lib
-      end
-    }
+    -- use { 'tami5/sqlite.lua', config =
+    --  function()
+    --    local lattice_local = require'lattice_local'
+     --   vim.g.sqlite_clib_path = lattice_local.sqlite.lib
+      --end
+   ---- }
     use { 'tanvirtin/vgit.nvim', requires = 'nvim-lua/plenary.nvim', config =
       function()
         require('vgit').setup()
