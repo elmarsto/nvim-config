@@ -386,6 +386,7 @@ require('packer').startup {
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'tyru/open-browser.vim'
+    use 'vim-pandoc/vim-pandoc'
     use 'vim-pandoc/vim-pandoc-syntax'
     use 'wannesm/wmgraphviz.vim'
     use 'wbthomason/packer.nvim' -- self-control
