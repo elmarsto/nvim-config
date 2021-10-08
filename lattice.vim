@@ -34,10 +34,10 @@ function! TogglePaste()
     endif
 endfunction
 map <leader>p :call TogglePaste()<cr>
-command! FindZettels lua require'neuron/telescope'.find_zettels()
 command! LatticeVim :e ~/code/mine/lattice-nix/nvim-config/lattice.vim
 command! LatticeLua :e ~/code/mine/lattice-nix/nvim-config/lattice.lua
 command! Navaruk :cd ~/Navaruk <cr>
+command! Workvault :cd ~/workvault <cr>
 command! CodeMine :cd ~/code/mine <cr>
 command! CodeOurs :cd ~/code/ours <cr>
 command! CodeTheirs :cd ~/code/theirs <cr>
