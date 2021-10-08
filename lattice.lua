@@ -94,47 +94,6 @@ require('packer').startup {
         })
       end
     }
-    use { 'kosayoda/nvim-lightbulb', config =
-      function()
-        vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-				-- Showing defaults
-				require'nvim-lightbulb'.update_lightbulb {
-						sign = {
-								enabled = true,
-								priority = 10,
-						},
-						float = {
-								enabled = true,
-								-- Text to show in the popup float
-								-- Available keys for window options:
-								-- - height     of floating window
-								-- - width      of floating window
-								-- - wrap_at    character to wrap at for computing height
-								-- - max_width  maximal width of floating window
-								-- - max_height maximal height of floating window
-								-- - pad_left   number of columns to pad contents at left
-								-- - pad_right  number of columns to pad contents at right
-								-- - pad_top    number of lines to pad contents at top
-								-- - pad_bottom number of lines to pad contents at bottom
-								-- - offset_x   x-axis offset of the floating window
-								-- - offset_y   y-axis offset of the floating window
-								-- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
-								-- - winblend   transparency of the window (0-100)
-								win_opts = {},
-						},
-						virtual_text = {
-								enabled = true,
-								-- Text to show at virtual text
-								hl_mode = "replace",
-						},
-						status_text = {
-								enabled = true,
-								-- Text to provide when no actions are available
-								text_unavailable = ""
-						}
-				}
-      end
-    }
     use 'lotabout/skim.vim'
     use 'mbbill/undotree'
     use { 'mfussenegger/nvim-dap', config =
@@ -151,6 +110,8 @@ require('packer').startup {
         local lattice_local = require'lattice_local'
         local nvim_lsp = require("lspconfig")
         nvim_lsp.cssls.setup {}
+        nvim_lsp.gopls.setup {}
+        nvim_lsp.hls.setup {}
         nvim_lsp.html.setup {}
         nvim_lsp.jsonls.setup {
           cmd = { lattice_local.jsonls.bin, "--stdio" }
@@ -194,8 +155,12 @@ require('packer').startup {
 						},
 					}
         }
-        nvim_lsp.svelte.setup{}
+        nvim_lsp.svelte.setup {}
+        nvim_lsp.taplo.setup {}
         nvim_lsp.tsserver.setup {}
+        nvim_lsp.vimls.setup {}
+        nvim_lsp.yamlls.setup {}
+        nvim_lsp.zk.setup {}
       end
     }
     use 'nvim-lua/lsp-status.nvim'

@@ -42,6 +42,7 @@ command! CodeMine :cd ~/code/mine <cr>
 command! CodeOurs :cd ~/code/ours <cr>
 command! CodeTheirs :cd ~/code/theirs <cr>
 command! WP :Limelight | :Goyo | :SoftPencil
+command! TelePacker :lua require('telescope').extensions.packer.plugins()
 command! NoWP :NoPencil | :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
 command! NoVa :Goyo! | :Limelight!
