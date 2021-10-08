@@ -30,11 +30,78 @@ require('packer').startup {
       end
     }
     use 'embear/vim-localvimrc'
-    use {
-      'folke/lsp-colors.nvim', config =
-      function()
-      end
-    }
+    use 'folke/lsp-colors.nvim'
+		use { 'mhartington/formatter.nvim', config =
+			function()
+				require("formatter").setup(
+					{
+						logging = true,
+						filetype = {
+							typescriptreact = {
+								-- prettier
+								function()
+									return {
+										exe = "prettier",
+										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+										stdin = true
+									}
+								end
+							},
+							typescript = {
+								-- prettier
+								function()
+									return {
+										exe = "prettier",
+										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+										stdin = true
+									}
+								end
+							},
+							javascript = {
+								-- prettier
+								function()
+									return {
+										exe = "prettier",
+										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+										stdin = true
+									}
+								end
+							},
+							javascriptreact = {
+								-- prettier
+								function()
+									return {
+										exe = "prettier",
+										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+										stdin = true
+									}
+								end
+							},
+							json = {
+								-- prettier
+								function()
+									return {
+										exe = "prettier",
+										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+										stdin = true
+									}
+								end
+							},
+							lua = {
+								-- luafmt
+								function()
+									return {
+										exe = "luafmt",
+										args = {"--indent-count", 2, "--stdin"},
+										stdin = true
+									}
+								end
+							}
+						}
+					}
+				)
+			end
+		}
     -- use {
     --   'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons", config =
     --   function()
@@ -178,7 +245,7 @@ require('packer').startup {
 						eslint = {
 							sourceName = "eslint",
 							command = "eslint_d",
-							rootPatterns = {".eslintrc.js", "package.json"},
+							rootPatterns = {".git"}, -- change if you ever want to use another VCS :D
 							debounce = 100,
 							args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
 							parseJson = {
@@ -193,21 +260,12 @@ require('packer').startup {
 							securities = {[2] = "error", [1] = "warning"}
 					}
 				}
-				local formatters = {
-					prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
-				}
-				local formatFiletypes = {
-					typescript = "prettier",
-					typescriptreact = "prettier"
-				}
 				nvim_lsp.diagnosticls.setup {
 					on_attach = on_attach,
 					filetypes = vim.tbl_keys(filetypes),
 					init_options = {
 							filetypes = filetypes,
 							linters = linters,
-							formatters = formatters,
-							formatFiletypes = formatFiletypes
 					}
 				} -- end diagnosticls
         nvim_lsp.gopls.setup {}
