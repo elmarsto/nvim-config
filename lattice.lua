@@ -122,7 +122,8 @@ require('packer').startup {
 						end
 					end
 				end
-        vim.lsp.handlers["textDocument/formatting"] = format_async
+        -- broken in nightly
+        -- vim.lsp.handlers["textDocument/formatting"] = format_async
         _G.lsp_organize_imports = function()
 					local params = {
 						command = "_typescript.organizeImports",
