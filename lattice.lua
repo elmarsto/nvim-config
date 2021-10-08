@@ -53,13 +53,15 @@ require('packer').startup {
       end
     }
     use 'godlygeek/tabular'
-    use { 'hrsh7th/nvim-cmp', config =
+    use { 'saadparwaiz1/cmp_luasnip', requires = 'L3MON4D3/LuaSnip' }
+    use 'L3MON4D3/LuaSnip'
+    use { 'hrsh7th/nvim-cmp', requires = 'saadparwaiz1/cmp_luasnip', config =
       function()
 				local cmp = require'cmp'
 				cmp.setup({
 					snippet = {
 						expand = function(args)
-							vim.fn["vsnip#anonymous"](args.body)
+              require'luasnip'.lsp_expand(args.body)
 						end,
 					},
 					mapping = {
@@ -71,7 +73,7 @@ require('packer').startup {
 					},
 					sources = {
 						{ name = 'nvim_lsp' },
-						{ name = 'vsnip' },
+            { name = 'luasnip' },
 						{ name = 'buffer' },
 					}
 				})

@@ -75,3 +75,4 @@ nnoremap <C-M-Space> :Telescope vim_options <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <C-M-Z> :FindZettels <cr>
 nnoremap Q @@
+
