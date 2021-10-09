@@ -155,6 +155,15 @@ require("packer").startup {
         )
       end
     }
+    use({ "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+        require("null-ls").config({
+          sources = { require("null-ls").builtins.formatting.stylua }
+        })
+        require("lspconfig")["null-ls"].setup({})
+    end,
+    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    })
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
