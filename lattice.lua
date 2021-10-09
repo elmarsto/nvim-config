@@ -481,12 +481,12 @@ require("packer").startup {
         )
       end
     }
-    -- use { 'tami5/sqlite.lua', config =
-    --  function()
-    --    local lattice_local = require'lattice_local'
-    --   vim.g.sqlite_clib_path = lattice_local.sqlite.lib
-    --end
-    ---- }
+    use { 'tami5/sqlite.lua', config =
+     function()
+        local lattice_local = require'lattice_local'
+       vim.g.sqlite_clib_path = lattice_local.sqlite.lib
+     end
+    }
     use {
       "tanvirtin/vgit.nvim",
       requires = "nvim-lua/plenary.nvim",
