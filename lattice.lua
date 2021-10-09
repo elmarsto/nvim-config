@@ -191,6 +191,7 @@ require("packer").startup {
       config = function()
       end
     }
+    use "mhinz/vim-startify"
     use {
       "norcalli/nvim-colorizer.lua",
       config = function()
@@ -495,6 +496,7 @@ require("packer").startup {
     }
     use "tpope/vim-abolish"
     use "tpope/vim-surround"
+    use "tpope/vim-obsession"
     use "tyru/open-browser.vim"
     use "vim-pandoc/vim-pandoc"
     use "vim-pandoc/vim-pandoc-syntax"
