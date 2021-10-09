@@ -22,7 +22,6 @@ require("packer").startup {
     }
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
-    use "dense-analysis/ale"
     use "dmix/elvish.vim"
     use {
       "ellisonleao/glow.nvim",
@@ -154,11 +153,6 @@ require("packer").startup {
             }
           }
         )
-      end
-    }
-    use {
-      "hrsh7th/vim-vsnip",
-      config = function()
       end
     }
     use "junegunn/goyo.vim"
