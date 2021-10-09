@@ -155,15 +155,20 @@ require("packer").startup {
         )
       end
     }
-    use({ "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-        require("null-ls").config({
-          sources = { require("null-ls").builtins.formatting.stylua }
-        })
-        require("lspconfig")["null-ls"].setup({})
-    end,
-    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-    })
+    use(
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require("null-ls").config(
+            {
+              sources = {require("null-ls").builtins.formatting.stylua}
+            }
+          )
+          require("lspconfig")["null-ls"].setup({})
+        end,
+        requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+      }
+    )
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
@@ -200,19 +205,19 @@ require("packer").startup {
         local nvim_lsp = require("lspconfig")
         nvim_lsp.cssls.setup {}
         -- paste https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
-        local format_async = function(err, _, result, _, bufnr)
-          if err ~= nil or result == nil then
-            return
-          end
-          if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-            local view = vim.fn.winsaveview()
-            vim.lsp.util.apply_text_edits(result, bufnr)
-            vim.fn.winrestview(view)
-            if bufnr == vim.api.nvim_get_current_buf() then
-              vim.api.nvim_command("noautocmd :update")
-            end
-          end
-        end
+        -- local format_async = function(err, _, result, _, bufnr)
+        -- if err ~= nil or result == nil then
+        --   return
+        -- end
+        -- if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+        --   local view = vim.fn.winsaveview()
+        --   vim.lsp.util.apply_text_edits(result, bufnr)
+        --   vim.fn.winrestview(view)
+        --   if bufnr == vim.api.nvim_get_current_buf() then
+        --     vim.api.nvim_command("noautocmd :update")
+        --   end
+        -- end
+        -- end
         -- broken in nightly
         -- vim.lsp.handlers["textDocument/formatting"] = format_async
         _G.lsp_organize_imports = function()
@@ -249,14 +254,17 @@ require("packer").startup {
           buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
           buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
           buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", {silent = true})
-          --    if client.resolved_capabilities.document_formatting then
-          --			vim.api.nvim_exec([[
-          --			 augroup LspAutocommands
-          --					 autocmd! * <buffer>
-          --          autocmd BufWritePost <buffer> LspFormatting
-          --		 augroup END
-          --		 ]], true)
-          --		end
+          if client.resolved_capabilities.document_formatting then
+            vim.api.nvim_exec(
+              [[
+             augroup LspAutocommands
+                 autocmd! * <buffer>
+                autocmd BufWritePost <buffer> LspFormatting
+           augroup END
+           ]],
+              true
+            )
+          end
         end
         -- diagnosticls
         local filetypes = {
@@ -267,7 +275,7 @@ require("packer").startup {
           eslint = {
             sourceName = "eslint",
             command = "eslint_d",
-            rootPatterns = {"lerna.json", "yarn.lock"}, -- workspace-portal
+            rootPatterns = {"package-lock.json", "yarn.lock"},
             debounce = 100,
             args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
             parseJson = {
@@ -357,8 +365,13 @@ require("packer").startup {
         nvim_lsp.zk.setup {}
       end
     }
+    use {
+      "numToStr/Comment.nvim",
+      config = function()
+        require("Comment").setup()
+      end
+    }
     use "nvim-lua/lsp-status.nvim"
-    -- use { 'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sqlite.lua' }
     use "nvim-telescope/telescope-node-modules.nvim"
     use {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"}
     use {
@@ -366,18 +379,13 @@ require("packer").startup {
       requires = {
         "sharkdp/fd",
         "nvim-lua/plenary.nvim",
-        -- 'AckslD/nvim-neoclip.lua',
-        -- 'nvim-telescope/telescope-frecency.nvim',
         "nvim-telescope/telescope-node-modules.nvim",
         "nvim-telescope/telescope-packer.nvim"
       },
       config = function()
         local tscope = require("telescope")
         tscope.setup()
-        -- tscope.load_extension'frecency'
-        --tscope.load_extension'neoclip'
-        tscope.load_extension "packer" -- kinda broken
-        -- tscope.load_extension'node_modules' -- broken
+        tscope.load_extension "packer"
       end
     }
     use {
@@ -486,7 +494,6 @@ require("packer").startup {
       end
     }
     use "tpope/vim-abolish"
-    use "tpope/vim-commentary"
     use "tpope/vim-surround"
     use "tyru/open-browser.vim"
     use "vim-pandoc/vim-pandoc"
