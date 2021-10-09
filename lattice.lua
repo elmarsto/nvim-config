@@ -38,50 +38,50 @@ require('packer').startup {
 						logging = true,
 						filetype = {
 							typescriptreact = {
-								-- prettier
+								-- npx prettier
 								function()
 									return {
-										exe = "prettier",
+										exe = "npx prettier",
 										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
 										stdin = true
 									}
 								end
 							},
 							typescript = {
-								-- prettier
+								-- npx prettier
 								function()
 									return {
-										exe = "prettier",
+										exe = "npx prettier",
 										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
 										stdin = true
 									}
 								end
 							},
 							javascript = {
-								-- prettier
+								-- npx prettier
 								function()
 									return {
-										exe = "prettier",
+										exe = "npx prettier",
 										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
 										stdin = true
 									}
 								end
 							},
 							javascriptreact = {
-								-- prettier
+								-- npx prettier
 								function()
 									return {
-										exe = "prettier",
+										exe = "npx prettier",
 										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
 										stdin = true
 									}
 								end
 							},
 							json = {
-								-- prettier
+								-- npx prettier
 								function()
 									return {
-										exe = "prettier",
+										exe = "npx prettier",
 										args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
 										stdin = true
 									}
@@ -100,6 +100,12 @@ require('packer').startup {
 						}
 					}
 				)
+        vim.api.nvim_exec([[
+          augroup FormatAutogroup
+            autocmd!
+            autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+          augroup END
+        ]], true)
 			end
 		}
     -- use {
@@ -227,14 +233,14 @@ require('packer').startup {
 					buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
 					buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
 					buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", {silent = true})
-          if client.resolved_capabilities.document_formatting then
-						vim.api.nvim_exec([[
-						 augroup LspAutocommands
-								 autocmd! * <buffer>
-								 autocmd BufWritePost <buffer> LspFormatting
-						 augroup END
-						 ]], true)
-					end
+      --    if client.resolved_capabilities.document_formatting then
+			--			vim.api.nvim_exec([[
+			--			 augroup LspAutocommands
+			--					 autocmd! * <buffer>
+       --          autocmd BufWritePost <buffer> LspFormatting
+				--		 augroup END
+				--		 ]], true)
+			--		end
 				end
         -- diagnosticls
 				local filetypes = {
@@ -245,7 +251,7 @@ require('packer').startup {
 						eslint = {
 							sourceName = "eslint",
 							command = "eslint_d",
-							rootPatterns = {".git"}, -- change if you ever want to use another VCS :D
+              rootPatterns = {".eslintrc.js", "package.json"},
 							debounce = 100,
 							args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
 							parseJson = {
@@ -260,12 +266,21 @@ require('packer').startup {
 							securities = {[2] = "error", [1] = "warning"}
 					}
 				}
+				local formatters = {
+					prettier = {command = "npx prettier", args = {"--stdin-filepath", "%filepath"}}
+				}
+				local formatFiletypes = {
+					typescript = "prettier",
+					typescriptreact = "prettier"
+				}
 				nvim_lsp.diagnosticls.setup {
 					on_attach = on_attach,
 					filetypes = vim.tbl_keys(filetypes),
 					init_options = {
 							filetypes = filetypes,
 							linters = linters,
+							formatters = formatters,
+							formatFiletypes = formatFiletypes
 					}
 				} -- end diagnosticls
         nvim_lsp.gopls.setup {}
