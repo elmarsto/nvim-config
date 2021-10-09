@@ -39,50 +39,45 @@ require("packer").startup {
             logging = true,
             filetype = {
               typescriptreact = {
-                -- npx prettier
                 function()
                   return {
-                    exe = "npx prettier",
+                    exe = "prettier",
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
                 end
               },
               typescript = {
-                -- npx prettier
                 function()
                   return {
-                    exe = "npx prettier",
+                    exe = "prettier",
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
                 end
               },
               javascript = {
-                -- npx prettier
                 function()
                   return {
-                    exe = "npx prettier",
+                    exe = "prettier",
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
                 end
               },
               javascriptreact = {
-                -- npx prettier
                 function()
                   return {
-                    exe = "npx prettier",
+                    exe = "prettier",
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
                 end
               },
               json = {
-                -- npx prettier
                 function()
                   return {
-                    exe = "npx prettier",
+                    exe = "prettier",
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
@@ -269,7 +264,7 @@ require("packer").startup {
           eslint = {
             sourceName = "eslint",
             command = "eslint_d",
-            rootPatterns = {".eslintrc.js", "package.json"},
+            rootPatterns = {"lerna.json", "yarn.lock"}, -- workspace-portal
             debounce = 100,
             args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
             parseJson = {
@@ -285,7 +280,7 @@ require("packer").startup {
           }
         }
         local formatters = {
-          prettier = {command = "npx prettier", args = {"--stdin-filepath", "%filepath"}}
+          prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
         }
         local formatFiletypes = {
           typescript = "prettier",
