@@ -184,14 +184,35 @@ require("packer").startup {
         )
       end
     }
-    use "lotabout/skim.vim"
     use "mbbill/undotree"
     use {
       "mfussenegger/nvim-dap",
       config = function()
       end
     }
-    use "mhinz/vim-startify"
+    use {
+      "glepnir/dashboard-nvim",
+      config = function()
+        -- lifted w love+respect from https://github.com/johnsci911/nvim-ide/blob/lua/lua/config/nvim-dashboard.lua
+        vim.g.dashboard_custom_header = {
+          " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+          " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+          " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+          " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+          " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+          " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝"
+        }
+
+        vim.g.dashboard_default_executive = "telescope"
+
+        vim.g.dashboard_custom_section = {
+          a = {description = {"  Find File           "}, command = "FzfLua files"},
+          b = {description = {"  Recently Used Files "}, command = "FzfLua oldfiles"},
+          p = {description = {"  Projects            "}, command = "Telescope project"},
+          e = {description = {"  Marks              "}, command = "Telescope marks"}
+        }
+      end
+    }
     use {
       "norcalli/nvim-colorizer.lua",
       config = function()
@@ -444,18 +465,13 @@ require("packer").startup {
       config = function()
       end
     }
-    use {
-      "onsails/lspkind-nvim",
-      config = function()
-      end
-    }
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-pencil"
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use {
-      "rcarriga/nvim-dap-ui",
+      "carriga/nvim-dap-ui",
       config = function()
       end
     }
@@ -481,11 +497,12 @@ require("packer").startup {
         )
       end
     }
-    use { 'tami5/sqlite.lua', config =
-     function()
-        local lattice_local = require'lattice_local'
-       vim.g.sqlite_clib_path = lattice_local.sqlite.lib
-     end
+    use {
+      "tami5/sqlite.lua",
+      config = function()
+        local lattice_local = require "lattice_local"
+        vim.g.sqlite_clib_path = lattice_local.sqlite.lib
+      end
     }
     use {
       "tanvirtin/vgit.nvim",
