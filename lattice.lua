@@ -407,7 +407,7 @@ require("packer").startup {
       requires = {
         "nvim-lua/plenary.nvim",
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
-        {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+        {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run}
       },
       config = function()
         local tscope = require("telescope")

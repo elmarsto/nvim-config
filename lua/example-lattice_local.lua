@@ -15,5 +15,8 @@ return {
     },
     sqlite = {
       lib = "${sqLite.out}/lib/libsqlite3.so"
+    },
+    telescope_fzf_native = {
+      run = "make" -- 'gmake' on e.g. openbsd
     }
 }
