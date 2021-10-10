@@ -1,13 +1,19 @@
 return {
-    sumneko = { -- sumneko is picky. aboslute paths only, no expansion of ~, no expansion of $HOME
-      root = "FIXME for whatever machine you're on";
-      bin = "lua-language-server",
-      main = "../main.lua"
+    sumneko = {
+      root = "${sumneko}",
+      bin = "${sumneko}/bin/lua-language-server",
+      main = "${sumneko}/extras/main.lua"
     },
     jsonls = {
-      bin = "vscode-json-language-server",
+      bin = "${jsonls}/bin/vscode-json-languageserver"
+    },
+    htmlls = {
+      bin = "${htmlls}/bin/html-languageserver"
+    },
+    cssls = {
+      bin = "${cssls}/bin/css-languageserver"
     },
     sqlite = {
-      lib = "libsqlite3.so", -- under windows, an abs path to an sqlite .dll works here (grab from sqlite repo)
+      lib = "${sqLite.out}/lib/libsqlite3.so"
     }
 }
