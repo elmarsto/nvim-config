@@ -405,7 +405,6 @@ require("packer").startup {
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
-        "sharkdp/fd",
         "nvim-lua/plenary.nvim",
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
