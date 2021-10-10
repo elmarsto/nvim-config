@@ -6,15 +6,17 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require("packer").startup {
   function(use)
-    --use {
-    --  'AckslD/nvim-neoclip.lua',
-    -- requires = { {'tami5/sqlite.lua', module = 'sqlite'} },
-    --  config = function()
-    --   require('neoclip').setup({
-    --     enable_persistant_history = true, -- sic
-    --    })
-    --  end,
-    -- }
+    use {
+      "AckslD/nvim-neoclip.lua",
+      requires = "tami5/sqlite.lua",
+      config = function()
+        require("neoclip").setup(
+          {
+            enable_persistant_history = true -- sic
+          }
+        )
+      end
+    }
     use {
       "APZelos/blamer.nvim",
       config = function()
@@ -106,12 +108,13 @@ require("packer").startup {
         )
       end
     }
-    -- use {
-    --   'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons", config =
-    --   function()
-    --     require'trouble'.setup {}
-    --   end
-    -- }
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require "trouble".setup {}
+      end
+    }
     -- use { 'glepnir/lspsaga.nvim', config =
     --   function ()
     --     require'lspsaga'.init_lsp_saga()
@@ -394,20 +397,20 @@ require("packer").startup {
       end
     }
     use "nvim-lua/lsp-status.nvim"
-    use "nvim-telescope/telescope-node-modules.nvim"
-    use {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"}
+    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
         "sharkdp/fd",
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-node-modules.nvim",
-        "nvim-telescope/telescope-packer.nvim"
+        {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
+        {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
       },
       config = function()
         local tscope = require("telescope")
-        tscope.setup()
+        tscope.setup {}
         tscope.load_extension "packer"
+        tscope.load_extension "fzf"
       end
     }
     use {
@@ -471,7 +474,7 @@ require("packer").startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use {
-      "carriga/nvim-dap-ui",
+      "rcarriga/nvim-dap-ui",
       config = function()
       end
     }
