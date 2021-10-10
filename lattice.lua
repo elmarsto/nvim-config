@@ -332,9 +332,14 @@ require("packer").startup {
             formatFiletypes = formatFiletypes
           }
         } -- end diagnosticls
+        nvim_lsp.css.setup {
+          cmd = {lattice_local.cssls.bin, "--stdio"}
+        }
         nvim_lsp.gopls.setup {}
         nvim_lsp.hls.setup {}
-        nvim_lsp.html.setup {}
+        nvim_lsp.html.setup {
+          cmd = {lattice_local.htmlls.bin, "--stdio"}
+        }
         nvim_lsp.jsonls.setup {
           cmd = {lattice_local.jsonls.bin, "--stdio"}
         }
