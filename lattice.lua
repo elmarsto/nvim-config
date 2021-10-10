@@ -228,7 +228,6 @@ require("packer").startup {
       config = function()
         local lattice_local = require "lattice_local"
         local nvim_lsp = require("lspconfig")
-        nvim_lsp.cssls.setup {}
         -- paste https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
         -- local format_async = function(err, _, result, _, bufnr)
         -- if err ~= nil or result == nil then
@@ -332,7 +331,7 @@ require("packer").startup {
             formatFiletypes = formatFiletypes
           }
         } -- end diagnosticls
-        nvim_lsp.css.setup {
+        nvim_lsp.cssls.setup {
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
         nvim_lsp.gopls.setup {}
