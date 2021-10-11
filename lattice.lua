@@ -179,6 +179,7 @@ require("packer").startup {
         )
       end
     }
+    use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
     use {

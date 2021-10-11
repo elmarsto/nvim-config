@@ -25,6 +25,8 @@ au FocusGained,BufEnter * :checktime
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
+" Reaper
+autocmd filetype supercollider,csound,lua lua require'reaper-nvim'.setup()
 function! TogglePaste()
     if(&paste == 0)
         set paste
