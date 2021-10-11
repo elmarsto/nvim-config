@@ -17,19 +17,11 @@ require("packer").startup {
         )
       end
     }
-    use {
-      "APZelos/blamer.nvim",
-      config = function()
-      end
-    }
+    use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
     use "dmix/elvish.vim"
-    use {
-      "ellisonleao/glow.nvim",
-      config = function()
-      end
-    }
+    use "ellisonleao/glow.nvim"
     use "embear/vim-localvimrc"
     use "folke/lsp-colors.nvim"
     use {
@@ -188,11 +180,7 @@ require("packer").startup {
       end
     }
     use "mbbill/undotree"
-    use {
-      "mfussenegger/nvim-dap",
-      config = function()
-      end
-    }
+    use "mfussenegger/nvim-dap"
     use {
       "glepnir/dashboard-nvim",
       config = function()
@@ -464,26 +452,15 @@ require("packer").startup {
         }
       end
     }
-    use {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      config = function()
-      end
-    }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-pencil"
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
-    use {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-      end
-    }
-    use {
-      "simrat39/symbols-outline.nvim",
-      config = function()
-      end
-    }
+    use "rcarriga/nvim-dap-ui"
+    use "rmagatti/auto-session"
+    use "simrat39/symbols-outline.nvim"
     use "rafcamlet/nvim-luapad"
     use {
       "TimUntersberger/neogit",
@@ -517,7 +494,6 @@ require("packer").startup {
     }
     use "tpope/vim-abolish"
     use "tpope/vim-surround"
-    use "tpope/vim-obsession"
     use "tyru/open-browser.vim"
     use "vim-pandoc/vim-pandoc"
     use "vim-pandoc/vim-pandoc-syntax"
