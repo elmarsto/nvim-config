@@ -198,9 +198,9 @@ require("packer").startup {
       config = function()
         -- lifted w love+respect from https://github.com/johnsci911/nvim-ide/blob/lua/lua/config/nvim-dashboard.lua
         vim.g.dashboard_custom_header = {
-            "╻  ┏━┓╺┳╸╺┳╸╻┏━╸┏━╸   ╻ ╻╻┏┳┓",
-            "┃  ┣━┫ ┃  ┃ ┃┃  ┣╸    ┃┏┛┃┃┃┃",
-            "┗━╸╹ ╹ ╹  ╹ ╹┗━╸┗━╸   ┗┛ ╹╹ ╹",
+          "╻  ┏━┓╺┳╸╺┳╸╻┏━╸┏━╸   ╻ ╻╻┏┳┓",
+          "┃  ┣━┫ ┃  ┃ ┃┃  ┣╸    ┃┏┛┃┃┃┃",
+          "┗━╸╹ ╹ ╹  ╹ ╹┗━╸┗━╸   ┗┛ ╹╹ ╹"
         }
 
         vim.g.dashboard_default_executive = "telescope"
@@ -403,8 +403,9 @@ require("packer").startup {
       "nvim-telescope/telescope.nvim",
       requires = {
         "nvim-lua/plenary.nvim",
+        {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
-        {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run}
+        {"nvim-telescope/telescope-symbols.nvim"}
       },
       config = function()
         local tscope = require("telescope")

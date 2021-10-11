@@ -47,6 +47,7 @@ command! Xelepacker :lua require('telescope').extensions.packer.plugins()
 command! NoWP :NoPencil | :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
 command! NoVa :Goyo! | :Limelight!
+command! Emo  :lua require "telescope.builtin".symbols {sources = {"emoji"}}
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
