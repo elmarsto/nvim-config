@@ -20,6 +20,7 @@ require("packer").startup {
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
+    use "David-Kunz/jester"
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
     use "embear/vim-localvimrc"
