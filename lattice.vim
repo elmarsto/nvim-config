@@ -35,21 +35,18 @@ set wrap
 " commands
 command! Emo  :lua require "telescope.builtin".symbols {sources = {"emoji"}}
 
+" dap-ui
+"
+command! DapOpen require("dapui").open()
+command! DapClose require("dapui").close()
+command! DapToggle require("dapui").toggle()
+
 " Word processing and focus modes
 command! NoVa :Goyo! | :Limelight!
 command! NoWP :NoPencil | :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
 command! WP :Limelight | :Goyo | :SoftPencil
 command! WF :Limelight | :Goyo | :HardPencil " 'WPh (the 'h' for hard') sounds like WF'
-
-" personal locational shortcuts
-command! Navaruk :cd ~/Navaruk
-command! Workvault :cd ~/workvault | :e ~/workvault/workbench.md
-command! LatticeLua :e ~/code/mine/lattice-nix/nvim-config/lattice.lua
-command! LatticeVim :e ~/code/mine/lattice-nix/nvim-config/lattice.vim
-command! CodeMine :cd ~/code/mine
-command! CodeOurs :cd ~/code/ours
-command! CodeTheirs :cd ~/code/theirs
 
 " Telescope
 command! Xelepacker :lua require('telescope').extensions.packer.plugins()

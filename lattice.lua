@@ -467,7 +467,11 @@ require("packer").startup {
     use "preservim/vim-pencil"
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
-    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}, config =
+      function()
+        require("dapui").setup()
+      end
+    }
     use {
       "rmagatti/auto-session",
       config = function()
