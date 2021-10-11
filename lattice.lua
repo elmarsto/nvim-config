@@ -29,11 +29,7 @@ require("packer").startup {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
       config = function()
-        require("todo-comments").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
-        }
+        require("todo-comments").setup {}
       end
     }
     use {
@@ -471,7 +467,7 @@ require("packer").startup {
     use "preservim/vim-pencil"
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
-    use "rcarriga/nvim-dap-ui"
+    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
     use {
       "rmagatti/auto-session",
       config = function()
