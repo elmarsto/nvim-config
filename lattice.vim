@@ -3,6 +3,7 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 set autoread
 set backspace=indent,eol,start  
+set modeline
 
 "" Tabs. May be overridden by autocmd rules 
 set autoindent 
@@ -26,7 +27,7 @@ augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 " Reaper
-autocmd filetype supercollider,csound,lua lua require'reaper-nvim'.setup()
+autocmd filetype supercollider,csound lua require'reaper-nvim'.setup()
 function! TogglePaste()
     if(&paste == 0)
         set paste
