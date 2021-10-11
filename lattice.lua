@@ -198,12 +198,9 @@ require("packer").startup {
       config = function()
         -- lifted w love+respect from https://github.com/johnsci911/nvim-ide/blob/lua/lua/config/nvim-dashboard.lua
         vim.g.dashboard_custom_header = {
-          " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-          " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-          " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-          " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-          " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-          " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝"
+            "╻  ┏━┓╺┳╸╺┳╸╻┏━╸┏━╸   ╻ ╻╻┏┳┓",
+            "┃  ┣━┫ ┃  ┃ ┃┃  ┣╸    ┃┏┛┃┃┃┃",
+            "┗━╸╹ ╹ ╹  ╹ ╹┗━╸┗━╸   ┗┛ ╹╹ ╹",
         }
 
         vim.g.dashboard_default_executive = "telescope"
