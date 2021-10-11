@@ -28,6 +28,7 @@ set softtabstop=2
 set tabstop=2 
 set termguicolors
 set undofile
+set wrap
 " commands
 command! Emo  :lua require "telescope.builtin".symbols {sources = {"emoji"}}
 
@@ -36,6 +37,7 @@ command! NoVa :Goyo! | :Limelight!
 command! NoWP :NoPencil | :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
 command! WP :Limelight | :Goyo | :SoftPencil
+command! WF :Limelight | :Goyo | :HardPencil " 'WPh (the 'h' for hard') sounds like WF'
 
 " personal locational shortcuts
 command! Navaruk :cd ~/Navaruk
