@@ -11,6 +11,8 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 " settings
 let g:markdown_folding=1
+let &showbreak = '⮩'
+set listchars=precedes:«,extends:»
 set autoindent 
 set autoread
 set backspace=indent,eol,start  
@@ -18,6 +20,7 @@ set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
 set lazyredraw
+set list
 set modeline
 set mouse=a
 set shiftwidth=2 
