@@ -459,7 +459,24 @@ require("packer").startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "rcarriga/nvim-dap-ui"
-    use "rmagatti/auto-session"
+    use {
+      "rmagatti/auto-session",
+      config = function()
+        vim.o.sessionoptions = "blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
+        require("auto-session").setup(
+          {
+            log_level = "info",
+            -- defaults (via README.md)
+            -- auto_session_enable_last_session = false,
+            -- auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
+            -- auto_session_enabled = true,
+            auto_save_enabled = true,
+            auto_restore_enabled = true
+            -- auto_session_suppress_dirs = nil
+          }
+        )
+      end
+    }
     use "simrat39/symbols-outline.nvim"
     use "rafcamlet/nvim-luapad"
     use {
