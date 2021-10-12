@@ -33,6 +33,51 @@ set tabstop=2
 set termguicolors
 set undofile
 set wrap
+
+" Word processing and focus modes
+" see github.com/preservim/vim-pencil
+function! Prose()
+  call pencil#init()
+  call lexical#init()
+  call litecorrect#init()
+  call textobj#quote#init()
+  call textobj#sentence#init()
+
+  " manual reformatting shortcuts
+  nnoremap <buffer> <silent> Q gqap
+  xnoremap <buffer> <silent> Q gq
+  nnoremap <buffer> <silent> <leader>Q vapJgqap
+
+  " force top correction on most recent misspelling
+  nnoremap <buffer> <c-s> [s1z=<c-o>
+  inoremap <buffer> <c-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+
+  " replace common punctuation
+  iabbrev <buffer> -- –
+  iabbrev <buffer> --- —
+  iabbrev <buffer> << «
+  iabbrev <buffer> >> »
+
+  " open most folds
+  setlocal foldlevel=6
+
+  " replace typographical quotes (reedes/vim-textobj-quote)
+  map <silent> <buffer> <leader>qc <Plug>ReplaceWithCurly
+  map <silent> <buffer> <leader>qs <Plug>ReplaceWithStraight
+
+  " highlight words (reedes/vim-wordy)
+  noremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
+  xnoremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
+  inoremap <silent> <buffer> <F8> <C-o>:NextWordy<cr>
+
+endfunction
+"autocmd FileType markdown,mkd,text call Prose()
+command! -nargs=0 Prose call Prose()
+command! NoVa :Goyo! | :Limelight!
+command! Va :Limelight | :Goyo
+command! WP :Limelight | :Goyo | :Prose
+
+
 " commands
 command! Emo  :lua require "telescope.builtin".symbols {sources = {"emoji"}}
 
@@ -42,12 +87,6 @@ command! DapOpen require("dapui").open()
 command! DapClose require("dapui").close()
 command! DapToggle require("dapui").toggle()
 
-" Word processing and focus modes
-command! NoVa :Goyo! | :Limelight!
-command! NoWP :NoPencil | :Goyo! | :Limelight!
-command! Va :Limelight | :Goyo
-command! WP :Limelight | :Goyo | :SoftPencil
-command! WF :Limelight | :Goyo | :HardPencil " 'WPh (the 'h' for hard') sounds like WF'
 
 " Telescope
 command! Xelepacker :lua require('telescope').extensions.packer.plugins()

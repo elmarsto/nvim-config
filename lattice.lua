@@ -464,11 +464,15 @@ require("packer").startup {
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
+    use "preservim/vim-litecorrect"
     use "preservim/vim-pencil"
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
-    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}, config =
-      function()
+    use "preservim/vim-wordy"
+    use {
+      "rcarriga/nvim-dap-ui",
+      requires = {"mfussenegger/nvim-dap"},
+      config = function()
         require("dapui").setup()
       end
     }
@@ -533,7 +537,7 @@ require("packer").startup {
 }
 
 -- from https://github.com/Luxed/nvim-config/commit/359f8ed29b47e4c2dfc6a3f4f4f2bec7829aa752
-if vim.fn.has('win32') then
+if vim.fn.has("win32") then
   -- Because Windows is such a great operating system, doing <C-Z> will completely lock up Neovim in the terminal. see: https://github.com/neovim/neovim/issues/6660
-    vim.api.nvim_set_keymap('n', '<C-Z>', '<CMD>lua require("term").open()<CR>', {})
+  vim.api.nvim_set_keymap("n", "<C-Z>", '<CMD>lua require("term").open()<CR>', {})
 end
