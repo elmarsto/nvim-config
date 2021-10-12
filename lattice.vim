@@ -12,7 +12,7 @@ highlight Comment cterm=italic gui=italic
 " settings
 let g:markdown_folding=1
 let &showbreak = '⮩'
-let g:pencil#conceallevel = 0
+let g:pencil#conceallevel = 2
 set listchars=precedes:«,extends:»
 set autoindent 
 set autoread
