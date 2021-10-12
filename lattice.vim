@@ -90,17 +90,6 @@ command! DapToggle require("dapui").toggle()
 
 " Telescope
 command! Xelepacker :lua require('telescope').extensions.packer.plugins()
-
-" Jester
-command! JesterRunAll :lua require"jester".run()
-command! JesterRun :lua require"jester".run_file()
-command! JesterRunAgain :lua require"jester".run_last()
-command! JesterDebugAll :lua require"jester".debug()
-command! JesterDebug :lua require"jester".debug_file()
-command! JesterDebugAgain :lua require"jester".debug_last()
-
-
-" mappings
 nnoremap <C-'> :Telescope marks<cr>
 nnoremap <C-,> :Telescope loclist<cr>
 nnoremap <C-.> :Telescope quickfix<cr>
@@ -123,8 +112,20 @@ nnoremap <M-C-P> :Telescope git_files <cr>
 nnoremap <M-C-[> :Telescope git_bcommits <cr>
 nnoremap <M-C-\> :Telescope git_branches <cr>
 nnoremap <M-C-]> :Telescope git_commits <cr>
+nnoremap <C-Space> :Telescope buffers <cr>
 nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
 nnoremap <M-Space> :Telescope command_history <cr>
+
+" Jester
+command! JesterRunAll :lua require"jester".run()
+command! JesterRun :lua require"jester".run_file()
+command! JesterRunAgain :lua require"jester".run_last()
+command! JesterDebugAll :lua require"jester".debug()
+command! JesterDebug :lua require"jester".debug_file()
+command! JesterDebugAgain :lua require"jester".debug_last()
+
+
+" misc mappings
 nnoremap Q @@
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
