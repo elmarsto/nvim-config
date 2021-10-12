@@ -191,26 +191,6 @@ require("packer").startup {
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
     use {
-      "glepnir/dashboard-nvim",
-      config = function()
-        -- lifted w love+respect from https://github.com/johnsci911/nvim-ide/blob/lua/lua/config/nvim-dashboard.lua
-        vim.g.dashboard_custom_header = {
-          "╻  ┏━┓╺┳╸╺┳╸╻┏━╸┏━╸   ╻ ╻╻┏┳┓",
-          "┃  ┣━┫ ┃  ┃ ┃┃  ┣╸    ┃┏┛┃┃┃┃",
-          "┗━╸╹ ╹ ╹  ╹ ╹┗━╸┗━╸   ┗┛ ╹╹ ╹"
-        }
-
-        vim.g.dashboard_default_executive = "telescope"
-
-        vim.g.dashboard_custom_section = {
-          a = {description = {"  Find File           "}, command = "FzfLua files"},
-          b = {description = {"  Recently Used Files "}, command = "FzfLua oldfiles"},
-          p = {description = {"  Projects            "}, command = "Telescope project"},
-          e = {description = {"  Marks              "}, command = "Telescope marks"}
-        }
-      end
-    }
-    use {
       "norcalli/nvim-colorizer.lua",
       config = function()
         require "colorizer".setup()
@@ -486,7 +466,7 @@ require("packer").startup {
             -- defaults (via README.md)
             -- auto_session_enable_last_session = false,
             -- auto_session_root_dir = vim.fn.stdpath('data').."/sessions/",
-            -- auto_session_enabled = true,
+             auto_session_enabled = true,
             auto_save_enabled = false,
             auto_restore_enabled = true
             -- auto_session_suppress_dirs = nil
