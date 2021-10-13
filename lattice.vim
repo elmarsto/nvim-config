@@ -112,7 +112,7 @@ nnoremap <M-C-P> :Telescope git_files <cr>
 nnoremap <M-C-[> :Telescope git_bcommits <cr>
 nnoremap <M-C-\> :Telescope git_branches <cr>
 nnoremap <M-C-]> :Telescope git_commits <cr>
-nnoremap <C-Space> :Telescope buffers <cr>
+nnoremap <M-CR> :Telescope buffers <cr>
 nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
 nnoremap <M-Space> :Telescope command_history <cr>
 
