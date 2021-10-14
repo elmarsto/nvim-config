@@ -365,7 +365,10 @@ require("packer").startup {
         }
         nvim_lsp.vimls.setup {}
         nvim_lsp.yamlls.setup {}
-        nvim_lsp.zk.setup {}
+        nvim_lsp.zk.setup {
+          cmd = { lattice_local.zk.bin, "lsp" };
+          filetypes = { "markdown", "PANDOC", "pandoc" };
+        }
       end
     }
     use {
