@@ -146,8 +146,8 @@ require("packer").startup {
               ["<C-d>"] = cmp.mapping.scroll_docs(-4),
               ["<C-f>"] = cmp.mapping.scroll_docs(4),
               ["<C-Space>"] = cmp.mapping.complete(),
-              ["<C-e>"] = cmp.mapping.close(),
-              ["<CR>"] = cmp.mapping.confirm({select = true})
+              ["<C-e>"] = cmp.mapping.close()
+              --   ["<CR>"] = cmp.mapping.confirm({select = true})
             },
             sources = {
               {name = "nvim_lsp"},
@@ -185,6 +185,13 @@ require("packer").startup {
             easing_function = "quadratic" -- Default easing function
           }
         )
+      end
+    }
+    use {
+      "phaazon/hop.nvim",
+      as = "hop",
+      config = function()
+        require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
       end
     }
     use "madskjeldgaard/reaper-nvim"
@@ -366,8 +373,8 @@ require("packer").startup {
         nvim_lsp.vimls.setup {}
         nvim_lsp.yamlls.setup {}
         nvim_lsp.zk.setup {
-          cmd = { lattice_local.zk.bin, "lsp" };
-          filetypes = { "markdown", "PANDOC", "pandoc" };
+          cmd = {lattice_local.zk.bin, "lsp"},
+          filetypes = {"markdown", "PANDOC", "pandoc"}
         }
       end
     }
@@ -383,15 +390,46 @@ require("packer").startup {
       "nvim-telescope/telescope.nvim",
       requires = {
         "nvim-lua/plenary.nvim",
+        "nvim-lua/popup.nvim",
+        "nvim-telescope/telescope-arecibo.nvim",
+        "nvim-telescope/telescope-cheat.nvim",
+        "nvim-telescope/telescope-dap.nvim",
+        "nvim-telescope/telescope-github.nvim",
+        "nvim-telescope/telescope-frecency.nvim",
+        "nvim-telescope/telescope-hop.nvim",
+        "tami5/sqlite.lua",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
-        {"nvim-telescope/telescope-symbols.nvim"}
+        {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
+        {"nvim-telescope/telescope-symbols.nvim"},
+        {"nvim-telescope/telescope-vimspector.nvim"},
+        {"nvim-telescope/telescope-z.nvim"}
       },
       config = function()
         local tscope = require("telescope")
-        tscope.setup {}
-        tscope.load_extension "packer"
+        tscope.setup {
+          extensions = {
+            project = {
+              base_dirs = {
+                "~/code/",
+                -- {path = "~/dev/src5", max_depth = 2}
+              },
+              hidden_files = true -- default: false
+            }
+          }
+        }
+        tscope.load_extension "arecibo"
+        tscope.load_extension "cheat"
+        tscope.load_extension "dap"
+        tscope.load_extension "frecency"
         tscope.load_extension "fzf"
+        tscope.load_extension "gh"
+        tscope.load_extension "hop"
+        -- tscope.load_extension "symbols"
+        tscope.load_extension "packer"
+        tscope.load_extension "project"
+        tscope.load_extension "vimspector"
+        tscope.load_extension "z"
       end
     }
     use {
@@ -452,6 +490,7 @@ require("packer").startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
+    use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
       requires = {"mfussenegger/nvim-dap"},
