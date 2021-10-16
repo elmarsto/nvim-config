@@ -6,17 +6,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require("packer").startup {
   function(use)
-    use {
-      "AckslD/nvim-neoclip.lua",
-      requires = "tami5/sqlite.lua",
-      config = function()
-        require("neoclip").setup(
-          {
-            enable_persistant_history = true -- sic
-          }
-        )
-      end
-    }
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
@@ -395,9 +384,7 @@ require("packer").startup {
         "nvim-telescope/telescope-cheat.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-github.nvim",
-        "nvim-telescope/telescope-frecency.nvim",
         "nvim-telescope/telescope-hop.nvim",
-        "tami5/sqlite.lua",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
@@ -421,7 +408,6 @@ require("packer").startup {
         tscope.load_extension "arecibo"
         tscope.load_extension "cheat"
         tscope.load_extension "dap"
-        tscope.load_extension "frecency"
         tscope.load_extension "fzf"
         tscope.load_extension "gh"
         tscope.load_extension "hop"
