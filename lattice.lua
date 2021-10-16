@@ -183,7 +183,7 @@ require("packer").startup {
         require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
       end
     }
-    use "madskjeldgaard/reaper-nvim"
+    -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
     use {
