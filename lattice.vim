@@ -99,7 +99,8 @@ nnoremap <C-M-O> :Telescope find_files <cr>
 nnoremap <C-M-Space> :Telescope vim_options <cr>
 nnoremap <C-M-Z> :FindZettels <cr>
 nnoremap <C-Space> :Telescope commands <cr>
-nnoremap <C-\> :Telescope file_browser <cr>
+nnoremap <C-Bslash> :Telescope file_browser <cr>
+nnoremap <M-Bslash> :Fd <cr>
 nnoremap <C-]> :Telescope registers <cr>
 nnoremap <C-_> :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>

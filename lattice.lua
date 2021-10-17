@@ -183,6 +183,7 @@ require("packer").startup {
         require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
       end
     }
+    use {"ptzz/lf.vim", requires = "voldikiss/vim-floaterm"}
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
@@ -398,7 +399,7 @@ require("packer").startup {
           extensions = {
             project = {
               base_dirs = {
-                "~/code/",
+                "~/code/"
                 -- {path = "~/dev/src5", max_depth = 2}
               },
               hidden_files = true -- default: false
