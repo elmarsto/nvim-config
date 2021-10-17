@@ -183,7 +183,13 @@ require("packer").startup {
         require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
       end
     }
-    use {"ptzz/lf.vim", requires = "voldikss/vim-floaterm"}
+    use {
+      "ptzz/lf.vim",
+      requires = "voldikss/vim-floaterm",
+      config = function()
+        vim.g.lf_map_keys = 0
+      end
+    }
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
