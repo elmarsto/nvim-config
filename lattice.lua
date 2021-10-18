@@ -537,6 +537,12 @@ require("packer").startup {
         require("vgit").setup()
       end
     }
+    use {
+      "romariorobby/taskell.nvim",
+      config = function()
+        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskel<CR>", {silent = true})
+      end
+    }
     use "tpope/vim-abolish"
     use "tpope/vim-surround"
     use "tyru/open-browser.vim"
