@@ -540,7 +540,7 @@ require("packer").startup {
     use {
       "romariorobby/taskell.nvim",
       config = function()
-        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskel<CR>", {silent = true})
+        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskell<CR>", {silent = true})
       end
     }
     use "tpope/vim-abolish"
