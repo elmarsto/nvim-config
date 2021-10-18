@@ -571,6 +571,7 @@ require("packer").startup {
       end
     }
     use "tpope/vim-abolish"
+    use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tyru/open-browser.vim"
     use "vim-pandoc/vim-pandoc"
