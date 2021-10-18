@@ -18,7 +18,21 @@ require("packer").startup {
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
       config = function()
-        require("todo-comments").setup {}
+        require("todo-comments").setup {
+          signs = true, -- show icons in the signs column
+          keywords = {
+            DONE = {icon = " ", color = "info"},
+            TODO = {icon = "⭕", color = "info"}
+          },
+          merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+          colors = {
+            error = {"LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626"},
+            warning = {"LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24"},
+            info = {"LspDiagnosticsDefaultInformation", "#2563EB"},
+            hint = {"LspDiagnosticsDefaultHint", "#10B981"},
+            default = {"Identifier", "#7C3AED"}
+          }
+        }
       end
     }
     use {
@@ -409,12 +423,12 @@ require("packer").startup {
           extensions = {
             media_files = {
               filetypes = {"png", "webp", "jpg", "jpeg"},
-              find_cmd = "rg",
+              find_cmd = "rg"
             },
             project = {
               base_dirs = {
                 "~/code/"
-                -- {path = "~/dev/src5", max_depth = 2}
+                --{path = "~/dev/src5", max_depth = 2}
               },
               hidden_files = true -- default: false
             }
