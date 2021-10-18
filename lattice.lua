@@ -389,6 +389,9 @@ require("packer").startup {
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
         "nvim-telescope/telescope-cheat.nvim",
+        "nvim-telescope/telescope-node-modules.nvim",
+        "nvim-telescope/telescope-frecency.nvim",
+        "nvim-telescope/telescope-project.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-github.nvim",
         "nvim-telescope/telescope-hop.nvim",
@@ -418,6 +421,8 @@ require("packer").startup {
         tscope.load_extension "fzf"
         tscope.load_extension "gh"
         tscope.load_extension "hop"
+        tscope.load_extension "node_modules"
+        tscope.load_extension "frecency"
         -- tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
