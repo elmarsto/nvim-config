@@ -394,6 +394,7 @@ require("packer").startup {
         "nvim-telescope/telescope-project.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-github.nvim",
+        "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-hop.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
@@ -406,6 +407,10 @@ require("packer").startup {
         local tscope = require("telescope")
         tscope.setup {
           extensions = {
+            media_files = {
+              filetypes = {"png", "webp", "jpg", "jpeg"},
+              find_cmd = "rg",
+            },
             project = {
               base_dirs = {
                 "~/code/"
@@ -420,6 +425,9 @@ require("packer").startup {
         tscope.load_extension "dap"
         tscope.load_extension "fzf"
         tscope.load_extension "gh"
+        if vim.fn.has("unix") then
+          tscope.load_extension "media_files"
+        end
         tscope.load_extension "hop"
         tscope.load_extension "node_modules"
         tscope.load_extension "frecency"
