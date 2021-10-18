@@ -131,36 +131,40 @@ require("packer").startup {
       end
     }
     use "godlygeek/tabular"
-    use {"saadparwaiz1/cmp_luasnip", requires = "L3MON4D3/LuaSnip"}
+    if not vim.fn.has("win32") then
+      use {"saadparwaiz1/cmp_luasnip", requires = "L3MON4D3/LuaSnip"}
+    end
     use "L3MON4D3/LuaSnip"
-    use {
-      "hrsh7th/nvim-cmp",
-      requires = "saadparwaiz1/cmp_luasnip",
-      config = function()
-        local cmp = require "cmp"
-        cmp.setup(
-          {
-            snippet = {
-              expand = function(args)
-                require "luasnip".lsp_expand(args.body)
-              end
-            },
-            mapping = {
-              ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-              ["<C-f>"] = cmp.mapping.scroll_docs(4),
-              ["<C-Space>"] = cmp.mapping.complete(),
-              ["<C-e>"] = cmp.mapping.close()
-              --   ["<CR>"] = cmp.mapping.confirm({select = true})
-            },
-            sources = {
-              {name = "nvim_lsp"},
-              {name = "luasnip"},
-              {name = "buffer"}
+    if not vim.fn.has("win32") then
+      use {
+        "hrsh7th/nvim-cmp",
+        requires = "saadparwaiz1/cmp_luasnip",
+        config = function()
+          local cmp = require "cmp"
+          cmp.setup(
+            {
+              snippet = {
+                expand = function(args)
+                  require "luasnip".lsp_expand(args.body)
+                end
+              },
+              mapping = {
+                ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-Space>"] = cmp.mapping.complete(),
+                ["<C-e>"] = cmp.mapping.close()
+                --   ["<CR>"] = cmp.mapping.confirm({select = true})
+              },
+              sources = {
+                {name = "nvim_lsp"},
+                {name = "luasnip"},
+                {name = "buffer"}
+              }
             }
-          }
-        )
-      end
-    }
+          )
+        end
+      }
+    end
     use(
       {
         "jose-elias-alvarez/null-ls.nvim",
@@ -437,7 +441,9 @@ require("packer").startup {
         tscope.load_extension "arecibo"
         tscope.load_extension "cheat"
         tscope.load_extension "dap"
-        tscope.load_extension "fzf"
+        if not vim.fn.has("win32") then
+          tscope.load_extension "fzf"
+        end
         tscope.load_extension "gh"
         if vim.fn.has("unix") then
           tscope.load_extension "media_files"
