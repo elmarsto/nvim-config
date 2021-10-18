@@ -430,7 +430,7 @@ require("packer").startup {
         end
         tscope.load_extension "hop"
         tscope.load_extension "node_modules"
-        tscope.load_extension "frecency"
+        -- tscope.load_extension "frecency"
         -- tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
