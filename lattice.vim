@@ -14,29 +14,30 @@ let g:markdown_folding=1
 let &showbreak = '⮩'
 let g:pencil#conceallevel = 2
 set listchars=precedes:«,extends:»
-set autoindent 
+set autoindent
 set autoread
-set backspace=indent,eol,start  
-set expandtab 
+set backspace=indent,eol,start
+set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
 set lazyredraw
 set list
 set modeline
 set mouse=a
-set shiftwidth=2 
+set shiftwidth=2
 set signcolumn=yes
-set smartindent 
+set smartindent
 set smarttab
-set softtabstop=2 
-set tabstop=2 
+set softtabstop=2
+set tabstop=2
 set termguicolors
 set undofile
 set wrap
 
 " highlight trailing whitespace
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:match ExtraWhitespace /\s\+$/
+syntax on
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
