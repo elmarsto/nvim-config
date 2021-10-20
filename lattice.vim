@@ -34,6 +34,10 @@ set termguicolors
 set undofile
 set wrap
 
+" highlight trailing whitespace
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
+
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
 function! Prose()
