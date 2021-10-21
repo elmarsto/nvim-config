@@ -147,3 +147,23 @@ function! TogglePaste()
     endif
 endfunction
 map <leader>p :call TogglePaste()<cr>
+
+" https://vimways.org/2019/vim-and-the-working-directory/
+
+" 'cd' towards the directory in which the current file is edited
+" but only change the path for the current window
+nnoremap <leader>cd :lcd %:h<CR>
+" Open files located in the same dir in with the current file is edited
+nnoremap <leader>ew :e <C-R>=expand("%:.:h") . "/"<CR>
+
+" One dir per tab
+function! OnTabEnter(path)
+  if isdirectory(a:path)
+    let dirname = a:path
+  else
+    let dirname = fnamemodify(a:path, ":h")
+  endif
+  execute "tcd ". dirname
+endfunction
+
+autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
