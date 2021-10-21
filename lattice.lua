@@ -22,10 +22,12 @@ require("packer").startup {
           signs = true, -- show icons in the signs column
           keywords = {
             DONE = {icon = " ", color = "info"},
-            TODO = {icon = "⭕", color = "info"}
+            TODO = {icon = "⭕", color = "info"},
+            IDEA = {icon = "💡", color = "idea"}
           },
           merge_keywords = true, -- when true, custom keywords will be merged with the defaults
           colors = {
+            idea = {"IdeaMsg", "#FDFF74"},
             error = {"LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626"},
             warning = {"LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24"},
             info = {"LspDiagnosticsDefaultInformation", "#2563EB"},
@@ -589,8 +591,4 @@ require("packer").startup {
   end
 }
 
--- from https://github.com/Luxed/nvim-config/commit/359f8ed29b47e4c2dfc6a3f4f4f2bec7829aa752
-if vim.fn.has("win32") then
-  -- Because Windows is such a great operating system, doing <C-Z> will completely lock up Neovim in the terminal. see: https://github.com/neovim/neovim/issues/6660
-  vim.api.nvim_set_keymap("n", "<C-Z>", '<CMD>lua require("term").open()<CR>', {})
-end
+vim.api.nvim_set_keymap("n", "", '<CMD>FloatermNew<cr>', {})
