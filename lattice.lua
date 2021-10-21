@@ -131,11 +131,11 @@ require("packer").startup {
       end
     }
     use "godlygeek/tabular"
-    if not vim.fn.has("win32") then
+    if vim.fn.has("win32") == 0 then
       use {"saadparwaiz1/cmp_luasnip", requires = "L3MON4D3/LuaSnip"}
     end
     use "L3MON4D3/LuaSnip"
-    if not vim.fn.has("win32") then
+    if vim.fn.has("win32") == 0 then
       use {
         "hrsh7th/nvim-cmp",
         requires = "saadparwaiz1/cmp_luasnip",
@@ -406,6 +406,7 @@ require("packer").startup {
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
+        "nvim-telescope/telescope-arecibo.nvim",
         "nvim-telescope/telescope-cheat.nvim",
         "nvim-telescope/telescope-node-modules.nvim",
         "nvim-telescope/telescope-frecency.nvim",
@@ -414,6 +415,7 @@ require("packer").startup {
         "nvim-telescope/telescope-github.nvim",
         "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-hop.nvim",
+        "TC72/telescope-tele-tabby.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
@@ -441,7 +443,7 @@ require("packer").startup {
         tscope.load_extension "arecibo"
         tscope.load_extension "cheat"
         tscope.load_extension "dap"
-        if not vim.fn.has("win32") then
+        if vim.fn.has("win32") == 0 then
           tscope.load_extension "fzf"
         end
         tscope.load_extension "gh"

@@ -120,6 +120,7 @@ nnoremap <M-C-\> :Telescope git_branches <cr>
 nnoremap <M-C-]> :Telescope git_commits <cr>
 nnoremap <M-CR> :Telescope buffers <cr>
 nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
+nnoremap <M-t> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Space> :Telescope command_history <cr>
 
 " Jester
