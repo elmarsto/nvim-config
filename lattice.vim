@@ -118,10 +118,16 @@ nnoremap <M-C-P> :Telescope git_files <cr>
 nnoremap <M-C-[> :Telescope git_bcommits <cr>
 nnoremap <M-C-\> :Telescope git_branches <cr>
 nnoremap <M-C-]> :Telescope git_commits <cr>
-nnoremap <M-b> :Telescope buffers <cr>
+nnoremap <M-R> :Telescope buffers <cr>
 nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
 nnoremap <M-t> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Space> :Telescope command_history <cr>
+
+nnoremap <M-Right> :tabnext <cr>
+nnoremap <M-Left> :tabprev <cr>
+nnoremap <M-Up> :tabfirst <cr>
+nnoremap <M-Down> :tablast <cr>
+nnoremap <M-C-T> :tabonly <cr>
 
 " Jester
 command! JesterRunAll :lua require"jester".run()
