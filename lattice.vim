@@ -128,7 +128,6 @@ nnoremap <M-Left> :tabprev <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-Down> :tablast <cr>
 nnoremap <M-C-T> :tabonly <cr>
-
 " Jester
 command! JesterRunAll :lua require"jester".run()
 command! JesterRun :lua require"jester".run_file()
