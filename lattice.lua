@@ -449,7 +449,7 @@ require("packer").startup {
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-symbols.nvim"},
-        {"nvim-telescope/telescope-vimspector.nvim"},
+        -- needs python3 {"nvim-telescope/telescope-vimspector.nvim"},
         {"nvim-telescope/telescope-z.nvim"}
       },
       config = function()
@@ -485,7 +485,7 @@ require("packer").startup {
         -- tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
-        tscope.load_extension "vimspector"
+        -- tscope.load_extension "vimspector"
         tscope.load_extension "z"
       end
     }
@@ -547,7 +547,7 @@ require("packer").startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
-    use "puremourning/vimspector"
+    ---use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
       requires = {"mfussenegger/nvim-dap"},
