@@ -4,8 +4,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
   vim.cmd "packadd packer.nvim"
 end
-require("packer").startup {
+local packer = require "packer"
+require "packer.luarocks".install_commands()
+packer.startup {
   function(use)
+    -- packer.use_rocks {"penlight"}
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
@@ -209,6 +212,7 @@ require("packer").startup {
         requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
       }
     )
+    use "nvim-lua/plenary.nvim"
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
