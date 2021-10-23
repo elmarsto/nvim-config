@@ -626,6 +626,6 @@ packer.startup {
 vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew<cr>", {})
 pcall(
   function()
-    require "lattice_local_unmanaged.lua"
+    require "lattice_local_unmanaged"
   end
 )
