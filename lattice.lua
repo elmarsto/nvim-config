@@ -37,6 +37,7 @@ require("packer").startup {
         }
       end
     }
+    use "LnL7/vim-nix"
     use {
       "mhartington/formatter.nvim",
       config = function()
