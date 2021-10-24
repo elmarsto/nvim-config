@@ -56,6 +56,7 @@ local f = ls.function_node
 --   return sn(nil, i(1, os.date(fmt)))
 -- end
 
+-- TODO: dry out; can we have the user choose the register
 ls.snippets = {
   all = {
     s(
@@ -64,9 +65,133 @@ ls.snippets = {
         t "[",
         i(1),
         t("]("),
+        i(2),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln.",
+      {
+        t "[",
+        i(1),
+        t("]("),
         f(
-          function(_, snip)
-            return snip.env.TM_SELECTED_TEXT[1] or {}
+          function(_)
+            local dotreg = vim.fn.getreg(".") or "."
+            return vim.fn.getreg(dotreg) or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln*",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("*") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln-",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("-") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln/",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("/") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln=",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("=") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln0",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("0") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln+",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("+") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      'ln"',
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg('"') or {}
           end,
           {}
         ),
