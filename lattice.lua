@@ -622,10 +622,4 @@ packer.startup {
     use "wbthomason/packer.nvim" -- self-control
   end
 }
-
 vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew<cr>", {})
-pcall(
-  function()
-    require "lattice_local_unmanaged"
-  end
-)
