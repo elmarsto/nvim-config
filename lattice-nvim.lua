@@ -1,16 +1,10 @@
-local function merge(first_table, second_table)
-  for k, v in pairs(second_table) do
-    first_table[k] = v
-  end
-end
-
 local ls = require("luasnip")
 -- some shorthands...
 local s = ls.snippet
 -- local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
-local f = ls.function_node
+-- local f = ls.function_node
 -- local c = ls.choice_node
 -- local d = ls.dynamic_node
 -- local l = require("luasnip.extras").lambda
@@ -62,7 +56,7 @@ local f = ls.function_node
 --   return sn(nil, i(1, os.date(fmt)))
 -- end
 
-local our_snippets = {
+ls.snippets = {
   all = {
     s(
       "ln",
@@ -77,7 +71,3 @@ local our_snippets = {
     )
   }
 }
-local our_autosnippets = {}
-
-merge(ls.snippets.all, our_snippets.all)
-merge(ls.autosnippets, our_autosnippets)
