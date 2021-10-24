@@ -149,7 +149,8 @@ packer.startup {
             ext_base_prio = 300,
             -- minimal increase in priority.
             ext_prio_increase = 1,
-            enable_autosnippets = true
+            enable_autosnippets = true,
+            store_selection_keys = "<Tab>"
           }
         )
       end
