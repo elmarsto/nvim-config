@@ -136,6 +136,8 @@ command! JesterDebugAll :lua require"jester".debug()
 command! JesterDebug :lua require"jester".debug_file()
 command! JesterDebugAgain :lua require"jester".debug_last()
 
+command! Lattice :luafile ~/.lattice-nvim.lua
+
 
 " misc mappings
 nnoremap Q @@

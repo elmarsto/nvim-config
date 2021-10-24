@@ -140,7 +140,18 @@ packer.startup {
     use {
       "L3MON4D3/LuaSnip",
       config = function()
-        require "lattice_snippets" -- also does setup
+        require "luasnip".config.set_config(
+          {
+            history = true,
+            -- Update more often, :h events for more info.
+            updateevents = "TextChanged,TextChangedI",
+            -- treesitter-hl has 100, use something higher (default is 200).
+            ext_base_prio = 300,
+            -- minimal increase in priority.
+            ext_prio_increase = 1,
+            enable_autosnippets = true
+          }
+        )
       end
     }
     if vim.fn.has("win32") == 0 then
