@@ -32,10 +32,12 @@ gls.left[1] = {
         R = {color = "Keyword", icon = "﯒"},
         r = {color = "Keyword", icon = "﯒"},
       }
-      vim.api.nvim_command("hi link GalaxyViMode " .. mode[vim.fn.mode()].color)
-      if mode[vim.fn.mode()].icon ~= nil then
-        return "    " .. mode[vim.fn.mode()].icon
-      end
+      pcall(function()
+        vim.api.nvim_command("hi link GalaxyViMode " .. mode[vim.fn.mode()].color)
+        if mode[vim.fn.mode()].icon ~= nil then
+          return "    " .. mode[vim.fn.mode()].icon
+        end
+      end)
     end,
     separator = "  ",
     condition = condition.hide_in_width

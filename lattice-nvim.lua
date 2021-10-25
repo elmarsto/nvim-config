@@ -1,12 +1,12 @@
 local ls = require("luasnip")
 -- some shorthands...
 local s = ls.snippet
--- local sn = ls.snippet_node
+local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 -- local c = ls.choice_node
--- local d = ls.dynamic_node
+local d = ls.dynamic_node
 -- local l = require("luasnip.extras").lambda
 -- local r = require("luasnip.extras").rep
 -- local p = require("luasnip.extras").partial
@@ -51,14 +51,16 @@ local f = ls.function_node
 -- end
 -- -- Returns a snippet_node wrapped around an insert_node whose initial
 -- -- text value is set to the current date in the desired format.
--- local date_input = function(args, state, fmt)
---   local fmt = fmt or "%Y-%m-%d"
---   return sn(nil, i(1, os.date(fmt)))
--- end
+
+local date_input = function(_, _, fmt)
+  local form = fmt or "%Y-%m-%d"
+  return sn(nil, i(1, os.date(form)))
+end
 
 -- TODO: dry out; can we have the user choose the register
 ls.snippets = {
   all = {
+    s( "now", { d(1, date_input, {}) }),
     s(
       "ln",
       {
