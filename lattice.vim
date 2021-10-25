@@ -2,9 +2,9 @@
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 au filetype supercollider,csound lua require'reaper-nvim'.setup()
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
+"augroup pandoc_syntax
+"    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+"augroup END
 " syntax highlighting
 colorscheme seoul256
 highlight Comment cterm=italic gui=italic

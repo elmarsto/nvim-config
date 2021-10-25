@@ -210,10 +210,11 @@ packer.startup {
         end
       }
     end
-    use { 'jghauser/follow-md-links.nvim', config =
-      function()
-        require'follow-md-links'
-        vim.api.nvim_set_keymap('', '<bs>', ':edit #<cr>', {noremap = true, silent = true})
+    use {
+      "jghauser/follow-md-links.nvim",
+      config = function()
+        require "follow-md-links"
+        vim.api.nvim_set_keymap("", "<bs>", ":edit #<cr>", {noremap = true, silent = true})
       end
     }
     use {
@@ -523,11 +524,11 @@ packer.startup {
           filetype = "diff"
         }
         parser_config.markdown = {
-            install_info = {
-                url = "https://github.com/ikatyang/tree-sitter-markdown",
-                files = {"src/parser.c", "src/scanner.cc"}
-            },
-            filetype = "markdown",
+          install_info = {
+            url = "https://github.com/ikatyang/tree-sitter-markdown",
+            files = {"src/parser.c", "src/scanner.cc"}
+          },
+          filetype = "markdown"
         }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
@@ -640,8 +641,8 @@ packer.startup {
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tyru/open-browser.vim"
-    use "vim-pandoc/vim-pandoc"
-    use "vim-pandoc/vim-pandoc-syntax"
+    --use "vim-pandoc/vim-pandoc"
+    --use "vim-pandoc/vim-pandoc-syntax"
     use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
   end
