@@ -210,20 +210,23 @@ packer.startup {
         end
       }
     end
-    use(
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require("null-ls").config(
-            {
-              sources = {require("null-ls").builtins.formatting.stylua}
-            }
-          )
-          require("lspconfig")["null-ls"].setup({})
-        end,
-        requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-      }
-    )
+    use { 'jghauser/follow-md-links.nvim', config =
+      function()
+        require'follow-md-links'
+      end
+    }
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require("null-ls").config(
+          {
+            sources = {require("null-ls").builtins.formatting.stylua}
+          }
+        )
+        require("lspconfig")["null-ls"].setup({})
+      end,
+      requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    }
     use "nvim-lua/plenary.nvim"
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
@@ -518,6 +521,13 @@ packer.startup {
           },
           filetype = "diff"
         }
+        parser_config.markdown = {
+            install_info = {
+                url = "https://github.com/ikatyang/tree-sitter-markdown",
+                files = {"src/parser.c", "src/scanner.cc"}
+            },
+            filetype = "markdown",
+        }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "c",
@@ -529,6 +539,7 @@ packer.startup {
             "json",
             "ledger",
             "lua",
+            "markdown",
             "nix",
             "python",
             "rust",

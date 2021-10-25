@@ -10,9 +10,7 @@ colorscheme seoul256
 highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 " settings
-let g:markdown_folding=1
 let &showbreak = '⮩'
-let g:pencil#conceallevel = 2
 set listchars=precedes:«,extends:»
 set autoindent
 set autoread
@@ -39,8 +37,23 @@ syntax on
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 
+
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
+
+set nocompatible
+filetype plugin on 
+
+let g:pencil#conceallevel = 2
+let g:pencil#autoformat = 1
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#map#suspend_af = 'K'   " default is no mapping
+let g:pencil#cursorwrap = 0     " 0=disable, 1=enable (def)
+let g:pencil#concealcursor = 'c'  " n=normal, v=visual, i=insert, c=command (def)
+
+
+let g:markdown_folding=1
+
 function! Prose()
   call pencil#init()
   call lexical#init()
@@ -76,7 +89,9 @@ function! Prose()
   inoremap <silent> <buffer> <F8> <C-o>:NextWordy<cr>
 
 endfunction
-"autocmd FileType markdown,mkd,text call Prose()
+
+
+" invoke manually by command for other file types
 command! -nargs=0 Prose call Prose()
 command! NoVa :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
