@@ -213,6 +213,7 @@ packer.startup {
     use { 'jghauser/follow-md-links.nvim', config =
       function()
         require'follow-md-links'
+        vim.api.nvim_set_keymap('', '<bs>', ':edit #<cr>', {noremap = true, silent = true})
       end
     }
     use {
