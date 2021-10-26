@@ -643,6 +643,13 @@ packer.startup {
     use "tyru/open-browser.vim"
     --use "vim-pandoc/vim-pandoc"
     --use "vim-pandoc/vim-pandoc-syntax"
+    use { "voldikss/vim-floaterm", config = function()
+      if vim.fn.has("win32") then
+        vim.g.floaterm_shell = "pwsh";
+      end
+    end
+    }
+
     use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
   end
