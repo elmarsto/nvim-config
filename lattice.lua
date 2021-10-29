@@ -507,7 +507,7 @@ packer.startup {
         -- tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
-        -- tscope.load_extension "vimspector"
+        tscope.load_extension "vimspector"
         tscope.load_extension "z"
       end
     }
@@ -516,13 +516,13 @@ packer.startup {
       run = ":TSUpdate",
       config = function()
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.diff = {
-          install_info = {
-            url = "https://github.com/vigoux/tree-sitter-diff",
-            files = {"src/parser.c"}
-          },
-          filetype = "diff"
-        }
+        -- parser_config.diff = {
+        --   install_info = {
+        --     url = "https://github.com/vigoux/tree-sitter-diff",
+        --     files = {"src/parser.c"}
+        --   },
+        --   filetype = "diff"
+        -- }
         parser_config.markdown = {
           install_info = {
             url = "https://github.com/ikatyang/tree-sitter-markdown",
@@ -577,7 +577,7 @@ packer.startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
-    ---use "puremourning/vimspector"
+    use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
       requires = {"mfussenegger/nvim-dap"},
@@ -643,11 +643,13 @@ packer.startup {
     use "tyru/open-browser.vim"
     --use "vim-pandoc/vim-pandoc"
     --use "vim-pandoc/vim-pandoc-syntax"
-    use { "voldikss/vim-floaterm", config = function()
-      if vim.fn.has("win32") then
-        vim.g.floaterm_shell = "pwsh";
+    use {
+      "voldikss/vim-floaterm",
+      config = function()
+        if vim.fn.has("win32") then
+          vim.g.floaterm_shell = "pwsh"
+        end
       end
-    end
     }
 
     use "wannesm/wmgraphviz.vim"
