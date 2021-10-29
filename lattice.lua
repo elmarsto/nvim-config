@@ -388,15 +388,16 @@ packer.startup {
         }
         nvim_lsp.pyright.setup {}
         nvim_lsp.rnix.setup {}
-        nvim_lsp.rust_analyzer.setup {
-          settings = {
-            rust = {
-              unstable_features = true,
-              build_on_save = false,
-              all_features = true
-            }
-          }
-        }
+        -- using simrat39/rust-tools now, which does this for us
+        -- nvim_lsp.rust_analyzer.setup {
+        --   settings = {
+        --     rust = {
+        --       unstable_features = true,
+        --       build_on_save = false,
+        --       all_features = true
+        --     }
+        --   }
+        -- }
         local sumneko_runtime_path = vim.split(package.path, ";")
         table.insert(sumneko_runtime_path, "lua/?.lua")
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
@@ -457,7 +458,6 @@ packer.startup {
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
-        "nvim-telescope/telescope-arecibo.nvim",
         "nvim-telescope/telescope-cheat.nvim",
         "nvim-telescope/telescope-node-modules.nvim",
         "nvim-telescope/telescope-frecency.nvim",
@@ -470,9 +470,8 @@ packer.startup {
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
-        {"nvim-telescope/telescope-symbols.nvim"},
-        -- needs python3 {"nvim-telescope/telescope-vimspector.nvim"},
-        {"nvim-telescope/telescope-z.nvim"}
+        "nvim-telescope/telescope-symbols.nvim",
+        "nvim-telescope/telescope-z.nvim"
       },
       config = function()
         local tscope = require("telescope")
@@ -507,9 +506,12 @@ packer.startup {
         -- tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
-        tscope.load_extension "vimspector"
         tscope.load_extension "z"
       end
+    }
+    use {
+      "nvim-telescope/telescope-vimspector.nvim",
+      requires = "puremourning/vimspector"
     }
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -600,6 +602,20 @@ packer.startup {
       end
     }
     use "simrat39/symbols-outline.nvim"
+    use {
+      "simrat39/rust-tools.nvim",
+      requires = {
+        "mfussenegger/nvim-dap",
+        "neovim/nvim-lspconfig",
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      },
+      config = function()
+        require("rust-tools").setup()
+      end
+    }
+
     use "rafcamlet/nvim-luapad"
     use {
       "TimUntersberger/neogit",
@@ -627,6 +643,7 @@ packer.startup {
     use {
       "tanvirtin/vgit.nvim",
       requires = "nvim-lua/plenary.nvim",
+      event = "BufWinEnter",
       config = function()
         require("vgit").setup()
       end
