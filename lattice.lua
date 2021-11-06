@@ -231,7 +231,6 @@ packer.startup {
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
-    use "justinmk/vim-sneak"
     use "kana/vim-textobj-user"
     use {
       "karb94/neoscroll.nvim",
@@ -561,9 +560,71 @@ packer.startup {
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use {
       "phaazon/hop.nvim",
+      branch = "v1",
       as = "hop",
       config = function()
         require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
+        -- place this in one of your configuration file(s)
+        vim.api.nvim_set_keymap(
+          "n",
+          "f",
+          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "F",
+          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "s",
+          "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "S",
+          "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "t",
+          "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "T",
+          "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "\\",
+          "<cmd>lua require'hop'.hint_pattern({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "|",
+          "<cmd>lua require'hop'.hint_pattern({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "z",
+          "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "Z",
+          "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
       end
     }
     use "preservim/vim-colors-pencil"
