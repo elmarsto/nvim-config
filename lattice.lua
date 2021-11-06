@@ -208,6 +208,7 @@ packer.startup {
         )
       end
     }
+    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
     use {
       "jghauser/follow-md-links.nvim",
       config = function()
@@ -227,10 +228,10 @@ packer.startup {
       end,
       requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
     }
-    use "nvim-lua/plenary.nvim"
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
+    use "justinmk/vim-sneak"
     use "kana/vim-textobj-user"
     use {
       "karb94/neoscroll.nvim",
@@ -243,20 +244,7 @@ packer.startup {
         )
       end
     }
-    use {
-      "phaazon/hop.nvim",
-      as = "hop",
-      config = function()
-        require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
-      end
-    }
-    use {
-      "ptzz/lf.vim",
-      requires = "voldikss/vim-floaterm",
-      config = function()
-        vim.g.lf_map_keys = 0
-      end
-    }
+    use "nvim-lua/plenary.nvim"
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
@@ -451,7 +439,6 @@ packer.startup {
       end
     }
     use "nvim-lua/lsp-status.nvim"
-    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -572,6 +559,13 @@ packer.startup {
       end
     }
     use "nvim-treesitter/nvim-treesitter-textobjects"
+    use {
+      "phaazon/hop.nvim",
+      as = "hop",
+      config = function()
+        require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
+      end
+    }
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-litecorrect"
@@ -579,6 +573,13 @@ packer.startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
+    use {
+      "ptzz/lf.vim",
+      requires = "voldikss/vim-floaterm",
+      config = function()
+        vim.g.lf_map_keys = 0
+      end
+    }
     use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
