@@ -603,26 +603,26 @@ packer.startup {
         )
         vim.api.nvim_set_keymap(
           "n",
-          "\\",
-          "<cmd>lua require'hop'.hint_pattern({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "|",
-          "<cmd>lua require'hop'.hint_pattern({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "z",
+          "m",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "Z",
+          "M",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "<leader>/",
+          "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+          {}
+        )
+        vim.api.nvim_set_keymap(
+          "n",
+          "<leader>?",
+          "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
       end
