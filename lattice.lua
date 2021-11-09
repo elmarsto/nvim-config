@@ -407,6 +407,7 @@ packer.startup {
         nvim_lsp.svelte.setup {}
         nvim_lsp.taplo.setup {}
         nvim_lsp.tsserver.setup {
+          cmd = {lattice_local.tsls.bin, "--stdio" },
           on_attach = function(client)
             client.resolved_capabilities.document_formatting = false
             on_attach(client)
