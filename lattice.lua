@@ -320,7 +320,7 @@ packer.startup {
         local linters = {
           eslint = {
             sourceName = "eslint",
-            command = "eslint_d",
+            command = lattice_local.eslint.bin,
             rootPatterns = {"package-lock.json", "yarn.lock"},
             debounce = 100,
             args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
