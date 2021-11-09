@@ -130,6 +130,13 @@ packer.startup {
     --   end
     -- }
     use {
+      "glacambre/firenvim",
+      run = function()
+        vim.fn["firenvim#install"](0)
+      end
+    }
+
+    use {
       "glepnir/galaxyline.nvim",
       requires = {"kyazdani42/nvim-web-devicons"},
       config = function()
