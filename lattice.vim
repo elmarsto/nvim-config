@@ -95,6 +95,7 @@ endfunction
 command! -nargs=0 Prose call Prose()
 command! NoVa :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo
+command! Iva :Limelight | :Goyo 48
 
 
 " commands
