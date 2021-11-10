@@ -746,6 +746,14 @@ packer.startup {
 
     use "rafcamlet/nvim-luapad"
     use {
+      "romariorobby/taskell.nvim",
+      config = function()
+        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskell<CR>", {silent = true})
+      end
+    }
+    use "sindrets/diffview.nvim"
+
+    use {
       "TimUntersberger/neogit",
       requires = {
         "nvim-lua/plenary.nvim",
@@ -774,12 +782,6 @@ packer.startup {
       event = "BufWinEnter",
       config = function()
         require("vgit").setup()
-      end
-    }
-    use {
-      "romariorobby/taskell.nvim",
-      config = function()
-        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskell<CR>", {silent = true})
       end
     }
     use "tpope/vim-abolish"
