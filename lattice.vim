@@ -42,7 +42,7 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 " see github.com/preservim/vim-pencil
 
 set nocompatible
-filetype plugin on 
+filetype plugin on
 
 let g:pencil#conceallevel = 2
 let g:pencil#autoformat = 1
@@ -113,29 +113,29 @@ nnoremap <C-'> :Telescope marks<cr>
 nnoremap <C-,> :Telescope loclist<cr>
 nnoremap <C-.> :Telescope quickfix<cr>
 nnoremap <C-=> :Telescope jumplist <cr>
+nnoremap <C-Bslash> :Telescope file_browser <cr>
+nnoremap <C-CR> :Telescope buffers <cr>
+nnoremap <C-M-'> :Telescope lsp_references <cr>
 nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <C-M-O> :Telescope find_files <cr>
+nnoremap <C-M-;> :Telescope lsp_implementations <cr>
+nnoremap <C-M-=> :Telescope lsp_workspace_symbols <cr>
+nnoremap <C-M-H> :Telescope lsp_code_actions <cr>
+nnoremap <C-M-P> :Telescope find_files <cr>
+nnoremap <C-M-O> :Telescope git_files <cr>
 nnoremap <C-M-Space> :Telescope vim_options <cr>
 nnoremap <C-M-Z> :FindZettels <cr>
+nnoremap <C-M-[> :Telescope git_bcommits <cr>
+nnoremap <C-M-\> :Telescope git_branches <cr>
+nnoremap <C-M-]> :Telescope git_commits <cr>
+nnoremap <C-M-_> :Telescope lsp_file_symbols <cr>
 nnoremap <C-Space> :Telescope commands <cr>
-nnoremap <C-Bslash> :Telescope file_browser <cr>
-nnoremap <M-Bslash> :Lf <cr>
 nnoremap <C-]> :Telescope registers <cr>
 nnoremap <C-_> :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <M-/> :Telescope search_history <cr>
-nnoremap <M-C-'> :Telescope lsp_references <cr>
-nnoremap <M-C-;> :Telescope lsp_implementations <cr>
-nnoremap <M-C-=> :Telescope lsp_workspace_symbols <cr>
-nnoremap <M-C-H> :Telescope lsp_code_actions <cr>
-nnoremap <M-C-P> :Telescope git_files <cr>
-nnoremap <M-C-[> :Telescope git_bcommits <cr>
-nnoremap <M-C-\> :Telescope git_branches <cr>
-nnoremap <M-C-]> :Telescope git_commits <cr>
-nnoremap <M-CR> :Telescope buffers <cr>
-nnoremap <M-C-_> :Telescope lsp_file_symbols <cr>
-nnoremap <M-t> :lua require('telescope').extensions.tele_tabby.list() <cr>
+nnoremap <M-Bslash> :Lf <cr>
 nnoremap <M-Space> :Telescope command_history <cr>
+nnoremap <M-t> :lua require('telescope').extensions.tele_tabby.list() <cr>
 
 nnoremap <M-Right> :tabnext <cr>
 nnoremap <M-Left> :tabprev <cr>
