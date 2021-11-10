@@ -312,47 +312,47 @@ packer.startup {
             )
           end
         end
-        -- diagnosticls
-        local filetypes = {
-          typescript = "eslint",
-          typescriptreact = "eslint"
-        }
-        local linters = {
-          eslint = {
-            sourceName = "eslint",
-            command = lattice_local.eslint.bin,
-            rootPatterns = {"package-lock.json", "yarn.lock"},
-            debounce = 100,
-            args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-            parseJson = {
-              errorsRoot = "[0].messages",
-              line = "line",
-              column = "column",
-              endLine = "endLine",
-              endColumn = "endColumn",
-              message = "${message} [${ruleId}]",
-              security = "severity"
-            },
-            securities = {[2] = "error", [1] = "warning"}
-          }
-        }
-        local formatters = {
-          prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
-        }
-        local formatFiletypes = {
-          typescript = "prettier",
-          typescriptreact = "prettier"
-        }
-        nvim_lsp.diagnosticls.setup {
-          on_attach = on_attach,
-          filetypes = vim.tbl_keys(filetypes),
-          init_options = {
-            filetypes = filetypes,
-            linters = linters,
-            formatters = formatters,
-            formatFiletypes = formatFiletypes
-          }
-        } -- end diagnosticls
+        -- -- diagnosticls
+        -- local filetypes = {
+        --   -- typescript = "eslint",
+        --   -- typescriptreact = "eslint"
+        -- }
+        -- local linters = {
+        --   eslint = {
+        --     sourceName = "eslint",
+        --     command = lattice_local.eslint.bin,
+        --     rootPatterns = {"package-lock.json", "yarn.lock"},
+        --     debounce = 100,
+        --     args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
+        --     parseJson = {
+        --       errorsRoot = "[0].messages",
+        --       line = "line",
+        --       column = "column",
+        --       endLine = "endLine",
+        --       endColumn = "endColumn",
+        --       message = "${message} [${ruleId}]",
+        --       security = "severity"
+        --     },
+        --     securities = {[2] = "error", [1] = "warning"}
+        --   }
+        -- }
+        -- local formatters = {
+        --   prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+        -- }
+        -- local formatFiletypes = {
+        --   typescript = "prettier",
+        --   typescriptreact = "prettier"
+        -- }
+        -- nvim_lsp.diagnosticls.setup {
+        --   on_attach = on_attach,
+        --   filetypes = vim.tbl_keys(filetypes),
+        --   init_options = {
+        --     filetypes = filetypes,
+        --     linters = linters,
+        --     formatters = formatters,
+        --     formatFiletypes = formatFiletypes
+        --   }
+        -- } -- end diagnosticls
         nvim_lsp.cssls.setup {
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
@@ -407,7 +407,7 @@ packer.startup {
         nvim_lsp.svelte.setup {}
         nvim_lsp.taplo.setup {}
         nvim_lsp.tsserver.setup {
-          cmd = {lattice_local.tsls.bin, "--stdio" },
+          cmd = {lattice_local.tsls.bin, "--stdio"},
           on_attach = function(client)
             client.resolved_capabilities.document_formatting = false
             on_attach(client)
