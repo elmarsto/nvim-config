@@ -115,7 +115,7 @@ nnoremap <C-,> :Telescope loclist<cr>
 nnoremap <C-.> :Telescope quickfix<cr>
 nnoremap <C-=> :Telescope jumplist <cr>
 nnoremap <C-Bslash> :Telescope file_browser <cr>
-nnoremap <C-CR> :Telescope buffers <cr>
+nnoremap <M-CR> :Telescope buffers <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
 nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <C-M-;> :Telescope lsp_implementations <cr>
@@ -158,8 +158,7 @@ nnoremap Q @@
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
-nnoremap <silent> gs <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-nnoremap <silent> gs :Lspsaga lsp_finder<CR>
+nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 
 " Paste-mode shenanigans
 function! TogglePaste()
