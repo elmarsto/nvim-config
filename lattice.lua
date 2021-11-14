@@ -41,82 +41,82 @@ packer.startup {
       end
     }
     use "LnL7/vim-nix"
-    use {
-      "mhartington/formatter.nvim",
-      config = function()
-        require("formatter").setup(
-          {
-            logging = true,
-            filetype = {
-              typescriptreact = {
-                function()
-                  return {
-                    exe = "prettier",
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              typescript = {
-                function()
-                  return {
-                    exe = "prettier",
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              javascript = {
-                function()
-                  return {
-                    exe = "prettier",
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              javascriptreact = {
-                function()
-                  return {
-                    exe = "prettier",
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              json = {
-                function()
-                  return {
-                    exe = "prettier",
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              lua = {
-                -- luafmt
-                function()
-                  return {
-                    exe = "luafmt",
-                    args = {"--indent-count", 2, "--stdin"},
-                    stdin = true
-                  }
-                end
-              }
-            }
-          }
-        )
-        vim.api.nvim_exec(
-          [[
-          augroup FormatAutogroup
-            autocmd!
-            autocmd BufWritePost *.js,*.rs,*.ts,*.tsx,*.jsx,*.lua FormatWrite
-          augroup END
-        ]],
-          true
-        )
-      end
-    }
+    -- use {
+    --   "mhartington/formatter.nvim",
+    --   config = function()
+        -- require("formatter").setup(
+        --   {
+        --     logging = true,
+        --     filetype = {
+        --       typescriptreact = {
+        --         function()
+        --           return {
+        --             exe = lattice_local.,
+        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        --             stdin = true
+        --           }
+        --         end
+        --       },
+        --       typescript = {
+        --         function()
+        --           return {
+        --             exe = "prettier",
+        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        --             stdin = true
+        --           }
+        --         end
+        --       },
+        --       javascript = {
+        --         function()
+        --           return {
+        --             exe = "prettier",
+        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        --             stdin = true
+        --           }
+        --         end
+        --       },
+        --       javascriptreact = {
+        --         function()
+        --           return {
+        --             exe = "prettier",
+        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        --             stdin = true
+        --           }
+        --         end
+        --       },
+        --       json = {
+        --         function()
+        --           return {
+        --             exe = "prettier",
+        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        --             stdin = true
+        --           }
+        --         end
+        --       },
+        --       lua = {
+        --         -- luafmt
+        --         function()
+        --           return {
+        --             exe = "luafmt",
+        --             args = {"--indent-count", 2, "--stdin"},
+        --             stdin = true
+        --           }
+        --         end
+        --       }
+        --     }
+        --   }
+        --)
+        -- vim.api.nvim_exec(
+        --   [[
+        --   augroup FormatAutogroup
+        --     autocmd!
+        --     autocmd BufWritePost *.js,*.rs,*.ts,*.tsx,*.jsx,*.lua FormatWrite
+        --   augroup END
+        -- ]],
+        --   true
+        -- )
+    --   end
+    -- }
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
@@ -314,8 +314,11 @@ packer.startup {
         end
         -- diagnosticls
         local filetypes = {
+          javascript = "eslint",
+          javascriptreact = "eslint",
           typescript = "eslint",
-          typescriptreact = "eslint"
+          typescriptreact = "eslint",
+          json = "eslint"
         }
         local linters = {
           eslint = {
@@ -337,7 +340,7 @@ packer.startup {
           }
         }
         local formatters = {
-          prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+           prettier = {command = lattice_local.prettier.bin, args = {"--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2"}}
         }
         local formatFiletypes = {
           typescript = "prettier",
@@ -793,9 +796,7 @@ packer.startup {
     use {
       "voldikss/vim-floaterm",
       config = function()
-        if vim.fn.has("win32") then
-          vim.g.floaterm_shell = "pwsh"
-        end
+        vim.g.floaterm_shell = require'lattice_local'.shell.bin
       end
     }
 
