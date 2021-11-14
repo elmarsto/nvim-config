@@ -570,10 +570,10 @@ packer.startup {
         tscope.load_extension "z"
       end
     }
-    use {
-      "nvim-telescope/telescope-vimspector.nvim",
-      requires = "puremourning/vimspector"
-    }
+    -- use {
+    --   "nvim-telescope/telescope-vimspector.nvim",
+    --   requires = "puremourning/vimspector"
+    -- }
     use {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
@@ -716,7 +716,7 @@ packer.startup {
         vim.g.lf_map_keys = 0
       end
     }
-    use "puremourning/vimspector"
+    -- use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
       requires = {"mfussenegger/nvim-dap"},
