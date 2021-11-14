@@ -260,6 +260,12 @@ packer.startup {
         require "colorizer".setup()
       end
     }
+    use {
+      "norcalli/nvim-terminal.lua",
+      config = function()
+        require "terminal".setup()
+      end
+    }
     use "neomake/neomake"
     use {
       "neovim/nvim-lspconfig",
