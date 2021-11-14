@@ -158,6 +158,9 @@ nnoremap Q @@
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+nnoremap <silent> gs <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+nnoremap <silent> gs :Lspsaga lsp_finder<CR>
+
 " Paste-mode shenanigans
 function! TogglePaste()
     if(&paste == 0)
