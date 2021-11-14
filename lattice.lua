@@ -124,11 +124,11 @@ packer.startup {
         require "trouble".setup {}
       end
     }
-    -- use { 'glepnir/lspsaga.nvim', config =
-    --   function ()
-    --     require'lspsaga'.init_lsp_saga()
-    --   end
-    -- }
+    use { 'glepnir/lspsaga.nvim', config =
+      function ()
+        require'lspsaga'.init_lsp_saga()
+      end
+    }
     use {
       "glacambre/firenvim",
       run = function()
