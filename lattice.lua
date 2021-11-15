@@ -238,6 +238,7 @@ packer.startup {
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
+    use "justinmk/vim-sneak"
     use "kana/vim-textobj-user"
     use {
       "karb94/neoscroll.nvim",
