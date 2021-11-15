@@ -415,8 +415,8 @@ packer.startup {
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
-        "nvim-telescope/telescope-symbols.nvim",
-        "nvim-telescope/telescope-z.nvim"
+        -- {"nvim-telescope/telescope-symbols.nvim", requires = "tami5/sqlite.lua" },
+        {"nvim-telescope/telescope-frecency.nvim", requires = "tami5/sqlite.lua" }
       },
       config = function()
         local tscope = require("telescope")
@@ -516,16 +516,15 @@ packer.startup {
           tscope.load_extension "fzf"
         end
         tscope.load_extension "gh"
+        tscope.load_extension "frecency"
+        tscope.load_extension "hop"
         if vim.fn.has("unix") then
           tscope.load_extension "media_files"
         end
-        tscope.load_extension "hop"
         tscope.load_extension "node_modules"
-        tscope.load_extension "frecency"
-        tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
-        tscope.load_extension "z"
+        -- tscope.load_extension "symbols"
       end
     }
     -- TODO: figure out how to make nix always build py3 into neovim
