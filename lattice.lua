@@ -41,82 +41,48 @@ packer.startup {
       end
     }
     use "LnL7/vim-nix"
-    -- use {
-    --   "mhartington/formatter.nvim",
-    --   config = function()
-        -- require("formatter").setup(
-        --   {
-        --     logging = true,
-        --     filetype = {
-        --       typescriptreact = {
-        --         function()
-        --           return {
-        --             exe = lattice_local.,
-        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        --             stdin = true
-        --           }
-        --         end
-        --       },
-        --       typescript = {
-        --         function()
-        --           return {
-        --             exe = "prettier",
-        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        --             stdin = true
-        --           }
-        --         end
-        --       },
-        --       javascript = {
-        --         function()
-        --           return {
-        --             exe = "prettier",
-        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        --             stdin = true
-        --           }
-        --         end
-        --       },
-        --       javascriptreact = {
-        --         function()
-        --           return {
-        --             exe = "prettier",
-        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        --             stdin = true
-        --           }
-        --         end
-        --       },
-        --       json = {
-        --         function()
-        --           return {
-        --             exe = "prettier",
-        --             args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-        --             stdin = true
-        --           }
-        --         end
-        --       },
-        --       lua = {
-        --         -- luafmt
-        --         function()
-        --           return {
-        --             exe = "luafmt",
-        --             args = {"--indent-count", 2, "--stdin"},
-        --             stdin = true
-        --           }
-        --         end
-        --       }
-        --     }
-        --   }
-        --)
-        -- vim.api.nvim_exec(
-        --   [[
-        --   augroup FormatAutogroup
-        --     autocmd!
-        --     autocmd BufWritePost *.js,*.rs,*.ts,*.tsx,*.jsx,*.lua FormatWrite
-        --   augroup END
-        -- ]],
-        --   true
-        -- )
-    --   end
-    -- }
+    -- PREFER LSP TO THE FOLLOWING this is for LSP-unsupported languages
+    -- (or languages whose LSP does not do prettification)
+    -- TODO: figure out if lua and json below can be handled via lsp
+    -- TODO: figure out other languages to add here
+     use {
+      "mhartington/formatter.nvim",
+      config = function()
+        require("formatter").setup(
+          {
+            logging = true,
+            json = {
+              function()
+                return {
+                  exe = "prettier",
+                  args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                  stdin = true
+                }
+              end
+            },
+            lua = {
+              -- luafmt
+              function()
+                return {
+                  exe = "luafmt",
+                  args = {"--indent-count", 2, "--stdin"},
+                  stdin = true
+                }
+              end
+            }
+          }
+        )
+        vim.api.nvim_exec(
+          [[
+          augroup FormatAutogroup
+            autocmd!
+            autocmd BufWritePost *.json,*.lua FormatWrite
+          augroup END
+        ]],
+          true
+        )
+      end
+    }
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
@@ -310,11 +276,11 @@ packer.startup {
           if client.resolved_capabilities.document_formatting then
             vim.api.nvim_exec(
               [[
-             augroup LspAutocommands
-                 autocmd! * <buffer>
-                autocmd BufWritePost <buffer> LspFormatting
-           augroup END
-           ]],
+                 augroup LspAutocommands
+                     autocmd! * <buffer>
+                    autocmd BufWritePost <buffer> LspFormatting
+                 augroup END
+              ]],
               true
             )
           end
@@ -376,16 +342,7 @@ packer.startup {
         }
         nvim_lsp.pyright.setup {}
         nvim_lsp.rnix.setup {}
-        -- using simrat39/rust-tools now, which does this for us
-        -- nvim_lsp.rust_analyzer.setup {
-        --   settings = {
-        --     rust = {
-        --       unstable_features = true,
-        --       build_on_save = false,
-        --       all_features = true
-        --     }
-        --   }
-        -- }
+        -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
         local sumneko_runtime_path = vim.split(package.path, ";")
         table.insert(sumneko_runtime_path, "lua/?.lua")
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
@@ -564,13 +521,15 @@ packer.startup {
         end
         tscope.load_extension "hop"
         tscope.load_extension "node_modules"
-        -- tscope.load_extension "frecency"
-        -- tscope.load_extension "symbols"
+        tscope.load_extension "frecency"
+        tscope.load_extension "symbols"
         tscope.load_extension "packer"
         tscope.load_extension "project"
         tscope.load_extension "z"
       end
     }
+    -- TODO: figure out how to make nix always build py3 into neovim
+    -- (py3 is required for vimspector)
     -- use {
     --   "nvim-telescope/telescope-vimspector.nvim",
     --   requires = "puremourning/vimspector"
@@ -636,6 +595,7 @@ packer.startup {
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use {
       "phaazon/hop.nvim",
+      requires = "justinmk/vim-sneak", -- avoid race condition, we remap s and want sneak to set it first
       branch = "v1",
       as = "hop",
       config = function()
@@ -750,7 +710,23 @@ packer.startup {
         "nvim-telescope/telescope.nvim"
       },
       config = function()
-        require("rust-tools").setup()
+        require("rust-tools").setup({
+          -- from https://github.com/simrat39/rust-tools.nvim/issues/72
+          server = {
+            settings = {
+              ["rust-analyzer"] = {
+                unstable_features = true,
+                build_on_save = false,
+                all_features = true,
+                checkOnSave = {
+                  enable = true,
+                  command = "check",
+                  extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" },
+                }
+              }
+            }
+          }
+        })
       end
     }
 
