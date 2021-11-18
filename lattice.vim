@@ -116,6 +116,7 @@ nnoremap <C-.> :Telescope quickfix<cr>
 nnoremap <C-=> :Telescope jumplist <cr>
 nnoremap <C-Bslash> :Telescope file_browser <cr>
 nnoremap <M-CR> :Telescope buffers <cr>
+nnoremap <M-PageUp> :Telescope frecency <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
 nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <C-M-;> :Telescope lsp_implementations <cr>
