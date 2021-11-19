@@ -126,9 +126,9 @@ nnoremap <C-_> :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <M-'> :Telescope marks<cr>
 nnoremap <M-,>   :Telescope vim_options <cr>
-nnoremap <M-,> :Telescope loclist<cr>
+nnoremap <leader>, :Telescope loclist<cr>
 nnoremap <M-.>   :Telescope commands <cr>
-nnoremap <M-.> :Telescope quickfix<cr>
+nnoremap <leader>. :Telescope quickfix<cr>
 nnoremap <M-/> :Telescope search_history <cr>
 nnoremap <leader>/ :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <M-;>   :Telescope command_history <cr>
