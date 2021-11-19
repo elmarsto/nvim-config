@@ -684,6 +684,7 @@ packer.startup {
         require("dapui").setup()
       end
     }
+    use "rcarriga/nvim-notify"
     use {
       "rmagatti/auto-session",
       config = function()
@@ -781,9 +782,10 @@ packer.startup {
         vim.g.floaterm_shell = require'lattice_local'.shell.bin
       end
     }
-
+    use "vhyrro/neorg"
     use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
+
   end
 }
 vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew<cr>", {})
