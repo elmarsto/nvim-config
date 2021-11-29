@@ -175,6 +175,7 @@ packer.startup {
             sources = {
               {name = "nvim_lsp"},
               {name = "luasnip"},
+              {name = "neorg"},
               {name = "buffer"}
             }
           }
@@ -545,6 +546,13 @@ packer.startup {
           },
           filetype = "diff"
         }
+        parser_config.norg = {
+          install_info = {
+              url = "https://github.com/nvim-neorg/tree-sitter-norg",
+              files = { "src/parser.c", "src/scanner.cc" },
+              branch = "main"
+          },
+        }
         parser_config.markdown = {
           install_info = {
             url = "https://github.com/ikatyang/tree-sitter-markdown",
@@ -565,6 +573,7 @@ packer.startup {
             "lua",
             "markdown",
             "nix",
+            "norg",
             "python",
             "rust",
             "svelte",
@@ -782,7 +791,33 @@ packer.startup {
         vim.g.floaterm_shell = require'lattice_local'.shell.bin
       end
     }
-    use "vhyrro/neorg"
+    use {
+      "nvim-neorg/neorg",
+      config = function()
+          require('neorg').setup {
+              load = {
+                  ["core.defaults"] = {},
+                  ["core.norg.concealer"] = {},
+                  ["core.norg.completion"] = {
+                    config = {
+                      engine = "nvim-cmp"
+                    }
+                  },
+
+                  ["core.norg.dirman"] = {
+                      config = {
+                          workspaces = {
+                              navaruk = "~/navaruk",
+                              vault = "~/vault"
+                          }
+                      }
+                  }
+              },
+          }
+      end,
+      requires = "nvim-lua/plenary.nvim"
+    }
+
     use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
 
