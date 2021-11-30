@@ -40,12 +40,10 @@ packer.startup {
         }
       end
     }
-    use "LnL7/vim-nix"
-    -- PREFER LSP TO THE FOLLOWING this is for LSP-unsupported languages
-    -- (or languages whose LSP does not do prettification)
+     use {
     -- TODO: figure out if lua and json below can be handled via lsp
     -- TODO: figure out other languages to add here
-     use {
+    -- NOTE: you should prefer installing LSP formatters to this old-school approach here
       "mhartington/formatter.nvim",
       config = function()
         require("formatter").setup(
@@ -562,34 +560,83 @@ packer.startup {
         }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
+            "bash",
             "c",
+            "c_sharp",
+            "clojure",
+            "cmake",
+            "comment",
+            "commonlisp",
             "cpp",
             "css",
+            "cuda",
+            "dart",
             "diff",
+            "dockerfile",
+            "dot",
+            "elixir",
+            "elm",
+            "erlang",
+            "fennel",
+            "fish",
+            "fortran",
+            "fusion",
+            "glimmer",
+            "glsl",
+            "go",
+            "gomod",
+            "graphql",
+            "haskell",
+            "hcl",
+            "heex",
+            "hjson",
             "html",
+            "http",
+            "java",
             "javascript",
-            "json",
+            "jsdoc",
+            "json5",
+            "jsonc",
+            "julia",
+            "kotlin",
+            "latex",
             "ledger",
+            "llvm",
             "lua",
             "markdown",
             "nix",
             "norg",
+            "ocaml",
+            "ocaml_interface",
             "perl",
             "php",
+            "pioasm",
+            "prisma",
             "python",
             "ql",
+            "query",
+            "r",
             "regex",
             "rst",
             "ruby",
             "rust",
+            "scala",
             "scss",
+            "sparql",
+            "supercollider",
+            "surface",
             "svelte",
+            "tlaplus",
             "toml",
             "tsx",
+            "turtle",
             "typescript",
+            "verilog",
             "vim",
+            "vue",
             "yaml",
-            "zig"
+            "yang",
+            "zig",
           },
           highlight = {
             enable = true, -- false will disable the whole extension
