@@ -9,7 +9,6 @@ highlight Comment cterm=italic gui=italic
 syntax on
 let &showbreak = '⮩'
 set listchars=precedes:«,extends:»
-set autoindent
 set autoread
 set backspace=indent,eol,start
 set expandtab
@@ -21,7 +20,6 @@ set modeline
 set mouse=a
 set shiftwidth=2
 set signcolumn=yes
-set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
