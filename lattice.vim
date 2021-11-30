@@ -193,11 +193,3 @@ endfunction
 
 autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
 
-TSEnableAll highlight
-TSEnableAll incremental_selection
-TSEnableAll increment
-TSEnableAll indent
-TSEnableAll textobjects.lsp_interop
-TSEnableAll textobjects.swap
-TSEnableAll textobjects.move
-TSEnableAll textobjects.select
