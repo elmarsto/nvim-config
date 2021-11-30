@@ -574,12 +574,22 @@ packer.startup {
             "markdown",
             "nix",
             "norg",
+            "perl",
+            "php",
             "python",
+            "ql",
+            "regex",
+            "rst",
+            "ruby",
             "rust",
+            "scss",
             "svelte",
-            "typescript",
+            "toml",
             "tsx",
-            "toml"
+            "typescript",
+            "vim",
+            "yaml",
+            "zig"
           },
           highlight = {
             enable = true, -- false will disable the whole extension
