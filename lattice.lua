@@ -534,7 +534,6 @@ packer.startup {
     -- }
     use {
       "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
       config = function()
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
         parser_config.diff = {
@@ -640,7 +639,6 @@ packer.startup {
           },
           highlight = {
             enable = true, -- false will disable the whole extension
-            disable = { },
             additional_vim_regex_highlighting = false
           },
           indent = {
@@ -653,6 +651,20 @@ packer.startup {
               node_incremental = "grn",
               scope_incremental = "grc",
               node_decremental = "grm"
+            }
+          },
+          textobjects = {
+            lsp_interop = {
+              enable = true,
+            },
+            move = {
+              enable = true,
+            },
+            select = {
+              enable = true,
+            },
+            swap = {
+              enable = true,
             }
           }
         }
