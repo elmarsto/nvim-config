@@ -40,10 +40,10 @@ packer.startup {
         }
       end
     }
-     use {
-    -- TODO: figure out if lua and json below can be handled via lsp
-    -- TODO: figure out other languages to add here
-    -- NOTE: you should prefer installing LSP formatters when available
+    use {
+      -- TODO: figure out if lua and json below can be handled via lsp
+      -- TODO: figure out other languages to add here
+      -- NOTE: you should prefer installing LSP formatters when available
       "mhartington/formatter.nvim",
       config = function()
         require("formatter").setup(
@@ -90,9 +90,10 @@ packer.startup {
         require "trouble".setup {}
       end
     }
-    use { 'glepnir/lspsaga.nvim', config =
-      function ()
-        require'lspsaga'.init_lsp_saga()
+    use {
+      "glepnir/lspsaga.nvim",
+      config = function()
+        require "lspsaga".init_lsp_saga()
       end
     }
     use {
@@ -315,7 +316,10 @@ packer.startup {
           }
         }
         local formatters = {
-           prettier = {command = lattice_local.prettier.bin, args = {"--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2"}}
+          prettier = {
+            command = lattice_local.prettier.bin,
+            args = {"--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2"}
+          }
         }
         local formatFiletypes = {
           typescript = "prettier",
@@ -418,7 +422,7 @@ packer.startup {
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
         -- {"nvim-telescope/telescope-symbols.nvim", requires = "tami5/sqlite.lua" },
-        {"nvim-telescope/telescope-frecency.nvim", requires = "tami5/sqlite.lua" }
+        {"nvim-telescope/telescope-frecency.nvim", requires = "tami5/sqlite.lua"}
       },
       config = function()
         local tscope = require("telescope")
@@ -548,10 +552,10 @@ packer.startup {
         }
         parser_config.norg = {
           install_info = {
-              url = "https://github.com/nvim-neorg/tree-sitter-norg",
-              files = { "src/parser.c", "src/scanner.cc" },
-              branch = "main"
-          },
+            url = "https://github.com/nvim-neorg/tree-sitter-norg",
+            files = {"src/parser.c", "src/scanner.cc"},
+            branch = "main"
+          }
         }
         parser_config.markdown = {
           install_info = {
@@ -626,7 +630,7 @@ packer.startup {
             "vue",
             "yaml",
             "yang",
-            "zig",
+            "zig"
           },
           highlight = {
             enable = true, -- false will disable the whole extension
@@ -646,16 +650,16 @@ packer.startup {
           },
           textobjects = {
             lsp_interop = {
-              enable = true,
+              enable = true
             },
             move = {
-              enable = true,
+              enable = true
             },
             select = {
-              enable = true,
+              enable = true
             },
             swap = {
-              enable = true,
+              enable = true
             }
           }
         }
@@ -781,23 +785,25 @@ packer.startup {
         "nvim-telescope/telescope.nvim"
       },
       config = function()
-        require("rust-tools").setup({
-          -- from https://github.com/simrat39/rust-tools.nvim/issues/72
-          server = {
-            settings = {
-              ["rust-analyzer"] = {
-                unstable_features = true,
-                build_on_save = false,
-                all_features = true,
-                checkOnSave = {
-                  enable = true,
-                  command = "check",
-                  extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" },
+        require("rust-tools").setup(
+          {
+            -- from https://github.com/simrat39/rust-tools.nvim/issues/72
+            server = {
+              settings = {
+                ["rust-analyzer"] = {
+                  unstable_features = true,
+                  build_on_save = false,
+                  all_features = true,
+                  checkOnSave = {
+                    enable = true,
+                    command = "check",
+                    extraArgs = {"--target-dir", "/tmp/rust-analyzer-check"}
+                  }
                 }
               }
             }
           }
-        })
+        )
       end
     }
 
@@ -850,39 +856,37 @@ packer.startup {
     use {
       "voldikss/vim-floaterm",
       config = function()
-        vim.g.floaterm_shell = require'lattice_local'.shell.bin
+        vim.g.floaterm_shell = require "lattice_local".shell.bin
       end
     }
     use {
       "nvim-neorg/neorg",
       config = function()
-          require('neorg').setup {
-              load = {
-                  ["core.defaults"] = {},
-                  ["core.norg.concealer"] = {},
-                  ["core.norg.completion"] = {
-                    config = {
-                      engine = "nvim-cmp"
-                    }
-                  },
-
-                  ["core.norg.dirman"] = {
-                      config = {
-                          workspaces = {
-                              navaruk = "~/navaruk",
-                              vault = "~/vault"
-                          }
-                      }
-                  }
-              },
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {},
+            ["core.norg.concealer"] = {},
+            ["core.norg.completion"] = {
+              config = {
+                engine = "nvim-cmp"
+              }
+            },
+            ["core.norg.dirman"] = {
+              config = {
+                workspaces = {
+                  navaruk = "~/navaruk",
+                  vault = "~/vault"
+                }
+              }
+            }
           }
+        }
       end,
       requires = "nvim-lua/plenary.nvim"
     }
 
     use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
-
   end
 }
 vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew<cr>", {})

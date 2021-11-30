@@ -37,6 +37,7 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 set nocompatible
 filetype plugin on
 
+
 let g:pencil#autoformat = 1
 let g:pencil#concealcursor = 'c'  " n=normal, v=visual, i=insert, c=command (def)
 let g:pencil#conceallevel = 2
