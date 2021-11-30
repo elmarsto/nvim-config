@@ -406,6 +406,7 @@ packer.startup {
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
+        "tami5/sqlite.lua",
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
