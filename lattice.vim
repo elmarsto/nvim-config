@@ -6,7 +6,6 @@ colorscheme seoul256
 highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 " settings
-syntax on
 let &showbreak = '⮩'
 set listchars=precedes:«,extends:»
 set autoread

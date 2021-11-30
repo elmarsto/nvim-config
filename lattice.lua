@@ -43,30 +43,32 @@ packer.startup {
      use {
     -- TODO: figure out if lua and json below can be handled via lsp
     -- TODO: figure out other languages to add here
-    -- NOTE: you should prefer installing LSP formatters to this old-school approach here
+    -- NOTE: you should prefer installing LSP formatters when available
       "mhartington/formatter.nvim",
       config = function()
         require("formatter").setup(
           {
             logging = true,
-            json = {
-              function()
-                return {
-                  exe = "prettier",
-                  args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                  stdin = true
-                }
-              end
-            },
-            lua = {
-              -- luafmt
-              function()
-                return {
-                  exe = "luafmt",
-                  args = {"--indent-count", 2, "--stdin"},
-                  stdin = true
-                }
-              end
+            filetype = {
+              json = {
+                function()
+                  return {
+                    exe = "prettier",
+                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                    stdin = true
+                  }
+                end
+              },
+              lua = {
+                -- luafmt
+                function()
+                  return {
+                    exe = "luafmt",
+                    args = {"--indent-count", 2, "--stdin"},
+                    stdin = true
+                  }
+                end
+              }
             }
           }
         )
@@ -216,6 +218,7 @@ packer.startup {
         )
       end
     }
+    use "lambdalisue/suda.vim"
     use "nvim-lua/plenary.nvim"
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
@@ -729,6 +732,7 @@ packer.startup {
         )
       end
     }
+    use "Pocco81/AutoSave.nvim"
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-litecorrect"
