@@ -737,7 +737,12 @@ packer.startup {
         )
       end
     }
-    use "Pocco81/AutoSave.nvim"
+    use { "Pocco81/AutoSave.nvim", config = function() 
+      require'autosave'.setup({
+        on_off_commands = true
+      })
+    end
+    }
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-litecorrect"
