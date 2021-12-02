@@ -406,7 +406,12 @@ packer.startup {
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
-        "tami5/sqlite.lua",
+        { "tami5/sqlite.lua",
+            config = function()
+              local lattice_local = require "lattice_local"
+              vim.g.sqlite_clib_path = lattice_local.sqlite.lib
+            end
+        },
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
@@ -423,7 +428,7 @@ packer.startup {
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
         -- {"nvim-telescope/telescope-symbols.nvim", requires = "tami5/sqlite.lua" },
-        {"nvim-telescope/telescope-frecency.nvim", requires = "tami5/sqlite.lua"}
+        {"nvim-telescope/telescope-frecency.nvim"}
       },
       config = function()
         local tscope = require("telescope")
@@ -713,13 +718,13 @@ packer.startup {
         )
         vim.api.nvim_set_keymap(
           "n",
-          "m",
+          "<leader>m",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "M",
+          "<leader>M",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )

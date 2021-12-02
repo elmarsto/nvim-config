@@ -2,7 +2,7 @@
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 au filetype supercollider,csound lua require'reaper-nvim'.setup()
-au BufRead,BufEnter *.md,*.rst,*.txt :ASOn
+"au BufRead,BufEnter *.md,*.rst,*.txt :ASOn
 
 colorscheme seoul256
 highlight Comment cterm=italic gui=italic
