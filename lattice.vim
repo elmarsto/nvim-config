@@ -2,12 +2,11 @@
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 au filetype supercollider,csound lua require'reaper-nvim'.setup()
-"au BufRead,BufEnter *.md,*.rst,*.txt :ASOn
 
 colorscheme seoul256
 highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
-" settings
+
 let &showbreak = '⮩'
 set listchars=precedes:«,extends:»
 set autoread
@@ -28,18 +27,9 @@ set termguicolors
 set undofile
 set wrap
 
-" highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
-
-
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
-
-set nocompatible
-filetype plugin on
-
-
+"
 let g:pencil#autoformat = 1
 let g:pencil#concealcursor = 'c'  " n=normal, v=visual, i=insert, c=command (def)
 let g:pencil#conceallevel = 2
@@ -50,12 +40,16 @@ let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
 let g:markdown_folding=1
 
-function! Prose()
+
+
+function! Human()
   call lexical#init()
   call litecorrect#init()
   call pencil#init()
   call textobj#quote#init()
   call textobj#sentence#init()
+
+  ASOn
 
   " manual reformatting shortcuts
   nnoremap <buffer> <silent> <leader>Q vapJgqap
@@ -86,9 +80,22 @@ function! Prose()
 
 endfunction
 
+function! Machine()
+  "TODO: fiinish building a function to reverse seettings in Human()
+  ASOff
+  iuna --
+  iuna ---
+  setlocal foldlevel=1
+endfunction
+
+
+
 
 " invoke manually by command for other file types
-command! -nargs=0 Prose call Prose()
+command! -nargs=0 Prose call Human() | :Limelight | :Goyo
+command! -nargs=0 Verse call Human() | :Limelight | :Goyo 48
+command! -nargs=0 Code call Machine() | :Limelight! | :Goyo!
+
 command! Iva :Limelight | :Goyo 48
 command! NoVa :Goyo! | :Limelight!
 command! Va :Limelight | :Goyo

@@ -381,12 +381,14 @@ packer.startup {
         nvim_lsp.taplo.setup {}
         nvim_lsp.tsserver.setup {
           cmd = {lattice_local.tsls.bin, "--stdio"},
-          on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
-            on_attach(client)
-          end
+          -- on_attach = function(client)
+          --   client.resolved_capabilities.document_formatting = false
+          --   on_attach(client)
+          -- end
         }
-        nvim_lsp.vimls.setup {}
+        nvim_lsp.vimls.setup {
+          cmd = { lattice_local.vimls.bin }
+        }
         nvim_lsp.yamlls.setup {}
         if vim.fn.has("win32") == 0 then
           nvim_lsp.zk.setup {
@@ -404,20 +406,20 @@ packer.startup {
     }
     use "nvim-lua/lsp-status.nvim"
     use {
+      "tami5/sqlite.lua",
+      config = function()
+        local lattice_local = require "lattice_local"
+        vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
+      end
+    }
+    use {
       "nvim-telescope/telescope.nvim",
       requires = {
-        { "tami5/sqlite.lua",
-            config = function()
-              local lattice_local = require "lattice_local"
-              vim.g.sqlite_clib_path = lattice_local.sqlite.lib
-            end
-        },
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-arecibo.nvim",
         "nvim-telescope/telescope-cheat.nvim",
         "nvim-telescope/telescope-node-modules.nvim",
-        "nvim-telescope/telescope-frecency.nvim",
         "nvim-telescope/telescope-project.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-github.nvim",
@@ -427,8 +429,8 @@ packer.startup {
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
-        -- {"nvim-telescope/telescope-symbols.nvim", requires = "tami5/sqlite.lua" },
-        {"nvim-telescope/telescope-frecency.nvim"}
+        "tami5/sqlite.lua",
+        "nvim-telescope/telescope-frecency.nvim"
       },
       config = function()
         local tscope = require("telescope")
@@ -528,6 +530,7 @@ packer.startup {
           tscope.load_extension "fzf"
         end
         tscope.load_extension "gh"
+        vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
         tscope.load_extension "frecency"
         tscope.load_extension "hop"
         if vim.fn.has("unix") then
@@ -743,10 +746,10 @@ packer.startup {
       end
     }
     use { "Pocco81/AutoSave.nvim", config = function() 
-      require'autosave'.setup({
-        on_off_commands = true
-      })
-    end
+        require'autosave'.setup({
+          on_off_commands = true
+        })
+      end
     }
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
@@ -844,13 +847,6 @@ packer.startup {
       end
     }
     use {
-      "tami5/sqlite.lua",
-      config = function()
-        local lattice_local = require "lattice_local"
-        vim.g.sqlite_clib_path = lattice_local.sqlite.lib
-      end
-    }
-    use {
       "tanvirtin/vgit.nvim",
       requires = "nvim-lua/plenary.nvim",
       event = "BufWinEnter",
@@ -864,12 +860,7 @@ packer.startup {
     use "tversteeg/registers.nvim"
 
     use "tyru/open-browser.vim"
-    use {
-      "voldikss/vim-floaterm",
-      config = function()
-        vim.g.floaterm_shell = require "lattice_local".shell.bin
-      end
-    }
+    use "voldikss/vim-floaterm"
     use {
       "nvim-neorg/neorg",
       config = function()
@@ -900,4 +891,5 @@ packer.startup {
     use "wbthomason/packer.nvim" -- self-control
   end
 }
-vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew<cr>", {})
+
+vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew <cr>", {})
