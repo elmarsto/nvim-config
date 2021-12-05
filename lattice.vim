@@ -37,6 +37,10 @@ let g:pencil#cursorwrap = 0     " 0=disable, 1=enable (def)
 let g:pencil#map#suspend_af = 'K'   " default is no mapping
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
+let g:neovide_transparency = 0.9
+let g:neovide_cursor_vfx_mode = true
+set guifont=VictorMono\ Nerd\ Font:h18
+
 
 let g:markdown_folding=1
 
@@ -129,7 +133,7 @@ nnoremap <C-M-_> :Telescope lsp_file_symbols <cr>
 nnoremap <C-Space> :Telescope keymaps <cr>
 nnoremap <leader><Space>  :Telescope keymaps <cr>
 nnoremap <C-]> :Telescope registers <cr>
-nnoremap <C-_> :Telescope live_grep <cr>
+nnoremap <C-/> :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <M-'> :Telescope marks<cr>
 nnoremap <M-,>   :Telescope vim_options <cr>
