@@ -377,19 +377,23 @@ packer.startup {
             }
           }
         }
-        nvim_lsp.svelte.setup {}
+        nvim_lsp.svelte.setup {
+          cmd = {lattice_local.sveltels.bin}
+        }
         nvim_lsp.taplo.setup {}
         nvim_lsp.tsserver.setup {
-          cmd = {lattice_local.tsls.bin, "--stdio"},
+          cmd = {lattice_local.tsls.bin, "--stdio"}
           -- on_attach = function(client)
           --   client.resolved_capabilities.document_formatting = false
           --   on_attach(client)
           -- end
         }
         nvim_lsp.vimls.setup {
-          cmd = { lattice_local.vimls.bin }
+          cmd = {lattice_local.vimls.bin}
         }
-        nvim_lsp.yamlls.setup {}
+        nvim_lsp.yamlls.setup {
+          cmd = {lattice_local.yamlls.bin}
+        }
         if vim.fn.has("win32") == 0 then
           nvim_lsp.zk.setup {
             cmd = {lattice_local.zk.bin, "lsp"},
@@ -745,10 +749,14 @@ packer.startup {
         )
       end
     }
-    use { "Pocco81/AutoSave.nvim", config = function() 
-        require'autosave'.setup({
-          on_off_commands = true
-        })
+    use {
+      "Pocco81/AutoSave.nvim",
+      config = function()
+        require "autosave".setup(
+          {
+            on_off_commands = true
+          }
+        )
       end
     }
     use "preservim/vim-colors-pencil"

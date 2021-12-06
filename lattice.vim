@@ -14,10 +14,10 @@ set backspace=indent,eol,start
 set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
-set lazyredraw
 set list
 set modeline
 set mouse=a
+set number
 set shiftwidth=2
 set signcolumn=yes
 set smarttab
@@ -38,7 +38,6 @@ let g:pencil#map#suspend_af = 'K'   " default is no mapping
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
 let g:neovide_transparency = 0.9
-let g:neovide_cursor_vfx_mode = true
 set guifont=VictorMono\ Nerd\ Font:h18
 
 
