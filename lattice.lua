@@ -868,7 +868,22 @@ packer.startup {
     use "tversteeg/registers.nvim"
 
     use "tyru/open-browser.vim"
-    use "voldikss/vim-floaterm"
+    use {
+      "voldikss/vim-floaterm",
+      config = function()
+        -- shell is other people
+        local lls = require'lattice_local'.shell;
+        vim.g.floaterm_shell = lls.bin;
+        vim.o.shell = lls.bin;
+        vim.o.shellredir = lls.redir;
+        vim.o.shellcmdflag = lls.cmdflag;
+        vim.o.shellpipe = lls.pipe;
+        vim.o.shellquote = lls.quote;
+        vim.o.shellxquote = lls.xquote;
+        vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
+      end
+    }
+
     use {
       "nvim-neorg/neorg",
       config = function()
@@ -900,4 +915,4 @@ packer.startup {
   end
 }
 
-vim.api.nvim_set_keymap("n", "", "<CMD>FloatermNew <cr>", {})
+

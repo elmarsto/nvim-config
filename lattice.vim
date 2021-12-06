@@ -17,7 +17,7 @@ set foldmethod=expr
 set list
 set modeline
 set mouse=a
-set number
+set nu
 set shiftwidth=2
 set signcolumn=yes
 set smarttab
