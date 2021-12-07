@@ -2,6 +2,7 @@
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 au filetype supercollider,csound lua require'reaper-nvim'.setup()
+au TermOpen * setlocal scrollback=-1
 
 colorscheme seoul256
 highlight Comment cterm=italic gui=italic
@@ -26,6 +27,7 @@ set tabstop=2
 set termguicolors
 set undofile
 set wrap
+set scrollback=100000
 
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
