@@ -47,14 +47,33 @@ packer.startup {
       -- NOTE: you should prefer installing LSP formatters when available
       "mhartington/formatter.nvim",
       config = function()
+        ll = require "lattice_local"
         require("formatter").setup(
           {
             logging = true,
             filetype = {
+              typescript = {
+                function()
+                  return {
+                    exe = ll.prettier.bin,
+                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                    stdin = true
+                  }
+                end
+              },
+              typescriptreact = {
+                function()
+                  return {
+                    exe = ll.prettier.bin,
+                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+                    stdin = true
+                  }
+                end
+              },
               json = {
                 function()
                   return {
-                    exe = "prettier",
+                    exe = ll.prettier.bin,
                     args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
                     stdin = true
                   }
@@ -64,7 +83,7 @@ packer.startup {
                 -- luafmt
                 function()
                   return {
-                    exe = "luafmt",
+                    exe = ll.luafmt.bin,
                     args = {"--indent-count", 2, "--stdin"},
                     stdin = true
                   }
@@ -377,10 +396,10 @@ packer.startup {
           capabilities = capabilities,
           cmd = {lattice_local.dotls.bin}
         }
-        nvim_lsp.eslint.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.eslint.bin, "--stdio"}
-        }
+        -- nvim_lsp.eslint.setup {
+        --   capabilities = capabilities,
+        --   cmd = {lattice_local.eslint.bin, "--stdio"}
+        -- }
         nvim_lsp.gopls.setup {
           capabilities = capabilities,
           cmd = {lattice_local.gopls.bin}
@@ -414,10 +433,10 @@ packer.startup {
           cmd = {lattice_local.rnix.bin}
         }
         -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
-        nvim_lsp.stylelint_lsp.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.stylelint_lsp.bin}
-        }
+        -- nvim_lsp.stylelint_lsp.setup {
+        --   capabilities = capabilities,
+        --   cmd = {lattice_local.stylelint_lsp.bin}
+        -- }
         local sumneko_runtime_path = vim.split(package.path, ";")
         table.insert(sumneko_runtime_path, "lua/?.lua")
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
@@ -469,11 +488,19 @@ packer.startup {
         }
         nvim_lsp.tsserver.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.tsls.bin, "--stdio"}
-          -- on_attach = function(client)
-          --   client.resolved_capabilities.document_formatting = false
-          --   on_attach(client)
-          -- end
+          cmd = {lattice_local.tsls.bin, "--stdio"},
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx"
+          },
+          on_attach = function(client)
+            client.resolved_capabilities.document_formatting = false
+            on_attach(client)
+          end
         }
 
         nvim_lsp.vimls.setup {
