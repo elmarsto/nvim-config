@@ -339,7 +339,9 @@ packer.startup {
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
         nvim_lsp.gopls.setup {}
-        nvim_lsp.hls.setup {}
+        nvim_lsp.hls.setup {
+          cmd = {lattice_local.haskellls.bin, "--lsp"}
+        }
         nvim_lsp.html.setup {
           cmd = {lattice_local.htmlls.bin, "--stdio"}
         }
@@ -872,14 +874,14 @@ packer.startup {
       "voldikss/vim-floaterm",
       config = function()
         -- shell is other people
-        local lls = require'lattice_local'.shell;
-        vim.g.floaterm_shell = lls.bin;
-        vim.o.shell = lls.bin;
-        vim.o.shellredir = lls.redir;
-        vim.o.shellcmdflag = lls.cmdflag;
-        vim.o.shellpipe = lls.pipe;
-        vim.o.shellquote = lls.quote;
-        vim.o.shellxquote = lls.xquote;
+        local lls = require "lattice_local".shell
+        vim.g.floaterm_shell = lls.bin
+        vim.o.shell = lls.bin
+        vim.o.shellredir = lls.redir
+        vim.o.shellcmdflag = lls.cmdflag
+        vim.o.shellpipe = lls.pipe
+        vim.o.shellquote = lls.quote
+        vim.o.shellxquote = lls.xquote
         vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
       end
     }
@@ -914,5 +916,3 @@ packer.startup {
     use "wbthomason/packer.nvim" -- self-control
   end
 }
-
-
