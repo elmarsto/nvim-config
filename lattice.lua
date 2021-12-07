@@ -335,10 +335,30 @@ packer.startup {
             formatFiletypes = formatFiletypes
           }
         } -- end diagnosticls
+        nvim_lsp.bashls.setup {
+          cmd = {lattice_local.bashls.bin, "start"}
+        }
+        nvim_lsp.ccls.setup {
+          cmd = {lattice_local.ccls.bin}
+        }
+        nvim_lsp.cmake.setup {
+          cmd = {lattice_local.cmake.bin}
+        }
         nvim_lsp.cssls.setup {
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
-        nvim_lsp.gopls.setup {}
+        nvim_lsp.dotls.setup {
+          cmd = {lattice_local.dotls.bin}
+        }
+        nvim_lsp.eslint.setup {
+          cmd = {lattice_local.eslint.bin, "--stdio"}
+        }
+        nvim_lsp.gopls.setup {
+          cmd = {lattice_local.gopls.bin}
+        }
+        nvim_lsp.graphql.setup {
+          cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
+        }
         nvim_lsp.hls.setup {
           cmd = {lattice_local.haskellls.bin, "--lsp"}
         }
@@ -348,9 +368,19 @@ packer.startup {
         nvim_lsp.jsonls.setup {
           cmd = {lattice_local.jsonls.bin, "--stdio"}
         }
-        nvim_lsp.pyright.setup {}
-        nvim_lsp.rnix.setup {}
+        nvim_lsp.powershell_es.setup {
+          bundle = {lattice_local.powershell_es.bundle, "--stdio"}
+        }
+        nvim_lsp.pyright.setup {
+          cmd = {lattice_local.pyls.bin, "--stdio"}
+        }
+        nvim_lsp.rnix.setup {
+          cmd = {lattice_local.rnix.bin}
+        }
         -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
+        nvim_lsp.stylelint_lsp.setup {
+          cmd = {lattice_local.stylelint_lsp.bin}
+        }
         local sumneko_runtime_path = vim.split(package.path, ";")
         table.insert(sumneko_runtime_path, "lua/?.lua")
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
@@ -379,10 +409,21 @@ packer.startup {
             }
           }
         }
+        nvim_lsp.sqls.setup {
+          cmd = {lattice_local.sqls.bin, "-config", "~/.config/sqls/sqls.yml"}
+        }
         nvim_lsp.svelte.setup {
           cmd = {lattice_local.sveltels.bin}
         }
-        nvim_lsp.taplo.setup {}
+        nvim_lsp.taplo.setup {
+          cmd = {lattice_local.taplo.bin, "run"}
+        }
+        nvim_lsp.terraformls.setup {
+          cmd = {lattice_local.terraformls.bin}
+        }
+        nvim_lsp.texlab.setup {
+          cmd = {lattice_local.texlab.bin}
+        }
         nvim_lsp.tsserver.setup {
           cmd = {lattice_local.tsls.bin, "--stdio"}
           -- on_attach = function(client)
@@ -390,11 +431,15 @@ packer.startup {
           --   on_attach(client)
           -- end
         }
+
         nvim_lsp.vimls.setup {
           cmd = {lattice_local.vimls.bin}
         }
         nvim_lsp.yamlls.setup {
           cmd = {lattice_local.yamlls.bin}
+        }
+        nvim_lsp.zeta_note.setup {
+          cmd = {lattice_local.zeta_note.bin}
         }
         if vim.fn.has("win32") == 0 then
           nvim_lsp.zk.setup {
