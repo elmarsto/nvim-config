@@ -129,8 +129,10 @@ packer.startup {
         )
       end
     }
+    use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
+      requires = {"hrsh7th/cmp-nvim-lsp", "neovim/nvim-lspconfig"},
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
@@ -138,12 +140,22 @@ packer.startup {
           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+        local lspc = require "lspconfig"
+        lspc.tsserver.setup {
+          capabilities = capabilities
+        }
+        lspc.zeta_note.setup {
+          capabilities = capabilities
+        } -- TODO: more server support
         cmp.setup(
           {
             mapping = {
               ["<C-d>"] = cmp.mapping.scroll_docs(-4),
               ["<C-f>"] = cmp.mapping.scroll_docs(4),
-              ["<C-c>"] = cmp.mapping.complete(),
               ["<C-e>"] = cmp.mapping.close(),
               ["<Tab>"] = cmp.mapping(
                 function(fallback)
