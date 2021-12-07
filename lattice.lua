@@ -349,6 +349,7 @@ packer.startup {
         nvim_lsp.diagnosticls.setup {
           on_attach = on_attach,
           filetypes = vim.tbl_keys(filetypes),
+          capabilities = capabilities,
           init_options = {
             filetypes = filetypes,
             linters = linters,
