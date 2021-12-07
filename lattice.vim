@@ -54,8 +54,6 @@ function! Human()
   call textobj#quote#init()
   call textobj#sentence#init()
 
-  ASOn
-
   " manual reformatting shortcuts
   nnoremap <buffer> <silent> <leader>Q vapJgqap
   nnoremap <buffer> <silent> Q gqap

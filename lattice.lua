@@ -9,6 +9,7 @@ require "packer.luarocks".install_commands()
 packer.startup {
   function(use)
     -- packer.use_rocks {"penlight"}
+
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
@@ -132,7 +133,7 @@ packer.startup {
     use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
-      requires = {"hrsh7th/cmp-nvim-lsp", "neovim/nvim-lspconfig"},
+      requires = {"L3MON4D3/LuaSnip"},
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
@@ -141,18 +142,13 @@ packer.startup {
           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-        local lspc = require "lspconfig"
-        lspc.tsserver.setup {
-          capabilities = capabilities
-        }
-        lspc.zeta_note.setup {
-          capabilities = capabilities
-        } -- TODO: more server support
         cmp.setup(
           {
+            snippet = {
+              expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+              end
+            },
             mapping = {
               ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
               ["<C-p>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
@@ -261,6 +257,7 @@ packer.startup {
     use "neomake/neomake"
     use {
       "neovim/nvim-lspconfig",
+      requires = {"hrsh7th/cmp-nvim-lsp"},
       config = function()
         local lattice_local = require "lattice_local"
         local nvim_lsp = require("lspconfig")
@@ -310,6 +307,8 @@ packer.startup {
             )
           end
         end
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
         -- diagnosticls
         local filetypes = {
           javascript = "eslint",
@@ -358,49 +357,64 @@ packer.startup {
           }
         } -- end diagnosticls
         nvim_lsp.bashls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.bashls.bin, "start"}
         }
         nvim_lsp.ccls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.ccls.bin}
         }
         nvim_lsp.cmake.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.cmake.bin}
         }
         nvim_lsp.cssls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
         nvim_lsp.dotls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.dotls.bin}
         }
         nvim_lsp.eslint.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.eslint.bin, "--stdio"}
         }
         nvim_lsp.gopls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.gopls.bin}
         }
         nvim_lsp.graphql.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
         }
         nvim_lsp.hls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.haskellls.bin, "--lsp"}
         }
         nvim_lsp.html.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.htmlls.bin, "--stdio"}
         }
         nvim_lsp.jsonls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.jsonls.bin, "--stdio"}
         }
         nvim_lsp.powershell_es.setup {
+          capabilities = capabilities,
           bundle = {lattice_local.powershell_es.bundle, "--stdio"}
         }
         nvim_lsp.pyright.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.pyls.bin, "--stdio"}
         }
         nvim_lsp.rnix.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.rnix.bin}
         }
         -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
         nvim_lsp.stylelint_lsp.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.stylelint_lsp.bin}
         }
         local sumneko_runtime_path = vim.split(package.path, ";")
@@ -408,6 +422,7 @@ packer.startup {
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
         nvim_lsp.sumneko_lua.setup {
           cmd = {lattice_local.sumneko.bin, "-E", lattice_local.sumneko.main},
+          capabilities = capabilities,
           settings = {
             Lua = {
               runtime = {
@@ -432,21 +447,27 @@ packer.startup {
           }
         }
         nvim_lsp.sqls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.sqls.bin, "-config", "~/.config/sqls/sqls.yml"}
         }
         nvim_lsp.svelte.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.sveltels.bin}
         }
         nvim_lsp.taplo.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.taplo.bin, "run"}
         }
         nvim_lsp.terraformls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.terraformls.bin}
         }
         nvim_lsp.texlab.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.texlab.bin}
         }
         nvim_lsp.tsserver.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.tsls.bin, "--stdio"}
           -- on_attach = function(client)
           --   client.resolved_capabilities.document_formatting = false
@@ -455,16 +476,20 @@ packer.startup {
         }
 
         nvim_lsp.vimls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.vimls.bin}
         }
         nvim_lsp.yamlls.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.yamlls.bin}
         }
         nvim_lsp.zeta_note.setup {
+          capabilities = capabilities,
           cmd = {lattice_local.zeta_note.bin}
         }
         if vim.fn.has("win32") == 0 then
           nvim_lsp.zk.setup {
+            capabilities = capabilities,
             cmd = {lattice_local.zk.bin, "lsp"},
             filetypes = {"markdown", "PANDOC", "pandoc"}
           }
@@ -818,16 +843,6 @@ packer.startup {
         )
       end
     }
-    use {
-      "Pocco81/AutoSave.nvim",
-      config = function()
-        require "autosave".setup(
-          {
-            on_off_commands = true
-          }
-        )
-      end
-    }
     use "preservim/vim-colors-pencil"
     use "preservim/vim-lexical"
     use "preservim/vim-litecorrect"
@@ -865,6 +880,7 @@ packer.startup {
         vim.o.sessionoptions = "blank,localoptions,buffers,curdir,folds,help,tabpages,winsize"
       end
     }
+    use "saadparwaiz1/cmp_luasnip"
     use "simrat39/symbols-outline.nvim"
     use {
       "simrat39/rust-tools.nvim",
