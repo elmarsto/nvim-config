@@ -47,38 +47,26 @@ packer.startup {
       -- NOTE: you should prefer installing LSP formatters when available
       "mhartington/formatter.nvim",
       config = function()
-        ll = require "lattice_local"
+        local ll = require "lattice_local"
+        local pretty = {
+          function()
+            return {
+              exe = ll.prettier.bin,
+              args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+              stdin = true
+            }
+          end
+        }
+
         require("formatter").setup(
           {
             logging = true,
             filetype = {
-              typescript = {
-                function()
-                  return {
-                    exe = ll.prettier.bin,
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              typescriptreact = {
-                function()
-                  return {
-                    exe = ll.prettier.bin,
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
-              json = {
-                function()
-                  return {
-                    exe = ll.prettier.bin,
-                    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-                    stdin = true
-                  }
-                end
-              },
+              javascript = pretty,
+              javascriptreact = pretty,
+              typescript = pretty,
+              typescriptreact = pretty,
+              json = pretty,
               lua = {
                 -- luafmt
                 function()
@@ -93,6 +81,7 @@ packer.startup {
           }
         )
         vim.api.nvim_exec(
+          -- ignore .js* and .ts* formats (we prefer diagnosticls, which also does this, see lspconfig stanza)
           [[
           augroup FormatAutogroup
             autocmd!
@@ -163,6 +152,9 @@ packer.startup {
 
         cmp.setup(
           {
+            completion = {
+              autocomplete = false
+            },
             snippet = {
               expand = function(args)
                 require("luasnip").lsp_expand(args.body)
@@ -213,10 +205,19 @@ packer.startup {
             sources = {
               {name = "nvim_lsp"},
               {name = "luasnip"},
+              {name = "rg"},
+              {name = "emoji"},
               {name = "neorg"},
+              {name = "cmp_git"},
               {name = "buffer"}
             }
           }
+        )
+        vim.api.nvim_exec(
+          [[
+           autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} }) 
+          ]],
+          false
         )
       end
     }
@@ -256,7 +257,9 @@ packer.startup {
         )
       end
     }
+    use "kristijanhusak/vim-dadbod-completion"
     use "lambdalisue/suda.vim"
+    use "lukas-reineke/cmp-rg"
     use "nvim-lua/plenary.nvim"
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
@@ -801,6 +804,7 @@ packer.startup {
       end
     }
     use "nvim-treesitter/nvim-treesitter-textobjects"
+    use {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"}
     use {
       "phaazon/hop.nvim",
       requires = "justinmk/vim-sneak", -- avoid race condition, we remap s and want sneak to set it first
@@ -943,6 +947,7 @@ packer.startup {
     }
 
     use "rafcamlet/nvim-luapad"
+    use "ray-x/cmp-treesitter"
     use {
       "romariorobby/taskell.nvim",
       config = function()
@@ -976,6 +981,7 @@ packer.startup {
       end
     }
     use "tpope/vim-abolish"
+    use "tpope/vim-dadbod"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
