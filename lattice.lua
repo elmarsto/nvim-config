@@ -209,7 +209,11 @@ packer.startup {
               {name = "emoji"},
               {name = "neorg"},
               {name = "cmp_git"},
-              {name = "buffer"}
+              {name = "buffer"},
+              {
+                name = "dictionary",
+                keyword_length = 2
+              }
             }
           }
         )
@@ -277,6 +281,31 @@ packer.startup {
       end
     }
     use "neomake/neomake"
+    use {
+      "nvim-neorg/neorg",
+      config = function()
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {},
+            ["core.norg.concealer"] = {},
+            ["core.norg.completion"] = {
+              config = {
+                engine = "nvim-cmp"
+              }
+            },
+            ["core.norg.dirman"] = {
+              config = {
+                workspaces = {
+                  navaruk = "~/navaruk",
+                  vault = "~/vault"
+                }
+              }
+            }
+          }
+        }
+      end,
+      requires = "nvim-lua/plenary.nvim"
+    }
     use {
       "neovim/nvim-lspconfig",
       requires = {"hrsh7th/cmp-nvim-lsp"},
@@ -985,8 +1014,8 @@ packer.startup {
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
-
     use "tyru/open-browser.vim"
+    use "uga-rosa/cmp-dictionary"
     use {
       "voldikss/vim-floaterm",
       config = function()
@@ -1001,32 +1030,6 @@ packer.startup {
         vim.o.shellxquote = lls.xquote
         vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
       end
-    }
-
-    use {
-      "nvim-neorg/neorg",
-      config = function()
-        require("neorg").setup {
-          load = {
-            ["core.defaults"] = {},
-            ["core.norg.concealer"] = {},
-            ["core.norg.completion"] = {
-              config = {
-                engine = "nvim-cmp"
-              }
-            },
-            ["core.norg.dirman"] = {
-              config = {
-                workspaces = {
-                  navaruk = "~/navaruk",
-                  vault = "~/vault"
-                }
-              }
-            }
-          }
-        }
-      end,
-      requires = "nvim-lua/plenary.nvim"
     }
 
     use "wannesm/wmgraphviz.vim"
