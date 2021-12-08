@@ -17,6 +17,7 @@ packer.startup {
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
     use "embear/vim-localvimrc"
+    use "f3fora/cmp-spell"
     use "folke/lsp-colors.nvim"
     use {
       "folke/todo-comments.nvim",
@@ -207,6 +208,7 @@ packer.startup {
               {name = "luasnip"},
               {name = "rg"},
               {name = "emoji"},
+              {name = "spell"},
               {name = "neorg"},
               {name = "cmp_git"},
               {name = "buffer"},
@@ -223,6 +225,8 @@ packer.startup {
           ]],
           false
         )
+        vim.opt.spell = true
+        vim.opt.spelllang = { 'en_us' }
       end
     }
     use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
