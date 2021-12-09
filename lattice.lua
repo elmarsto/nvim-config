@@ -120,7 +120,6 @@ packer.startup {
         require "lattice_line"
       end
     }
-    use "godlygeek/tabular"
     use {
       "L3MON4D3/LuaSnip",
       config = function()
@@ -252,7 +251,6 @@ packer.startup {
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
-    use "justinmk/vim-sneak"
     use "kana/vim-textobj-user"
     use {
       "karb94/neoscroll.nvim",
@@ -278,13 +276,6 @@ packer.startup {
         require "colorizer".setup()
       end
     }
-    use {
-      "norcalli/nvim-terminal.lua",
-      config = function()
-        require "terminal".setup()
-      end
-    }
-    use "neomake/neomake"
     use {
       "nvim-neorg/neorg",
       config = function()
@@ -743,22 +734,16 @@ packer.startup {
             "bash",
             "c",
             "c_sharp",
-            "clojure",
             "cmake",
             "comment",
-            "commonlisp",
             "cpp",
             "css",
-            "cuda",
             "diff",
             "dockerfile",
             "dot",
             "elixir",
             "elm",
             "erlang",
-            "fish",
-            "fortran",
-            "glsl",
             "go",
             "gomod",
             "graphql",
@@ -772,10 +757,8 @@ packer.startup {
             "json5",
             "jsonc",
             "julia",
-            "kotlin",
             "latex",
             "ledger",
-            "llvm",
             "lua",
             "markdown",
             "nix",
@@ -784,18 +767,14 @@ packer.startup {
             "ocaml_interface",
             "perl",
             "php",
-            "prisma",
             "python",
             "ql",
             "query",
-            "r",
             "regex",
             "rst",
             "ruby",
             "rust",
-            "scala",
             "scss",
-            "surface",
             "svelte",
             "toml",
             "tsx",
@@ -803,7 +782,6 @@ packer.startup {
             "vim",
             "vue",
             "yaml",
-            "yang",
             "zig"
           },
           highlight = {
@@ -843,7 +821,6 @@ packer.startup {
     use {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"}
     use {
       "phaazon/hop.nvim",
-      requires = "justinmk/vim-sneak", -- avoid race condition, we remap s and want sneak to set it first
       branch = "v1",
       as = "hop",
       config = function()
@@ -925,7 +902,6 @@ packer.startup {
         vim.g.lf_map_keys = 0
       end
     }
-    -- use "puremourning/vimspector"
     use {
       "rcarriga/nvim-dap-ui",
       requires = {"mfussenegger/nvim-dap"},
@@ -933,7 +909,12 @@ packer.startup {
         require("dapui").setup()
       end
     }
-    use "rcarriga/nvim-notify"
+    use {
+      "rcarriga/nvim-notify",
+      config = function()
+        vim.notify = require("notify")
+      end
+    }
     use {
       "rmagatti/auto-session",
       config = function()
@@ -945,7 +926,7 @@ packer.startup {
             auto_restore_enabled = true
           }
         )
-        vim.o.sessionoptions = "blank,localoptions,buffers,curdir,folds,help,tabpages,winsize"
+        vim.o.sessionoptions = "blank,localoptions,buffers,curdir,tabpages"
       end
     }
     use "saadparwaiz1/cmp_luasnip"
@@ -1038,7 +1019,6 @@ packer.startup {
       end
     }
 
-    use "wannesm/wmgraphviz.vim"
     use "wbthomason/packer.nvim" -- self-control
   end
 }
