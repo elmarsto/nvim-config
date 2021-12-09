@@ -598,17 +598,17 @@ packer.startup {
       requires = {
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
-        "nvim-telescope/telescope-arecibo.nvim",
-        "nvim-telescope/telescope-cheat.nvim",
-        "nvim-telescope/telescope-node-modules.nvim",
+        -- "nvim-telescope/telescope-arecibo.nvim",
+        -- "nvim-telescope/telescope-cheat.nvim",
+        -- "nvim-telescope/telescope-node-modules.nvim",
         "nvim-telescope/telescope-project.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-github.nvim",
-        "nvim-telescope/telescope-media-files.nvim",
+        -- "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-hop.nvim",
         "TC72/telescope-tele-tabby.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
-        {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
+        -- {"nvim-telescope/telescope-packer.nvim", requires = "wbthomason/packer.nvim"},
         {"nvim-telescope/telescope-project.nvim", requires = "wbthomason/packer.nvim"},
         "tami5/sqlite.lua",
         "nvim-telescope/telescope-frecency.nvim"
@@ -634,7 +634,7 @@ packer.startup {
           },
           pickers = {
             find_files = {
-              theme = "dropdown", -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
+              theme = "dropdown" -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
             }
           },
           extensions = {
@@ -709,21 +709,21 @@ packer.startup {
             }
           }
         }
-        tscope.load_extension "arecibo"
-        tscope.load_extension "cheat"
+        -- tscope.load_extension "arecibo"
+        -- tscope.load_extension "cheat"
         tscope.load_extension "dap"
         if vim.fn.has("win32") == 0 then
           tscope.load_extension "fzf"
         end
-        tscope.load_extension "gh"
+        -- tscope.load_extension "gh"
         vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
         tscope.load_extension "frecency"
         tscope.load_extension "hop"
-        if vim.fn.has("unix") then
-          tscope.load_extension "media_files"
-        end
-        tscope.load_extension "node_modules"
-        tscope.load_extension "packer"
+        -- if vim.fn.has("unix") then
+        --   tscope.load_extension "media_files"
+        -- end
+        -- tscope.load_extension "node_modules"
+        -- tscope.load_extension "packer"
         tscope.load_extension "project"
         -- tscope.load_extension "symbols"
       end
