@@ -971,7 +971,7 @@ packer.startup {
         "mfussenegger/nvim-dap",
         "neovim/nvim-lspconfig",
         "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim",
+        "nvim-lua/plenary.nvim"
       },
       config = function()
         require("rust-tools").setup(
