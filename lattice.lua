@@ -226,7 +226,7 @@ packer.startup {
           false
         )
         vim.opt.spell = true
-        vim.opt.spelllang = { 'en_us' }
+        vim.opt.spelllang = {"en_us"}
       end
     }
     use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
@@ -307,6 +307,25 @@ packer.startup {
             }
           }
         }
+        -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
+        local neorg_callbacks = require("neorg.callbacks")
+        neorg_callbacks.on_event(
+          "core.keybinds.events.enable_keybinds",
+          function(_, keybinds)
+            keybinds.map_event_to_mode(
+              "norg",
+              {
+                n = {
+                  {"gtd", "core.norg.qol.todo_items.todo.task_done"},
+                  {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
+                  {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
+                  {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"}
+                }
+              },
+              {silent = true, noremap = true}
+            )
+          end
+        )
       end,
       requires = "nvim-lua/plenary.nvim"
     }
@@ -613,6 +632,11 @@ packer.startup {
               }
             }
           },
+          pickers = {
+            find_files = {
+              theme = "dropdown", -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
+            }
+          },
           extensions = {
             media_files = {
               filetypes = {"png", "webp", "jpg", "jpeg"},
@@ -704,12 +728,6 @@ packer.startup {
         -- tscope.load_extension "symbols"
       end
     }
-    -- TODO: figure out how to make nix always build py3 into neovim
-    -- (py3 is required for vimspector)
-    -- use {
-    --   "nvim-telescope/telescope-vimspector.nvim",
-    --   requires = "puremourning/vimspector"
-    -- }
     use {
       "nvim-treesitter/nvim-treesitter",
       config = function()
@@ -954,7 +972,6 @@ packer.startup {
         "neovim/nvim-lspconfig",
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
       },
       config = function()
         require("rust-tools").setup(
