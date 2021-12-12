@@ -16,7 +16,6 @@ packer.startup {
     use "David-Kunz/jester"
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
-    use "embear/vim-localvimrc"
     use "f3fora/cmp-spell"
     use "folke/lsp-colors.nvim"
     use {

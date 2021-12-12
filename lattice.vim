@@ -16,7 +16,6 @@ set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
 set list
-set modeline
 set mouse=a
 set nu
 set relativenumber
