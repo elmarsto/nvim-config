@@ -592,7 +592,8 @@ packer.startup {
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         "nvim-telescope/telescope-project.nvim",
         "tami5/sqlite.lua",
-        "nvim-telescope/telescope-frecency.nvim"
+        "nvim-telescope/telescope-frecency.nvim",
+        "luissimas/telescope-nodescripts.nvim"
       },
       config = function()
         local tscope = require("telescope")
@@ -697,6 +698,7 @@ packer.startup {
         tscope.load_extension "dap"
         tscope.load_extension "frecency"
         tscope.load_extension "hop"
+        tscope.load_extension "nodescripts"
         tscope.load_extension "project"
       end
     }

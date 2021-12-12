@@ -134,7 +134,6 @@ command! DapToggle require("dapui").toggle()
 
 
 " Telescope
-command! Xelepacker :lua require('telescope').extensions.packer.plugins()
 nnoremap <C-Bslash> :Telescope file_browser <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
 nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
@@ -148,6 +147,7 @@ nnoremap <C-M-[> :Telescope git_bcommits <cr>
 nnoremap <C-M-\> :Telescope git_branches <cr>
 nnoremap <C-M-]> :Telescope git_commits <cr>
 nnoremap <C-M-_> :Telescope lsp_file_symbols <cr>
+nnoremap <silent> <leader>j  :lua require('telescope').extensions.nodescripts.run({})<cr>
 nnoremap <C-Space> :Telescope keymaps <cr>
 nnoremap <leader><Space>  :Telescope keymaps <cr>
 nnoremap <C-]> :Telescope registers <cr>
