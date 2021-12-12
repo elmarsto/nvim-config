@@ -19,6 +19,7 @@ set list
 set modeline
 set mouse=a
 set nu
+set relativenumber
 set shiftwidth=2
 set signcolumn=yes
 set smarttab
@@ -28,6 +29,8 @@ set termguicolors
 set undofile
 set wrap
 set scrollback=100000
+set spellfile=~/.lattice-spellfile
+set nospell
 
 " Word processing and focus modes
 " see github.com/preservim/vim-pencil
@@ -53,6 +56,11 @@ function! Human()
   call pencil#init()
   call textobj#quote#init()
   call textobj#sentence#init()
+  
+  setlocal nonu
+  setlocal norelativenumber
+  setlocal foldlevel=6
+  setlocal spell
 
   " manual reformatting shortcuts
   nnoremap <buffer> <silent> <leader>Q vapJgqap
@@ -69,8 +77,6 @@ function! Human()
   iabbrev <buffer> << «
   iabbrev <buffer> >> »
 
-  " open most folds
-  setlocal foldlevel=6
 
   " replace typographical quotes (reedes/vim-textobj-quote)
   map <silent> <buffer> <leader>qc <Plug>ReplaceWithCurly
@@ -79,16 +85,31 @@ function! Human()
   " highlight words (reedes/vim-wordy)
   inoremap <silent> <buffer> <F8> <C-o>:NextWordy<cr>
   noremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
-  xnoremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
-
 endfunction
 
 function! Machine()
-  "TODO: fiinish building a function to reverse seettings in Human()
-  ASOff
-  iuna --
-  iuna ---
+  setlocal nospell
   setlocal foldlevel=1
+  setlocal nu
+  setlocal relativenumber
+
+  nun <buffer> <silent> <leader>Q
+  nun <buffer> <silent> Q
+  xun <buffer> <silent> Q
+
+  nun  <buffer> <c-s>
+  iun  <buffer> <c-s>
+
+  iuna <buffer> --
+  iuna <buffer> ---
+  iuna <buffer> <<
+  iuna <buffer> >>
+
+  unm <silent> <buffer> <leader>qc
+  unm <silent> <buffer> <leader>qs
+
+  iun <silent> <buffer> <F8>
+  unm <silent> <buffer> <F8>
 endfunction
 
 
