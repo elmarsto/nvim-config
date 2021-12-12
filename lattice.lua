@@ -224,7 +224,7 @@ packer.startup {
           ]],
           false
         )
-        vim.opt.spell = false
+        vim.opt.spell = true
         vim.opt.spelllang = {"en_us"}
       end
     }

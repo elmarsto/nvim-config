@@ -29,7 +29,6 @@ set termguicolors
 set undofile
 set wrap
 set scrollback=100000
-set spellfile = "~/.lattice-spellfile"
 set nospell
 
 " Word processing and focus modes
