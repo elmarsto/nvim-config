@@ -238,14 +238,17 @@ packer.startup {
     use {
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
-        require("null-ls").config(
+        require("null-ls").setup(
           {
-            sources = {require("null-ls").builtins.formatting.stylua}
+            sources = {
+              require("null-ls").builtins.formatting.stylua,
+              require("null-ls").builtins.diagnostics.eslint,
+              require("null-ls").builtins.completion.spell
+            }
           }
         )
-        require("lspconfig")["null-ls"].setup({})
       end,
-      requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+      requires = {"nvim-lua/plenary.nvim"}
     }
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
@@ -1000,7 +1003,19 @@ packer.startup {
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
     use "tyru/open-browser.vim"
-    use "uga-rosa/cmp-dictionary"
+    use {
+      "uga-rosa/cmp-dictionary",
+      config = function()
+        local ll = require "lattice_local"
+        require("cmp_dictionary").setup(
+          {
+            dic = {
+              ["*"] = ll.dictionary.file
+            }
+          }
+        )
+      end
+    }
     use {
       "voldikss/vim-floaterm",
       config = function()

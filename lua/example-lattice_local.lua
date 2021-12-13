@@ -11,6 +11,9 @@ return {
   cssls = {
     bin = "vscode-css-language-server.cmd"
   },
+  dictionary = {
+    file = "/path/to/aspell.net/file"
+  },
   dotls = {
     bin = ""
   },
