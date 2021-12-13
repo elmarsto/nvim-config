@@ -286,7 +286,6 @@ packer.startup {
           load = {
             ["core.defaults"] = {},
             ["core.norg.concealer"] = {},
-            ["core.integrations.telescope"] = {},
             ["core.keybinds"] = {
               config = {
                 default_keybinds = true,
