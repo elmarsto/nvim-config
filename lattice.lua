@@ -564,9 +564,6 @@ packer.startup {
           capabilities = capabilities,
           cmd = {lattice_local.yamlls.bin}
         }
-        nvim_lsp.zeta_note.setup {
-          cmd = {lattice_local.zeta_note.bin}
-        }
       end
     }
     use {
