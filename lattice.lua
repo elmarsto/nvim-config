@@ -286,6 +286,13 @@ packer.startup {
           load = {
             ["core.defaults"] = {},
             ["core.norg.concealer"] = {},
+            ["core.integrations.telescope"] = {},
+            ["core.keybinds"] = {
+              config = {
+                default_keybinds = true,
+                neorg_leader = "<Leader>o"
+              }
+            },
             ["core.norg.completion"] = {
               config = {
                 engine = "nvim-cmp"
