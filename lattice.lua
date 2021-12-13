@@ -140,7 +140,7 @@ packer.startup {
     use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
-      requires = {"L3MON4D3/LuaSnip"},
+      requires = {"L3MON4D3/LuaSnip", "dmitmel/cmp-digraphs"},
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
@@ -202,18 +202,19 @@ packer.startup {
               --   ["<CR>"] = cmp.mapping.confirm({select = true})
             },
             sources = {
-              {name = "nvim_lsp"},
-              {name = "luasnip"},
-              {name = "rg"},
-              {name = "emoji"},
-              {name = "spell"},
-              {name = "neorg"},
-              {name = "cmp_git"},
               {name = "buffer"},
+              {name = "cmp_git"},
               {
                 name = "dictionary",
                 keyword_length = 2
-              }
+              },
+              {name = "digraphs"},
+              {name = "emoji"},
+              {name = "luasnip"},
+              {name = "neorg"},
+              {name = "nvim_lsp"},
+              {name = "rg"},
+              {name = "spell"}
             }
           }
         )
@@ -586,17 +587,17 @@ packer.startup {
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
+        "elmarsto/telescope-nodescripts.nvim",
+        "elmarsto/telescope-symbols.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
-        "nvim-telescope/telescope-project.nvim",
         "nvim-telescope/telescope-dap.nvim",
-        "nvim-telescope/telescope-hop.nvim",
-        "TC72/telescope-tele-tabby.nvim",
+        "nvim-telescope/telescope-frecency.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
+        "nvim-telescope/telescope-hop.nvim",
         "nvim-telescope/telescope-project.nvim",
         "tami5/sqlite.lua",
-        "nvim-telescope/telescope-frecency.nvim",
-        "luissimas/telescope-nodescripts.nvim"
+        "TC72/telescope-tele-tabby.nvim"
       },
       config = function()
         local tscope = require("telescope")
