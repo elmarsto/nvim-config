@@ -558,16 +558,8 @@ packer.startup {
           cmd = {lattice_local.yamlls.bin}
         }
         nvim_lsp.zeta_note.setup {
-          capabilities = capabilities,
           cmd = {lattice_local.zeta_note.bin}
         }
-        if vim.fn.has("win32") == 0 then
-          nvim_lsp.zk.setup {
-            capabilities = capabilities,
-            cmd = {lattice_local.zk.bin, "lsp"},
-            filetypes = {"markdown", "PANDOC", "pandoc"}
-          }
-        end
       end
     }
     use {
