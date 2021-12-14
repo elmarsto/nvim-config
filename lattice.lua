@@ -280,6 +280,7 @@ packer.startup {
       "nvim-neorg/neorg",
       requires = "nvim-neorg/neorg-telescope",
       config = function()
+        local ll = require "lattice_local"
         require("neorg").setup {
           load = {
             ["core.defaults"] = {},
@@ -298,10 +299,7 @@ packer.startup {
             ["core.integrations.telescope"] = {},
             ["core.norg.dirman"] = {
               config = {
-                workspaces = {
-                  navaruk = "~/navaruk",
-                  vault = "~/vault"
-                }
+                workspaces = ll.neorg.workspaces
               }
             }
           }

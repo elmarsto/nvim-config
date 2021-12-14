@@ -39,6 +39,12 @@ return {
     -- aboslute paths only, no expansion of ~, no expansion of $HOME
     bin = "vscode-json-language-server.cmd"
   },
+  neorg = {
+    workspaces = {
+      workvault = "",
+      workspace_portal = ""
+    }
+  },
   powershell_es = {
     bundle = ""
   },
@@ -96,11 +102,5 @@ return {
   },
   yamlls = {
     bin = "yaml-language-server"
-  },
-  zeta_note = {
-    bin = "zeta-note"
-  },
-  zk = {
-    bin = "zk" -- 'gmake' on e.g. openbsd
   }
 }
