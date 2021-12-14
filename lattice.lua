@@ -20,7 +20,6 @@ packer.startup {
     use "folke/lsp-colors.nvim"
     use {
       "folke/todo-comments.nvim",
-      requires = "nvim-lua/plenary.nvim",
       config = function()
         require("todo-comments").setup {
           signs = true, -- show icons in the signs column
@@ -94,7 +93,6 @@ packer.startup {
     }
     use {
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require "trouble".setup {}
       end
@@ -111,14 +109,13 @@ packer.startup {
         vim.fn["firenvim#install"](0)
       end
     }
-
     use {
       "glepnir/galaxyline.nvim",
-      requires = {"kyazdani42/nvim-web-devicons"},
       config = function()
         require "lattice_line"
       end
     }
+    use {"kyazdani42/nvim-web-devicons"}
     use {
       "L3MON4D3/LuaSnip",
       config = function()
@@ -228,7 +225,7 @@ packer.startup {
         vim.opt.spelllang = {"en_us"}
       end
     }
-    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons"}}
+    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf"}}
     use {
       "jghauser/follow-md-links.nvim",
       config = function()
@@ -248,8 +245,7 @@ packer.startup {
             }
           }
         )
-      end,
-      requires = {"nvim-lua/plenary.nvim"}
+      end
     }
     use "junegunn/goyo.vim"
     use "junegunn/limelight.vim"
@@ -270,6 +266,7 @@ packer.startup {
     use "lambdalisue/suda.vim"
     use "lukas-reineke/cmp-rg"
     use "nvim-lua/plenary.nvim"
+    use "nvim-lua/popup.nvim"
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use "mfussenegger/nvim-dap"
@@ -281,6 +278,7 @@ packer.startup {
     }
     use {
       "nvim-neorg/neorg",
+      requires = "nvim-neorg/neorg-telescope",
       config = function()
         require("neorg").setup {
           load = {
@@ -297,6 +295,7 @@ packer.startup {
                 engine = "nvim-cmp"
               }
             },
+            ["core.integrations.telescope"] = {},
             ["core.norg.dirman"] = {
               config = {
                 workspaces = {
@@ -326,12 +325,10 @@ packer.startup {
             )
           end
         )
-      end,
-      requires = "nvim-lua/plenary.nvim"
+      end
     }
     use {
       "neovim/nvim-lspconfig",
-      requires = {"hrsh7th/cmp-nvim-lsp"},
       config = function()
         local lattice_local = require "lattice_local"
         local nvim_lsp = require("lspconfig")
@@ -584,8 +581,6 @@ packer.startup {
       requires = {
         "elmarsto/telescope-nodescripts.nvim",
         "elmarsto/telescope-symbols.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-lua/popup.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-frecency.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
@@ -815,7 +810,7 @@ packer.startup {
       end
     }
     use "nvim-treesitter/nvim-treesitter-textobjects"
-    use {"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"}
+    use "petertriho/cmp-git"
     use {
       "phaazon/hop.nvim",
       branch = "v1",
@@ -894,14 +889,12 @@ packer.startup {
     use "preservim/vim-wordy"
     use {
       "ptzz/lf.vim",
-      requires = "voldikss/vim-floaterm",
       config = function()
         vim.g.lf_map_keys = 0
       end
     }
     use {
       "rcarriga/nvim-dap-ui",
-      requires = {"mfussenegger/nvim-dap"},
       config = function()
         require("dapui").setup()
       end
@@ -930,12 +923,6 @@ packer.startup {
     use "simrat39/symbols-outline.nvim"
     use {
       "simrat39/rust-tools.nvim",
-      requires = {
-        "mfussenegger/nvim-dap",
-        "neovim/nvim-lspconfig",
-        "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim"
-      },
       config = function()
         require("rust-tools").setup(
           {
@@ -958,7 +945,6 @@ packer.startup {
         )
       end
     }
-
     use "rafcamlet/nvim-luapad"
     use "ray-x/cmp-treesitter"
     use {
@@ -968,13 +954,8 @@ packer.startup {
       end
     }
     use "sindrets/diffview.nvim"
-
     use {
       "TimUntersberger/neogit",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim"
-      },
       config = function()
         require "neogit".setup(
           {
@@ -987,7 +968,6 @@ packer.startup {
     }
     use {
       "tanvirtin/vgit.nvim",
-      requires = "nvim-lua/plenary.nvim",
       event = "BufWinEnter",
       config = function()
         require("vgit").setup()
