@@ -41,9 +41,10 @@ return {
   },
   neorg = {
     workspaces = {
-      workvault = "",
-      workspace_portal = ""
-    }
+      workvault = "/some/absolute/path/with/a/trailing/slash/",
+      workspace_portal = "/some/absolute/path/with/a/trailing/slash/"
+    },
+    gtd = "/some/absolute/path/with/a/trailing/slash/"
   },
   powershell_es = {
     bundle = ""

@@ -285,6 +285,11 @@ packer.startup {
           load = {
             ["core.defaults"] = {},
             ["core.norg.concealer"] = {},
+            ["core.gtd.base"] = {
+              config = {
+                workspace = ll.neorg.gtd
+              }
+            },
             ["core.keybinds"] = {
               config = {
                 default_keybinds = true,
