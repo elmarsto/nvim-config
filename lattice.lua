@@ -8,8 +8,6 @@ local packer = require "packer"
 require "packer.luarocks".install_commands()
 packer.startup {
   function(use)
-    -- packer.use_rocks {"penlight"}
-
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
     use "chrisbra/csv.vim"
