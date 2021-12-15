@@ -136,30 +136,33 @@ command! DapToggle require("dapui").toggle()
 " Telescope
 nnoremap <C-Bslash> :Telescope file_browser <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
-nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
+"does not work now?
+"nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <C-M-;> :Telescope lsp_implementations <cr>
 nnoremap <C-M-=> :Telescope lsp_workspace_symbols <cr>
 nnoremap <C-M-H> :Telescope lsp_code_actions <cr>
 nnoremap <C-M-O> :Telescope git_files <cr>
 nnoremap <C-M-P> :Telescope find_files <cr>
-nnoremap <C-M-Z> :FindZettels <cr>
 nnoremap <C-M-[> :Telescope git_bcommits <cr>
 nnoremap <C-M-\> :Telescope git_branches <cr>
 nnoremap <C-M-]> :Telescope git_commits <cr>
 nnoremap <C-M-_> :Telescope lsp_file_symbols <cr>
 nnoremap <silent> <leader>j  :lua require('telescope').extensions.nodescripts.run({})<cr>
-nnoremap <C-Space> :Telescope keymaps <cr>
+"does not work now?
+"nnoremap <C-Space> :Telescope keymaps <cr>
 nnoremap <leader><Space>  :Telescope keymaps <cr>
 nnoremap <C-]> :Telescope registers <cr>
-nnoremap <C-/> :Telescope live_grep <cr>
+"does not work now?
+"nnoremap <C-/> :Telescope live_grep <cr>
+nnoremap <M-/> :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <M-'> :Telescope marks<cr>
 nnoremap <M-,>   :Telescope vim_options <cr>
 nnoremap <leader>, :Telescope loclist<cr>
 nnoremap <M-.>   :Telescope commands <cr>
 nnoremap <leader>. :Telescope quickfix<cr>
-nnoremap <M-/> :Telescope search_history <cr>
-nnoremap <leader>/ :Telescope current_buffer_fuzzy_find <cr>
+nnoremap <M-?> :Telescope search_history <cr>
+nnoremap <leader>f/ :Telescope current_buffer_fuzzy_find <cr>
 nnoremap <M-;>   :Telescope command_history <cr>
 nnoremap <leader>r   :Telescope reloader <cr>
 nnoremap <leader><BS>   :Telescope reloader <cr>
@@ -169,10 +172,12 @@ nnoremap <M-Down> :tablast <cr>
 nnoremap <M-Left> :tabprev <cr>
 nnoremap <M-Right> :tabnext <cr>
 nnoremap <leader><Tab> :Telescope frecency <cr>
+" I tend to mash so 
+nnoremap <Tab><leader> :Telescope frecency <cr>
 nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
-nnoremap <leader><CR> :Telescope
+nnoremap <CR><CR> :Telescope <cr>
 " Jester
 
 command! JesterDebug :lua require"jester".debug_file()
