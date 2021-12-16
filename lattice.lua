@@ -10,7 +10,6 @@ packer.startup {
   function(use)
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
-    use "chrisbra/csv.vim"
     use "David-Kunz/jester"
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
@@ -93,18 +92,6 @@ packer.startup {
       "folke/trouble.nvim",
       config = function()
         require "trouble".setup {}
-      end
-    }
-    use {
-      "glepnir/lspsaga.nvim",
-      config = function()
-        require "lspsaga".init_lsp_saga()
-      end
-    }
-    use {
-      "glacambre/firenvim",
-      run = function()
-        vim.fn["firenvim#install"](0)
       end
     }
     use {
@@ -239,7 +226,7 @@ packer.startup {
         -- in LSP-supported editing sessions where the dominant LS
         -- does not offer Code Actions, e.g. JSON.
         -- Suppresses recurrent/annoying error msg.
-        
+
         local nullAction = {
           name = "null-action",
           filetypes = {}, -- all filetypes
@@ -913,12 +900,6 @@ packer.startup {
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
     use {
-      "ptzz/lf.vim",
-      config = function()
-        vim.g.lf_map_keys = 0
-      end
-    }
-    use {
       "rcarriga/nvim-dap-ui",
       config = function()
         require("dapui").setup()
@@ -972,12 +953,6 @@ packer.startup {
     }
     use "rafcamlet/nvim-luapad"
     use "ray-x/cmp-treesitter"
-    use {
-      "romariorobby/taskell.nvim",
-      config = function()
-        vim.api.nvim_set_keymap("n", "<leader>tt", ":Taskell<CR>", {silent = true})
-      end
-    }
     use "sindrets/diffview.nvim"
     use {
       "TimUntersberger/neogit",
@@ -991,47 +966,51 @@ packer.startup {
         )
       end
     }
-    use {
-      "tanvirtin/vgit.nvim",
-      event = "BufWinEnter",
-      config = function()
-        require("vgit").setup()
-      end
-    }
+
+    -- TODO: compare with diffview, blamer, and neogit. Can we remove one of these four?
+    -- There is functionality overlap but idk how much or which I like better
+    -- use {
+    --   "tanvirtin/vgit.nvim",
+    --   config = function()
+    --     require("vgit").setup()
+    --   end
+    -- }
     use "tpope/vim-abolish"
     use "tpope/vim-dadbod"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
     use "tyru/open-browser.vim"
-    use {
-      "uga-rosa/cmp-dictionary",
-      config = function()
-        local ll = require "lattice_local"
-        require("cmp_dictionary").setup(
-          {
-            dic = {
-              ["*"] = ll.dictionary.file
-            }
-          }
-        )
-      end
-    }
-    use {
-      "voldikss/vim-floaterm",
-      config = function()
-        -- shell is other people
-        local lls = require "lattice_local".shell
-        vim.g.floaterm_shell = lls.bin
-        vim.o.shell = lls.bin
-        vim.o.shellredir = lls.redir
-        vim.o.shellcmdflag = lls.cmdflag
-        vim.o.shellpipe = lls.pipe
-        vim.o.shellquote = lls.quote
-        vim.o.shellxquote = lls.xquote
-        vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
-      end
-    }
+    -- -- TODO: get dictionary file so this is useful
+    -- use {
+    --   "uga-rosa/cmp-dictionary",
+    --   config = function()
+    --     local ll = require "lattice_local"
+    --     require("cmp_dictionary").setup(
+    --       {
+    --         dic = {
+    --           ["*"] = ll.dictionary.file
+    --         }
+    --       }
+    --     )
+    --   end
+    -- }
+    -- TODO: find a use for this one or remove it
+    -- use {
+    --   "voldikss/vim-floaterm",
+    --   config = function()
+    --     -- shell is other people
+    --     local lls = require "lattice_local".shell
+    --     vim.g.floaterm_shell = lls.bin
+    --     vim.o.shell = lls.bin
+    --     vim.o.shellredir = lls.redir
+    --     vim.o.shellcmdflag = lls.cmdflag
+    --     vim.o.shellpipe = lls.pipe
+    --     vim.o.shellquote = lls.quote
+    --     vim.o.shellxquote = lls.xquote
+    --     vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
+    --   end
+    -- }
 
     use "wbthomason/packer.nvim" -- self-control
   end
