@@ -911,20 +911,20 @@ packer.startup {
         vim.notify = require("notify")
       end
     }
-    use {
-      "rmagatti/auto-session",
-      config = function()
-        require("auto-session").setup(
-          {
-            log_level = "error",
-            auto_session_enabled = true,
-            auto_save_enabled = true,
-            auto_restore_enabled = true
-          }
-        )
-        vim.o.sessionoptions = "blank,localoptions,buffers,curdir,tabpages"
-      end
-    }
+    -- use {
+    --   "rmagatti/auto-session",
+    --   config = function()
+    --     require("auto-session").setup(
+    --       {
+    --         log_level = "error",
+    --         auto_session_enabled = true,
+    --         auto_save_enabled = true,
+    --         auto_restore_enabled = true
+    --       }
+    --     )
+    --     vim.o.sessionoptions = "blank,localoptions,buffers,curdir,tabpages"
+    --   end
+    -- }
     use "saadparwaiz1/cmp_luasnip"
     use "simrat39/symbols-outline.nvim"
     use {
