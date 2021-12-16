@@ -234,9 +234,26 @@ packer.startup {
     use {
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
+        -- this seemingly-pointless stanza keeps LSP from complaining
+        -- in LSP-supported editing sessions where the dominant LS
+        -- does not offer Code Actions, e.g. JSON.
+        -- Suppresses recurrent/annoying error msg.
+        local nullAction = {
+          name = "null-action",
+          filetypes = { }, -- all filetypes
+          generator = function()
+            return {{
+              title = "do-nothing",
+              action = function()
+                -- do nothing
+              end
+            }}
+          end
+        };
         require("null-ls").setup(
           {
             sources = {
+              nullAction,
               require("null-ls").builtins.formatting.stylua,
               require("null-ls").builtins.diagnostics.eslint,
               require("null-ls").builtins.completion.spell
