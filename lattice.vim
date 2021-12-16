@@ -188,6 +188,7 @@ nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
 nnoremap <leader>tb :Telescope buffers <cr>
+nnoremap <leader>tp :Telescope project <cr>
 nnoremap <CR><CR> :Telescope <cr>
 " Jester
 

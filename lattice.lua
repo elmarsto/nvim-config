@@ -603,6 +603,7 @@ packer.startup {
       },
       config = function()
         local tscope = require("telescope")
+        local ll = require("lattice_local")
         tscope.setup {
           defaults = {
             mappings = {
@@ -630,13 +631,7 @@ packer.startup {
               filetypes = {"png", "webp", "jpg", "jpeg"},
               find_cmd = "rg"
             },
-            project = {
-              base_dirs = {
-                "~/code/"
-                --{path = "~/dev/src5", max_depth = 2}
-              },
-              hidden_files = true -- default: false
-            },
+            project = ll.project,
             hop = {
               -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
               keys = {
