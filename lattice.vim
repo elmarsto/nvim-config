@@ -138,35 +138,44 @@ nnoremap <C-Bslash> :Telescope file_browser <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
 "does not work now?
 "nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <C-M-;> :Telescope lsp_implementations <cr>
-nnoremap <C-M-=> :Telescope lsp_workspace_symbols <cr>
-nnoremap <C-M-H> :Telescope lsp_code_actions <cr>
+nnoremap <leader>ti :Telescope lsp_implementations <cr>
+nnoremap <leader>ts :Telescope lsp_workspace_symbols <cr>
+nnoremap <leader>ta :Telescope lsp_code_actions <cr>
 nnoremap <C-M-O> :Telescope git_files <cr>
+nnoremap <leader>tgf :Telescope git_files <cr>
 nnoremap <C-M-P> :Telescope find_files <cr>
-nnoremap <C-M-[> :Telescope git_bcommits <cr>
-nnoremap <C-M-\> :Telescope git_branches <cr>
-nnoremap <C-M-]> :Telescope git_commits <cr>
-nnoremap <C-M-_> :Telescope lsp_file_symbols <cr>
-nnoremap <silent> <leader>j  :lua require('telescope').extensions.nodescripts.run({})<cr>
-"does not work now?
-"nnoremap <C-Space> :Telescope keymaps <cr>
-nnoremap <leader><Space>  :Telescope keymaps <cr>
+nnoremap <leader>tf :Telescope find_files <cr>
+nnoremap <leader>tgbc :Telescope git_bcommits <cr>
+nnoremap <leader>tgb :Telescope git_branches <cr>
+nnoremap <leader>tgc :Telescope git_commits <cr>
+nnoremap <leader>tfs :Telescope lsp_file_symbols <cr>
+nnoremap <leader><Space> :Telescope keymaps <cr>
+nnoremap <leader>tk :Telescope keymaps <cr>
 nnoremap <C-]> :Telescope registers <cr>
-"does not work now?
-"nnoremap <C-/> :Telescope live_grep <cr>
+nnoremap <leader>trg :Telescope registers <cr>
 nnoremap <M-/> :Telescope live_grep <cr>
+nnoremap <leader>tlg :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
 nnoremap <M-'> :Telescope marks<cr>
-nnoremap <M-,>   :Telescope vim_options <cr>
+nnoremap <leader>tm :Telescope marks<cr>
+nnoremap <M-,> :Telescope vim_options <cr>
+nnoremap <leader>tvo :Telescope vim_options <cr>
 nnoremap <leader>, :Telescope loclist<cr>
-nnoremap <M-.>   :Telescope commands <cr>
+nnoremap <leader>tll :Telescope loclist<cr>
+nnoremap <M-.> :Telescope commands <cr>
+nnoremap <leader>tc :Telescope commands <cr>
 nnoremap <leader>. :Telescope quickfix<cr>
+nnoremap <leader>tqf :Telescope quickfix<cr>
 nnoremap <M-?> :Telescope search_history <cr>
+nnoremap <leader>tsh :Telescope search_history <cr>
 nnoremap <leader>f/ :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <M-;>   :Telescope command_history <cr>
-nnoremap <leader>r   :Telescope reloader <cr>
-nnoremap <leader><BS>   :Telescope reloader <cr>
+nnoremap <leader>tfz :Telescope current_buffer_fuzzy_find <cr>
+nnoremap <M-;> :Telescope command_history <cr>
+nnoremap <leader>tch :Telescope command_history <cr>
+nnoremap <leader>tl :Telescope reloader <cr>
+nnoremap <leader><BS> :Telescope reloader <cr>
 nnoremap <M-=> :Telescope jumplist <cr>
+nnoremap <leader>tjl :Telescope jumplist <cr>
 nnoremap <M-Bslash> :Lf <cr>
 nnoremap <M-Down> :tablast <cr>
 nnoremap <M-Left> :tabprev <cr>
@@ -174,9 +183,11 @@ nnoremap <M-Right> :tabnext <cr>
 nnoremap <leader><Tab> :Telescope frecency <cr>
 " I tend to mash so 
 nnoremap <Tab><leader> :Telescope frecency <cr>
+nnoremap <leader>tfy :Telescope frecency <cr>
 nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
+nnoremap <leader>tb :Telescope buffers <cr>
 nnoremap <CR><CR> :Telescope <cr>
 " Jester
 
