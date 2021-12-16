@@ -995,22 +995,26 @@ packer.startup {
     --     )
     --   end
     -- }
-    -- TODO: find a use for this one or remove it
-    -- use {
-    --   "voldikss/vim-floaterm",
-    --   config = function()
-    --     -- shell is other people
-    --     local lls = require "lattice_local".shell
-    --     vim.g.floaterm_shell = lls.bin
-    --     vim.o.shell = lls.bin
-    --     vim.o.shellredir = lls.redir
-    --     vim.o.shellcmdflag = lls.cmdflag
-    --     vim.o.shellpipe = lls.pipe
-    --     vim.o.shellquote = lls.quote
-    --     vim.o.shellxquote = lls.xquote
-    --     vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
-    --   end
-    -- }
+    use {
+      "voldikss/vim-floaterm",
+      config = function()
+        -- shell is other people
+        local lls = require "lattice_local".shell
+        vim.g.floaterm_shell = lls.bin
+        vim.g.floaterm_width = 0.9
+        vim.g.floaterm_height = 0.9
+        vim.o.shell = lls.bin
+        vim.o.shellredir = lls.redir
+        vim.o.shellcmdflag = lls.cmdflag
+        vim.o.shellpipe = lls.pipe
+        vim.o.shellquote = lls.quote
+        vim.o.shellxquote = lls.xquote
+        vim.api.nvim_set_keymap("n", "<leader>z", "<CMD>FloatermNew <cr>", {})
+        if vim.fn.has("win32") == 1 then
+          vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
+        end
+      end
+    }
 
     use "wbthomason/packer.nvim" -- self-control
   end
