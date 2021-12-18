@@ -724,7 +724,8 @@ packer.startup {
         parser_config.markdown = {
           install_info = {
             url = "https://github.com/ikatyang/tree-sitter-markdown",
-            files = {"src/parser.c", "src/scanner.cc"}
+            files = {"src/parser.c", "src/scanner.cc"},
+            tag = "v0.7.1"
           },
           filetype = "markdown"
         }
