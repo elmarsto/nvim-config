@@ -972,6 +972,7 @@ packer.startup {
     -- }
     use "tpope/vim-abolish"
     use "tpope/vim-dadbod"
+    use "kristijanhusak/vim-dadbod-ui"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
@@ -1020,4 +1021,3 @@ vim.api.nvim_set_keymap("n", "<leader>z", "<CMD>terminal <cr>", {})
 if vim.fn.has("win32") == 1 then
   vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
 end
-
