@@ -41,7 +41,7 @@ let g:pencil#map#suspend_af = 'K'   " default is no mapping
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
 let g:neovide_transparency = 0.9
-set guifont=VictorMono\ Nerd\ Font:h21
+set guifont=VictorMono\ Nerd\ Font:h24
 
 
 let g:markdown_folding=1
