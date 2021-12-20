@@ -60,7 +60,7 @@ end
 -- TODO: dry out; can we have the user choose the register
 ls.snippets = {
   all = {
-    s( "now", { d(1, date_input, {}) }),
+    s("now", {d(1, date_input, {})}),
     s(
       "ln",
       {
@@ -201,7 +201,9 @@ ls.snippets = {
         i(0)
       }
     ),
-    s( 'Xx', {
+    s(
+      "Xx",
+      {
         t "- [",
         i(0),
         t "] ",
@@ -224,5 +226,13 @@ ls.snippets = {
         i(0)
       }
     )
-  }
+  },
+  html = {}
 }
+
+vim.cmd [[
+  autocmd BufWinEnter *.html iabbrev --- &mdash;
+  autocmd BufWinEnter *.svelte iabbrev --- &mdash;
+  autocmd BufWinEnter *.jsx iabbrev --- &mdash;
+  autocmd BufWinEnter *.tsx iabbrev --- &mdash;
+]]
