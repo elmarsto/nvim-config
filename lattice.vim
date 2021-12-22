@@ -176,7 +176,7 @@ nnoremap <leader>tl :Telescope reloader <cr>
 nnoremap <leader><BS> :Telescope reloader <cr>
 nnoremap <M-=> :Telescope jumplist <cr>
 nnoremap <leader>tjl :Telescope jumplist <cr>
-nnoremap <M-Bslash> :Lf <cr>
+"nnoremap <M-Bslash> :Lf <cr>
 nnoremap <M-Down> :tablast <cr>
 nnoremap <M-Left> :tabprev <cr>
 nnoremap <M-Right> :tabnext <cr>
