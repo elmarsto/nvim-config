@@ -745,14 +745,6 @@ packer.startup {
             branch = "main"
           }
         }
-        parser_config.markdown = {
-          install_info = {
-            url = "https://github.com/ikatyang/tree-sitter-markdown",
-            files = {"src/parser.c", "src/scanner.cc"},
-            branch = "main"
-          },
-          filetype = "markdown"
-        }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "bash",
