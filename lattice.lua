@@ -37,6 +37,8 @@ packer.startup {
         }
       end
     }
+    use "folke/which-key.nvim"
+    use "folke/twilight.nvim"
     use {
       -- TODO: figure out if lua and json below can be handled via lsp
       -- TODO: figure out other languages to add here
@@ -98,6 +100,18 @@ packer.startup {
       "glepnir/galaxyline.nvim",
       config = function()
         require "lattice_line"
+      end
+    }
+    use "kristijanhusak/vim-dadbod-ui"
+    use {
+      "kristijanhusak/vim-dadbod-completion",
+      config = function()
+        vim.api.nvim_exec(
+          [[
+            autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+          ]],
+          true
+        )
       end
     }
     use {"kyazdani42/nvim-web-devicons"}
@@ -277,6 +291,14 @@ packer.startup {
     use "nvim-lua/popup.nvim"
     -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
+    use {
+      "mfussenegger/nvim-ts-hint-textobject",
+      config = function()
+        vim.api.nvim_set_keymap("o", "m", "<cmd><C-U>lua require('tsht').nodes()<CR>", {})
+        vim.api.nvim_set_keymap("v", "m", "<cmd>lua require('tsht').nodes()<CR>", {})
+      end
+    }
+
     use "mfussenegger/nvim-dap"
     use {
       "norcalli/nvim-colorizer.lua",
@@ -707,10 +729,11 @@ packer.startup {
       requires = {
         "JoosepAlviste/nvim-ts-context-commentstring",
         "p00f/nvim-ts-rainbow",
-        "romgrk/nvim-treesitter-context",
+        "RRethy/nvim-treesitter-textsubjects",
         "nvim-treesitter/nvim-treesitter-textobjects",
         "nvim-treesitter/nvim-treesitter-refactor",
-        "nvim-treesitter/playground"
+        "nvim-treesitter/playground",
+        "windwp/nvim-ts-autotag"
       },
       config = function()
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -792,6 +815,9 @@ packer.startup {
             "yaml",
             "zig"
           },
+          autotag = {
+            enable = true
+          },
           context_commentstring = {
             enable = true
           },
@@ -842,6 +868,13 @@ packer.startup {
               peek_definition_code = {
                 ["<leader>pf"] = "@function.outer",
                 ["<leader>pc"] = "@class.outer"
+              }
+            },
+            textsubjects = {
+              enable = true,
+              keymaps = {
+                ["."] = "textsubjects-smart",
+                [";"] = "textsubjects-container-outer"
               }
             },
             move = {
@@ -998,6 +1031,30 @@ packer.startup {
     --     vim.o.sessionoptions = "blank,localoptions,buffers,curdir,tabpages"
     --   end
     -- }
+    use {
+      "romgrk/nvim-treesitter-context",
+      config = function()
+        require "treesitter-context".setup {
+          enable = true,
+          throttle = true,
+          max_lines = 0,
+          patterns = {
+            default = {
+              "class",
+              "function",
+              "method",
+              "for",
+              "while",
+              "if",
+              "switch",
+              "case"
+            }
+            -- e.g. of lang-specific
+            -- rust = { 'impl_item' }
+          }
+        }
+      end
+    }
     use "saadparwaiz1/cmp_luasnip"
     use "simrat39/symbols-outline.nvim"
     use {
@@ -1026,6 +1083,13 @@ packer.startup {
     }
     use "rafcamlet/nvim-luapad"
     use "ray-x/cmp-treesitter"
+    use {
+      "ruifm/gitlinker.nvim",
+      config = function()
+        require "gitlinker".setup()
+      end
+    }
+
     use "sindrets/diffview.nvim"
     use {
       "TimUntersberger/neogit",
@@ -1050,7 +1114,6 @@ packer.startup {
     -- }
     use "tpope/vim-abolish"
     use "tpope/vim-dadbod"
-    use "kristijanhusak/vim-dadbod-ui"
     use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tversteeg/registers.nvim"
