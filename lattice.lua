@@ -22,13 +22,15 @@ packer.startup {
         require("todo-comments").setup {
           signs = true, -- show icons in the signs column
           keywords = {
-            DONE = {icon = " ", color = "info"},
-            TODO = {icon = "⭕", color = "info"},
-            IDEA = {icon = "💡", color = "idea"}
+            DONE = {icon = " ", color = "success"},
+            TODO = {icon = "⭕", color = "warning"},
+            IDEA = {icon = "💡", color = "idea"},
+            CONTEXT = {icon = "🤓", color = "hint"}
           },
           merge_keywords = true, -- when true, custom keywords will be merged with the defaults
           colors = {
             idea = {"IdeaMsg", "#FDFF74"},
+            success = {"SuccessMsg", "#10B981"},
             error = {"LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626"},
             warning = {"LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24"},
             info = {"LspDiagnosticsDefaultInformation", "#2563EB"},
