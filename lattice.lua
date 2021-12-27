@@ -1,3 +1,4 @@
+-- FIXME: break this file up into logical morsels
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -214,12 +215,6 @@ packer.startup {
             }
           }
         )
-        vim.api.nvim_exec(
-          [[
-           autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} }) 
-          ]],
-          false
-        )
         vim.opt.spell = false
         vim.opt.spelllang = {"en_us"}
       end
@@ -284,7 +279,6 @@ packer.startup {
         )
       end
     }
-    use "kristijanhusak/vim-dadbod-completion"
     use "lambdalisue/suda.vim"
     use "lukas-reineke/cmp-rg"
     use "nvim-lua/plenary.nvim"
@@ -751,15 +745,14 @@ packer.startup {
             branch = "main"
           }
         }
-        -- parser_config.markdown = {
-        --   install_info = {
-        --     url = "https://github.com/ikatyang/tree-sitter-markdown",
-        --     files = {"src/parser.c", "src/scanner.cc"},
-        --     -- TODO: get back onto main/master branch (after it starts working again)
-        --     branch = "main"
-        --   },
-        --   filetype = "markdown"
-        -- }
+        parser_config.markdown = {
+          install_info = {
+            url = "https://github.com/ikatyang/tree-sitter-markdown",
+            files = {"src/parser.c", "src/scanner.cc"},
+            branch = "main"
+          },
+          filetype = "markdown"
+        }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "bash",
@@ -1017,20 +1010,6 @@ packer.startup {
         vim.notify = require("notify")
       end
     }
-    -- use {
-    --   "rmagatti/auto-session",
-    --   config = function()
-    --     require("auto-session").setup(
-    --       {
-    --         log_level = "error",
-    --         auto_session_enabled = true,
-    --         auto_save_enabled = true,
-    --         auto_restore_enabled = true
-    --       }
-    --     )
-    --     vim.o.sessionoptions = "blank,localoptions,buffers,curdir,tabpages"
-    --   end
-    -- }
     use {
       "romgrk/nvim-treesitter-context",
       config = function()
@@ -1053,6 +1032,9 @@ packer.startup {
             -- rust = { 'impl_item' }
           }
         }
+        vim.cmd [[
+          highlight TreesitterContext cterm=italic gui=italic
+        ]]
       end
     }
     use "saadparwaiz1/cmp_luasnip"
@@ -1089,7 +1071,6 @@ packer.startup {
         require "gitlinker".setup()
       end
     }
-
     use "sindrets/diffview.nvim"
     use {
       "TimUntersberger/neogit",
@@ -1103,15 +1084,6 @@ packer.startup {
         )
       end
     }
-
-    -- TODO: compare with diffview, blamer, and neogit. Can we remove one of these four?
-    -- There is functionality overlap but idk how much or which I like better
-    -- use {
-    --   "tanvirtin/vgit.nvim",
-    --   config = function()
-    --     require("vgit").setup()
-    --   end
-    -- }
     use "tpope/vim-abolish"
     use "tpope/vim-dadbod"
     use "tpope/vim-fugitive"
@@ -1132,22 +1104,6 @@ packer.startup {
     --     )
     --   end
     -- }
-    -- use {
-    --   "voldikss/vim-floaterm",
-    --   config = function()
-    --     -- shell is other people
-    --     local lls = require "lattice_local".shell
-    --     -- vim.o.shellredir = lls.redir
-    --     -- vim.o.shellcmdflag = lls.cmdflag
-    --     -- vim.o.shellpipe = lls.pipe
-    --     -- vim.o.shellquote = lls.quote
-    --     -- vim.o.shellxquote = lls.xquote
-    --     vim.g.floaterm_width = 0.9
-    --     vim.g.floaterm_height = 0.9
-    --     end
-    --   end
-    -- }
-
     use "wbthomason/packer.nvim" -- self-control
   end
 }
