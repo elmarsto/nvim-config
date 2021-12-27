@@ -114,13 +114,13 @@ endfunction
 
 
 " invoke manually by command for other file types
-command! -nargs=0 Prose call Human() | :Limelight | :Goyo
-command! -nargs=0 Verse call Human() | :Limelight | :Goyo 48
-command! -nargs=0 Code call Machine() | :Limelight! | :Goyo!
+command! -nargs=0 Prose call Human() | :Goyo
+command! -nargs=0 Verse call Human() | :Goyo 48
+command! -nargs=0 Code call Machine()  | :Goyo!
 
-command! Iva :Limelight | :Goyo 48
-command! NoVa :Goyo! | :Limelight!
-command! Va :Limelight | :Goyo
+command! Iva :Goyo 48
+command! NoVa :Goyo!
+command! Va :Goyo
 
 
 " commands

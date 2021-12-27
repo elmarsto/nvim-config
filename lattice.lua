@@ -257,7 +257,6 @@ packer.startup {
       end
     }
     use "junegunn/goyo.vim"
-    use "junegunn/limelight.vim"
     use "junegunn/seoul256.vim"
     use "kana/vim-textobj-user"
     use {
@@ -705,6 +704,14 @@ packer.startup {
     }
     use {
       "nvim-treesitter/nvim-treesitter",
+      requires = {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        "p00f/nvim-ts-rainbow",
+        "romgrk/nvim-treesitter-context",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-refactor",
+        "nvim-treesitter/playground"
+      },
       config = function()
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
         parser_config.diff = {
@@ -785,9 +792,36 @@ packer.startup {
             "yaml",
             "zig"
           },
+          context_commentstring = {
+            enable = true
+          },
           highlight = {
             enable = true, -- false will disable the whole extension
             additional_vim_regex_highlighting = false
+          },
+          refactor = {
+            highlight_definitions = {
+              enable = true
+            },
+            highlight_current_scope = {
+              enable = true
+            },
+            smart_rename = {
+              enable = true,
+              keymaps = {
+                smart_rename = "grr"
+              }
+            },
+            navigation = {
+              enable = true,
+              keymaps = {
+                goto_definition = "gnd",
+                list_definitions = "gnD",
+                list_definitions_toc = "gO",
+                goto_next_usage = "<a-*>",
+                goto_previous_usage = "<a-#>"
+              }
+            }
           },
           indent = {
             enable = true
@@ -803,22 +837,64 @@ packer.startup {
           },
           textobjects = {
             lsp_interop = {
-              enable = true
+              enable = true,
+              border = "none",
+              peek_definition_code = {
+                ["<leader>pf"] = "@function.outer",
+                ["<leader>pc"] = "@class.outer"
+              }
             },
             move = {
-              enable = true
+              enable = true,
+              set_jumps = true,
+              goto_next_start = {
+                ["]m"] = "@function.outer",
+                ["]]"] = "@class.outer"
+              },
+              goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer"
+              },
+              goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer"
+              },
+              goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer"
+              }
             },
             select = {
-              enable = true
+              enable = true,
+              lookahead = true,
+              keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner"
+              }
             },
             swap = {
-              enable = true
+              enable = true,
+              swap_next = {["<leader>xp"] = "@parameter.inner"},
+              swap_previous = {["<leader>xP"] = "@parameter.inner"}
             }
+          },
+          rainbow = {
+            enable = true,
+            extended_mode = true,
+            max_file_lines = nil
+          },
+          playground = {
+            enable = true,
+            disable = {},
+            updatetime = 25,
+            persist_queries = false
           }
         }
       end
     }
-    use "nvim-treesitter/nvim-treesitter-textobjects"
     use "petertriho/cmp-git"
     use {
       "phaazon/hop.nvim",
@@ -829,61 +905,61 @@ packer.startup {
         -- place this in one of your configuration file(s)
         vim.api.nvim_set_keymap(
           "n",
-          "f",
+          "<M-h>1",
           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "F",
+          "<M-h>!",
           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "s",
+          "<M-h>2",
           "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "S",
+          "<M-h>@",
           "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "t",
+          "<M-h>l",
           "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "T",
+          "<M-h>L",
           "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<leader>m",
+          "<M-h>w",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<leader>M",
+          "<M-h>W",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<leader>/",
+          "<M-h>/",
           "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<leader>?",
+          "<M-h>?",
           "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
