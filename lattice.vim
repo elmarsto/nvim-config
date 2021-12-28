@@ -44,7 +44,6 @@ let g:pencil#map#suspend_af = 'K'   " default is no mapping
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 
 let g:neovide_transparency = 0.9
-set guifont=VictorMono\ Nerd\ Font:h24
 
 
 let g:markdown_folding=1
@@ -90,7 +89,7 @@ endfunction
 
 function! Machine()
   setlocal nospell
-  setlocal foldlevel=1
+  setlocal foldlevel=3
   setlocal nu
   setlocal relativenumber
 
@@ -204,7 +203,6 @@ command! JesterRunAll :lua require"jester".run()
 
 
 " misc mappings
-nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap Q @@
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>

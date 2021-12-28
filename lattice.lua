@@ -1108,6 +1108,7 @@ vim.o.shellcmdflag = lls.cmdflag
 vim.o.shellpipe = lls.pipe
 vim.o.shellquote = lls.quote
 vim.o.shellxquote = lls.xquote
+vim.wo.foldlevel = 6
 vim.api.nvim_set_keymap("n", "<leader>z", "<CMD>terminal <cr>", {})
 if vim.fn.has("win32") == 1 then
   vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
