@@ -18,6 +18,7 @@ set backspace=indent,eol,start
 set expandtab
 set foldexpr=nvim_treesitter#foldexpr()
 set foldmethod=expr
+set foldlevel=3
 set list
 set mouse=a
 set nu
