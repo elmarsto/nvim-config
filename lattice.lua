@@ -925,61 +925,61 @@ packer.startup {
         -- place this in one of your configuration file(s)
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>1",
+          "<C-h>1",
           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>!",
+          "<C-h>!",
           "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>2",
+          "<C-h>2",
           "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>@",
+          "<C-h>@",
           "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>l",
+          "<C-h>l",
           "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>L",
+          "<C-h>L",
           "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>w",
+          "<C-h>w",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>W",
+          "<C-h>W",
           "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>/",
+          "<C-h>/",
           "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
           {}
         )
         vim.api.nvim_set_keymap(
           "n",
-          "<M-h>?",
+          "<C-h>?",
           "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
           {}
         )

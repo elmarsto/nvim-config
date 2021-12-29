@@ -235,4 +235,6 @@ vim.cmd [[
   autocmd BufWinEnter *.svelte iabbrev --- &mdash;
   autocmd BufWinEnter *.jsx iabbrev --- &mdash;
   autocmd BufWinEnter *.tsx iabbrev --- &mdash;
+  autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ] 
+  autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ] 
 ]]
