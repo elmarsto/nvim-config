@@ -139,7 +139,7 @@ packer.startup {
     use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
-      requires = {"L3MON4D3/LuaSnip", "dmitmel/cmp-digraphs"},
+      requires = {"L3MON4D3/LuaSnip", "dmitmel/cmp-digraphs", "kristijanhusak/vim-dadbod-completion"},
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
@@ -203,6 +203,7 @@ packer.startup {
             sources = {
               {name = "buffer"},
               {name = "cmp_git"},
+              {name = "vim-dadbod-completion"},
               {
                 name = "dictionary",
                 keyword_length = 2
@@ -545,8 +546,12 @@ packer.startup {
           }
         }
         nvim_lsp.sqls.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.sqls.bin, "-config", "~/.config/sqls/sqls.yml"}
+          cmd = {lattice_local.sqls.bin},
+          settings = {
+            sqls = {
+              connections = { lattice_local.sqls.config } 
+            }
+          }
         }
         nvim_lsp.svelte.setup {
           capabilities = capabilities,
