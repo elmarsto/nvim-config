@@ -611,6 +611,7 @@ packer.startup {
         "elmarsto/telescope-nodescripts.nvim",
         "elmarsto/telescope-symbols.nvim",
         "nvim-telescope/telescope-dap.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-frecency.nvim",
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         "nvim-telescope/telescope-hop.nvim",
@@ -718,6 +719,7 @@ packer.startup {
         tscope.load_extension "hop"
         tscope.load_extension "nodescripts"
         tscope.load_extension "project"
+        tscope.load_extension "file_browser"
       end
     }
     use {

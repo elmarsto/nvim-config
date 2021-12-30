@@ -137,7 +137,8 @@ command! DapToggle require("dapui").toggle()
 
 
 " Telescope
-nnoremap <C-Bslash> :Telescope file_browser <cr>
+nnoremap <silent> <C-Bslash> :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
+nnoremap <silent> <leader>tfb :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
 "does not work now?
 "nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
@@ -147,7 +148,7 @@ nnoremap <leader>ta :Telescope lsp_code_actions <cr>
 nnoremap <C-M-O> :Telescope git_files <cr>
 nnoremap <leader>tgf :Telescope git_files <cr>
 nnoremap <C-M-P> :Telescope find_files <cr>
-nnoremap <leader>tf :Telescope find_files <cr>
+nnoremap <leader>tff :Telescope find_files <cr>
 nnoremap <leader>tgbc :Telescope git_bcommits <cr>
 nnoremap <leader>tgb :Telescope git_branches <cr>
 nnoremap <leader>tgc :Telescope git_commits <cr>
