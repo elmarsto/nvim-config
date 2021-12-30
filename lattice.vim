@@ -48,7 +48,7 @@ let g:neovide_transparency = 0.9
 
 
 let g:markdown_folding=1
-
+let g:db_ui_use_nerd_fonts=1
 
 
 function! Human()
