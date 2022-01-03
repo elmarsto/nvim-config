@@ -25,7 +25,8 @@ packer.startup {
             DONE = {icon = " ", color = "success"},
             TODO = {icon = "⭕", color = "warning"},
             IDEA = {icon = "💡", color = "idea"},
-            CONTEXT = {icon = "🤓", color = "hint"}
+            CONTEXT = {icon = "🗺️", color = "info"},
+            PITCH = {icon = "✍️"}
           },
           merge_keywords = true, -- when true, custom keywords will be merged with the defaults
           colors = {
@@ -319,8 +320,7 @@ packer.startup {
             },
             ["core.keybinds"] = {
               config = {
-                default_keybinds = true,
-                neorg_leader = "<Leader>o"
+                default_keybinds = false
               }
             },
             ["core.norg.completion"] = {
@@ -334,27 +334,58 @@ packer.startup {
                 workspaces = ll.neorg.workspaces
               }
             }
-          }
-        }
-        -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
-        local neorg_callbacks = require("neorg.callbacks")
-        neorg_callbacks.on_event(
-          "core.keybinds.events.enable_keybinds",
-          function(_, keybinds)
-            keybinds.map_event_to_mode(
-              "norg",
-              {
-                n = {
-                  {"gtd", "core.norg.qol.todo_items.todo.task_done"},
-                  {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
-                  {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
-                  {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"}
-                }
-              },
-              {silent = true, noremap = true}
+          },
+          hook = function()
+            -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
+            local neorg_callbacks = require("neorg.callbacks")
+            neorg_callbacks.on_event(
+              "core.keybinds.events.enable_keybinds",
+              function(_, keybinds)
+                keybinds.map_event_to_mode(
+                  "norg",
+                  {
+                    n = {
+                      -- Bind keys in normal mode
+                      -- Keys for managing TODO items and setting their states
+                      {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
+                      {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
+                      {"gtd", "core.norg.qol.todo_items.todo.task_done"},
+                      {"th", "core.norg.qol.todo_items.todo.task_on_hold"},
+                      {"tc", "core.norg.qol.todo_items.todo.task_cancelled"},
+                      {"tr", "core.norg.qol.todo_items.todo.task_recurring"},
+                      {"ti", "core.norg.qol.todo_items.todo.task_important"},
+                      {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"},
+                      -- Keys for managing GTD
+                      {"gtc", "core.gtd.base.capture"},
+                      {"gtv", "core.gtd.base.views"},
+                      {"gte", "core.gtd.base.edit"},
+                      -- Keys for managing notes
+                      {"nn", "core.norg.dirman.new.note"},
+                      {"<CR>", "core.norg.esupports.hop.hop-link"},
+                      {"<S-CR>", "core.norg.esupports.hop.hop-link", "vsplit"},
+                      {"<M-k>", "core.norg.manoeuvre.item_up"},
+                      {"<M-j>", "core.norg.manoeuvre.item_down"},
+                      -- mnemonic: markup toggle
+                      {"mt", "core.norg.concealer.toggle-markup"},
+                      {"<C-s>", "core.integrations.telescope.find_linkable"}
+                    },
+                    o = {
+                      {"ah", "core.norg.manoeuvre.textobject.around-heading"},
+                      {"ih", "core.norg.manoeuvre.textobject.inner-heading"},
+                      {"at", "core.norg.manoeuvre.textobject.around-tag"},
+                      {"it", "core.norg.manoeuvre.textobject.inner-tag"},
+                      {"al", "core.norg.manoeuvre.textobject.around-whole-list"}
+                    },
+                    i = {
+                      {"<C-l>", "core.integrations.telescope.insert_link"}
+                    }
+                  },
+                  {silent = true, noremap = true}
+                )
+              end
             )
           end
-        )
+        }
       end
     }
     use {
@@ -549,7 +580,7 @@ packer.startup {
           cmd = {lattice_local.sqls.bin},
           settings = {
             sqls = {
-              connections = { lattice_local.sqls.config } 
+              connections = {lattice_local.sqls.config}
             }
           }
         }

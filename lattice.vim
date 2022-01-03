@@ -193,7 +193,7 @@ nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
 nnoremap <leader>tb :Telescope buffers <cr>
 nnoremap <leader>tp :Telescope project <cr>
-nnoremap <CR><CR> :Telescope <cr>
+nnoremap <M-CR> :Telescope <cr>
 " Jester
 
 command! JesterDebug :lua require"jester".debug_file()
