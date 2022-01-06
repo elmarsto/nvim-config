@@ -677,7 +677,7 @@ packer.startup {
           },
           pickers = {
             find_files = {
-              theme = "dropdown" -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
+              theme = "ivy" -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
             }
           },
           extensions = {
