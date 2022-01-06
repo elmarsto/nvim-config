@@ -100,12 +100,12 @@ packer.startup {
         require "trouble".setup {}
       end
     }
-    -- use {
-    --   "glepnir/galaxyline.nvim",
-    --   config = function()
-    --     require "lattice_line"
-    --   end
-    -- }
+    use {
+      "NTBBloodbath/galaxyline.nvim",
+      config = function()
+        require "lattice_line"
+      end
+    }
     use "kristijanhusak/vim-dadbod-ui"
     use {
       "kristijanhusak/vim-dadbod-completion",
