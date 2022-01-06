@@ -25,8 +25,16 @@ packer.startup {
             DONE = {icon = " ", color = "success"},
             TODO = {icon = "⭕", color = "warning"},
             IDEA = {icon = "💡", color = "idea"},
-            CONTEXT = {icon = "🗺️", color = "info"},
-            PITCH = {icon = "✍️"}
+            FIXME = {color = "error"}, -- default ladybug emoji
+            BUG = {color = "error"}, -- default ladybug emoji
+            WARNING = {icon = "⚠️", color = "warning"},
+            WARN = {icon = "⚠️", color = "warning"},
+            YIKES = {icon = "💢", color = "warning"},
+            CONTEXT = {icon = "🌐", color = "info"},
+            PITCH = {icon = "✍️", color = "default"},
+            FIX = {icon = "⚕️", color = "success"}, -- default ladybug emoji
+            FEAT = {icon = "🏆", color = "success"}, -- default ladybug emoji
+            NOTE = {color = "info"}
           },
           merge_keywords = true, -- when true, custom keywords will be merged with the defaults
           colors = {
