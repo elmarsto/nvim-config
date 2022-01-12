@@ -31,6 +31,7 @@ packer.startup {
             WARN = {icon = "⚠️", color = "warning"},
             YIKES = {icon = "💢", color = "warning"},
             CONTEXT = {icon = "🌐", color = "info"},
+            CHALLENGE = {icon = "👊", color = "default"},
             PITCH = {icon = "✍️", color = "default"},
             FIX = {icon = "⚕️", color = "success"}, -- default ladybug emoji
             FEAT = {icon = "🏆", color = "success"}, -- default ladybug emoji
