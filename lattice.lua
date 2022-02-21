@@ -109,12 +109,12 @@ packer.startup {
         require "trouble".setup {}
       end
     }
-    use {
-      "NTBBloodbath/galaxyline.nvim",
-      config = function()
-        require "lattice_line"
-      end
-    }
+    -- use {
+    --   "NTBBloodbath/galaxyline.nvim",
+    --   config = function()
+    --     require "lattice_line"
+    --   end
+    -- }
     use "kristijanhusak/vim-dadbod-ui"
     use {
       "kristijanhusak/vim-dadbod-completion",
@@ -642,7 +642,7 @@ packer.startup {
         require("Comment").setup()
       end
     }
-    use "nvim-lua/lsp-status.nvim"
+    -- use "nvim-lua/lsp-status.nvim"
     use {
       "tami5/sqlite.lua",
       config = function()

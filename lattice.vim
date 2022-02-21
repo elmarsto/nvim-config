@@ -12,6 +12,7 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 
 let &showbreak = '⮩'
+set laststatus=0 
 set listchars=precedes:«,extends:»
 set autoread
 set backspace=indent,eol,start
