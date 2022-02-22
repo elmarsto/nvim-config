@@ -1,6 +1,3 @@
-"WARNING: This file is deprecated. Use lattice.lua or lattice-nvim.lua
-"TODO: move all this over into lattice.lua
-
 " autocommands
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime

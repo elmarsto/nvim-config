@@ -109,12 +109,6 @@ packer.startup {
         require "trouble".setup {}
       end
     }
-    -- use {
-    --   "NTBBloodbath/galaxyline.nvim",
-    --   config = function()
-    --     require "lattice_line"
-    --   end
-    -- }
     use "kristijanhusak/vim-dadbod-ui"
     use {
       "kristijanhusak/vim-dadbod-completion",
@@ -292,7 +286,6 @@ packer.startup {
         )
       end
     }
-    use "lambdalisue/suda.vim"
     use "lukas-reineke/cmp-rg"
     use "nvim-lua/plenary.nvim"
     use "nvim-lua/popup.nvim"
@@ -519,17 +512,9 @@ packer.startup {
         --   capabilities = capabilities,
         --   cmd = {lattice_local.eslint.bin, "--stdio"}
         -- }
-        nvim_lsp.gopls.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.gopls.bin}
-        }
         nvim_lsp.graphql.setup {
           capabilities = capabilities,
           cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
-        }
-        nvim_lsp.hls.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.haskellls.bin, "--lsp"}
         }
         nvim_lsp.html.setup {
           capabilities = capabilities,
@@ -601,14 +586,6 @@ packer.startup {
           capabilities = capabilities,
           cmd = {lattice_local.taplo.bin, "run"}
         }
-        nvim_lsp.terraformls.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.terraformls.bin}
-        }
-        nvim_lsp.texlab.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.texlab.bin}
-        }
         nvim_lsp.tsserver.setup {
           capabilities = capabilities,
           cmd = {lattice_local.tsls.bin, "--stdio"},
@@ -642,7 +619,6 @@ packer.startup {
         require("Comment").setup()
       end
     }
-    -- use "nvim-lua/lsp-status.nvim"
     use {
       "tami5/sqlite.lua",
       config = function()
@@ -798,7 +774,6 @@ packer.startup {
           ensure_installed = {
             "bash",
             "c",
-            "c_sharp",
             "cmake",
             "comment",
             "cpp",
@@ -806,30 +781,15 @@ packer.startup {
             "diff",
             "dockerfile",
             "dot",
-            "elixir",
-            "elm",
-            "erlang",
-            "go",
-            "gomod",
             "graphql",
-            "haskell",
-            "hjson",
             "html",
             "http",
-            "java",
             "javascript",
-            "jsdoc",
-            "json5",
-            "jsonc",
-            "julia",
-            "latex",
             "ledger",
             "lua",
             "markdown",
             "nix",
             "norg",
-            "ocaml",
-            "ocaml_interface",
             "perl",
             "php",
             "python",
@@ -839,13 +799,11 @@ packer.startup {
             "rst",
             "ruby",
             "rust",
-            "scss",
             "svelte",
             "toml",
             "tsx",
             "typescript",
             "vim",
-            "vue",
             "yaml",
             "zig"
           },
