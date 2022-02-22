@@ -238,5 +238,12 @@ function! OnTabEnter(path)
   execute "tcd ". dirname
 endfunction
 
+function! Boethius()
+  colorscheme ron
+  set signcolumn=no
+  Goyo
+endfunction
+command! Boe call Boethius()
+
 autocmd TabNewEntered * call OnTabEnter(expand("<amatch>"))
 
