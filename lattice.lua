@@ -78,16 +78,17 @@ packer.startup {
               typescript = pretty,
               typescriptreact = pretty,
               json = pretty,
-              lua = {
-                -- luafmt
-                function()
-                  return {
-                    exe = ll.luafmt.bin,
-                    args = {"--indent-count", 2, "--stdin"},
-                    stdin = true
-                  }
-                end
-              }
+              lua = pretty
+              -- luafmt is disabled because nix package was busted by github protocol support change
+              -- lua = {
+              --   function()
+              --     return {
+              --       exe = ll.luafmt.bin,
+              --       args = {"--indent-count", 2, "--stdin"},
+              --       stdin = true
+              --     }
+              --   end
+              -- }
             }
           }
         )
