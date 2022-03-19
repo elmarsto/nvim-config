@@ -620,6 +620,7 @@ packer.startup {
         require("Comment").setup()
       end
     }
+    use "pirmd/gemini.vim"
     use {
       "tami5/sqlite.lua",
       config = function()
