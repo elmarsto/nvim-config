@@ -91,7 +91,6 @@ packer.startup {
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
     use "tpope/vim-abolish"
-    use "tpope/vim-fugitive"
     use "tpope/vim-surround"
     use "tyru/open-browser.vim"
     use "wbthomason/packer.nvim" -- self-control

@@ -1,8 +1,5 @@
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
-colorscheme seoul256
-highlight Comment cterm=italic gui=italic
-highlight Comment cterm=italic gui=italic
 " settings
 let &showbreak = '⮩'
 set listchars=precedes:«,extends:»
