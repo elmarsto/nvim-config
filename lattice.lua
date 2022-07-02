@@ -78,17 +78,15 @@ packer.startup {
               typescript = pretty,
               typescriptreact = pretty,
               json = pretty,
-              lua = pretty
-              -- luafmt is disabled because nix package was busted by github protocol support change
-              -- lua = {
-              --   function()
-              --     return {
-              --       exe = ll.luafmt.bin,
-              --       args = {"--indent-count", 2, "--stdin"},
-              --       stdin = true
-              --     }
-              --   end
-              -- }
+              lua = {
+                function()
+                  return {
+                    exe = ll.luafmt.bin,
+                    args = {"--indent-count", 2, "--stdin"},
+                    stdin = true
+                  }
+                end
+              }
             }
           }
         )
@@ -144,7 +142,7 @@ packer.startup {
     use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
-      requires = {"L3MON4D3/LuaSnip", "dmitmel/cmp-digraphs", "kristijanhusak/vim-dadbod-completion"},
+      requires = {"L3MON4D3/LuaSnip", "kristijanhusak/vim-dadbod-completion"},
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
