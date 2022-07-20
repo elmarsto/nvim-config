@@ -227,6 +227,84 @@ packer.startup {
     }
     use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf"}}
     use {
+      "jakewvincent/mkdnflow.nvim",
+      config = function()
+        vim.cmd("autocmd Filetype markdown set autowriteall")
+        require("mkdnflow").setup(
+          {
+            filetypes = {md = true, rmd = true, markdown = true},
+            create_dirs = true,
+            perspective = {
+              priority = "root",
+              fallback = "current",
+              root_tell = ".git",
+              nvim_wd_heel = true
+            },
+            wrap = false,
+            bib = {
+              default_path = nil,
+              find_in_root = true
+            },
+            silent = false,
+            links = {
+              style = "markdown",
+              conceal = false,
+              implicit_extension = nil,
+              transform_implicit = false,
+              transform_explicit = function(text)
+                text = text:gsub(" ", "-")
+                text = text:lower()
+                text = os.date("%Y-%m-%d_") .. text
+                return (text)
+              end
+            },
+            to_do = {
+              symbols = {" ", "-", "X"},
+              update_parents = true,
+              not_started = " ",
+              in_progress = "-",
+              complete = "X"
+            },
+            tables = {
+              trim_whitespace = true,
+              format_on_move = true
+            },
+            use_mappings_table = true,
+            mappings = {
+              MkdnNextLink = {"n", "<Tab>"},
+              MkdnPrevLink = {"n", "<S-Tab>"},
+              MkdnNextHeading = {"n", "<leader>]"},
+              MkdnPrevHeading = {"n", "<leader>["},
+              MkdnGoBack = {"n", "<BS>"},
+              MkdnGoForward = {"n", "<Del>"},
+              MkdnFollowLink = {{"n", "v"}, "<CR>"},
+              MkdnDestroyLink = {"n", "<M-CR>"},
+              MkdnMoveSource = {"n", "<F2>"},
+              MkdnYankAnchorLink = {"n", "ya"},
+              MkdnYankFileAnchorLink = {"n", "yfa"},
+              MkdnIncreaseHeading = {"n", "+"},
+              MkdnDecreaseHeading = {"n", "-"},
+              MkdnToggleToDo = {{"n", "v"}, "<C-Space>"},
+              MkdnNewListItem = false,
+              MkdnExtendList = false,
+              MkdnUpdateNumbering = {"n", "<leader>nn"},
+              MkdnTableNextCell = {"i", "<Tab>"},
+              MkdnTablePrevCell = {"i", "<S-Tab>"},
+              MkdnTableNextRow = false,
+              MkdnTablePrevRow = {"i", "<M-CR>"},
+              MkdnTableNewRowBelow = {{"n", "i"}, "<leader>ir"},
+              MkdnTableNewRowAbove = {{"n", "i"}, "<leader>iR"},
+              MkdnTableNewColAfter = {{"n", "i"}, "<leader>ic"},
+              MkdnTableNewColBefore = {{"n", "i"}, "<leader>iC"},
+              MkdnCR = false,
+              MkdnTab = false,
+              MkdnSTab = false
+            }
+          }
+        )
+      end
+    }
+    use {
       "jghauser/follow-md-links.nvim",
       config = function()
         require "follow-md-links"
@@ -527,9 +605,18 @@ packer.startup {
           capabilities = capabilities,
           bundle = {lattice_local.powershell_es.bundle, "--stdio"}
         }
+        nvim_lsp.prosemd_lsp.setup {
+          capabilities = capabilities,
+          cmd = {lattice_local.prosemd.bin, "--stdio"},
+          filetypes = {"markdown"},
+          -- root_dir = function(fname)
+          --   return vim.lsp.util.find_git_ancestor(fname) or vim.fn.getcwd()
+          -- end,
+          settings = {}
+        }
         nvim_lsp.pyright.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.pyls.bin, "--stdio"}
+          cmd = {lattice_local.prosemd.bin, "--stdio"}
         }
         nvim_lsp.rnix.setup {
           capabilities = capabilities,
@@ -788,6 +875,7 @@ packer.startup {
             "ledger",
             "lua",
             "markdown",
+            "markdown_inline",
             "nix",
             "norg",
             "perl",
@@ -1071,6 +1159,25 @@ packer.startup {
       end
     }
     use "sindrets/diffview.nvim"
+    use {
+      "stevearc/aerial.nvim",
+      config = function()
+        require("aerial").setup(
+          {
+            on_attach = function(bufnr) -- copypasta https://github.com/stevearc/aerial.nvim
+              -- Toggle the aerial window with <leader>a
+              vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>a", "<cmd>AerialToggle!<CR>", {})
+              -- Jump forwards/backwards with '{' and '}'
+              vim.api.nvim_buf_set_keymap(bufnr, "n", "{", "<cmd>AerialPrev<CR>", {})
+              vim.api.nvim_buf_set_keymap(bufnr, "n", "}", "<cmd>AerialNext<CR>", {})
+              -- Jump up the tree with '[[' or ']]'
+              vim.api.nvim_buf_set_keymap(bufnr, "n", "[[", "<cmd>AerialPrevUp<CR>", {})
+              vim.api.nvim_buf_set_keymap(bufnr, "n", "]]", "<cmd>AerialNextUp<CR>", {})
+            end
+          }
+        )
+      end
+    }
     use {
       "TimUntersberger/neogit",
       config = function()
