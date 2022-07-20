@@ -833,13 +833,7 @@ packer.startup {
     use {
       "nvim-treesitter/nvim-treesitter",
       requires = {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        "p00f/nvim-ts-rainbow",
-        "RRethy/nvim-treesitter-textsubjects",
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "nvim-treesitter/nvim-treesitter-refactor",
-        "nvim-treesitter/playground",
-        "windwp/nvim-ts-autotag"
+        "nvim-treesitter/playground"
       },
       config = function()
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
