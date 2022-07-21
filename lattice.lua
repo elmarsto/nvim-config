@@ -305,13 +305,6 @@ packer.startup {
       end
     }
     use {
-      "jghauser/follow-md-links.nvim",
-      config = function()
-        require "follow-md-links"
-        vim.api.nvim_set_keymap("", "<bs>", ":edit #<cr>", {noremap = true, silent = true})
-      end
-    }
-    use {
       "jose-elias-alvarez/null-ls.nvim",
       config = function()
         local nls = require "null-ls"
