@@ -58,8 +58,9 @@ local date_input = function(_, _, fmt)
 end
 
 -- TODO: dry out; can we have the user choose the register
-ls.snippets = {
-  all = {
+ls.add_snippets(
+  "all",
+  {
     s("now", {d(1, date_input, {})}),
     s(
       "ln",
@@ -226,9 +227,8 @@ ls.snippets = {
         i(0)
       }
     )
-  },
-  html = {}
-}
+  }
+)
 
 vim.cmd [[
   autocmd BufWinEnter *.html iabbrev --- &mdash;
