@@ -259,11 +259,11 @@ packer.startup {
               end
             },
             to_do = {
-              symbols = {" ", "-", "X"},
+              symbols = {" ", ".", "x"},
               update_parents = true,
               not_started = " ",
-              in_progress = "-",
-              complete = "X"
+              in_progress = ".",
+              complete = "x"
             },
             tables = {
               trim_whitespace = true,
