@@ -376,90 +376,90 @@ packer.startup {
         require "colorizer".setup()
       end
     }
-    use {
-      "nvim-neorg/neorg",
-      requires = "nvim-neorg/neorg-telescope",
-      config = function()
-        local ll = require "lattice_local"
-        require("neorg").setup {
-          load = {
-            ["core.defaults"] = {},
-            ["core.norg.concealer"] = {},
-            ["core.gtd.base"] = {
-              config = {
-                workspace = ll.neorg.gtd
-              }
-            },
-            ["core.keybinds"] = {
-              config = {
-                default_keybinds = false
-              }
-            },
-            ["core.norg.completion"] = {
-              config = {
-                engine = "nvim-cmp"
-              }
-            },
-            ["core.integrations.telescope"] = {},
-            ["core.norg.dirman"] = {
-              config = {
-                workspaces = ll.neorg.workspaces
-              }
-            }
-          },
-          hook = function()
-            -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
-            local neorg_callbacks = require("neorg.callbacks")
-            neorg_callbacks.on_event(
-              "core.keybinds.events.enable_keybinds",
-              function(_, keybinds)
-                keybinds.map_event_to_mode(
-                  "norg",
-                  {
-                    n = {
-                      -- Bind keys in normal mode
-                      -- Keys for managing TODO items and setting their states
-                      {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
-                      {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
-                      {"gtd", "core.norg.qol.todo_items.todo.task_done"},
-                      {"th", "core.norg.qol.todo_items.todo.task_on_hold"},
-                      {"tc", "core.norg.qol.todo_items.todo.task_cancelled"},
-                      {"tr", "core.norg.qol.todo_items.todo.task_recurring"},
-                      {"ti", "core.norg.qol.todo_items.todo.task_important"},
-                      {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"},
-                      -- Keys for managing GTD
-                      {"gtc", "core.gtd.base.capture"},
-                      {"gtv", "core.gtd.base.views"},
-                      {"gte", "core.gtd.base.edit"},
-                      -- Keys for managing notes
-                      {"nn", "core.norg.dirman.new.note"},
-                      {"<CR>", "core.norg.esupports.hop.hop-link"},
-                      {"<S-CR>", "core.norg.esupports.hop.hop-link", "vsplit"},
-                      {"<M-k>", "core.norg.manoeuvre.item_up"},
-                      {"<M-j>", "core.norg.manoeuvre.item_down"},
-                      -- mnemonic: markup toggle
-                      {"mt", "core.norg.concealer.toggle-markup"},
-                      {"<C-s>", "core.integrations.telescope.find_linkable"}
-                    },
-                    o = {
-                      {"ah", "core.norg.manoeuvre.textobject.around-heading"},
-                      {"ih", "core.norg.manoeuvre.textobject.inner-heading"},
-                      {"at", "core.norg.manoeuvre.textobject.around-tag"},
-                      {"it", "core.norg.manoeuvre.textobject.inner-tag"},
-                      {"al", "core.norg.manoeuvre.textobject.around-whole-list"}
-                    },
-                    i = {
-                      {"<C-l>", "core.integrations.telescope.insert_link"}
-                    }
-                  },
-                  {silent = true, noremap = true}
-                )
-              end
-            )
-          end
-        }
-      end
-    }
+    -- use {
+    --   "nvim-neorg/neorg",
+    --   requires = "nvim-neorg/neorg-telescope",
+    --   config = function()
+    --     local ll = require "lattice_local"
+    --     require("neorg").setup {
+    --       load = {
+    --         ["core.defaults"] = {},
+    --         ["core.norg.concealer"] = {},
+    --         ["core.gtd.base"] = {
+    --           config = {
+    --             -- workspace = ll.neorg.gtd
+    --           }
+    --         },
+    --         ["core.keybinds"] = {
+    --           config = {
+    --             default_keybinds = false
+    --           }
+    --         },
+    --         ["core.norg.completion"] = {
+    --           config = {
+    --             engine = "nvim-cmp"
+    --           }
+    --         },
+    --         ["core.integrations.telescope"] = {},
+    --         ["core.norg.dirman"] = {
+    --           config = {
+    --             workspaces = ll.neorg.workspaces
+    --           }
+    --         }
+    --       },
+    --       hook = function()
+    --         -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
+    --         local neorg_callbacks = require("neorg.callbacks")
+    --         neorg_callbacks.on_event(
+    --           "core.keybinds.events.enable_keybinds",
+    --           function(_, keybinds)
+    --             keybinds.map_event_to_mode(
+    --               "norg",
+    --               {
+    --                 n = {
+    --                   -- Bind keys in normal mode
+    --                   -- Keys for managing TODO items and setting their states
+    --                   {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
+    --                   {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
+    --                   {"gtd", "core.norg.qol.todo_items.todo.task_done"},
+    --                   {"th", "core.norg.qol.todo_items.todo.task_on_hold"},
+    --                   {"tc", "core.norg.qol.todo_items.todo.task_cancelled"},
+    --                   {"tr", "core.norg.qol.todo_items.todo.task_recurring"},
+    --                   {"ti", "core.norg.qol.todo_items.todo.task_important"},
+    --                   {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"},
+    --                   -- Keys for managing GTD
+    --                   {"gtc", "core.gtd.base.capture"},
+    --                   {"gtv", "core.gtd.base.views"},
+    --                   {"gte", "core.gtd.base.edit"},
+    --                   -- Keys for managing notes
+    --                   {"nn", "core.norg.dirman.new.note"},
+    --                   {"<CR>", "core.norg.esupports.hop.hop-link"},
+    --                   {"<S-CR>", "core.norg.esupports.hop.hop-link", "vsplit"},
+    --                   {"<M-k>", "core.norg.manoeuvre.item_up"},
+    --                   {"<M-j>", "core.norg.manoeuvre.item_down"},
+    --                   -- mnemonic: markup toggle
+    --                   {"mt", "core.norg.concealer.toggle-markup"},
+    --                   {"<C-s>", "core.integrations.telescope.find_linkable"}
+    --                 },
+    --                 o = {
+    --                   {"ah", "core.norg.manoeuvre.textobject.around-heading"},
+    --                   {"ih", "core.norg.manoeuvre.textobject.inner-heading"},
+    --                   {"at", "core.norg.manoeuvre.textobject.around-tag"},
+    --                   {"it", "core.norg.manoeuvre.textobject.inner-tag"},
+    --                   {"al", "core.norg.manoeuvre.textobject.around-whole-list"}
+    --                 },
+    --                 i = {
+    --                   {"<C-l>", "core.integrations.telescope.insert_link"}
+    --                 }
+    --               },
+    --               {silent = true, noremap = true}
+    --             )
+    --           end
+    --         )
+    --       end
+    --     }
+    --   end
+    -- }
     use {
       "neovim/nvim-lspconfig",
       config = function()
@@ -837,13 +837,13 @@ packer.startup {
           },
           filetype = "diff"
         }
-        parser_config.norg = {
-          install_info = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg",
-            files = {"src/parser.c", "src/scanner.cc"},
-            branch = "main"
-          }
-        }
+        -- parser_config.norg = {
+        --   install_info = {
+        --     url = "https://github.com/nvim-neorg/tree-sitter-norg",
+        --     files = {"src/parser.c", "src/scanner.cc"},
+        --     branch = "main"
+        --   }
+        -- }
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "bash",
