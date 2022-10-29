@@ -79,7 +79,6 @@ packer.startup {
         )
       end
     }
-    use "justinmk/vim-sneak"
     use "kana/vim-textobj-user"
     use "nvim-lua/plenary.nvim"
     use "neomake/neomake"
