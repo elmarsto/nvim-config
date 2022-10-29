@@ -829,14 +829,14 @@ packer.startup {
         "nvim-treesitter/playground"
       },
       config = function()
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        parser_config.diff = {
-          install_info = {
-            url = "https://github.com/vigoux/tree-sitter-diff",
-            files = {"src/parser.c"}
-          },
-          filetype = "diff"
-        }
+        -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        -- parser_config.diff = {
+        --   install_info = {
+        --     url = "https://github.com/vigoux/tree-sitter-diff",
+        --     files = {"src/parser.c"}
+        --   },
+        --   filetype = "diff"
+        -- }
         -- parser_config.norg = {
         --   install_info = {
         --     url = "https://github.com/nvim-neorg/tree-sitter-norg",
