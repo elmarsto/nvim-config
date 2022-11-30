@@ -190,8 +190,11 @@ nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
 nnoremap <leader>tb :Telescope buffers <cr>
-nnoremap <leader>tp :Telescope project <cr>
+nnoremap <leader>tP :Telescope project <cr>
 nnoremap <M-CR> :Telescope <cr>
+
+nnoremap <C-Space> :Telescope command_palette <cr>
+nnoremap <leader>tcp :Telescope command_palette <cr>
 " Jester
 
 command! JesterDebug :lua require"jester".debug_file()

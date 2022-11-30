@@ -376,90 +376,6 @@ packer.startup {
         require "colorizer".setup()
       end
     }
-    -- use {
-    --   "nvim-neorg/neorg",
-    --   requires = "nvim-neorg/neorg-telescope",
-    --   config = function()
-    --     local ll = require "lattice_local"
-    --     require("neorg").setup {
-    --       load = {
-    --         ["core.defaults"] = {},
-    --         ["core.norg.concealer"] = {},
-    --         ["core.gtd.base"] = {
-    --           config = {
-    --             -- workspace = ll.neorg.gtd
-    --           }
-    --         },
-    --         ["core.keybinds"] = {
-    --           config = {
-    --             default_keybinds = false
-    --           }
-    --         },
-    --         ["core.norg.completion"] = {
-    --           config = {
-    --             engine = "nvim-cmp"
-    --           }
-    --         },
-    --         ["core.integrations.telescope"] = {},
-    --         ["core.norg.dirman"] = {
-    --           config = {
-    --             workspaces = ll.neorg.workspaces
-    --           }
-    --         }
-    --       },
-    --       hook = function()
-    --         -- https://github.com/nvim-neorg/neorg/wiki/User-Keybinds
-    --         local neorg_callbacks = require("neorg.callbacks")
-    --         neorg_callbacks.on_event(
-    --           "core.keybinds.events.enable_keybinds",
-    --           function(_, keybinds)
-    --             keybinds.map_event_to_mode(
-    --               "norg",
-    --               {
-    --                 n = {
-    --                   -- Bind keys in normal mode
-    --                   -- Keys for managing TODO items and setting their states
-    --                   {"gtu", "core.norg.qol.todo_items.todo.task_undone"},
-    --                   {"gtp", "core.norg.qol.todo_items.todo.task_pending"},
-    --                   {"gtd", "core.norg.qol.todo_items.todo.task_done"},
-    --                   {"th", "core.norg.qol.todo_items.todo.task_on_hold"},
-    --                   {"tc", "core.norg.qol.todo_items.todo.task_cancelled"},
-    --                   {"tr", "core.norg.qol.todo_items.todo.task_recurring"},
-    --                   {"ti", "core.norg.qol.todo_items.todo.task_important"},
-    --                   {"<C-Space>", "core.norg.qol.todo_items.todo.task_cycle"},
-    --                   -- Keys for managing GTD
-    --                   {"gtc", "core.gtd.base.capture"},
-    --                   {"gtv", "core.gtd.base.views"},
-    --                   {"gte", "core.gtd.base.edit"},
-    --                   -- Keys for managing notes
-    --                   {"nn", "core.norg.dirman.new.note"},
-    --                   {"<CR>", "core.norg.esupports.hop.hop-link"},
-    --                   {"<S-CR>", "core.norg.esupports.hop.hop-link", "vsplit"},
-    --                   {"<M-k>", "core.norg.manoeuvre.item_up"},
-    --                   {"<M-j>", "core.norg.manoeuvre.item_down"},
-    --                   -- mnemonic: markup toggle
-    --                   {"mt", "core.norg.concealer.toggle-markup"},
-    --                   {"<C-s>", "core.integrations.telescope.find_linkable"}
-    --                 },
-    --                 o = {
-    --                   {"ah", "core.norg.manoeuvre.textobject.around-heading"},
-    --                   {"ih", "core.norg.manoeuvre.textobject.inner-heading"},
-    --                   {"at", "core.norg.manoeuvre.textobject.around-tag"},
-    --                   {"it", "core.norg.manoeuvre.textobject.inner-tag"},
-    --                   {"al", "core.norg.manoeuvre.textobject.around-whole-list"}
-    --                 },
-    --                 i = {
-    --                   {"<C-l>", "core.integrations.telescope.insert_link"}
-    --                 }
-    --               },
-    --               {silent = true, noremap = true}
-    --             )
-    --           end
-    --         )
-    --       end
-    --     }
-    --   end
-    -- }
     use {
       "neovim/nvim-lspconfig",
       config = function()
@@ -473,40 +389,33 @@ packer.startup {
           }
           vim.lsp.buf.execute_command(params)
         end
+        local opts = { noremap=true, silent=true }
+        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
         local on_attach = function(client, bufnr)
-          local buf_map = vim.api.nvim_buf_set_keymap
-          vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-          vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-          vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
-          vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
-          vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
-          vim.cmd("command! LspOrganize lua lsp_organize_imports()")
-          vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
-          vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
-          vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
-          vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
-          buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
-          buf_map(bufnr, "n", "gr", ":LspRename<CR>", {silent = true})
-          buf_map(bufnr, "n", "gR", ":LspRefs<CR>", {silent = true})
-          buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
-          buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
-          buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
-          buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
-          buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>", {silent = true})
-          buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
-          buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
-          buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", {silent = true})
-          if client.resolved_capabilities.document_formatting then
-            vim.api.nvim_exec(
-              [[
-                 augroup LspAutocommands
-                     autocmd! * <buffer>
-                    autocmd BufWritePost <buffer> LspFormatting
-                 augroup END
-              ]],
-              true
-            )
-          end
+          vim.api.nvim_buf_set_option(bufnr or 0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+          -- Mappings.
+          -- See `:help vim.lsp.*` for documentation on any of the below functions
+          local bufopts = { noremap=true, silent=true, buffer=bufnr }
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+          vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, bufopts)
+          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+          vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+          vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
         end
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -574,18 +483,18 @@ packer.startup {
           capabilities = capabilities,
           cmd = {lattice_local.cssls.bin, "--stdio"}
         }
-        nvim_lsp.dotls.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.dotls.bin}
-        }
+        -- nvim_lsp.dotls.setup {
+        --   capabilities = capabilities,
+        --   cmd = {lattice_local.dotls.bin}
+        -- }
         -- nvim_lsp.eslint.setup {
         --   capabilities = capabilities,
         --   cmd = {lattice_local.eslint.bin, "--stdio"}
         -- }
-        nvim_lsp.graphql.setup {
-          capabilities = capabilities,
-          cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
-        }
+        -- nvim_lsp.graphql.setup {
+        --   capabilities = capabilities,
+        --   cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
+        -- }
         nvim_lsp.html.setup {
           capabilities = capabilities,
           cmd = {lattice_local.htmlls.bin, "--stdio"}
@@ -594,10 +503,10 @@ packer.startup {
           capabilities = capabilities,
           cmd = {lattice_local.jsonls.bin, "--stdio"}
         }
-        nvim_lsp.powershell_es.setup {
-          capabilities = capabilities,
-          bundle = {lattice_local.powershell_es.bundle, "--stdio"}
-        }
+        -- nvim_lsp.powershell_es.setup {
+        --   capabilities = capabilities,
+        --   bundle = {lattice_local.powershell_es.bundle, "--stdio"}
+        -- }
         nvim_lsp.prosemd_lsp.setup {
           capabilities = capabilities,
           cmd = {lattice_local.prosemd.bin, "--stdio"},
@@ -677,7 +586,7 @@ packer.startup {
             "typescript.tsx"
           },
           on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
             on_attach(client)
           end
         }
@@ -710,6 +619,7 @@ packer.startup {
       "nvim-telescope/telescope.nvim",
       requires = {
         "elmarsto/telescope-nodescripts.nvim",
+        "LinArcX/telescope-command-palette.nvim",
         "elmarsto/telescope-symbols.nvim",
         "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
@@ -746,6 +656,38 @@ packer.startup {
             }
           },
           extensions = {
+            command_palette = {
+              {
+                "Foo",
+                {"entire selection (C-a)", ':call feedkeys("GVgg")'},
+                {"save current file (C-s)", ":w"},
+                {"save all files (C-A-s)", ":wa"},
+                {"quit (C-q)", ":qa"},
+                {"file browser (C-i)", ":lua require'telescope'.extensions.file_browser.file_browser()", 1},
+                {"search word (A-w)", ":lua require('telescope.builtin').live_grep()", 1},
+                {"git files (A-f)", ":lua require('telescope.builtin').git_files()", 1},
+                {"files (C-f)", ":lua require('telescope.builtin').find_files()", 1}
+              },
+              {
+                "Vim",
+                {"check health", ":checkhealth"},
+                {"jumps (Alt-j)", ":lua require('telescope.builtin').jumplist()"},
+                {"commands", ":lua require('telescope.builtin').commands()"},
+                {"command history", ":lua require('telescope.builtin').command_history()"},
+                {"registers (A-e)", ":lua require('telescope.builtin').registers()"},
+                {"colorshceme", ":lua require('telescope.builtin').colorscheme()", 1},
+                {"vim options", ":lua require('telescope.builtin').vim_options()"},
+                {"keymaps", ":lua require('telescope.builtin').keymaps()"},
+                {"buffers", ":Telescope buffers"},
+                {"search history (C-h)", ":lua require('telescope.builtin').search_history()"},
+                {"paste mode", ":set paste!"},
+                {"cursor line", ":set cursorline!"},
+                {"cursor column", ":set cursorcolumn!"},
+                {"spell checker", ":set spell!"},
+                {"relative number", ":set relativenumber!"},
+                {"search highlighting (F12)", ":set hlsearch!"}
+              }
+            },
             media_files = {
               filetypes = {"png", "webp", "jpg", "jpeg"},
               find_cmd = "rg"
@@ -815,12 +757,13 @@ packer.startup {
           tscope.load_extension "fzf"
         end
         vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
+        tscope.load_extension "command_palette"
         tscope.load_extension "dap"
+        tscope.load_extension "file_browser"
         tscope.load_extension "frecency"
         tscope.load_extension "hop"
         tscope.load_extension "nodescripts"
         tscope.load_extension "project"
-        tscope.load_extension "file_browser"
       end
     }
     use {
@@ -1212,3 +1155,182 @@ vim.api.nvim_set_keymap("n", "<leader>z", "<CMD>terminal <cr>", {})
 if vim.fn.has("win32") == 1 then
   vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
 end
+
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local d = ls.dynamic_node
+
+local date_input = function(_, _, fmt)
+  local form = fmt or "%Y-%m-%d"
+  return sn(nil, i(1, os.date(form)))
+end
+
+-- TODO: dry out; can we have the user choose the register
+ls.add_snippets(
+  "all",
+  {
+    s("now", {d(1, date_input, {})}),
+    s(
+      "ln",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        i(2),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln.",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            local dotreg = vim.fn.getreg(".") or "."
+            return vim.fn.getreg(dotreg) or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln*",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("*") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln-",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("-") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln/",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("/") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln0",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("0") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "ln+",
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg("+") or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      'ln"',
+      {
+        t "[",
+        i(1),
+        t("]("),
+        f(
+          function(_)
+            return vim.fn.getreg('"') or {}
+          end,
+          {}
+        ),
+        t(")"),
+        i(0)
+      }
+    ),
+    s(
+      "Xx",
+      {
+        t "- [",
+        i(0),
+        t "] ",
+        i(1)
+      }
+    ),
+    s(
+      "ln://",
+      {
+        t('<a href="'),
+        f(
+          function(_, snip)
+            return snip.env.TM_SELECTED_TEXT[1] or {}
+          end,
+          {}
+        ),
+        t('">'),
+        i(1),
+        t("</a>"),
+        i(0)
+      }
+    )
+  }
+)
+
+vim.cmd [[
+  autocmd BufWinEnter *.html iabbrev --- &mdash;
+  autocmd BufWinEnter *.svelte iabbrev --- &mdash;
+  autocmd BufWinEnter *.jsx iabbrev --- &mdash;
+  autocmd BufWinEnter *.tsx iabbrev --- &mdash;
+  autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ] 
+  autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ] 
+]]
