@@ -138,11 +138,18 @@ command! DapToggle require("dapui").toggle()
 nnoremap <silent> <C-Bslash> :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
 nnoremap <silent> <leader>tfb :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
 nnoremap <C-M-'> :Telescope lsp_references <cr>
+nnoremap <leader>tlr :Telescope lsp_references <cr>
 "does not work now?
 "nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <leader>ti :Telescope lsp_implementations <cr>
-nnoremap <leader>ts :Telescope lsp_workspace_symbols <cr>
-nnoremap <leader>ta :Telescope lsp_code_actions <cr>
+nnoremap <leader>tli :Telescope lsp_implementations <cr>
+nnoremap <leader>tlic :Telescope lsp_incoming_calls <cr>
+nnoremap <leader>tloc :Telescope lsp_outgoing_calls <cr>
+nnoremap <leader>tld :Telescope lsp_definitions <cr>
+nnoremap <leader>tltd :Telescope lsp_type_definitions <cr>
+nnoremap <leader>tlws :Telescope lsp_workspace_symbols <cr>
+nnoremap <leader>tlds :Telescope lsp_document_symbols <cr>
+nnoremap <leader>tldws :Telescope lsp_dynamic_workspace_symbols <cr>
+nnoremap <leader>tlca :Telescope lsp_code_actions <cr>
 nnoremap <C-M-O> :Telescope git_files <cr>
 nnoremap <leader>tgf :Telescope git_files <cr>
 nnoremap <C-M-P> :Telescope find_files <cr>

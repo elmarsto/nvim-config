@@ -640,6 +640,7 @@ packer.startup {
         {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
         "nvim-telescope/telescope-hop.nvim",
         "nvim-telescope/telescope-project.nvim",
+        "nvim-telescope/telescope-ui-select.nvim",
         "tami5/sqlite.lua",
         "TC72/telescope-tele-tabby.nvim"
       },
@@ -664,30 +665,34 @@ packer.startup {
             }
           },
           pickers = {
-            find_files = {
-              theme = "ivy" -- TODO: see https://github.com/nvim-telescope/telescope.nvim#themes
-            }
+            frecency = {theme = "ivy"},
+            hop = {theme = "ivy"},
+            fzf = {theme = "ivy"}
           },
           extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown {}
+            },
             command_palette = {
               {
                 "Git",
-                {"BCommits", ":Telescope git_bcommits", 1},
-                {"Branches", ":Telescope git", 1},
-                {"Commits", ":Telescope git_commits", 1},
-                {"Files", ":Telescope git_files", 1}
+                {"BCommits (\\tgbc)", ":Telescope git_bcommits", 1},
+                {"Branches (\\tgb)", ":Telescope git", 1},
+                {"Commits (\\tgc)", ":Telescope git_commits", 1},
+                {"Files (\\tgf or C-M-O)", ":Telescope git_files", 1}
               },
               {
-                "Language Servers (LSP)",
-                {"Definitions", ":Telescope lsp_definitions", 1},
-                {"Document Symbols", ":Telescope lsp_document_symbols", 1},
-                {"Dynamic Workspace Symbols", ":Telescope lsp_dynamic_workspace_symbols", 1},
-                {"Implementations", ":Telescope lsp_implementations", 1},
-                {"Incoming Calls", ":Telescope lsp_incoming_calls", 1},
-                {"Outgoing Calls", ":Telescope lsp_outgoing_calls", 1},
-                {"References", ":Telescope lsp_references", 1},
-                {"Type Definitions", ":Telescope lsp_type_defnitions", 1},
-                {"Workspace Symbols", ":Telescope lsp_workspace_symbols", 1}
+                "Language Server",
+                {"Code Actions (\\tlca)", ":Telescope lsp_code_actions", 1},
+                {"Definitions (\\tld)", ":Telescope lsp_definitions", 1},
+                {"Document Symbols (\\tlds)", ":Telescope lsp_document_symbols", 1},
+                {"Dynamic Workspace Symbols (\\tdws)", ":Telescope lsp_dynamic_workspace_symbols", 1},
+                {"Implementations (\\tli)", ":Telescope lsp_implementations", 1},
+                {"Incoming Calls (\\tlic)", ":Telescope lsp_incoming_calls", 1},
+                {"Outgoing Calls (\\tloc)", ":Telescope lsp_outgoing_calls", 1},
+                {"References (\\tlr)", ":Telescope lsp_references", 1},
+                {"Type Definitions (\\tltd)", ":Telescope lsp_type_defnitions", 1},
+                {"Workspace Symbols (\\tlws)", ":Telescope lsp_workspace_symbols", 1}
               },
               {
                 "Lattice Modes",
@@ -700,8 +705,8 @@ packer.startup {
               {
                 "Vim",
                 {"Buffers", ":Telescope buffers", 1},
-                {"Files", ":Telescope file_browser", 1},
-                {"Frecency", ":Telescope frecency", 1},
+                {"Files (\\tfb)", ":Telescope file_browser", 1},
+                {"Frecency (\\Tab)", ":Telescope frecency", 1},
                 {"Jumplist", ":Telescope jumplist", 1},
                 {"Keymaps", ":Telescope keymaps", 1},
                 {"Marks", ":Telescope marks", 1},
@@ -786,6 +791,7 @@ packer.startup {
         tscope.load_extension "hop"
         tscope.load_extension "nodescripts"
         tscope.load_extension "project"
+        tscope.load_extension "ui-select"
       end
     }
     use {
