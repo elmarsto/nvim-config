@@ -108,6 +108,7 @@ packer.startup {
         require "trouble".setup {}
       end
     }
+    use "github/copilot.vim"
     use "kristijanhusak/vim-dadbod-ui"
     use {
       "kristijanhusak/vim-dadbod-completion",
@@ -389,33 +390,45 @@ packer.startup {
           }
           vim.lsp.buf.execute_command(params)
         end
-        local opts = { noremap=true, silent=true }
-        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-        vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+        local opts = {noremap = true, silent = true}
+        vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+        vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
         local on_attach = function(client, bufnr)
-          vim.api.nvim_buf_set_option(bufnr or 0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+          vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
           -- Mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local bufopts = { noremap=true, silent=true, buffer=bufnr }
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-          vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-          vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-          vim.keymap.set('n', '<space>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, bufopts)
-          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-          vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-          vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+          local bufopts = {noremap = true, silent = true, buffer = bufnr}
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+          vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+          vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+          vim.keymap.set(
+            "n",
+            "<space>wl",
+            function()
+              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end,
+            bufopts
+          )
+          vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+          vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+          vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+          vim.keymap.set(
+            "n",
+            "<space>f",
+            function()
+              vim.lsp.buf.format {async = true}
+            end,
+            bufopts
+          )
         end
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -658,34 +671,43 @@ packer.startup {
           extensions = {
             command_palette = {
               {
-                "Foo",
-                {"entire selection (C-a)", ':call feedkeys("GVgg")'},
-                {"save current file (C-s)", ":w"},
-                {"save all files (C-A-s)", ":wa"},
-                {"quit (C-q)", ":qa"},
-                {"file browser (C-i)", ":lua require'telescope'.extensions.file_browser.file_browser()", 1},
-                {"search word (A-w)", ":lua require('telescope.builtin').live_grep()", 1},
-                {"git files (A-f)", ":lua require('telescope.builtin').git_files()", 1},
-                {"files (C-f)", ":lua require('telescope.builtin').find_files()", 1}
+                "Git",
+                {"BCommits", ":Telescope git_bcommits", 1},
+                {"Branches", ":Telescope git", 1},
+                {"Commits", ":Telescope git_commits", 1},
+                {"Files", ":Telescope git_files", 1}
+              },
+              {
+                "Language Servers (LSP)",
+                {"Definitions", ":Telescope lsp_definitions", 1},
+                {"Document Symbols", ":Telescope lsp_document_symbols", 1},
+                {"Dynamic Workspace Symbols", ":Telescope lsp_dynamic_workspace_symbols", 1},
+                {"Implementations", ":Telescope lsp_implementations", 1},
+                {"Incoming Calls", ":Telescope lsp_incoming_calls", 1},
+                {"Outgoing Calls", ":Telescope lsp_outgoing_calls", 1},
+                {"References", ":Telescope lsp_references", 1},
+                {"Type Definitions", ":Telescope lsp_type_defnitions", 1},
+                {"Workspace Symbols", ":Telescope lsp_workspace_symbols", 1}
+              },
+              {
+                "Lattice Modes",
+                {"Code", ":Code", 1},
+                {"Human", ":call Human()", 1},
+                {"Machine", ":call Machine()", 1},
+                {"Prose", ":Prose", 1},
+                {"Verse", ":Verse", 1}
               },
               {
                 "Vim",
-                {"check health", ":checkhealth"},
-                {"jumps (Alt-j)", ":lua require('telescope.builtin').jumplist()"},
-                {"commands", ":lua require('telescope.builtin').commands()"},
-                {"command history", ":lua require('telescope.builtin').command_history()"},
-                {"registers (A-e)", ":lua require('telescope.builtin').registers()"},
-                {"colorshceme", ":lua require('telescope.builtin').colorscheme()", 1},
-                {"vim options", ":lua require('telescope.builtin').vim_options()"},
-                {"keymaps", ":lua require('telescope.builtin').keymaps()"},
-                {"buffers", ":Telescope buffers"},
-                {"search history (C-h)", ":lua require('telescope.builtin').search_history()"},
-                {"paste mode", ":set paste!"},
-                {"cursor line", ":set cursorline!"},
-                {"cursor column", ":set cursorcolumn!"},
-                {"spell checker", ":set spell!"},
-                {"relative number", ":set relativenumber!"},
-                {"search highlighting (F12)", ":set hlsearch!"}
+                {"Buffers", ":Telescope buffers", 1},
+                {"Files", ":Telescope file_browser", 1},
+                {"Frecency", ":Telescope frecency", 1},
+                {"Jumplist", ":Telescope jumplist", 1},
+                {"Keymaps", ":Telescope keymaps", 1},
+                {"Marks", ":Telescope marks", 1},
+                {"Project", ":Telescope project", 1},
+                {"Quickfix", ":Telescope quickfix", 1},
+                {"Registers", ":Telescope registers", 1}
               }
             },
             media_files = {
