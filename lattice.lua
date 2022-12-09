@@ -664,11 +664,6 @@ packer.startup {
               }
             }
           },
-          pickers = {
-            frecency = {theme = "ivy"},
-            hop = {theme = "ivy"},
-            fzf = {theme = "ivy"}
-          },
           extensions = {
             ["ui-select"] = {
               require("telescope.themes").get_dropdown {}
