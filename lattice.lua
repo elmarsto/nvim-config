@@ -468,7 +468,6 @@ packer.startup {
     use {
       "neovim/nvim-lspconfig",
       requires = {
-        { "SmiteshP/nvim-navic" },
         { "b0o/schemastore.nvim" },
         { "lukas-reineke/lsp-format.nvim" },
       },
@@ -492,11 +491,9 @@ packer.startup {
         require 'lsp-format'.setup {}
         -- declare local in this scope so we don't `require` x2 every on_attach below
         local formatAttach = require "lsp-format".on_attach
-        local navicAttach = require "nvim-navic".on_attach
         local on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = true
           formatAttach(client)
-          navicAttach(client, bufnr)
 
           vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
