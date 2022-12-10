@@ -215,7 +215,6 @@ packer.startup {
         vim.opt.spelllang = { "en_us" }
       end
     }
-    use { "ibhagwan/fzf-lua", requires = { "vijaymarupudi/nvim-fzf" } }
     use {
       "jakewvincent/mkdnflow.nvim",
       config = function()
@@ -399,10 +398,11 @@ packer.startup {
               { "<M-,>", ":Telescope vim_options<cr>", description = "Vim Options" },
               { "<M-.>", ":Telescope commands<cr>", description = "Telescope Commands" },
               { "<leader>,", ":Telescope loclist<cr>", description = "Telescope Loclist" },
-              { "<Bslash>", ":Telescope current_buffer_fuzzy_find<cr>",
+              { "<leader><Bslash>", ":Telescope current_buffer_fuzzy_find<cr>",
                 description = "Telescope Current Buffer Fuzzy Find" },
               { "<M-CR>", ":Telescope<cr>", description = "Telescope" },
-              { "<leader><CR>", ":FzfLua<cr>", description = "FzfLua" },
+              { "<leader><CR>", ":Telescope git_branches<cr>", description = "Git Branches" },
+              { "<C-M>", ":Telescope git_files<cr>", description = "Git Files" },
               { "<leader><Space>", ":Trouble<cr>", description = "Trouble" },
               { "<F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
               { "<leader>jrf", require 'jester'.run_last, description = "Jester Run File", itemgroup = "jester" },
@@ -429,9 +429,6 @@ packer.startup {
               { "<leader>tp", ":Telescope projects<cr>", description = "Telescope Projects" },
               { "<leader>tq", ":Telescope quickfix<cr>", description = "Telescope Quickfix" },
               { "<leader>tb", ":Telescope buffers<cr>", description = "Telescope Buffers" },
-              { "<leader>flf", ":FzfLua files<cr>", description = "Fzf Files" },
-              { "<leader>flm", ":FzfLua marks<cr>", description = "Fzf Marks" },
-              { "<leader>flM", ":FzfLua man pages<cr>", description = "Fzf Man Pages" },
               {
                 "<leader>tldws",
                 ":Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -447,7 +444,6 @@ packer.startup {
                 ":Telescope lsp_document_symbols<cr>",
                 description = "Telescope LSP Document Symbols"
               },
-              { "<leader>Space", ":Lf<cr>", description = "WhichKey" },
               { "<leader>mc", ":Code<cr>", description = "Mode Code" },
               { "<leader>mh", ":Human<cr>", description = "Mode Human" },
               { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
