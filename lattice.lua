@@ -91,6 +91,7 @@ packer.startup {
       end
     }
     use "github/copilot.vim"
+
     use "kristijanhusak/vim-dadbod-ui"
     use {
       "kristijanhusak/vim-dadbod-completion",
@@ -359,86 +360,104 @@ packer.startup {
     }
     use {
       "mrjones2014/legendary.nvim",
-      requires = "kkarji/sqlite.lua",
+      requires = { "kkarji/sqlite.lua", "stevearc/dressing.nvim", "b00/mapx.nvim" },
       config = function()
+        require 'mapx'.setup { global = true }
+        require('dressing').setup({
+          select = {
+            get_config = function(opts)
+              if opts.kind == 'legendary.nvim' then
+                return {
+                  telescope = {
+                    sorter = require('telescope.sorters').fuzzy_with_index_bias({})
+                  }
+                }
+              else
+                return {}
+              end
+            end
+          }
+        })
         require("legendary").setup(
           {
             keymaps = {
-              { "<leader>tgf", ":Telescope git_files", description = "Telescope Git Files" },
-              { "<leader>tgbc", ":Telescope git_bcommits", description = "Telescope Git BCommits" },
-              { "<leader>tgc", ":Telescope git_commits", description = "Telescope Git Commits" },
-              { "<leader>tgb", ":Telescope git_branches", description = "Telescope Git Branches" },
-              { "<leader>tgf", ":Telescope git_files", description = "Telescope Git Files" },
-              { "<leader>tld", ":Telescope lsp_definitions", description = "Telescope LSP Definitions" },
-              { "<leader>tli", ":Telescope lsp_implementations", description = "Telescope LSP Implementations" },
-              { "<leader>tlca", ":Telescope lsp_code_actions", description = "Telescope LSP Code Actions" },
-              { "<leader>tlic", ":Telescope lsp_incoming_calls", description = "Telescope LSP Incoming Calls" },
-              { "<leader>tloc", ":Telescope lsp_outgoing_calls", description = "Telescope LSP Outgoing Calls" },
-              { "<leader>tlr", ":Telescope lsp_references", description = "Telescope LSP References " },
-              { "<leader>tltd", ":Telescope lsp_type_definitions", description = "Telescope LSP Type Definitions" },
-              { "<leader>tj", ":Telescope jumplist", description = "Telescope Jumplist" },
-              { "<leader>tf", ":Telescope frecency", description = "Telescope Frecency" },
-              { "<leader>tk", ":Telescope keymaps", description = "Telescope Keymaps" },
-              { "<leader>tr", ":Telescope registers", description = "Telescope Registers" },
-              { "<leader>tm", ":Telescope marks", description = "Telescope Marks" },
-              { "<leader>tp", ":Telescope projects", description = "Telescope Projects" },
-              { "<leader>tq", ":Telescope quickfix", description = "Telescope Quickfix" },
-              { "<leader>tb", ":Telescope buffers", description = "Telescope Buffers" },
-              { "<leader>flf", ":FzfLua files", description = "Fzf Files" },
-              { "<leader>flm", ":FzfLua marks", description = "Fzf Marks" },
-              { "<leader>flM", ":FzfLua man pages", description = "Fzf Man Pages" },
+              { "<C-Space>", ":Legendary<cr>", description = "Legendary (Meta!)" },
+              { "<leader>te",
+                function()
+                  require 'telescope.builtin'.symbols { sources = { "emoji" } }
+                end,
+                description = "Emojis"
+              },
+              { "<leader><Space>", ":WhichKey<cr>", description = "WhichKey" },
+              { "<M-Left>", ":tabprev<cr>", description = "Prev Tab" },
+              { "<M-Right>", ":tabnext<cr>", description = "Next Tab" },
+              { "<M-Down>", ":tablast<cr>", description = "Last Tab" },
+              { "<M-Up>", ":tabfirst<cr>", description = "First Tab" },
+              { "<M-/>", ":Telescope live_grep<cr>", description = "Live Grep" },
+              { "<M-?>", ":Telescope search_history<cr>", description = "Search History" },
+              { "<M-;>", ":Telescope command_history<cr>", description = "Command History" },
+              { "<M-,>", ":Telescope vim_options<cr>", description = "Vim Options" },
+              { "<M-.>", ":Telescope commands<cr>", description = "Telescope Commands" },
+              { "<leader>,", ":Telescope loclist<cr>", description = "Telescope Loclist" },
+              { "<leader>f/", ":Telescope current_buffer_fuzzy_find<cr>",
+                description = "Telescope Current Buffer Fuzzy Find" },
+              { "<M-Bslash>", ":Lf<cr>", description = "lf" },
+              { "M-CR", ":Telescope<cr>", description = "Telescope" },
+              { "<leader>CR", ":FzfLua<cr>", description = "FzfLua" },
+              { "<F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
+              { "<leader>jrf", require 'jester'.run_last, description = "Jester Run File", itemgroup = "jester" },
+              { "<leader>jra", require 'jester'.run_last, description = "Jester Run Again", itemgroup = "jester" },
+              { "<leader>jrA", require 'jester'.run, description = "Jester Run All", itemgroup = "jester" },
+              { "<leader>tgf", ":Telescope git_files<cr>", description = "Telescope Git Files" },
+              { "<leader>tgbc", ":Telescope git_bcommits<cr>", description = "Telescope Git BCommits" },
+              { "<leader>tgc", ":Telescope git_commits<cr>", description = "Telescope Git Commits" },
+              { "<leader>tR", ":Telescope reloader<cr>", description = "Telescope Reloader" },
+              { "<leader>tgb", ":Telescope git_branches<cr>", description = "Telescope Git Branches" },
+              { "<leader>tgf", ":Telescope git_files<cr>", description = "Telescope Git Files" },
+              { "<leader>tld", ":Telescope lsp_definitions<cr>", description = "Telescope LSP Definitions" },
+              { "<leader>tli", ":Telescope lsp_implementations<cr>", description = "Telescope LSP Implementations" },
+              { "<leader>tlca", ":Telescope lsp_code_actions<cr>", description = "Telescope LSP Code Actions" },
+              { "<leader>tlic", ":Telescope lsp_incoming_calls<cr>", description = "Telescope LSP Incoming Calls" },
+              { "<leader>tloc", ":Telescope lsp_outgoing_calls<cr>", description = "Telescope LSP Outgoing Calls" },
+              { "<leader>tlr", ":Telescope lsp_references<cr>", description = "Telescope LSP References " },
+              { "<leader>tltd", ":Telescope lsp_type_definitions<cr>", description = "Telescope LSP Type Definitions" },
+              { "<leader>tj", ":Telescope jumplist<cr>", description = "Telescope Jumplist" },
+              { "<leader>tf", ":Telescope frecency<cr>", description = "Telescope Frecency" },
+              { "<leader>tk", ":Telescope keymaps<cr>", description = "Telescope Keymaps" },
+              { "<leader>tr", ":Telescope registers<cr>", description = "Telescope Registers" },
+              { "<leader>tm", ":Telescope marks<cr>", description = "Telescope Marks" },
+              { "<leader>tp", ":Telescope projects<cr>", description = "Telescope Projects" },
+              { "<leader>tq", ":Telescope quickfix<cr>", description = "Telescope Quickfix" },
+              { "<leader>tb", ":Telescope buffers<cr>", description = "Telescope Buffers" },
+              { "<leader>flf", ":FzfLua files<cr>", description = "Fzf Files" },
+              { "<leader>flm", ":FzfLua marks<cr>", description = "Fzf Marks" },
+              { "<leader>flM", ":FzfLua man pages<cr>", description = "Fzf Man Pages" },
               {
                 "<leader>tldws",
-                ":Telescope lsp_dynamic_workspace_symbols",
+                ":Telescope lsp_dynamic_workspace_symbols<cr>",
                 description = "Telescope LSP Dynamic Workspace Symbols"
               },
               {
                 "<leader>tlws",
-                ":Telescope lsp_workspace_symbols",
+                ":Telescope lsp_workspace_symbols<cr>",
                 description = "Telescope LSP Workspace Symbols"
               },
               {
                 "<leader>tlds",
-                ":Telescope lsp_document_symbols",
+                ":Telescope lsp_document_symbols<cr>",
                 description = "Telescope LSP Document Symbols"
               },
-              { "<leader>Space", ":WhichKey", description = "WhichKey" },
-              { "<leader>mc", ":Code", description = "Mode Code" },
-              { "<leader>mh", ":Human", description = "Mode Human" },
-              { "<leader>mp", ":Prose", description = "Mode Prose" },
-              { "<leader>mv", ":Verse", description = "Mode Verse" }
-              -- map keys to a function
-              -- {
-              --   "<leader>h",
-              --   function()
-              --     print("hello world!")
-              --   end,
-              --   description = "Say hello"
-              -- },
-              -- keymaps have opts.silent = true by default, but you can override it
-              -- {"<leader>s", ":SomeCommand<CR>", description = "Non-silent keymap", opts = {silent = false}},
-              -- create keymaps with different implementations per-mode
-              -- {
-              --   "<leader>c",
-              --   {n = ":LinewiseCommentToggle<CR>", x = ":'<,'>BlockwiseCommentToggle<CR>"},
-              --   description = "Toggle comment"
-              -- }
-              -- -- create item groups to create sub-menus in the finder
-              -- -- note that only keymaps, commands, and functions
-              -- -- can be added to item groups
-              -- {
-              --   -- groups with same itemgroup will be merged
-              --   itemgroup = "short ID",
-              --   description = "A submenu of items...",
-              --   icon = "",
-              --   keymaps = {}
-              -- }
+              { "<leader>Space", ":WhichKey<cr>", description = "WhichKey" },
+              { "<leader>mc", ":Code<cr>", description = "Mode Code" },
+              { "<leader>mh", ":Human<cr>", description = "Mode Human" },
+              { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
+              { "<leader>mv", ":Verse<cr>", description = "Mode Verse" },
+              { "<leader>mb", ":Boethius<cr>", description = "Mode Boethius" },
             },
             commands = {},
             funcs = {},
-            autocmds = {}
-          }
-        )
+            autocmds = {},
+          })
       end
     }
     use {
@@ -450,6 +469,7 @@ packer.startup {
     use {
       "neovim/nvim-lspconfig",
       requires = {
+        { "SmiteshP/nvim-navic" },
         { "b0o/schemastore.nvim" },
         { "lukas-reineke/lsp-format.nvim" },
       },
@@ -471,9 +491,14 @@ packer.startup {
         vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
         require 'lsp-format'.setup {}
+        -- declare local in this scope so we don't `require` x2 every on_attach below
+        local formatAttach = require "lsp-format".on_attach
+        local navicAttach = require "nvim-navic".on_attach
         local on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = true
-          require "lsp-format".on_attach(client)
+          formatAttach(client)
+          navicAttach(client, bufnr)
+
           vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
           -- Mappings.
@@ -727,7 +752,6 @@ packer.startup {
         "nvim-telescope/telescope-frecency.nvim",
         "nvim-telescope/telescope-project.nvim",
         "tami5/sqlite.lua",
-        "TC72/telescope-tele-tabby.nvim"
       },
       config = function()
         local tscope = require("telescope")
@@ -760,10 +784,12 @@ packer.startup {
       "nvim-treesitter/nvim-treesitter",
       requires = {
         "danymat/neogen",
-        "nvim-treesitter/playground"
+        "nvim-treesitter/playground",
+        "m-demare/hlargs.nvim"
       },
       config = function()
         require "neogen".setup {}
+        require "hlargs".setup {}
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "bash",
@@ -1300,6 +1326,9 @@ ls.add_snippets(
 )
 
 vim.cmd [[
+  nnoremap <leader><Tab> :Telescope frecency <cr>
+  " I tend to mash so 
+  nnoremap <Tab><leader> :Telescope frecency <cr>
   autocmd BufWinEnter *.html iabbrev --- &mdash;
   autocmd BufWinEnter *.svelte iabbrev --- &mdash;
   autocmd BufWinEnter *.jsx iabbrev --- &mdash;

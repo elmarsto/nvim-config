@@ -124,57 +124,6 @@ command! NoVa :Goyo!
 command! Va :Goyo
 
 
-" commands
-command! Emo  :lua require "telescope.builtin".symbols {sources = {"emoji"}}
-
-" dap-ui
-"
-command! DapClose require("dapui").close()
-command! DapOpen require("dapui").open()
-command! DapToggle require("dapui").toggle()
-
-
-" Telescope
-" TODO: move all this into legendary config in lattice.lua
-nnoremap <leader><Space> :WhichKey <cr>
-nnoremap <M-/> :Telescope live_grep <cr>
-nnoremap <leader>tlg :Telescope live_grep <cr>
-nnoremap <F3> :UndotreeToggle <cr>
-nnoremap <M-,> :Telescope vim_options <cr>
-nnoremap <leader>tvo :Telescope vim_options <cr>
-nnoremap <leader>, :Telescope loclist<cr>
-nnoremap <leader>tll :Telescope loclist<cr>
-nnoremap <M-.> :Telescope commands <cr>
-nnoremap <leader>tc :Telescope commands <cr>
-nnoremap <M-?> :Telescope search_history <cr>
-nnoremap <leader>tsh :Telescope search_history <cr>
-nnoremap <leader>f/ :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <leader>tfz :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <M-;> :Telescope command_history <cr>
-nnoremap <leader>tch :Telescope command_history <cr>
-nnoremap <leader>tl :Telescope reloader <cr>
-nnoremap <leader><BS> :Telescope reloader <cr>
-"nnoremap <M-Bslash> :Lf <cr>
-nnoremap <M-Down> :tablast <cr>
-nnoremap <M-Left> :tabprev <cr>
-nnoremap <M-Right> :tabnext <cr>
-nnoremap <leader><Tab> :Telescope frecency <cr>
-" I tend to mash so 
-nnoremap <Tab><leader> :Telescope frecency <cr>
-nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
-nnoremap <M-Up> :tabfirst <cr>
-nnoremap <M-`> :Telescope buffers <cr>
-nnoremap <M-CR> :Telescope <cr>
-
-nnoremap <C-Space> :Legendary<cr>
-" Jester
-
-command! JesterDebug :lua require"jester".debug_file()
-command! JesterDebugAgain :lua require"jester".debug_last()
-command! JesterDebugAll :lua require"jester".debug()
-command! JesterRun :lua require"jester".run_file()
-command! JesterRunAgain :lua require"jester".run_last()
-command! JesterRunAll :lua require"jester".run()
 
 
 " misc mappings
