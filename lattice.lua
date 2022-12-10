@@ -381,14 +381,14 @@ packer.startup {
         require("legendary").setup(
           {
             keymaps = {
-              { "<C-Space>", ":Legendary<cr>", description = "Legendary (Meta!)" },
+              { "<C-P>", ":Legendary<cr>", description = "Legendary (Meta!)" },
               { "<leader>te",
                 function()
                   require 'telescope.builtin'.symbols { sources = { "emoji" } }
                 end,
                 description = "Emojis"
               },
-              { "<leader><Space>", ":WhichKey<cr>", description = "WhichKey" },
+              { "<C-Space>", ":WhichKey<cr>", description = "WhichKey" },
               { "<M-Left>", ":tabprev<cr>", description = "Prev Tab" },
               { "<M-Right>", ":tabnext<cr>", description = "Next Tab" },
               { "<M-Down>", ":tablast<cr>", description = "Last Tab" },
@@ -399,11 +399,10 @@ packer.startup {
               { "<M-,>", ":Telescope vim_options<cr>", description = "Vim Options" },
               { "<M-.>", ":Telescope commands<cr>", description = "Telescope Commands" },
               { "<leader>,", ":Telescope loclist<cr>", description = "Telescope Loclist" },
-              { "<leader>f/", ":Telescope current_buffer_fuzzy_find<cr>",
-                description = "Telescope Current Buffer Fuzzy Find" },
-              { "<M-Bslash>", ":Lf<cr>", description = "lf" },
-              { "M-CR", ":Telescope<cr>", description = "Telescope" },
-              { "<leader>CR", ":FzfLua<cr>", description = "FzfLua" },
+              { "<Bslash>", ":Telescope current_buffer_fuzzy_find<cr>", description = "Telescope Current Buffer Fuzzy Find" },
+              { "<M-CR>", ":Telescope<cr>", description = "Telescope" },
+              { "<leader><CR>", ":FzfLua<cr>", description = "FzfLua" },
+              { "<leader><Space>", ":Trouble<cr>", description = "Trouble" },
               { "<F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
               { "<leader>jrf", require 'jester'.run_last, description = "Jester Run File", itemgroup = "jester" },
               { "<leader>jra", require 'jester'.run_last, description = "Jester Run Again", itemgroup = "jester" },
@@ -447,7 +446,7 @@ packer.startup {
                 ":Telescope lsp_document_symbols<cr>",
                 description = "Telescope LSP Document Symbols"
               },
-              { "<leader>Space", ":WhichKey<cr>", description = "WhichKey" },
+              { "<leader>Space", ":Lf<cr>", description = "WhichKey" },
               { "<leader>mc", ":Code<cr>", description = "Mode Code" },
               { "<leader>mh", ":Human<cr>", description = "Mode Human" },
               { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
