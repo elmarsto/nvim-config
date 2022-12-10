@@ -694,7 +694,7 @@ packer.startup {
         }
         nvim_lsp.taplo.setup {
           capabilities = capabilities,
-          cmd = { lattice_local.taplo.bin, "run" }
+          cmd = { lattice_local.taplo.bin, "lsp", "stdio" }
         }
         nvim_lsp.tsserver.setup {
           capabilities = capabilities,
