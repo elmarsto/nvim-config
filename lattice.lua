@@ -399,7 +399,8 @@ packer.startup {
               { "<M-,>", ":Telescope vim_options<cr>", description = "Vim Options" },
               { "<M-.>", ":Telescope commands<cr>", description = "Telescope Commands" },
               { "<leader>,", ":Telescope loclist<cr>", description = "Telescope Loclist" },
-              { "<Bslash>", ":Telescope current_buffer_fuzzy_find<cr>", description = "Telescope Current Buffer Fuzzy Find" },
+              { "<Bslash>", ":Telescope current_buffer_fuzzy_find<cr>",
+                description = "Telescope Current Buffer Fuzzy Find" },
               { "<M-CR>", ":Telescope<cr>", description = "Telescope" },
               { "<leader><CR>", ":FzfLua<cr>", description = "FzfLua" },
               { "<leader><Space>", ":Trouble<cr>", description = "Trouble" },
@@ -489,7 +490,7 @@ packer.startup {
         vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
         require 'lsp-format'.setup {}
-        -- declare local in this scope so we don't `require` x2 every on_attach below
+        -- declare local in this scope so we don't `require` every run of on_attach below
         local formatAttach = require "lsp-format".on_attach
         local on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = true
