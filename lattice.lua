@@ -1,4 +1,5 @@
 -- FIXME: break this file up into logical morsels
+
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -11,10 +12,41 @@ packer.startup {
   function(use)
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
+    use "b0o/mapx.nvim"
     use "David-Kunz/jester"
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
+    use {
+      "edluffy/specs.nvim",
+      config = function()
+        require "specs".setup {
+          show_jumps = true,
+          min_jump = 30,
+          popup = {
+            delay_ms = 0, -- delay before popup displays
+            inc_ms = 10, -- time increments used for fade/resize effects
+            blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+            width = 10,
+            winhl = "PMenu",
+            fader = require("specs").linear_fader,
+            resizer = require("specs").shrink_resizer
+          },
+          ignore_filetypes = {},
+          ignore_buftypes = {
+            nofile = true
+          }
+        }
+      end
+    }
     use "f3fora/cmp-spell"
+    use {
+      "feline-nvim/feline.nvim",
+      config = function()
+        local feline = require "feline"
+        feline.setup()
+        feline.winbar.setup()
+      end
+    }
     use "folke/lsp-colors.nvim"
     use {
       "folke/todo-comments.nvim",
@@ -122,6 +154,12 @@ packer.startup {
       end
     }
     use {"kyazdani42/nvim-web-devicons"}
+    use {
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup()
+      end
+    }
     use {
       "L3MON4D3/LuaSnip",
       config = function()
@@ -369,8 +407,90 @@ packer.startup {
         vim.api.nvim_set_keymap("v", "m", "<cmd>lua require('tsht').nodes()<CR>", {})
       end
     }
-
-    use "mfussenegger/nvim-dap"
+    use {
+      "mrjones2014/legendary.nvim",
+      requires = "kkarji/sqlite.lua",
+      config = function()
+        require("legendary").setup(
+          {
+            keymaps = {
+              {"<leader>tgf", ":Telescope git_files", description = "Telescope Git Files"},
+              {"<leader>tgbc", ":Telescope git_bcommits", description = "Telescope Git BCommits"},
+              {"<leader>tgc", ":Telescope git_commits", description = "Telescope Git Commits"},
+              {"<leader>tgb", ":Telescope git_branches", description = "Telescope Git Branches"},
+              {"<leader>tgf", ":Telescope git_files", description = "Telescope Git Files"},
+              {"<leader>tld", ":Telescope lsp_definitions", description = "Telescope LSP Definitions"},
+              {"<leader>tli", ":Telescope lsp_implementations", description = "Telescope LSP Implementations"},
+              {"<leader>tlca", ":Telescope lsp_code_actions", description = "Telescope LSP Code Actions"},
+              {"<leader>tlic", ":Telescope lsp_incoming_calls", description = "Telescope LSP Incoming Calls"},
+              {"<leader>tloc", ":Telescope lsp_outgoing_calls", description = "Telescope LSP Outgoing Calls"},
+              {"<leader>tlr", ":Telescope lsp_references", description = "Telescope LSP References "},
+              {"<leader>tltd", ":Telescope lsp_type_definitions", description = "Telescope LSP Type Definitions"},
+              {"<leader>tj", ":Telescope jumplist", description = "Telescope Jumplist"},
+              {"<leader>tf", ":Telescope frecency", description = "Telescope Frecency"},
+              {"<leader>tk", ":Telescope keymaps", description = "Telescope Keymaps"},
+              {"<leader>tr", ":Telescope registers", description = "Telescope Registers"},
+              {"<leader>tm", ":Telescope marks", description = "Telescope Marks"},
+              {"<leader>tp", ":Telescope projects", description = "Telescope Projects"},
+              {"<leader>tq", ":Telescope quickfix", description = "Telescope Quickfix"},
+              {"<leader>tb", ":Telescope buffers", description = "Telescope Buffers"},
+              {"<leader>flf", ":FzfLua files", description = "Fzf Files"},
+              {"<leader>flm", ":FzfLua marks", description = "Fzf Marks"},
+              {"<leader>flM", ":FzfLua man pages", description = "Fzf Man Pages"},
+              {
+                "<leader>tldws",
+                ":Telescope lsp_dynamic_workspace_symbols",
+                description = "Telescope LSP Dynamic Workspace Symbols"
+              },
+              {
+                "<leader>tlws",
+                ":Telescope lsp_workspace_symbols",
+                description = "Telescope LSP Workspace Symbols"
+              },
+              {
+                "<leader>tlds",
+                ":Telescope lsp_document_symbols",
+                description = "Telescope LSP Document Symbols"
+              },
+              {"<leader>Space", ":WhichKey", description = "WhichKey"},
+              {"<leader>mc", ":Code", description = "Mode Code"},
+              {"<leader>mh", ":Human", description = "Mode Human"},
+              {"<leader>mp", ":Prose", description = "Mode Prose"},
+              {"<leader>mv", ":Verse", description = "Mode Verse"}
+              -- map keys to a function
+              -- {
+              --   "<leader>h",
+              --   function()
+              --     print("hello world!")
+              --   end,
+              --   description = "Say hello"
+              -- },
+              -- keymaps have opts.silent = true by default, but you can override it
+              -- {"<leader>s", ":SomeCommand<CR>", description = "Non-silent keymap", opts = {silent = false}},
+              -- create keymaps with different implementations per-mode
+              -- {
+              --   "<leader>c",
+              --   {n = ":LinewiseCommentToggle<CR>", x = ":'<,'>BlockwiseCommentToggle<CR>"},
+              --   description = "Toggle comment"
+              -- }
+              -- -- create item groups to create sub-menus in the finder
+              -- -- note that only keymaps, commands, and functions
+              -- -- can be added to item groups
+              -- {
+              --   -- groups with same itemgroup will be merged
+              --   itemgroup = "short ID",
+              --   description = "A submenu of items...",
+              --   icon = "",
+              --   keymaps = {}
+              -- }
+            },
+            commands = {},
+            funcs = {},
+            autocmds = {}
+          }
+        )
+      end
+    }
     use {
       "norcalli/nvim-colorizer.lua",
       config = function()
@@ -379,6 +499,7 @@ packer.startup {
     }
     use {
       "neovim/nvim-lspconfig",
+      requires = {"b0o/schemastore.nvim"},
       config = function()
         local lattice_local = require "lattice_local"
         local nvim_lsp = require("lspconfig")
@@ -432,7 +553,6 @@ packer.startup {
         end
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-        -- diagnosticls
         local filetypes = {
           javascript = "eslint",
           javascriptreact = "eslint",
@@ -514,7 +634,11 @@ packer.startup {
         }
         nvim_lsp.jsonls.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.jsonls.bin, "--stdio"}
+          cmd = {lattice_local.jsonls.bin, "--stdio"},
+          settings = {
+            schemas = require "schemastore".json.schemas(),
+            validate = {enable = true}
+          }
         }
         -- nvim_lsp.powershell_es.setup {
         --   capabilities = capabilities,
@@ -632,15 +756,10 @@ packer.startup {
       "nvim-telescope/telescope.nvim",
       requires = {
         "elmarsto/telescope-nodescripts.nvim",
-        "LinArcX/telescope-command-palette.nvim",
         "elmarsto/telescope-symbols.nvim",
-        "nvim-telescope/telescope-dap.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-frecency.nvim",
-        {"nvim-telescope/telescope-fzf-native.nvim", run = require "lattice_local".telescope_fzf_native.run},
-        "nvim-telescope/telescope-hop.nvim",
         "nvim-telescope/telescope-project.nvim",
-        "nvim-telescope/telescope-ui-select.nvim",
         "tami5/sqlite.lua",
         "TC72/telescope-tele-tabby.nvim"
       },
@@ -648,168 +767,37 @@ packer.startup {
         local tscope = require("telescope")
         local ll = require("lattice_local")
         tscope.setup {
-          defaults = {
-            mappings = {
-              i = {
-                ["<C-h>"] = function(prompt_bufnr)
-                  require("telescope").extensions.hop.hop(prompt_bufnr)
-                end,
-                ["<C-space>"] = function(prompt_bufnr)
-                  local opts = {
-                    callback = tscope.actions.toggle_selection,
-                    loop_callback = tscope.actions.send_selected_to_qflist
-                  }
-                  require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
-                end
-              }
-            }
-          },
+          pickers = {},
           extensions = {
-            ["ui-select"] = {
-              require("telescope.themes").get_dropdown {}
-            },
-            command_palette = {
-              {
-                "Git",
-                {"BCommits (\\tgbc)", ":Telescope git_bcommits", 1},
-                {"Branches (\\tgb)", ":Telescope git", 1},
-                {"Commits (\\tgc)", ":Telescope git_commits", 1},
-                {"Files (\\tgf or C-M-O)", ":Telescope git_files", 1}
-              },
-              {
-                "Language Server",
-                {"Code Actions (\\tlca)", ":Telescope lsp_code_actions", 1},
-                {"Definitions (\\tld)", ":Telescope lsp_definitions", 1},
-                {"Document Symbols (\\tlds)", ":Telescope lsp_document_symbols", 1},
-                {"Dynamic Workspace Symbols (\\tdws)", ":Telescope lsp_dynamic_workspace_symbols", 1},
-                {"Implementations (\\tli)", ":Telescope lsp_implementations", 1},
-                {"Incoming Calls (\\tlic)", ":Telescope lsp_incoming_calls", 1},
-                {"Outgoing Calls (\\tloc)", ":Telescope lsp_outgoing_calls", 1},
-                {"References (\\tlr)", ":Telescope lsp_references", 1},
-                {"Type Definitions (\\tltd)", ":Telescope lsp_type_defnitions", 1},
-                {"Workspace Symbols (\\tlws)", ":Telescope lsp_workspace_symbols", 1}
-              },
-              {
-                "Lattice Modes",
-                {"Code", ":Code", 1},
-                {"Human", ":call Human()", 1},
-                {"Machine", ":call Machine()", 1},
-                {"Prose", ":Prose", 1},
-                {"Verse", ":Verse", 1}
-              },
-              {
-                "Vim",
-                {"Buffers", ":Telescope buffers", 1},
-                {"Files (\\tfb)", ":Telescope file_browser", 1},
-                {"Frecency (\\Tab)", ":Telescope frecency", 1},
-                {"Jumplist", ":Telescope jumplist", 1},
-                {"Keymaps", ":Telescope keymaps", 1},
-                {"Marks", ":Telescope marks", 1},
-                {"Project", ":Telescope project", 1},
-                {"Quickfix", ":Telescope quickfix", 1},
-                {"Registers", ":Telescope registers", 1}
-              }
-            },
             media_files = {
               filetypes = {"png", "webp", "jpg", "jpeg"},
               find_cmd = "rg"
             },
-            project = ll.project,
-            hop = {
-              -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
-              keys = {
-                "a",
-                "s",
-                "d",
-                "f",
-                "g",
-                "h",
-                "j",
-                "k",
-                "l",
-                ";",
-                "q",
-                "w",
-                "e",
-                "r",
-                "t",
-                "y",
-                "u",
-                "i",
-                "o",
-                "p",
-                "A",
-                "S",
-                "D",
-                "F",
-                "G",
-                "H",
-                "J",
-                "K",
-                "L",
-                ":",
-                "Q",
-                "W",
-                "E",
-                "R",
-                "T",
-                "Y",
-                "U",
-                "I",
-                "O",
-                "P"
-              },
-              -- Highlight groups to link to signs and lines; the below configuration refers to demo
-              -- sign_hl typically only defines foreground to possibly be combined with line_hl
-              sign_hl = {"WarningMsg", "Title"},
-              -- optional, typically a table of two highlight groups that are alternated between
-              line_hl = {"CursorLine", "Normal"},
-              -- options specific to `hop_loop`
-              -- true temporarily disables Telescope selection highlighting
-              clear_selection_hl = false,
-              -- highlight hopped to entry with telescope selection highlight
-              -- note: mutually exclusive with `clear_selection_hl`
-              trace_entry = true,
-              -- jump to entry where hoop loop was started from
-              reset_selection = true
-            }
+            project = ll.project
           }
         }
-        if vim.fn.has("win32") == 0 then
-          tscope.load_extension "fzf"
-        end
         vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
-        tscope.load_extension "command_palette"
-        tscope.load_extension "dap"
         tscope.load_extension "file_browser"
         tscope.load_extension "frecency"
-        tscope.load_extension "hop"
         tscope.load_extension "nodescripts"
         tscope.load_extension "project"
-        tscope.load_extension "ui-select"
+      end
+    }
+    use {
+      "nvim-neorg/neorg",
+      run = ":Neorg sync-parsers",
+      config = function()
+        require("neorg").setup {}
       end
     }
     use {
       "nvim-treesitter/nvim-treesitter",
       requires = {
+        "danymat/neogen",
         "nvim-treesitter/playground"
       },
       config = function()
-        -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        -- parser_config.diff = {
-        --   install_info = {
-        --     url = "https://github.com/vigoux/tree-sitter-diff",
-        --     files = {"src/parser.c"}
-        --   },
-        --   filetype = "diff"
-        -- }
-        -- parser_config.norg = {
-        --   install_info = {
-        --     url = "https://github.com/nvim-neorg/tree-sitter-norg",
-        --     files = {"src/parser.c", "src/scanner.cc"},
-        --     branch = "main"
-        --   }
-        -- }
+        require "neogen".setup {}
         require "nvim-treesitter.configs".setup {
           ensure_installed = {
             "bash",
@@ -964,70 +952,43 @@ packer.startup {
     use "petertriho/cmp-git"
     use {
       "phaazon/hop.nvim",
-      branch = "v1",
+      branch = "v2",
       as = "hop",
       config = function()
-        require "hop".setup {keys = "etovxqpdygfblzhckisuran"}
-        -- place this in one of your configuration file(s)
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>1",
-          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-          {}
+        local hop = require("hop")
+        hop.setup {keys = "etovxqpdygfblzhckisuran"}
+        local directions = require("hop.hint").HintDirection
+        vim.keymap.set(
+          "",
+          "f",
+          function()
+            hop.hint_char1({direction = directions.AFTER_CURSOR, current_line_only = true})
+          end,
+          {remap = true}
         )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>!",
-          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-          {}
+        vim.keymap.set(
+          "",
+          "F",
+          function()
+            hop.hint_char1({direction = directions.BEFORE_CURSOR, current_line_only = true})
+          end,
+          {remap = true}
         )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>2",
-          "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
+        vim.keymap.set(
+          "",
+          "t",
+          function()
+            hop.hint_char1({direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1})
+          end,
+          {remap = true}
         )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>@",
-          "<cmd>lua require'hop'.hint_char2({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>l",
-          "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>L",
-          "<cmd>lua require'hop'.hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>w",
-          "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>W",
-          "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>/",
-          "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "<C-h>?",
-          "<cmd>lua require'hop'.hint_patterns({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
+        vim.keymap.set(
+          "",
+          "T",
+          function()
+            hop.hint_char1({direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1})
+          end,
+          {remap = true}
         )
       end
     }
@@ -1038,12 +999,6 @@ packer.startup {
     use "preservim/vim-textobj-quote"
     use "preservim/vim-textobj-sentence"
     use "preservim/vim-wordy"
-    use {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-        require("dapui").setup()
-      end
-    }
     use {
       "rcarriga/nvim-notify",
       config = function()
@@ -1078,7 +1033,12 @@ packer.startup {
       end
     }
     use "saadparwaiz1/cmp_luasnip"
-    use "simrat39/symbols-outline.nvim"
+    use {
+      "simrat39/symbols-outline.nvim",
+      config = function()
+        require("symbols-outline").setup()
+      end
+    }
     use {
       "simrat39/rust-tools.nvim",
       config = function()
@@ -1101,6 +1061,12 @@ packer.startup {
             }
           }
         )
+      end
+    }
+    use {
+      "smjonas/inc-rename.nvim",
+      config = function()
+        require "inc_rename".setup()
       end
     }
     use "rafcamlet/nvim-luapad"
@@ -1164,6 +1130,24 @@ packer.startup {
     --   end
     -- }
     use "wbthomason/packer.nvim" -- self-control
+    use {
+      "zegervdv/settle.nvim",
+      opt = true,
+      cmd = {"SettleInit"},
+      config = function()
+        require("settle").setup {
+          wrap = true,
+          symbol = "!",
+          keymaps = {
+            next_conflict = "-n",
+            prev_conflict = "-N",
+            use_ours = "-u1",
+            use_theirs = "-u2",
+            close = "-q"
+          }
+        }
+      end
+    }
   end
 }
 local lls = require "lattice_local".shell

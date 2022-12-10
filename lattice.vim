@@ -9,7 +9,7 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 
 let &showbreak = '⮩'
-set laststatus=0 
+set laststatus=2 
 set listchars=precedes:«,extends:»
 set autoread
 set backspace=indent,eol,start
@@ -135,46 +135,17 @@ command! DapToggle require("dapui").toggle()
 
 
 " Telescope
-nnoremap <silent> <C-Bslash> :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
-nnoremap <silent> <leader>tfb :lua require 'telescope'.extensions.file_browser.file_browser() <cr>
-nnoremap <C-M-'> :Telescope lsp_references <cr>
-nnoremap <leader>tlr :Telescope lsp_references <cr>
-"does not work now?
-"nnoremap <C-M-/> :Telescope current_buffer_fuzzy_find <cr>
-nnoremap <leader>tli :Telescope lsp_implementations <cr>
-nnoremap <leader>tlic :Telescope lsp_incoming_calls <cr>
-nnoremap <leader>tloc :Telescope lsp_outgoing_calls <cr>
-nnoremap <leader>tld :Telescope lsp_definitions <cr>
-nnoremap <leader>tltd :Telescope lsp_type_definitions <cr>
-nnoremap <leader>tlws :Telescope lsp_workspace_symbols <cr>
-nnoremap <leader>tlds :Telescope lsp_document_symbols <cr>
-nnoremap <leader>tldws :Telescope lsp_dynamic_workspace_symbols <cr>
-nnoremap <leader>tlca :Telescope lsp_code_actions <cr>
-nnoremap <C-M-O> :Telescope git_files <cr>
-nnoremap <leader>tgf :Telescope git_files <cr>
-nnoremap <C-M-P> :Telescope find_files <cr>
-nnoremap <leader>tff :Telescope find_files <cr>
-nnoremap <leader>tgbc :Telescope git_bcommits <cr>
-nnoremap <leader>tgb :Telescope git_branches <cr>
-nnoremap <leader>tgc :Telescope git_commits <cr>
-nnoremap <leader>tfs :Telescope lsp_file_symbols <cr>
-nnoremap <leader><Space> :Telescope keymaps <cr>
-nnoremap <leader>tk :Telescope keymaps <cr>
-nnoremap <C-]> :Telescope registers <cr>
-nnoremap <leader>trg :Telescope registers <cr>
+" TODO: move all this into legendary config in lattice.lua
+nnoremap <leader><Space> :WhichKey <cr>
 nnoremap <M-/> :Telescope live_grep <cr>
 nnoremap <leader>tlg :Telescope live_grep <cr>
 nnoremap <F3> :UndotreeToggle <cr>
-nnoremap <M-'> :Telescope marks<cr>
-nnoremap <leader>tm :Telescope marks<cr>
 nnoremap <M-,> :Telescope vim_options <cr>
 nnoremap <leader>tvo :Telescope vim_options <cr>
 nnoremap <leader>, :Telescope loclist<cr>
 nnoremap <leader>tll :Telescope loclist<cr>
 nnoremap <M-.> :Telescope commands <cr>
 nnoremap <leader>tc :Telescope commands <cr>
-nnoremap <leader>. :Telescope quickfix<cr>
-nnoremap <leader>tqf :Telescope quickfix<cr>
 nnoremap <M-?> :Telescope search_history <cr>
 nnoremap <leader>tsh :Telescope search_history <cr>
 nnoremap <leader>f/ :Telescope current_buffer_fuzzy_find <cr>
@@ -183,8 +154,6 @@ nnoremap <M-;> :Telescope command_history <cr>
 nnoremap <leader>tch :Telescope command_history <cr>
 nnoremap <leader>tl :Telescope reloader <cr>
 nnoremap <leader><BS> :Telescope reloader <cr>
-nnoremap <M-=> :Telescope jumplist <cr>
-nnoremap <leader>tjl :Telescope jumplist <cr>
 "nnoremap <M-Bslash> :Lf <cr>
 nnoremap <M-Down> :tablast <cr>
 nnoremap <M-Left> :tabprev <cr>
@@ -192,16 +161,12 @@ nnoremap <M-Right> :tabnext <cr>
 nnoremap <leader><Tab> :Telescope frecency <cr>
 " I tend to mash so 
 nnoremap <Tab><leader> :Telescope frecency <cr>
-nnoremap <leader>tfy :Telescope frecency <cr>
 nnoremap <M-~> :lua require('telescope').extensions.tele_tabby.list() <cr>
 nnoremap <M-Up> :tabfirst <cr>
 nnoremap <M-`> :Telescope buffers <cr>
-nnoremap <leader>tb :Telescope buffers <cr>
-nnoremap <leader>tP :Telescope project <cr>
 nnoremap <M-CR> :Telescope <cr>
 
-nnoremap <C-Space> :Telescope command_palette <cr>
-nnoremap <leader>tcp :Telescope command_palette <cr>
+nnoremap <C-Space> :Legendary<cr>
 " Jester
 
 command! JesterDebug :lua require"jester".debug_file()
