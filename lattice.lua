@@ -3,7 +3,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+  fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
   vim.cmd "packadd packer.nvim"
 end
 local packer = require "packer"
@@ -54,86 +54,36 @@ packer.startup {
         require("todo-comments").setup {
           signs = true, -- show icons in the signs column
           keywords = {
-            DONE = {icon = " ", color = "success"},
-            TODO = {icon = "⭕", color = "warning"},
-            IDEA = {icon = "💡", color = "idea"},
-            FIXME = {color = "error"}, -- default ladybug emoji
-            BUG = {color = "error"}, -- default ladybug emoji
-            WARNING = {icon = "⚠️", color = "warning"},
-            WARN = {icon = "⚠️", color = "warning"},
-            YIKES = {icon = "💢", color = "warning"},
-            CONTEXT = {icon = "🌐", color = "info"},
-            CHALLENGE = {icon = "👊", color = "default"},
-            PITCH = {icon = "✍️", color = "default"},
-            FIX = {icon = "⚕️", color = "success"}, -- default ladybug emoji
-            FEAT = {icon = "🏆", color = "success"}, -- default ladybug emoji
-            NOTE = {color = "info"}
+            DONE = { icon = " ", color = "success" },
+            TODO = { icon = "⭕", color = "warning" },
+            IDEA = { icon = "💡", color = "idea" },
+            FIXME = { color = "error" }, -- default ladybug emoji
+            BUG = { color = "error" }, -- default ladybug emoji
+            WARNING = { icon = "⚠️", color = "warning" },
+            WARN = { icon = "⚠️", color = "warning" },
+            YIKES = { icon = "💢", color = "warning" },
+            CONTEXT = { icon = "🌐", color = "info" },
+            CHALLENGE = { icon = "👊", color = "default" },
+            PITCH = { icon = "✍️", color = "default" },
+            FIX = { icon = "⚕️", color = "success" }, -- default ladybug emoji
+            FEAT = { icon = "🏆", color = "success" }, -- default ladybug emoji
+            NOTE = { color = "info" }
           },
           merge_keywords = true, -- when true, custom keywords will be merged with the defaults
           colors = {
-            idea = {"IdeaMsg", "#FDFF74"},
-            success = {"SuccessMsg", "#10B981"},
-            error = {"LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626"},
-            warning = {"LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24"},
-            info = {"LspDiagnosticsDefaultInformation", "#2563EB"},
-            hint = {"LspDiagnosticsDefaultHint", "#10B981"},
-            default = {"Identifier", "#7C3AED"}
+            idea = { "IdeaMsg", "#FDFF74" },
+            success = { "SuccessMsg", "#10B981" },
+            error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
+            warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+            info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+            hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+            default = { "Identifier", "#7C3AED" }
           }
         }
       end
     }
     use "folke/which-key.nvim"
     use "folke/twilight.nvim"
-    use {
-      -- TODO: figure out if lua and json below can be handled via lsp
-      -- TODO: figure out other languages to add here
-      -- NOTE: you should prefer installing LSP formatters when available
-      "mhartington/formatter.nvim",
-      config = function()
-        local ll = require "lattice_local"
-        local pretty = {
-          function()
-            return {
-              exe = ll.prettier.bin,
-              args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-              stdin = true
-            }
-          end
-        }
-
-        require("formatter").setup(
-          {
-            logging = true,
-            filetype = {
-              javascript = pretty,
-              javascriptreact = pretty,
-              typescript = pretty,
-              typescriptreact = pretty,
-              json = pretty,
-              lua = {
-                function()
-                  return {
-                    exe = ll.luafmt.bin,
-                    args = {"--indent-count", 2, "--stdin"},
-                    stdin = true
-                  }
-                end
-              }
-            }
-          }
-        )
-        vim.api.nvim_exec(
-          -- ignore .js* and .ts* formats (we prefer diagnosticls, which also does this, see lspconfig stanza)
-          [[
-          augroup FormatAutogroup
-            autocmd!
-            autocmd BufWritePost *.json,*.lua FormatWrite
-          augroup END
-        ]],
-          true
-        )
-      end
-    }
     use {
       "folke/trouble.nvim",
       config = function()
@@ -153,13 +103,7 @@ packer.startup {
         )
       end
     }
-    use {"kyazdani42/nvim-web-devicons"}
-    use {
-      "lewis6991/gitsigns.nvim",
-      config = function()
-        require("gitsigns").setup()
-      end
-    }
+    use { "kyazdani42/nvim-web-devicons" }
     use {
       "L3MON4D3/LuaSnip",
       config = function()
@@ -178,10 +122,16 @@ packer.startup {
         )
       end
     }
+    use {
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup()
+      end
+    }
     use "hrsh7th/cmp-nvim-lsp"
     use {
       "hrsh7th/nvim-cmp",
-      requires = {"L3MON4D3/LuaSnip", "kristijanhusak/vim-dadbod-completion"},
+      requires = { "L3MON4D3/LuaSnip", "kristijanhusak/vim-dadbod-completion" },
       config = function()
         local luasnip = require "luasnip"
         local cmp = require "cmp"
@@ -201,10 +151,10 @@ packer.startup {
               end
             },
             mapping = {
-              ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
-              ["<C-p>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
-              ["<Down>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}),
-              ["<Up>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}),
+              ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+              ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+              ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+              ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
               ["<C-b>"] = cmp.mapping.scroll_docs(-4),
               ["<C-f>"] = cmp.mapping.scroll_docs(4),
               ["<C-e>"] = cmp.mapping.close(),
@@ -226,7 +176,7 @@ packer.startup {
                     fallback()
                   end
                 end,
-                {"i", "s"}
+                { "i", "s" }
               ),
               ["<S-Tab>"] = cmp.mapping(
                 function(fallback)
@@ -238,40 +188,40 @@ packer.startup {
                     fallback()
                   end
                 end,
-                {"i", "s"}
+                { "i", "s" }
               )
               --   ["<CR>"] = cmp.mapping.confirm({select = true})
             },
             sources = {
-              {name = "buffer"},
-              {name = "cmp_git"},
-              {name = "vim-dadbod-completion"},
+              { name = "buffer" },
+              { name = "cmp_git" },
+              { name = "vim-dadbod-completion" },
               {
                 name = "dictionary",
                 keyword_length = 2
               },
-              {name = "digraphs"},
-              {name = "emoji"},
-              {name = "luasnip"},
-              {name = "neorg"},
-              {name = "nvim_lsp"},
-              {name = "rg"},
-              {name = "spell"}
+              { name = "digraphs" },
+              { name = "emoji" },
+              { name = "luasnip" },
+              { name = "neorg" },
+              { name = "nvim_lsp" },
+              { name = "rg" },
+              { name = "spell" }
             }
           }
         )
         vim.opt.spell = false
-        vim.opt.spelllang = {"en_us"}
+        vim.opt.spelllang = { "en_us" }
       end
     }
-    use {"ibhagwan/fzf-lua", requires = {"vijaymarupudi/nvim-fzf"}}
+    use { "ibhagwan/fzf-lua", requires = { "vijaymarupudi/nvim-fzf" } }
     use {
       "jakewvincent/mkdnflow.nvim",
       config = function()
         vim.cmd("autocmd Filetype markdown set autowriteall")
         require("mkdnflow").setup(
           {
-            filetypes = {md = true, rmd = true, markdown = true},
+            filetypes = { md = true, rmd = true, markdown = true },
             create_dirs = true,
             perspective = {
               priority = "root",
@@ -298,7 +248,7 @@ packer.startup {
               end
             },
             to_do = {
-              symbols = {" ", ".", "x"},
+              symbols = { " ", ".", "x" },
               update_parents = true,
               not_started = " ",
               in_progress = ".",
@@ -310,31 +260,31 @@ packer.startup {
             },
             use_mappings_table = true,
             mappings = {
-              MkdnNextLink = {"n", "<Tab>"},
-              MkdnPrevLink = {"n", "<S-Tab>"},
-              MkdnNextHeading = {"n", "<leader>]"},
-              MkdnPrevHeading = {"n", "<leader>["},
-              MkdnGoBack = {"n", "<BS>"},
-              MkdnGoForward = {"n", "<Del>"},
-              MkdnFollowLink = {{"n", "v"}, "<CR>"},
-              MkdnDestroyLink = {"n", "<M-CR>"},
-              MkdnMoveSource = {"n", "<F2>"},
-              MkdnYankAnchorLink = {"n", "ya"},
-              MkdnYankFileAnchorLink = {"n", "yfa"},
-              MkdnIncreaseHeading = {"n", "+"},
-              MkdnDecreaseHeading = {"n", "-"},
-              MkdnToggleToDo = {{"n", "v"}, "<C-Space>"},
+              MkdnNextLink = { "n", "<Tab>" },
+              MkdnPrevLink = { "n", "<S-Tab>" },
+              MkdnNextHeading = { "n", "<leader>]" },
+              MkdnPrevHeading = { "n", "<leader>[" },
+              MkdnGoBack = { "n", "<BS>" },
+              MkdnGoForward = { "n", "<Del>" },
+              MkdnFollowLink = { { "n", "v" }, "<CR>" },
+              MkdnDestroyLink = { "n", "<M-CR>" },
+              MkdnMoveSource = { "n", "<F2>" },
+              MkdnYankAnchorLink = { "n", "ya" },
+              MkdnYankFileAnchorLink = { "n", "yfa" },
+              MkdnIncreaseHeading = { "n", "+" },
+              MkdnDecreaseHeading = { "n", "-" },
+              MkdnToggleToDo = { { "n", "v" }, "<C-Space>" },
               MkdnNewListItem = false,
               MkdnExtendList = false,
-              MkdnUpdateNumbering = {"n", "<leader>nn"},
-              MkdnTableNextCell = {"i", "<Tab>"},
-              MkdnTablePrevCell = {"i", "<S-Tab>"},
+              MkdnUpdateNumbering = { "n", "<leader>nn" },
+              MkdnTableNextCell = { "i", "<Tab>" },
+              MkdnTablePrevCell = { "i", "<S-Tab>" },
               MkdnTableNextRow = false,
-              MkdnTablePrevRow = {"i", "<M-CR>"},
-              MkdnTableNewRowBelow = {{"n", "i"}, "<leader>ir"},
-              MkdnTableNewRowAbove = {{"n", "i"}, "<leader>iR"},
-              MkdnTableNewColAfter = {{"n", "i"}, "<leader>ic"},
-              MkdnTableNewColBefore = {{"n", "i"}, "<leader>iC"},
+              MkdnTablePrevRow = { "i", "<M-CR>" },
+              MkdnTableNewRowBelow = { { "n", "i" }, "<leader>ir" },
+              MkdnTableNewRowAbove = { { "n", "i" }, "<leader>iR" },
+              MkdnTableNewColAfter = { { "n", "i" }, "<leader>ic" },
+              MkdnTableNewColBefore = { { "n", "i" }, "<leader>iC" },
               MkdnCR = false,
               MkdnTab = false,
               MkdnSTab = false
@@ -389,7 +339,7 @@ packer.startup {
       config = function()
         require("neoscroll").setup(
           {
-            mappings = {"<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb"},
+            mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
             easing_function = "quadratic" -- Default easing function
           }
         )
@@ -414,29 +364,29 @@ packer.startup {
         require("legendary").setup(
           {
             keymaps = {
-              {"<leader>tgf", ":Telescope git_files", description = "Telescope Git Files"},
-              {"<leader>tgbc", ":Telescope git_bcommits", description = "Telescope Git BCommits"},
-              {"<leader>tgc", ":Telescope git_commits", description = "Telescope Git Commits"},
-              {"<leader>tgb", ":Telescope git_branches", description = "Telescope Git Branches"},
-              {"<leader>tgf", ":Telescope git_files", description = "Telescope Git Files"},
-              {"<leader>tld", ":Telescope lsp_definitions", description = "Telescope LSP Definitions"},
-              {"<leader>tli", ":Telescope lsp_implementations", description = "Telescope LSP Implementations"},
-              {"<leader>tlca", ":Telescope lsp_code_actions", description = "Telescope LSP Code Actions"},
-              {"<leader>tlic", ":Telescope lsp_incoming_calls", description = "Telescope LSP Incoming Calls"},
-              {"<leader>tloc", ":Telescope lsp_outgoing_calls", description = "Telescope LSP Outgoing Calls"},
-              {"<leader>tlr", ":Telescope lsp_references", description = "Telescope LSP References "},
-              {"<leader>tltd", ":Telescope lsp_type_definitions", description = "Telescope LSP Type Definitions"},
-              {"<leader>tj", ":Telescope jumplist", description = "Telescope Jumplist"},
-              {"<leader>tf", ":Telescope frecency", description = "Telescope Frecency"},
-              {"<leader>tk", ":Telescope keymaps", description = "Telescope Keymaps"},
-              {"<leader>tr", ":Telescope registers", description = "Telescope Registers"},
-              {"<leader>tm", ":Telescope marks", description = "Telescope Marks"},
-              {"<leader>tp", ":Telescope projects", description = "Telescope Projects"},
-              {"<leader>tq", ":Telescope quickfix", description = "Telescope Quickfix"},
-              {"<leader>tb", ":Telescope buffers", description = "Telescope Buffers"},
-              {"<leader>flf", ":FzfLua files", description = "Fzf Files"},
-              {"<leader>flm", ":FzfLua marks", description = "Fzf Marks"},
-              {"<leader>flM", ":FzfLua man pages", description = "Fzf Man Pages"},
+              { "<leader>tgf", ":Telescope git_files", description = "Telescope Git Files" },
+              { "<leader>tgbc", ":Telescope git_bcommits", description = "Telescope Git BCommits" },
+              { "<leader>tgc", ":Telescope git_commits", description = "Telescope Git Commits" },
+              { "<leader>tgb", ":Telescope git_branches", description = "Telescope Git Branches" },
+              { "<leader>tgf", ":Telescope git_files", description = "Telescope Git Files" },
+              { "<leader>tld", ":Telescope lsp_definitions", description = "Telescope LSP Definitions" },
+              { "<leader>tli", ":Telescope lsp_implementations", description = "Telescope LSP Implementations" },
+              { "<leader>tlca", ":Telescope lsp_code_actions", description = "Telescope LSP Code Actions" },
+              { "<leader>tlic", ":Telescope lsp_incoming_calls", description = "Telescope LSP Incoming Calls" },
+              { "<leader>tloc", ":Telescope lsp_outgoing_calls", description = "Telescope LSP Outgoing Calls" },
+              { "<leader>tlr", ":Telescope lsp_references", description = "Telescope LSP References " },
+              { "<leader>tltd", ":Telescope lsp_type_definitions", description = "Telescope LSP Type Definitions" },
+              { "<leader>tj", ":Telescope jumplist", description = "Telescope Jumplist" },
+              { "<leader>tf", ":Telescope frecency", description = "Telescope Frecency" },
+              { "<leader>tk", ":Telescope keymaps", description = "Telescope Keymaps" },
+              { "<leader>tr", ":Telescope registers", description = "Telescope Registers" },
+              { "<leader>tm", ":Telescope marks", description = "Telescope Marks" },
+              { "<leader>tp", ":Telescope projects", description = "Telescope Projects" },
+              { "<leader>tq", ":Telescope quickfix", description = "Telescope Quickfix" },
+              { "<leader>tb", ":Telescope buffers", description = "Telescope Buffers" },
+              { "<leader>flf", ":FzfLua files", description = "Fzf Files" },
+              { "<leader>flm", ":FzfLua marks", description = "Fzf Marks" },
+              { "<leader>flM", ":FzfLua man pages", description = "Fzf Man Pages" },
               {
                 "<leader>tldws",
                 ":Telescope lsp_dynamic_workspace_symbols",
@@ -452,11 +402,11 @@ packer.startup {
                 ":Telescope lsp_document_symbols",
                 description = "Telescope LSP Document Symbols"
               },
-              {"<leader>Space", ":WhichKey", description = "WhichKey"},
-              {"<leader>mc", ":Code", description = "Mode Code"},
-              {"<leader>mh", ":Human", description = "Mode Human"},
-              {"<leader>mp", ":Prose", description = "Mode Prose"},
-              {"<leader>mv", ":Verse", description = "Mode Verse"}
+              { "<leader>Space", ":WhichKey", description = "WhichKey" },
+              { "<leader>mc", ":Code", description = "Mode Code" },
+              { "<leader>mh", ":Human", description = "Mode Human" },
+              { "<leader>mp", ":Prose", description = "Mode Prose" },
+              { "<leader>mv", ":Verse", description = "Mode Verse" }
               -- map keys to a function
               -- {
               --   "<leader>h",
@@ -499,30 +449,36 @@ packer.startup {
     }
     use {
       "neovim/nvim-lspconfig",
-      requires = {"b0o/schemastore.nvim"},
+      requires = {
+        { "b0o/schemastore.nvim" },
+        { "lukas-reineke/lsp-format.nvim" },
+      },
       config = function()
         local lattice_local = require "lattice_local"
         local nvim_lsp = require("lspconfig")
         _G.lsp_organize_imports = function()
           local params = {
             command = "_typescript.organizeImports",
-            arguments = {vim.api.nvim_buf_get_name(0)},
+            arguments = { vim.api.nvim_buf_get_name(0) },
             title = ""
           }
           vim.lsp.buf.execute_command(params)
         end
-        local opts = {noremap = true, silent = true}
+        local opts = { noremap = true, silent = true }
         vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
         vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
+        require 'lsp-format'.setup {}
         local on_attach = function(client, bufnr)
+          client.server_capabilities.document_formatting = true
+          require "lsp-format".on_attach(client)
           vim.api.nvim_buf_set_option(bufnr or 0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
           -- Mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local bufopts = {noremap = true, silent = true, buffer = bufnr}
+          local bufopts = { noremap = true, silent = true, buffer = bufnr }
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -546,7 +502,7 @@ packer.startup {
             "n",
             "<space>f",
             function()
-              vim.lsp.buf.format {async = true}
+              vim.lsp.buf.format { async = true }
             end,
             bufopts
           )
@@ -564,9 +520,9 @@ packer.startup {
           eslint = {
             sourceName = "eslint",
             command = lattice_local.eslint.bin,
-            rootPatterns = {"package-lock.json", "yarn.lock"},
+            rootPatterns = { "package-lock.json", "yarn.lock" },
             debounce = 100,
-            args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
+            args = { "--stdin", "--stdin-filename", "%filepath", "--format", "json" },
             parseJson = {
               errorsRoot = "[0].messages",
               line = "line",
@@ -576,13 +532,13 @@ packer.startup {
               message = "${message} [${ruleId}]",
               security = "severity"
             },
-            securities = {[2] = "error", [1] = "warning"}
+            securities = { [2] = "error", [1] = "warning" }
           }
         }
         local formatters = {
           prettier = {
             command = lattice_local.prettier.bin,
-            args = {"--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2"}
+            args = { "--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2" }
           }
         }
         local formatFiletypes = {
@@ -601,20 +557,24 @@ packer.startup {
           }
         } -- end diagnosticls
         nvim_lsp.bashls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.bashls.bin, "start"}
+          cmd = { lattice_local.bashls.bin, "start" }
         }
         nvim_lsp.ccls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.ccls.bin}
+          cmd = { lattice_local.ccls.bin }
         }
         nvim_lsp.cmake.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.cmake.bin}
+          cmd = { lattice_local.cmake.bin }
         }
         nvim_lsp.cssls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.cssls.bin, "--stdio"}
+          cmd = { lattice_local.cssls.bin, "--stdio" }
         }
         -- nvim_lsp.dotls.setup {
         --   capabilities = capabilities,
@@ -629,15 +589,17 @@ packer.startup {
         --   cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
         -- }
         nvim_lsp.html.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.htmlls.bin, "--stdio"}
+          cmd = { lattice_local.htmlls.bin, "--stdio" }
         }
         nvim_lsp.jsonls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.jsonls.bin, "--stdio"},
+          cmd = { lattice_local.jsonls.bin, "--stdio" },
           settings = {
             schemas = require "schemastore".json.schemas(),
-            validate = {enable = true}
+            validate = { enable = true }
           }
         }
         -- nvim_lsp.powershell_es.setup {
@@ -645,21 +607,24 @@ packer.startup {
         --   bundle = {lattice_local.powershell_es.bundle, "--stdio"}
         -- }
         nvim_lsp.prosemd_lsp.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.prosemd.bin, "--stdio"},
-          filetypes = {"markdown"},
+          cmd = { lattice_local.prosemd.bin, "--stdio" },
+          filetypes = { "markdown" },
           -- root_dir = function(fname)
           --   return vim.lsp.util.find_git_ancestor(fname) or vim.fn.getcwd()
           -- end,
           settings = {}
         }
         nvim_lsp.pyright.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.prosemd.bin, "--stdio"}
+          cmd = { lattice_local.prosemd.bin, "--stdio" }
         }
         nvim_lsp.rnix.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.rnix.bin}
+          cmd = { lattice_local.rnix.bin }
         }
         -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
         -- nvim_lsp.stylelint_lsp.setup {
@@ -670,7 +635,8 @@ packer.startup {
         table.insert(sumneko_runtime_path, "lua/?.lua")
         table.insert(sumneko_runtime_path, "lua/?/init.lua")
         nvim_lsp.sumneko_lua.setup {
-          cmd = {lattice_local.sumneko.bin, "-E", lattice_local.sumneko.main},
+          on_attach = on_attach,
+          cmd = { lattice_local.sumneko.bin, "-E", lattice_local.sumneko.main },
           capabilities = capabilities,
           settings = {
             Lua = {
@@ -682,7 +648,7 @@ packer.startup {
               },
               diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim"}
+                globals = { "vim" }
               },
               workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -696,24 +662,25 @@ packer.startup {
           }
         }
         nvim_lsp.sqls.setup {
-          cmd = {lattice_local.sqls.bin},
+          on_attach = on_attach,
+          cmd = { lattice_local.sqls.bin },
           settings = {
             sqls = {
-              connections = {lattice_local.sqls.config}
+              connections = { lattice_local.sqls.config }
             }
           }
         }
         nvim_lsp.svelte.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.sveltels.bin}
+          cmd = { lattice_local.sveltels.bin }
         }
         nvim_lsp.taplo.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.taplo.bin, "run"}
+          cmd = { lattice_local.taplo.bin, "run" }
         }
         nvim_lsp.tsserver.setup {
           capabilities = capabilities,
-          cmd = {lattice_local.tsls.bin, "--stdio"},
+          cmd = { lattice_local.tsls.bin, "--stdio" },
           filetypes = {
             "javascript",
             "javascriptreact",
@@ -722,19 +689,18 @@ packer.startup {
             "typescriptreact",
             "typescript.tsx"
           },
-          on_attach = function(client)
-            client.server_capabilities.document_formatting = false
-            on_attach(client)
-          end
+          on_attach = on_attach,
         }
 
         nvim_lsp.vimls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.vimls.bin}
+          cmd = { lattice_local.vimls.bin }
         }
         nvim_lsp.yamlls.setup {
+          on_attach = on_attach,
           capabilities = capabilities,
-          cmd = {lattice_local.yamlls.bin}
+          cmd = { lattice_local.yamlls.bin }
         }
       end
     }
@@ -770,7 +736,7 @@ packer.startup {
           pickers = {},
           extensions = {
             media_files = {
-              filetypes = {"png", "webp", "jpg", "jpeg"},
+              filetypes = { "png", "webp", "jpg", "jpeg" },
               find_cmd = "rg"
             },
             project = ll.project
@@ -931,8 +897,8 @@ packer.startup {
             },
             swap = {
               enable = true,
-              swap_next = {["<leader>xp"] = "@parameter.inner"},
-              swap_previous = {["<leader>xP"] = "@parameter.inner"}
+              swap_next = { ["<leader>xp"] = "@parameter.inner" },
+              swap_previous = { ["<leader>xP"] = "@parameter.inner" }
             }
           },
           rainbow = {
@@ -956,39 +922,39 @@ packer.startup {
       as = "hop",
       config = function()
         local hop = require("hop")
-        hop.setup {keys = "etovxqpdygfblzhckisuran"}
+        hop.setup { keys = "etovxqpdygfblzhckisuran" }
         local directions = require("hop.hint").HintDirection
         vim.keymap.set(
           "",
           "f",
           function()
-            hop.hint_char1({direction = directions.AFTER_CURSOR, current_line_only = true})
+            hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
           end,
-          {remap = true}
+          { remap = true }
         )
         vim.keymap.set(
           "",
           "F",
           function()
-            hop.hint_char1({direction = directions.BEFORE_CURSOR, current_line_only = true})
+            hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
           end,
-          {remap = true}
+          { remap = true }
         )
         vim.keymap.set(
           "",
           "t",
           function()
-            hop.hint_char1({direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1})
+            hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
           end,
-          {remap = true}
+          { remap = true }
         )
         vim.keymap.set(
           "",
           "T",
           function()
-            hop.hint_char1({direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1})
+            hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
           end,
-          {remap = true}
+          { remap = true }
         )
       end
     }
@@ -1054,7 +1020,7 @@ packer.startup {
                   checkOnSave = {
                     enable = true,
                     command = "check",
-                    extraArgs = {"--target-dir", "/tmp/rust-analyzer-check"}
+                    extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" }
                   }
                 }
               }
@@ -1133,7 +1099,7 @@ packer.startup {
     use {
       "zegervdv/settle.nvim",
       opt = true,
-      cmd = {"SettleInit"},
+      cmd = { "SettleInit" },
       config = function()
         require("settle").setup {
           wrap = true,
@@ -1180,7 +1146,7 @@ end
 ls.add_snippets(
   "all",
   {
-    s("now", {d(1, date_input, {})}),
+    s("now", { d(1, date_input, {}) }),
     s(
       "ln",
       {
