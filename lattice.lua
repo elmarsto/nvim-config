@@ -39,14 +39,6 @@ packer.startup {
       end
     }
     use "f3fora/cmp-spell"
-    use {
-      "feline-nvim/feline.nvim",
-      config = function()
-        local feline = require "feline"
-        feline.setup()
-        feline.winbar.setup()
-      end
-    }
     use "folke/lsp-colors.nvim"
     use {
       "folke/todo-comments.nvim",
@@ -346,6 +338,17 @@ packer.startup {
       end
     }
     use "lukas-reineke/cmp-rg"
+    use {
+      "nvim-lualine/lualine.nvim",
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = function()
+        require 'lualine'.setup {
+          options = {
+            theme = "everforest"
+          }
+        }
+      end
+    }
     use "nvim-lua/plenary.nvim"
     use "nvim-lua/popup.nvim"
     -- use "madskjeldgaard/reaper-nvim"
