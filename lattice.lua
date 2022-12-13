@@ -747,6 +747,7 @@ packer.startup {
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-frecency.nvim",
         "nvim-telescope/telescope-project.nvim",
+        "protex/better-digraphs.nvim",
         "tami5/sqlite.lua",
       },
       config = function()
@@ -767,6 +768,12 @@ packer.startup {
         tscope.load_extension "frecency"
         tscope.load_extension "nodescripts"
         tscope.load_extension "project"
+        vim.cmd [[
+          inoremap <C-k><C-k> <Cmd>lua require'better-digraphs'.digraphs("insert")<CR>
+          nnoremap r<C-k><C-k> <Cmd>lua require'better-digraphs'.digraphs("normal")<CR>
+          vnoremap r<C-k><C-k> <ESC><Cmd>lua require'better-digraphs'.digraphs("visual")<CR>
+        ]]
+
       end
     }
     use {
