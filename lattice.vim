@@ -9,7 +9,7 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 
 let &showbreak = '⮩'
-set clipboard^=unnamed,unamedplus
+set clipboard^=unnamed,unnamedplus
 set laststatus=2 
 set listchars=precedes:«,extends:»
 set autoread
