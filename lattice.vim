@@ -9,6 +9,7 @@ highlight Comment cterm=italic gui=italic
 highlight Comment cterm=italic gui=italic
 
 let &showbreak = '⮩'
+set clipboard=unnamed,unamedplus
 set laststatus=2 
 set listchars=precedes:«,extends:»
 set autoread
@@ -130,6 +131,8 @@ command! Va :Goyo
 nnoremap Q @@
 nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
 nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
+nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
+nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>
 nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 
 " Paste-mode shenanigans

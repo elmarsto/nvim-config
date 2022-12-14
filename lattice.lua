@@ -403,7 +403,7 @@ packer.startup {
               { "<leader>,", ":Telescope loclist<cr>", description = "Telescope Loclist" },
               { "<leader><Bslash>", ":Telescope current_buffer_fuzzy_find<cr>",
                 description = "Telescope Current Buffer Fuzzy Find" },
-              { "<M-CR>", ":Telescope<cr>", description = "Telescope" },
+              { "<M-CR>", ":Telescope find_files<cr>", description = "Telescope" },
               { "<leader><CR>", ":Telescope git_branches<cr>", description = "Git Branches" },
               { "<C-M>", ":Telescope git_files<cr>", description = "Git Files" },
               { "<leader><Space>", ":Trouble<cr>", description = "Trouble" },
