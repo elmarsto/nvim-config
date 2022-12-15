@@ -452,6 +452,8 @@ packer.startup {
               { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
               { "<leader>mv", ":Verse<cr>", description = "Mode Verse" },
               { "<leader>mb", ":Boethius<cr>", description = "Mode Boethius" },
+              { '<leader>"', ":sp<cr>", description = "Split along X axis" },
+              { '<leader>%', ":vs<cr>", description = "Split along Y axis" },
             },
             commands = {},
             funcs = {},
