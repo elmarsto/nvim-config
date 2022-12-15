@@ -12,7 +12,12 @@ packer.startup {
   function(use)
     use "APZelos/blamer.nvim"
     use "bfredl/nvim-luadev"
-    use "b0o/mapx.nvim"
+    use {
+      "b0o/mapx.nvim",
+      config = function()
+        require 'mapx'.setup { global = "force", whichkey = true }
+      end
+    }
     use "David-Kunz/jester"
     use "dmix/elvish.vim"
     use "ellisonleao/glow.nvim"
@@ -364,7 +369,6 @@ packer.startup {
       "mrjones2014/legendary.nvim",
       requires = { "kkarji/sqlite.lua", "stevearc/dressing.nvim", "b00/mapx.nvim" },
       config = function()
-        require 'mapx'.setup { global = true }
         require('dressing').setup({
           select = {
             get_config = function(opts)
@@ -452,8 +456,8 @@ packer.startup {
               { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
               { "<leader>mv", ":Verse<cr>", description = "Mode Verse" },
               { "<leader>mb", ":Boethius<cr>", description = "Mode Boethius" },
-              { '<leader>"', ":sp<cr>", description = "Split along X axis" },
-              { '<leader>%', ":vs<cr>", description = "Split along Y axis" },
+              { '<C-W>"', ":sp<cr>", description = "Split along X axis" },
+              { '<C-W>%', ":vs<cr>", description = "Split along Y axis" },
             },
             commands = {},
             funcs = {},
