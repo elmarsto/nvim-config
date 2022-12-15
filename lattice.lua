@@ -356,7 +356,6 @@ packer.startup {
     }
     use "nvim-lua/plenary.nvim"
     use "nvim-lua/popup.nvim"
-    -- use "madskjeldgaard/reaper-nvim"
     use "mbbill/undotree"
     use {
       "mfussenegger/nvim-ts-hint-textobject",
@@ -793,14 +792,26 @@ packer.startup {
     use {
       "nvim-treesitter/nvim-treesitter",
       requires = {
+        "andymnass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
+        "RRethy/nvim-treesitter-textsubjects",
         "danymat/neogen",
-        "nvim-treesitter/playground",
-        "m-demare/hlargs.nvim"
+        "m-demare/hlargs.nvim",
+        "mfussenegger/nvim-treehopper",
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        "nvim-treesitter/nvim-treesitter-context",
+        "nvim-treesitter/nvim-treesitter-refactor",
+        "p00f/nvim-ts-rainbow",
+        "theHamsta/nvim-treesitter-pairs",
+        "windwp/nvim-ts-autotag"
       },
       config = function()
         require "neogen".setup {}
         require "hlargs".setup {}
         require "nvim-treesitter.configs".setup {
+          highlight = {
+            enable = true, -- false will disable the whole extension
+            additional_vim_regex_highlighting = false
+          },
           ensure_installed = {
             "bash",
             "c",
@@ -838,15 +849,17 @@ packer.startup {
             "yaml",
             "zig"
           },
+          incremental_selection = {
+            enable = true,
+            keymaps = {
+              init_selection = "<leader>gnn",
+              node_incremental = "<leader>grn",
+              scope_incremental = "<leader>grc",
+              node_decremental = "<leader>grm"
+            }
+          },
           autotag = {
             enable = true
-          },
-          context_commentstring = {
-            enable = true
-          },
-          highlight = {
-            enable = true, -- false will disable the whole extension
-            additional_vim_regex_highlighting = false
           },
           refactor = {
             highlight_definitions = {
@@ -858,83 +871,31 @@ packer.startup {
             smart_rename = {
               enable = true,
               keymaps = {
-                smart_rename = "grr"
+                smart_rename = "<leader>gsr"
               }
             },
             navigation = {
               enable = true,
               keymaps = {
-                goto_definition = "gnd",
-                list_definitions = "gnD",
-                list_definitions_toc = "gO",
-                goto_next_usage = "<a-*>",
-                goto_previous_usage = "<a-#>"
+                goto_definition = "<leader>gnd",
+                list_definitions = "<leader>gnD",
+                list_definitions_toc = "<leader>gO",
+                goto_next_usage = "<leader><a-*>",
+                goto_previous_usage = "<leader><a-#>"
               }
             }
           },
           indent = {
             enable = true
           },
-          incremental_selection = {
+          context_commentstring = {
+            enable = true
+          },
+          textsubjects = {
             enable = true,
             keymaps = {
-              init_selection = "gnn",
-              node_incremental = "grn",
-              scope_incremental = "grc",
-              node_decremental = "grm"
-            }
-          },
-          textobjects = {
-            lsp_interop = {
-              enable = true,
-              border = "none",
-              peek_definition_code = {
-                ["<leader>pf"] = "@function.outer",
-                ["<leader>pc"] = "@class.outer"
-              }
-            },
-            textsubjects = {
-              enable = true,
-              keymaps = {
-                ["."] = "textsubjects-smart",
-                [";"] = "textsubjects-container-outer"
-              }
-            },
-            move = {
-              enable = true,
-              set_jumps = true,
-              goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer"
-              },
-              goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer"
-              },
-              goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer"
-              },
-              goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer"
-              }
-            },
-            select = {
-              enable = true,
-              lookahead = true,
-              keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner"
-              }
-            },
-            swap = {
-              enable = true,
-              swap_next = { ["<leader>xp"] = "@parameter.inner" },
-              swap_previous = { ["<leader>xP"] = "@parameter.inner" }
+              ["<leader>g."] = "textsubjects-smart",
+              ["<leader>g;"] = "textsubjects-container-outer"
             }
           },
           rainbow = {
@@ -942,13 +903,12 @@ packer.startup {
             extended_mode = true,
             max_file_lines = nil
           },
-          playground = {
-            enable = true,
-            disable = {},
-            updatetime = 25,
-            persist_queries = false
-          }
         }
+        vim.cmd [[
+          set foldmethod=expr
+          set foldexpr=nvim_treesitter#foldexpr()
+          set nofoldenable                     " Disable folding at startup.
+        ]]
       end
     }
     use "petertriho/cmp-git"
@@ -1005,33 +965,6 @@ packer.startup {
       "rcarriga/nvim-notify",
       config = function()
         vim.notify = require("notify")
-      end
-    }
-    use {
-      "romgrk/nvim-treesitter-context",
-      config = function()
-        require "treesitter-context".setup {
-          enable = true,
-          throttle = true,
-          max_lines = 0,
-          patterns = {
-            default = {
-              "class",
-              "function",
-              "method",
-              "for",
-              "while",
-              "if",
-              "switch",
-              "case"
-            }
-            -- e.g. of lang-specific
-            -- rust = { 'impl_item' }
-          }
-        }
-        vim.cmd [[
-          highlight TreesitterContext cterm=italic gui=italic
-        ]]
       end
     }
     use "saadparwaiz1/cmp_luasnip"
