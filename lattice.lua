@@ -792,7 +792,7 @@ packer.startup {
     use {
       "nvim-treesitter/nvim-treesitter",
       requires = {
-        "andymnass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
+        "andymass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
         "RRethy/nvim-treesitter-textsubjects",
         "danymat/neogen",
         "m-demare/hlargs.nvim",
