@@ -435,7 +435,7 @@ packer.startup {
               { "<leader>tm", ":Telescope marks<cr>", description = "Telescope Marks" },
               { "<leader>tp", ":Telescope projects<cr>", description = "Telescope Projects" },
               { "<leader>tq", ":Telescope quickfix<cr>", description = "Telescope Quickfix" },
-              { "<leader>tb", ":Telescope buffers<cr>", description = "Telescope Buffers" },
+              { "<C-tab>", ":Telescope buffers<cr>", description = "Telescope Buffers" },
               {
                 "<leader>tldws",
                 ":Telescope lsp_dynamic_workspace_symbols<cr>",
