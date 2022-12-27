@@ -35,3 +35,25 @@
  21. Move the position to where closed file last time
  22. ``^` 
  23. Fuck. Digraphs with `CTRL+K` are a thing
+ 
+ # 2022-12-16
+
+
+
+ `Ctrl-a` `Ctrl-@` spit last insert (latter form ejects from insert mode after)
+ `Ctrl-o` in insert mode gives you oneshot of normal mode (nm 'o'neshot)
+
+ `Ctrl-d` in insert mode changes line indentation, cruically you can be anywhere on th line
+ `Ctrl-t` increases indentation
+
+ `Ctrl-u` (delete everything 'u'ntil cursor)
+
+ `Ctrl-w` (delete word under cursor)
+
+ `Ctrl-h` (same as mashing that backspace)
+
+ `Ctrl-r Ctrl-r` (double tap) is a verbatim mode useful for managing macros. A single `Ctrl-R <reg>` doesn't do it
+`Ctrl-r Ctrl-p` does paste mode oneshot
+
+
+`gi` `gI` `gn`

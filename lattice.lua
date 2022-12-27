@@ -87,7 +87,80 @@ packer.startup {
         require "trouble".setup {}
       end
     }
+    use { "GCBallesteros/vim-textobj-hydrogen",
+      config = function()
+        -- https://www.maxwellrules.com/misc/nvim_jupyter.html
+        vim.cmd [[
+           nmap ]x ctrih/^# %%<CR><CR> 
+        ]]
+      end
+    }
+    use {
+      "GCBallesteros/jupytext.vim",
+      config = function()
+        -- https://www.maxwellrules.com/misc/nvim_jupyter.html
+        vim.cmd [[
+          let g:jupytext_fmt = 'py'
+          let g:jepytext_style = 'hydrogen'
+        ]]
+      end
+    }
     use "github/copilot.vim"
+    use { "hkupty/iron.nvim",
+      config = function()
+        require 'iron.core'.setup {
+          config = {
+            -- Whether a repl should be discarded or not
+            scratch_repl = true,
+            -- Your repl definitions come here
+            repl_definition = {
+              sh = {
+                -- Can be a table or a function that
+                -- returns a table (see https://github.com/hkupty/iron.nvim)
+                command = { "nsh" }
+              },
+              -- https://www.maxwellrules.com/misc/nvim_jupyter.html
+              python = {
+                command = { "ipython" },
+                format = require("iron.fts.common").bracketed_paste
+              }
+
+            },
+            -- How the repl window will be displayed
+            -- See below for more information
+            repl_open_cmd = require('iron.view').bottom(40),
+          },
+          -- Iron doesn't set keymaps by default anymore.
+          -- You can set them here or manually add keymaps to the functions in iron.core
+          keymaps = {
+            send_motion = "<space>sc",
+            visual_send = "<space>sc",
+            send_file = "<space>sf",
+            send_line = "<space>sl",
+            send_mark = "<space>sm",
+            mark_motion = "<space>mc",
+            mark_visual = "<space>mc",
+            remove_mark = "<space>md",
+            cr = "<space>s<cr>",
+            interrupt = "<space>s<space>",
+            exit = "<space>sq",
+            clear = "<space>cl",
+          },
+          -- If the highlight is on, you can change how it looks
+          -- For the available options, check nvim_set_hl
+          highlight = {
+            italic = true
+          },
+          ignore_blank_lines = true,
+
+        }
+        -- iron also has a list of commands, see :h iron-commands for all available commands
+        vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
+        vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
+        vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
+        vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+      end
+    }
 
     use "kristijanhusak/vim-dadbod-ui"
     use {
@@ -331,6 +404,7 @@ packer.startup {
     use "junegunn/goyo.vim"
     use "junegunn/seoul256.vim"
     use "kana/vim-textobj-user"
+    use "kana/vim-textobj-line"
     use {
       "karb94/neoscroll.nvim",
       config = function()
@@ -955,11 +1029,35 @@ packer.startup {
       end
     }
     use "preservim/vim-colors-pencil"
-    use "preservim/vim-lexical"
-    use "preservim/vim-litecorrect"
     use "preservim/vim-pencil"
-    use "preservim/vim-textobj-quote"
-    use "preservim/vim-textobj-sentence"
+    use { "preservim/vim-textobj-quote",
+      config = function()
+        -- from https://github.com/preservim/vim-textobj-quote README.md
+        vim.cmd [[
+          filetype plugin on
+
+          augroup textobj_quote
+            autocmd!
+            autocmd FileType markdown call textobj#quote#init()
+            autocmd FileType textile call textobj#quote#init()
+            autocmd FileType text call textobj#quote#init({'educate': 0})
+          augroup END
+        ]]
+      end
+    }
+    use { "preservim/vim-textobj-sentence",
+      config = function()
+        -- from https://github.com/preservim/vim-textobj-sentence README.md
+        vim.cmd [[
+          filetype plugin indent on
+
+          augroup textobj_sentence
+            autocmd!
+            autocmd FileType markdown call textobj#sentence#init()
+            autocmd FileType textile call textobj#sentence#init()
+          augroup END
+        ]]
+      end }
     use "preservim/vim-wordy"
     use {
       "rcarriga/nvim-notify",
