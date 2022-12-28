@@ -2,6 +2,26 @@ local treesitter = {}
 
 function treesitter.setup(use)
   use {
+    "drybalka/tree-climber.nvim",
+    config = function()
+      local keyopts = { noremap = true, silent = true }
+      vim.keymap.set({ 'n', 'v', 'o' }, 'H', require('tree-climber').goto_parent, keyopts)
+      vim.keymap.set({ 'n', 'v', 'o' }, 'L', require('tree-climber').goto_child, keyopts)
+      vim.keymap.set({ 'n', 'v', 'o' }, 'J', require('tree-climber').goto_next, keyopts)
+      vim.keymap.set({ 'n', 'v', 'o' }, 'K', require('tree-climber').goto_prev, keyopts)
+      vim.keymap.set({ 'v', 'o' }, 'in', require('tree-climber').select_node, keyopts)
+      vim.keymap.set('n', '<c-k>', require('tree-climber').swap_prev, keyopts)
+      vim.keymap.set('n', '<c-j>', require('tree-climber').swap_next, keyopts)
+      vim.keymap.set('n', '<c-h>', require('tree-climber').highlight_node, keyopts)
+    end
+  }
+  use {
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      require("tsht").config.hint_keys = { "h", "j", "f", "d", "n", "v", "s", "l", "a" }
+    end
+  }
+  use {
     "mfussenegger/nvim-ts-hint-textobject",
     config = function()
       vim.api.nvim_set_keymap("o", "m", "<cmd><C-U>lua require('tsht').nodes()<CR>", {})
@@ -122,6 +142,15 @@ function treesitter.setup(use)
           extended_mode = true,
           max_file_lines = nil
         },
+      }
+      use { "windwp/nvim-ts-autotag",
+        config = function()
+          require 'nvim-treesitter.configs'.setup {
+            autotag = {
+              enable = true,
+            }
+          }
+        end
       }
       vim.cmd [[
           set foldmethod=expr
