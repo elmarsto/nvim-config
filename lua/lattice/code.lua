@@ -8,7 +8,6 @@ function code.setup(use)
     end
   }
   use "bfredl/nvim-luadev"
-
   use "dmix/elvish.vim"
   use "github/copilot.vim"
   use {
@@ -44,6 +43,12 @@ function code.setup(use)
     end
   }
   use "tpope/vim-surround"
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require('nvim-autopairs').setup({ disable_filetype = { "TelescopePrompt", "vim" } })
+    end
+  }
 end
 
 return code

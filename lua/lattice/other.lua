@@ -1,7 +1,20 @@
 local other = {}
 
 function other.setup(use)
+  use "gbprod/stay-in-place.nvim"
   use "nvim-lua/plenary.nvim"
+
+  use "famiu/bufdelete.nvim"
+
+  use({
+    "olimorris/persisted.nvim",
+    --module = "persisted", -- For lazy loading
+    config = function()
+      require("persisted").setup()
+      require("telescope").load_extension("persisted") -- To load the telescope extension
+    end,
+  })
+  use "samjwill/nvim-unception"
   use {
     "tami5/sqlite.lua",
     config = function()

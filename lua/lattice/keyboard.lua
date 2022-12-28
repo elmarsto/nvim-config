@@ -109,6 +109,29 @@ function keyboard.setup(use)
         })
     end
   }
+  use "tyru/open-browser.vim"
+  vim.cmd [[
+      " misc mappings
+      nnoremap Q @@
+      nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
+      nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
+      nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
+      nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>
+      nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+
+      " Paste-mode shenanigans
+      function! TogglePaste()
+          if(&paste == 0)
+              set paste
+              echo "Paste Mode Enabled"
+          else
+              set nopaste
+              echo "Paste Mode Disabled"
+          endif
+      endfunction
+      map <leader>p :call TogglePaste()<cr>
+
+  ]]
 end
 
 return keyboard

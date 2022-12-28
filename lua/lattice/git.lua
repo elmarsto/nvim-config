@@ -9,6 +9,17 @@ function git.setup(use)
     end
   }
   use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = function()
+      require "octo".setup()
+    end
+  }
+  use {
     "ruifm/gitlinker.nvim",
     config = function()
       require "gitlinker".setup()
@@ -25,6 +36,10 @@ function git.setup(use)
         }
       )
     end
+  }
+  use { "tanvirtin/vgit.nvim",
+    requires = { "nvim-lua/plenary.nvim" }
+
   }
   use "tpope/vim-fugitive"
   use {

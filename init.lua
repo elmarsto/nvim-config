@@ -6,7 +6,6 @@ au TermOpen * setlocal scrollback=-1
 let &showbreak = '⮩'
 set autoread
 set backspace=indent,eol,start
-set clipboard^=unnamed,unnamedplus
 set expandtab
 set foldlevel=3
 set laststatus=2 

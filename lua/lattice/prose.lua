@@ -2,6 +2,8 @@ local prose = {}
 
 function prose.setup(use)
   use "ellisonleao/glow.nvim"
+  use "ekickx/clipboard-image.nvim"
+  use "epwalsh/obsidian.nvim"
   use "f3fora/cmp-spell"
   use {
     "jakewvincent/mkdnflow.nvim",
@@ -81,6 +83,20 @@ function prose.setup(use)
       )
     end
   }
+  use "jbyuki/venn.nvim"
+  use {
+    'NFrid/due.nvim',
+    config = function()
+      require('due_nvim').setup {}
+    end
+  }
+  use {
+    "phaazon/mind.nvim",
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require 'mind'.setup()
+    end
+  }
   use "preservim/vim-colors-pencil"
   use "preservim/vim-pencil"
   use { "preservim/vim-textobj-quote",
@@ -113,6 +129,29 @@ function prose.setup(use)
     end }
   use "preservim/vim-wordy"
   use "pirmd/gemini.vim"
+  use {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+      local opts = { noremap = true, silent = true }
+      vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
+      vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
+      vim.keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", opts)
+
+    end
+  }
+  vim.cmd [[
+    autocmd BufWinEnter *.html iabbrev --- &mdash;
+    autocmd BufWinEnter *.svelte iabbrev --- &mdash;
+    autocmd BufWinEnter *.jsx iabbrev --- &mdash;
+    autocmd BufWinEnter *.tsx iabbrev --- &mdash;
+    autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ] 
+    autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ] 
+    let g:markdown_folding=1
+   ]]
+
 end
 
 return prose
