@@ -143,15 +143,6 @@ function treesitter.setup(use)
           max_file_lines = nil
         },
       }
-      use { "windwp/nvim-ts-autotag",
-        config = function()
-          require 'nvim-treesitter.configs'.setup {
-            autotag = {
-              enable = true,
-            }
-          }
-        end
-      }
       vim.cmd [[
           set foldmethod=expr
           set foldexpr=nvim_treesitter#foldexpr()
