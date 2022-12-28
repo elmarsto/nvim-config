@@ -35,7 +35,7 @@ function scope.setup(use)
       vim.cmd [[
           nnoremap <leader><Tab> :Telescope frecency <cr>
           " I tend to mash so 
-          nnoremap <Tab><leader> :Telescope frecency <cr>
+          "nnoremap <Tab><leader> :Telescope frecency <cr>
           inoremap <C-k><C-k> <Cmd>lua require'better-digraphs'.digraphs("insert")<CR>
           nnoremap r<C-k><C-k> <Cmd>lua require'better-digraphs'.digraphs("normal")<CR>
           vnoremap r<C-k><C-k> <ESC><Cmd>lua require'better-digraphs'.digraphs("visual")<CR>
