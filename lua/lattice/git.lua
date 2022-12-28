@@ -39,7 +39,6 @@ function git.setup(use)
   }
   use { "tanvirtin/vgit.nvim",
     requires = { "nvim-lua/plenary.nvim" }
-
   }
   use "tpope/vim-fugitive"
   use {
