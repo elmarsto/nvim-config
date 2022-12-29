@@ -36,7 +36,7 @@ function mpletion.setup(use)
                 select = true
               }
             ),
-            ["<Tab>"] = cmp.mapping(
+            ["<C-PageDown>"] = cmp.mapping(
               function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
@@ -50,7 +50,7 @@ function mpletion.setup(use)
               end,
               { "i", "s" }
             ),
-            ["<S-Tab>"] = cmp.mapping(
+            ["<C-PageUp>"] = cmp.mapping(
               function(fallback)
                 if cmp.visible() then
                   cmp.select_prev_item()
@@ -61,8 +61,8 @@ function mpletion.setup(use)
                 end
               end,
               { "i", "s" }
-            )
-            --   ["<CR>"] = cmp.mapping.confirm({select = true})
+            ),
+            ["<CR>"] = cmp.mapping.confirm({ select = true })
           },
           sources = {
             { name = "buffer" },
