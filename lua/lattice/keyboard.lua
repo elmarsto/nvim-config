@@ -30,14 +30,13 @@ function keyboard.setup(use)
       require("legendary").setup(
         {
           keymaps = {
-            { "<C-P>", ":Legendary<cr>", description = "Legendary (Meta!)" },
+            { "<C-Space>", ":Legendary<cr>", description = "Legendary (Meta!)" },
             { "<leader>te",
               function()
                 require 'telescope.builtin'.symbols { sources = { "emoji" } }
               end,
               description = "Emojis"
             },
-            { "<C-Space>", ":WhichKey<cr>", description = "WhichKey" },
             { "<M-Left>", ":tabprev<cr>", description = "Prev Tab" },
             { "<M-Right>", ":tabnext<cr>", description = "Next Tab" },
             { "<M-Down>", ":tablast<cr>", description = "Last Tab" },
@@ -53,7 +52,7 @@ function keyboard.setup(use)
             { "<M-CR>", ":Telescope find_files<cr>", description = "Telescope Git_Files" },
             { "<leader><CR>", ":Telescope git_files<cr>", description = "Git Files" },
             { "<leader><leader><CR>", ":Telescope git_branches<cr>", description = "Git Branches" },
-            { "<C-M>", ":Telescope find_files<cr>", description = "Git Files" },
+            { "<C-M>", ":Telescope treesitter<cr>", description = "Git Files" },
             { "<leader><Space>", ":Trouble<cr>", description = "Trouble" },
             { "<F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
             { "<leader>jrf", require 'jester'.run_last, description = "Jester Run File" },
@@ -95,11 +94,6 @@ function keyboard.setup(use)
               ":Telescope lsp_document_symbols<cr>",
               description = "Telescope LSP Document Symbols"
             },
-            { "<leader>mc", ":Code<cr>", description = "Mode Code" },
-            { "<leader>mh", ":Human<cr>", description = "Mode Human" },
-            { "<leader>mp", ":Prose<cr>", description = "Mode Prose" },
-            { "<leader>mv", ":Verse<cr>", description = "Mode Verse" },
-            { "<leader>mb", ":Boethius<cr>", description = "Mode Boethius" },
             { '<C-W>"', ":sp<cr>", description = "Split along X axis" },
             { '<C-W>%', ":vs<cr>", description = "Split along Y axis" },
           },

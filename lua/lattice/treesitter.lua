@@ -16,12 +16,6 @@ function treesitter.setup(use)
     end
   }
   use {
-    "mfussenegger/nvim-treehopper",
-    config = function()
-      require("tsht").config.hint_keys = { "h", "j", "f", "d", "n", "v", "s", "l", "a" }
-    end
-  }
-  use {
     "mfussenegger/nvim-ts-hint-textobject",
     config = function()
       vim.api.nvim_set_keymap("o", "m", "<cmd><C-U>lua require('tsht').nodes()<CR>", {})
