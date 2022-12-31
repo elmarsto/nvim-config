@@ -4,10 +4,9 @@ function keyboard.setup(use)
   use {
     "b0o/mapx.nvim",
     config = function()
-      require 'mapx'.setup { global = "force", whichkey = true }
+      require 'mapx'.setup { global = "force" }
     end
   }
-  use "folke/which-key.nvim"
   use {
     "mrjones2014/legendary.nvim",
     requires = { "kkarji/sqlite.lua", "stevearc/dressing.nvim", "b00/mapx.nvim" },
@@ -27,7 +26,7 @@ function keyboard.setup(use)
           end
         }
       })
-      require("legendary").setup(
+      require("legendary").setup(-- TODO extract shortcuts below, redo w mapx, remove legendary
         {
           keymaps = {
             { "<C-Space>", ":Legendary<cr>", description = "Legendary (Meta!)" },

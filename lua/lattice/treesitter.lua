@@ -65,6 +65,7 @@ function treesitter.setup(use)
           "lua",
           "markdown",
           "markdown_inline",
+          "mermaid",
           "nix",
           "norg",
           "perl",

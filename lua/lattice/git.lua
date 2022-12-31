@@ -25,6 +25,7 @@ function git.setup(use)
       require "gitlinker".setup()
     end
   }
+  use "sindrets/diffview.nvim"
   use {
     "TimUntersberger/neogit",
     config = function()

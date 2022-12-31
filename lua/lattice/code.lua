@@ -35,7 +35,6 @@ function code.setup(use)
     end
   }
   use "rafcamlet/nvim-luapad"
-  use "sindrets/diffview.nvim"
   use {
     "smjonas/inc-rename.nvim",
     config = function()
