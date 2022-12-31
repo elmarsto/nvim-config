@@ -104,7 +104,6 @@ function prose.setup(use)
       -- from https://github.com/preservim/vim-textobj-quote README.md
       vim.cmd [[
           filetype plugin on
-
           augroup textobj_quote
             autocmd!
             autocmd FileType markdown call textobj#quote#init()
@@ -119,7 +118,6 @@ function prose.setup(use)
       -- from https://github.com/preservim/vim-textobj-sentence README.md
       vim.cmd [[
           filetype plugin indent on
-
           augroup textobj_sentence
             autocmd!
             autocmd FileType markdown call textobj#sentence#init()
@@ -137,7 +135,7 @@ function prose.setup(use)
       })
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
-      vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts) --> Yank the selected icon into register
+      vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts)
       vim.keymap.set("i", "<Leader>i", "<cmd>IconPickerInsert<cr>", opts)
 
     end
