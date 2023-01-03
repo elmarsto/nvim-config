@@ -27,12 +27,10 @@ function nippets.setup(use)
   local i = ls.insert_node
   local f = ls.function_node
   local d = ls.dynamic_node
-
   local date_input = function(_, _, fmt)
     local form = fmt or "%Y-%m-%d"
     return sn(nil, i(1, os.date(form)))
   end
-
   -- TODO: dry out; can we have the user choose the register
   ls.add_snippets(
     "all",

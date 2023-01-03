@@ -54,6 +54,7 @@ function keyboard.setup(use)
               description = "Telescope Current Buffer Fuzzy Find" },
             { "<Home>", ":Telescope<cr>", description = "Telescope (tout seul)" },
             { "<CR>", ":Telescope treesitter<cr>", description = "Telescope Treesitter Symbols" },
+            { "<S-CR>", ":SymbolOutline<cr>", description = "Symbol Outline" },
             {
               "<M-CR>",
               ":Telescope lsp_document_symbols<cr>",

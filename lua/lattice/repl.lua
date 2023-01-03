@@ -45,8 +45,11 @@ function repl.setup(use)
     end
   }
   use { "GCBallesteros/vim-textobj-hydrogen",
+    requires = {
+      'kana/vim-textobj-user',
+      'kana/vim-textobj-sentence',
+    },
     config = function()
-      -- https://www.maxwellrules.com/misc/nvim_jupyter.html
       vim.cmd [[
            nmap ]x ctrih/^# %%<CR><CR> 
         ]]
@@ -55,7 +58,6 @@ function repl.setup(use)
   use {
     "GCBallesteros/jupytext.vim",
     config = function()
-      -- https://www.maxwellrules.com/misc/nvim_jupyter.html
       vim.cmd [[
           let g:jupytext_fmt = 'py'
           let g:jupytext_style = 'hydrogen'

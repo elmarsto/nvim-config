@@ -1,16 +1,13 @@
 local avigation = {}
-
-
 function avigation.setup(use)
-  -- Lua
   use {
     'abecodes/tabout.nvim',
     config = function()
       require('tabout').setup {
         tabkey = '<Tab>',
-        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+        backwards_tabkey = '<S-Tab>',
         act_as_tab = false, -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        act_as_shift_tab = false, -- reverse shift content if tab out is not possible
         enable_backwards = true, -- well ...
         completion = true, -- if the tabkey is used in a completion pum
         tabouts = {
@@ -26,7 +23,15 @@ function avigation.setup(use)
       }
     end,
     wants = { 'nvim-treesitter' }, -- or require if not used so far
-    after = { 'nvim-cmp' } -- if a completion plugin is using tabs load ie before
+    after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
+  }
+  use {
+    "cbochs/portal.nvim",
+    requires = { "cbochs/grapple.nvim" },
+    config = function()
+      vim.keymap.set("n", "<leader>o", require("portal").jump_backward, {})
+      vim.keymap.set("n", "<leader>i", require("portal").jump_forward, {})
+    end
   }
   use {
     "ggandor/leap.nvim",

@@ -229,11 +229,6 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.rnix.bin }
       }
-      -- see above, under simrat39/rust-tools, for embedded lsp config for rust-analyzer
-      -- nvim_lsp.stylelint_lsp.setup {
-      --   capabilities = capabilities,
-      --   cmd = {lattice_local.stylelint_lsp.bin}
-      -- }
       local sumneko_runtime_path = vim.split(package.path, ";")
       table.insert(sumneko_runtime_path, "lua/?.lua")
       table.insert(sumneko_runtime_path, "lua/?/init.lua")
@@ -294,7 +289,6 @@ function lsp.setup(use)
         },
         on_attach = on_attach,
       }
-
       nvim_lsp.vimls.setup {
         on_attach = on_attach,
         capabilities = capabilities,

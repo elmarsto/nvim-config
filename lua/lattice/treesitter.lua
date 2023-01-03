@@ -1,5 +1,4 @@
 local treesitter = {}
-
 function treesitter.setup(use)
   use {
     "drybalka/tree-climber.nvim",
@@ -25,12 +24,12 @@ function treesitter.setup(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
-      "andymass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
+      "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-textsubjects",
+      "andymass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
       "danymat/neogen",
       "m-demare/hlargs.nvim",
       "mfussenegger/nvim-treehopper",
-      "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-context",
       "nvim-treesitter/nvim-treesitter-refactor",
       "p00f/nvim-ts-rainbow",
@@ -129,9 +128,11 @@ function treesitter.setup(use)
         },
         textsubjects = {
           enable = true,
+          prev_selection = ',',
           keymaps = {
             ["<leader>g."] = "textsubjects-smart",
-            ["<leader>g;"] = "textsubjects-container-outer"
+            ["<leader>g;"] = "textsubjects-container-outer",
+            ["<leader>gi;"] = "textsubjects-container-inner"
           }
         },
         rainbow = {

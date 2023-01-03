@@ -113,20 +113,17 @@ function bunt.setup(use)
   use {
     "sindrets/winshift.nvim",
     config = function()
-      -- Lua
       require("winshift").setup({
-        highlight_moving_win = true, -- Highlight the window being moved
-        focused_hl_group = "Visual", -- The highlight group used for the moving window
+        highlight_moving_win = true,
+        focused_hl_group = "Visual",
         moving_win_options = {
-          -- These are local options applied to the moving window while it's
-          -- being moved. They are unset when you leave Win-Move mode.
           wrap = false,
           cursorline = false,
           cursorcolumn = false,
           colorcolumn = "",
         },
         keymaps = {
-          disable_defaults = false, -- Disable the default keymaps
+          disable_defaults = false,
           win_move_mode = {
             ["h"] = "left",
             ["j"] = "down",
