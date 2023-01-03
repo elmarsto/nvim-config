@@ -29,83 +29,103 @@ function keyboard.setup(use)
       require("legendary").setup(
         {
           keymaps = {
+            -- Legends, keymaps on spacebar
             { "<C-Space>", ":Legendary<cr>", description = "Legendary (Meta!)" },
             { "<leader><C-Space>", ":Telescope keymap<cr>", description = "Telescope Keymap" },
-            { "<leader>e",
+
+            -- Registers, Marks
+            { "<M-\">", ":Telescope registers<cr>", description = "Registers" },
+            { "<M-\'>", ":Telescope marks<cr>", description = "Marks" },
+
+            -- Movements between files and on the jumplist is on the RHS pinkie cluster
+            { "<M-,>", ":Telescope git_files<cr>", description = "Git Files" },
+            { "<M-.>", ":Telescope find_files<cr>", description = "Find Files" },
+
+            -- Search on /
+            { "<M-/>", ":Telescope live_grep<cr>", description = "Live Grep" },
+            { "<leader>/", ":Telescope current_buffer_fuzzy_find<cr>", "Fuzzy find current buffer" },
+            -- jumplist is on semicolon
+            { ";", ":Telescope jumplist<cr>", description = "Jumplist" },
+
+            -- Registers, Marks also nearby, and mnemonic the quote keys appropriate for both
+            { "<M-\">", ":Telescope registers<cr>", description = "Registers" },
+            { "<M-\'>", ":Telescope marks<cr>", description = "Marks" },
+
+            -- Tmux-alike window controls
+            { '<C-W>"', ":sp<cr>", description = "Split along X axis" },
+            { '<C-W>%', ":vs<cr>", description = "Split along Y axis" },
+
+            -- Meta arrows do nav between tabs
+            { "<M-Down>", ":tablast<cr>", description = "Last Tab" },
+            { "<M-Left>", ":tabprev<cr>", description = "Prev Tab" },
+            { "<M-Right>", ":tabnext<cr>", description = "Next Tab" },
+            { "<M-Up>", ":tabfirst<cr>", description = "First Tab" },
+
+            -- Help is on F1
+            { "<F1>", ":Telescope help_tags", description = "Telescope Help Tags" },
+            { "<S-F1>", ":Telescope man_pages", description = "Telescope Man Pages" },
+
+            -- Buffer, tab, session, window mgmt on F2
+            { "<F2>", ":Telescope buffers<cr>", description = "Telescope Buffers" },
+            { "<S-F2>", ":Telescope windows<cr>", description = "Telescope Windows" },
+            { "<C-F2>", ":Telescope tabs<cr>", description = "Telescope Tabs" },
+            { "<leader><F2>", ":Telescope sessions<cr>", description = "Telescope Sessions" },
+            { "<leader><S-F2>", ":Telescope projects<cr>", description = "Telescope Projects" },
+
+            -- Undo on F3
+            { "<F3>", ":Telescope undo<cr>", description = "Undo" },
+            { "<S-F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
+
+            -- Vim Stuff on F4
+            { "<F4>", ":Telescope commands<cr>", description = "Vim Commands" },
+            { "<S-F4>", ":Telescope builtins<cr>", description = "Vim Builtins" },
+            { "<C-F4>", ":Telescope vim_options<cr>", description = "Vim Options" },
+            { "<leader><F4>", ":Telescope autocommands<cr>", description = "Vim Autocommands" },
+
+            -- Clipboard & Action history on F5
+            { "<F5>", ":Telescope neoclip", description = "Clipboard History" },
+            { "<S-F5>", ":Telescope command_history", description = "Command History" },
+            { "<C-F5>", ":Telescope search_history", description = "Search History" },
+
+            -- Git integration on F6
+            { "<F6>", ":Telescope git_status", description = "Git Status" },
+            { "<S-F6>", ":Telescope git_bcommits", description = "Git Buffer Commits" },
+            { "<C-F6>", ":Telescope git_commits", description = "Git Commits" },
+            { "<leader><F6>", ":Telescope git_branches", description = "Git Branches" },
+            { "<leader><C-F6>", ":Telescope git_stash", description = "Git Stash" },
+
+            --- Quickfix on F7
+            { "<F7>", ":Telescope quickfix", description = "Quickfix" },
+            { "<S-F7>", ":Telescope quickfixhistory", description = "Quickfix History" },
+            { "<C-F7>", ":Telescope loclist", description = "Loclist" },
+
+            --- LSP Part A. Symbols on F8. (Trhows in Treesitter as well)
+            { "<F8>", ":Telescope lsp_document_symbols", description = "LSP Document Symbols" },
+            { "<C-F8>", ":Telescope lsp_dynamic_workspace_symbols", description = "LSP Dynamic Workspace Symbols" },
+            { "<S-F8>", ":Telescope lsp_workspace_symbols", description = "LSP Workspace Symbols" },
+            { "<leader><F8>", ":Telescope treesitter<cr>", description = "Treesitter" },
+            -- LSP part B, definitions, refeerences, implementations on F9
+            { "<F9>", ":Telescope lsp_definitions", description = "LSP Definitions" },
+            { "<S-F9>", ":Telescope lsp_references", description = "LSP References" },
+            { "<C-F9>", ":Telescope lsp_implementations", description = "LSP Implementations" },
+            { "<leader><F9>", ":Telescope lsp_type_definitions", description = "LSP Type Definitions" },
+            { "<leader><C-F9>", ":Telescope lsp_incoming_calls", description = "LSP Incoming Calls" },
+            { "<leader><S-F9>", ":Telescope lsp_outgoing_calls", description = "LSP Outgoing Calls" },
+            -- LSP part C, diagnostics, on F10
+            { "<F10>", ":Telescope diagnostics<cr>", description = "Diagnostics" },
+            { "<S-10>", ":Trouble<cr>", description = "Trouble" },
+
+            -- Digraphs and emojis are on F11
+            { "<F11>",
               function()
                 require 'telescope.builtin'.symbols { sources = { "emoji" } }
               end,
-              description = "Emojis"
+              description = "Telescope Emojis"
             },
-            description = "Telescope Current Buffer Fuzzy Find"
-          },
-          -- meta is on CR
-          { "<C-CR>", ":Telescope<cr>", description = "Telescope Telescope" },
-          { "<CR>", ":Telescope <tab>", description = "Telescope" },
-          -- help is on F1
-          { "<F1>", ":Telescope help_tags", description = "Telescope Help Tags" },
-          { "<S-F1>", ":Telescope man_pages", description = "Telescope Man Pages" },
-          -- buffer, tab, window mgmt on F2 (TODO)
-          { "<F2>", ":Telescope buffers<cr>", description = "Buffers" },
-          { "<S-F2>", ":Telescope tagstack<cr>", description = "Tagstack" },
-          { "<S-F2>", ":Telescope tagstack<cr>", description = "Tagstack" },
-          -- undo on F3
-          { "<F3>", ":Telescope undo<cr>", description = "Undo" },
-          { "<S-F3>", ":UndotreeToggle<cr>", description = "UndoTree" },
-          -- Diagnostics on F4
-          { "<F4>", ":Telescope diagnostics<cr>", description = "Diagnostics" },
-          { "<S-F4>", ":Trouble<cr>", description = "Trouble" },
-          -- Actions on F5
-          { "<F5>", ":Telescope commands<cr>", description = "Commands" },
-          { "<S-F5>", ":Telescope builtins<cr>", description = "Builtins" },
-          { "<C-F5>", ":Telescope vim_options<cr>", description = "Vim Options" },
-          { "<leader><F5>", ":Telescope nodescripts<cr>", description = "Vim Options" },
+            { "<F12>", ":Telescope", description = "Telescope alone" },
+            { "<leader><Tab>", ":Telescope frecency", description = "Telescope frecency" },
+            { "<leader>z", ":Telescope zoxide list", description = "Telescope zoxide" }
 
-          -- History on F6
-          { "<F6>", ":Telescope command_history", description = "Command History" },
-          { "<C-F6>", ":Telescope quickfix_history", description = "Search History" },
-          { "<S-F6>", ":Telescope search_history", description = "Search History" },
-          --- Lists of locations on F7
-          { "<F7>", ":Telescope jumplist", description = "Jumplist" },
-          { "<C-F7>", ":Telescope quickfix", description = "Jumplist" },
-          { "<S-F7>", ":Telescope loclist", description = "Jumplist" },
-          --- Symbols on F8
-          { "<F8>", ":Telescope lsp_document_symbols", description = "LSP Document Symbols" },
-          { "<C-F8>", ":Telescope lsp_dynamic_workspace_symbols", description = "LSP Dynamic Workspace Symbols" },
-          { "<S-F8>", ":Telescope lsp_workspace_symbols", description = "LSP Workspace Symbols" },
-          -- non-LSP symbols on F8 but after leader
-          { "<leader><F8>", ":Telescope treesitter<cr>", description = "Treesitter" },
-          { "<leader><S-F8>", ":Telescope symbols<cr>", description = "Symbols" },
-          { "<leader><C-F8>", ":Telescope tags<cr>", description = "CTags" },
-          -- definitions, refeerences, implementations on F9
-          { "<F9>", ":Telescope lsp_definitions", description = "LSP Definitions" },
-          { "<S-F9>", ":Telescope lsp_references", description = "LSP References" },
-          { "<C-F9>", ":Telescope lsp_implementations", description = "LSP Implementations" },
-          { "<leader><F9>", ":Telescope lsp_type_definitions", description = "LSP Type Definitions" },
-          { "<leader><C-F9>", ":Telescope lsp_incoming_calls", description = "LSP Incoming Calls" },
-          { "<leader><S-F9>", ":Telescope lsp_outgoing_calls", description = "LSP Outgoing Calls" },
-          -- git on F10
-          { "<F10>", ":Telescope git_status", description = "Git Status" },
-          { "<S-F10>", ":Telescope git_commits", description = "Git Commits" },
-          { "<C-F10>", ":Telescope git_bcommits", description = "Git BCommits" },
-          { "<leader><F10>", ":Telescope git_branches", description = "Git Branches" },
-          { "<leader><C-F10>", ":Telescope git_stash", description = "Git Stash" },
-          { "<leader><S-F10>", ":Telescope git_status", description = "Git Status" },
-
-
-          { "<M-,>", ":Telescope git_files<cr>", description = "Git Files" },
-          { "<M-.>", ":Telescope find_files<cr>", description = "Find Files" },
-          { "<M-/>", ":Telescope live_grep<cr>", description = "Live Grep" },
-          { "<M-Down>", ":tablast<cr>", description = "Last Tab" },
-          { "<M-Left>", ":tabprev<cr>", description = "Prev Tab" },
-          { "<M-Right>", ":tabnext<cr>", description = "Next Tab" },
-          { "<M-Up>", ":tabfirst<cr>", description = "First Tab" },
-          { "<M-\">", ":Telescope registers<cr>", description = "Registers" },
-          { "<M-\'>", ":Telescope marks<cr>", description = "Marks" },
-          { "<M-lt>", ":Telescope git_branches<cr>", description = "Git Branches" },
-          { "<leader>z", ":Telescope current_buffer_fuzzy_find<cr>",
-            { '<C-W>"', ":sp<cr>", description = "Split along X axis" },
-            { '<C-W>%', ":vs<cr>", description = "Split along Y axis" },
           },
           commands = {},
           funcs = {},

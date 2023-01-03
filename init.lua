@@ -57,7 +57,7 @@ packer.startup {
   end
 }
 
--- Set up minimal terminal environment, useful on Windows
+-- Set up minimal terminal environment, esp. useful on Windows
 local lls = require "lattice_local".shell
 vim.o.shell = lls.bin
 vim.o.shellredir = lls.redir
@@ -66,7 +66,6 @@ vim.o.shellpipe = lls.pipe
 vim.o.shellquote = lls.quote
 vim.o.shellxquote = lls.xquote
 vim.wo.foldlevel = 6
-vim.api.nvim_set_keymap("n", "<leader>z", "<CMD>terminal <cr>", {})
 if vim.fn.has("win32") == 1 then
   vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
 end
