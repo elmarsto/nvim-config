@@ -90,11 +90,22 @@ function bunt.setup(use)
     "nvim-lualine/lualine.nvim",
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require 'lualine'.setup {
+      require("lualine").setup({
         options = {
           theme = "everforest"
+        },
+        sections = {
+          lualine_b = {
+            {
+              function()
+                local key = require("grapple").key()
+                return "  [" .. key .. "]"
+              end,
+              cond = require("grapple").exists,
+            }
+          }
         }
-      }
+      })
     end
   }
   use "nvim-lua/popup.nvim"
