@@ -38,6 +38,7 @@ local packer = require "packer"
 require "packer.luarocks".install_commands()
 packer.startup {
   function(use)
+    use "wbthomason/packer.nvim"
     require 'lattice/avigation'.setup(use)
     require 'lattice/bunt'.setup(use)
     require 'lattice/code'.setup(use)

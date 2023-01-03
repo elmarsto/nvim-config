@@ -35,10 +35,11 @@ function avigation.setup(use)
   }
   use {
     "ggandor/leap.nvim",
-    requires = { "ggandor/flit.nvim" },
+    requires = { "ggandor/flit.nvim", "ggandor/leap-spooky.nvim" },
     config = function()
       require('leap').add_default_mappings()
       require('flit').setup()
+      require('leap-spooky').setup()
     end
   }
   use "mbbill/undotree"

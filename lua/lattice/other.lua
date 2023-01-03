@@ -20,7 +20,6 @@ function other.setup(use)
       vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
     end
   }
-  use "wbthomason/packer.nvim" -- self-control
   use "tpope/vim-repeat"
   use "tyru/open-browser.vim"
   vim.cmd [[

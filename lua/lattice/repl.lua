@@ -47,7 +47,7 @@ function repl.setup(use)
   use { "GCBallesteros/vim-textobj-hydrogen",
     requires = {
       'kana/vim-textobj-user',
-      'kana/vim-textobj-sentence',
+      'kana/vim-textobj-line',
     },
     config = function()
       vim.cmd [[
