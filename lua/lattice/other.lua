@@ -22,6 +22,16 @@ function other.setup(use)
   }
   use "tpope/vim-repeat"
   use "tyru/open-browser.vim"
+  use {
+    'stevearc/resession.nvim',
+    config = function()
+      local resession = require 'resession'
+      resession.setup()
+      vim.keymap.set('n', '<leader>ss', resession.save)
+      vim.keymap.set('n', '<leader>sl', resession.load)
+      vim.keymap.set('n', '<leader>sd', resession.delete)
+    end
+  }
   vim.cmd [[
       " misc mappings
       nnoremap Q @@

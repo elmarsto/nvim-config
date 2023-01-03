@@ -22,15 +22,30 @@ function avigation.setup(use)
         exclude = {} -- tabout will ignore these filetypes
       }
     end,
-    wants = { 'nvim-treesitter' }, -- or require if not used so far
+    requires = { 'nvim-treesitter/nvim-treesitter' }, -- or require if not used so far
     after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
   }
   use {
     "cbochs/portal.nvim",
     requires = { "cbochs/grapple.nvim" },
     config = function()
-      vim.keymap.set("n", "<leader>o", require("portal").jump_backward, {})
-      vim.keymap.set("n", "<leader>i", require("portal").jump_forward, {})
+
+      local portal = require 'portal'
+      portal.setup()
+
+      local grapple = require 'grapple'
+      grapple.setup({ integrations = { resession = true } })
+
+      vim.keymap.set("n", "<leader>o", portal.jump_backward, {})
+      vim.keymap.set("n", "<leader>i", portal.jump_forward, {})
+      vim.keymap.set("n", "<leader>m", grapple.toggle, {})
+      vim.keymap.set("n", "<leader>j", function()
+        grapple.select({ key = "{name}" })
+      end, {})
+
+      vim.keymap.set("n", "<leader>J", function()
+        grapple.toggle({ key = "{name}" })
+      end, {})
     end
   }
   use {
