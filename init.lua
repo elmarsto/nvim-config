@@ -53,7 +53,6 @@ packer.startup {
     require 'lattice/repl'.setup(use)
     require 'lattice/scope'.setup(use)
     require 'lattice/treesitter'.setup(use)
-    require 'lattice/unit'.setup(use)
   end
 }
 
