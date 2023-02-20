@@ -11,37 +11,37 @@ function code.setup(use)
   use "David-Kunz/jester"
   use "dmix/elvish.vim"
   use "github/copilot.vim"
-  use { "mfussenegger/nvim-dap",
-    requires = {
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-      "mxsdev/nvim-dap-vscode-js",
-      {
-        "microsoft/vscode-js-debug",
-        opt = true,
-        run = "npm install --legacy-peer-deps && npm run compile"
-      },
-    },
-    config = function()
-      require "dap-vscode-js".setup({
-        adapters = { 'pwa-chrome' },
-        log_file_path = "/tmp/dap_vscode_js.log",
-        log_file_level = vim.log.levels.INFO, -- Logging level for output to file. Set to false to disable file logging.
-        log_console_level = vim.log.levels.INFO -- Logging level for output to console. Set to false to disable console output.
-      })
-      for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
-        require("dap").configurations[language] = {
-          {
-            type = "pwa-chrome",
-            request = "launch",
-            name = "Chrome Launch",
-          },
-        }
-        require("nvim-dap-virtual-text").setup()
-        require "dapui".setup()
-      end
-    end
-  }
+  -- use { "mfussenegger/nvim-dap",
+  --   requires = {
+  --     "rcarriga/nvim-dap-ui",
+  --     "theHamsta/nvim-dap-virtual-text",
+  --     "mxsdev/nvim-dap-vscode-js",
+  --     {
+  --       "microsoft/vscode-js-debug",
+  --       opt = true,
+  --       run = "npm install --legacy-peer-deps && npm run compile"
+  --     },
+  --   },
+  --   config = function()
+  --     require "dap-vscode-js".setup({
+  --       adapters = { 'pwa-chrome' },
+  --       log_file_path = "/tmp/dap_vscode_js.log",
+  --       log_file_level = vim.log.levels.INFO, -- Logging level for output to file. Set to false to disable file logging.
+  --       log_console_level = vim.log.levels.INFO -- Logging level for output to console. Set to false to disable console output.
+  --     })
+  --     for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+  --       require("dap").configurations[language] = {
+  --         {
+  --           type = "pwa-chrome",
+  --           request = "launch",
+  --           name = "Chrome Launch",
+  --         },
+  --       }
+  --       require("nvim-dap-virtual-text").setup()
+  --       require "dapui".setup()
+  --     end
+  --   end
+  -- }
   use "rafcamlet/nvim-luapad"
   use {
     "smjonas/inc-rename.nvim",

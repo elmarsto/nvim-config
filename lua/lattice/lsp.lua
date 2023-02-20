@@ -229,27 +229,19 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.rnix.bin }
       }
-      local sumneko_runtime_path = vim.split(package.path, ";")
-      table.insert(sumneko_runtime_path, "lua/?.lua")
-      table.insert(sumneko_runtime_path, "lua/?/init.lua")
-      nvim_lsp.sumneko_lua.setup {
+      nvim_lsp.lua_ls.setup {
         on_attach = on_attach,
-        cmd = { lattice_local.sumneko.bin, "-E", lattice_local.sumneko.main },
+        cmd = { lattice_local.luals.bin },
         capabilities = capabilities,
         settings = {
           Lua = {
             runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
               version = "LuaJIT",
-              -- Setup your lua path
-              path = sumneko_runtime_path
             },
             diagnostics = {
-              -- Get the language server to recognize the `vim` global
               globals = { "vim" }
             },
             workspace = {
-              -- Make the server aware of Neovim runtime files
               library = vim.api.nvim_get_runtime_file("", true)
             },
             -- Do not send telemetry data containing a randomized but unique identifier

@@ -6,7 +6,7 @@ function prose.setup(use)
   use "epwalsh/obsidian.nvim"
   use "f3fora/cmp-spell"
   use {
-    "jakewvincent/mkdnflow.nvim",
+    "jakewvincent/mkdnflow.nvim", rocks = 'luautf8',
     config = function()
       vim.cmd("autocmd Filetype markdown set autowriteall")
       require("mkdnflow").setup(
@@ -137,7 +137,6 @@ function prose.setup(use)
       vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
       vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts)
       vim.keymap.set("i", "<Leader>i", "<cmd>IconPickerInsert<cr>", opts)
-
     end
   }
   vim.cmd [[
@@ -145,11 +144,10 @@ function prose.setup(use)
     autocmd BufWinEnter *.svelte iabbrev --- &mdash;
     autocmd BufWinEnter *.jsx iabbrev --- &mdash;
     autocmd BufWinEnter *.tsx iabbrev --- &mdash;
-    autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ] 
-    autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ] 
+    autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ]
+    autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ]
     let g:markdown_folding=1
    ]]
-
 end
 
 return prose
