@@ -6,10 +6,10 @@ function avigation.setup(use)
       require('tabout').setup {
         tabkey = '<Tab>',
         backwards_tabkey = '<S-Tab>',
-        act_as_tab = false, -- shift content if tab out is not possible
+        act_as_tab = false,       -- shift content if tab out is not possible
         act_as_shift_tab = false, -- reverse shift content if tab out is not possible
-        enable_backwards = true, -- well ...
-        completion = true, -- if the tabkey is used in a completion pum
+        enable_backwards = true,  -- well ...
+        completion = true,        -- if the tabkey is used in a completion pum
         tabouts = {
           { open = "'", close = "'" },
           { open = '"', close = '"' },
@@ -23,29 +23,27 @@ function avigation.setup(use)
       }
     end,
     requires = { 'nvim-treesitter/nvim-treesitter' }, -- or require if not used so far
-    after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
+    after = { 'nvim-cmp' }                            -- if a completion plugin is using tabs load it before
   }
   use {
     "cbochs/portal.nvim",
     requires = { "cbochs/grapple.nvim" },
     config = function()
-
       local portal = require 'portal'
       portal.setup()
-
       local grapple = require 'grapple'
       grapple.setup({ integrations = { resession = true } })
 
-      vim.keymap.set("n", "<leader>o", portal.jump_backward, {})
-      vim.keymap.set("n", "<leader>i", portal.jump_forward, {})
-      vim.keymap.set("n", "<leader>m", grapple.toggle, {})
+      vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
+      vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
+      vim.keymap.set("n", "<leader>m", grapple.toggle)
       vim.keymap.set("n", "<leader>j", function()
         grapple.select({ key = "{name}" })
-      end, {})
+      end)
 
       vim.keymap.set("n", "<leader>J", function()
         grapple.toggle({ key = "{name}" })
-      end, {})
+      end)
     end
   }
   use {
@@ -61,11 +59,11 @@ function avigation.setup(use)
   use { "nacro90/numb.nvim",
     config = function()
       require('numb').setup {
-        show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+        show_numbers = true,         -- Enable 'number' for the window while peeking
+        show_cursorline = true,      -- Enable 'cursorline' for the window while peeking
         hide_relativenumbers = true, -- Enable turning off 'relativenumber' for the window while peeking
-        number_only = false, -- Peek only when the command is only a number instead of when it starts with a number
-        centered_peeking = true, -- Peeked line will be centered relative to window
+        number_only = false,         -- Peek only when the command is only a number instead of when it starts with a number
+        centered_peeking = true,     -- Peeked line will be centered relative to window
       }
     end
   }
