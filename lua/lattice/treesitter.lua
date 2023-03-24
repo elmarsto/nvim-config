@@ -23,6 +23,7 @@ function treesitter.setup(use)
   }
   use {
     "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
     requires = {
       "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-textsubjects",
