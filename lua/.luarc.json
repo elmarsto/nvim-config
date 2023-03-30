@@ -131,5 +131,6 @@
         "/iapetus/tenebrae/.local/share/nvim/site/pack/packer/start/vim-matchup/after",
         "/iapetus/tenebrae/.local/share/nvim/site/pack/packer/start/zephyr-nvim/after",
         "${3rd}/luassert/library"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }
