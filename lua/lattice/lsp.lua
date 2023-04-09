@@ -135,7 +135,7 @@ function lsp.setup(use)
             message = "${message} [${ruleId}]",
             security = "severity"
           },
-          securities = { [2] = "error", [1] = "warning" }
+          securities = { [2] = "error",[1] = "warning" }
         }
       }
       local formatters = {
@@ -251,12 +251,12 @@ function lsp.setup(use)
           }
         }
       }
-      nvim_lsp.sqls.setup {
+      nvim_lsp.sqlls.setup {
         on_attach = on_attach,
-        cmd = { lattice_local.sqls.bin },
+        cmd = { lattice_local.sqlls.bin },
         settings = {
-          sqls = {
-            connections = { lattice_local.sqls.config }
+          sqlls = {
+            connections = { lattice_local.sqlls.config }
           }
         }
       }
