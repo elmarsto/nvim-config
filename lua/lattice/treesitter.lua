@@ -55,7 +55,6 @@ function treesitter.setup(use)
           "diff",
           "dockerfile",
           "dot",
-          "fish",
           "graphql",
           "haskell",
           "html",

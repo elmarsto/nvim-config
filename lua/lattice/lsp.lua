@@ -187,10 +187,10 @@ function lsp.setup(use)
       --   capabilities = capabilities,
       --   cmd = {lattice_local.eslint.bin, "--stdio"}
       -- }
-      -- nvim_lsp.graphql.setup {
-      --   capabilities = capabilities,
-      --   cmd = {lattice_local.graphql.bin, "server", "-m", "stream"}
-      -- }
+      nvim_lsp.graphql.setup {
+        capabilities = capabilities,
+        cmd = { lattice_local.graphql.bin, "server", "-m", "stream" }
+      }
       nvim_lsp.html.setup {
         on_attach = on_attach,
         capabilities = capabilities,
