@@ -3,6 +3,7 @@ local mpletion = {}
 function mpletion.setup(use)
   use {
     "hrsh7th/nvim-cmp",
+    after = { "nvim-treesitter", "LuaSnip" },
     requires = {
       "L3MON4D3/LuaSnip",
       "lukas-reineke/cmp-rg",
@@ -11,8 +12,10 @@ function mpletion.setup(use)
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "dmitmel/cmp-digraphs",
+      "saadparwaiz1/cmp_luasnip"
     },
     config = function()
       local luasnip = require "luasnip"
@@ -52,12 +55,12 @@ function mpletion.setup(use)
                 elseif luasnip.expand_or_jumpable() then
                   luasnip.expand_or_jump()
                 elseif has_words_before() then
-                  cmp.complete()
+                  cmp.complete({ reason = cmp.ContextReason.Manual })
                 else
                   fallback()
                 end
               end,
-              { "i", "s" }
+              { "i", "s", "c" }
             ),
             ["<C-PageUp>"] = cmp.mapping(
               function(fallback)
@@ -69,11 +72,22 @@ function mpletion.setup(use)
                   fallback()
                 end
               end,
-              { "i", "s" }
+              { "i", "s", "c" }
             ),
-            ["<c-space>"] = cmp.mapping {
-              i = cmp.mapping.complete { reason = cmp.ContextReason.Manual },
-            }
+            ["<Tab>"] = cmp.mapping(
+              function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                  luasnip.expand_or_jump()
+                elseif has_words_before() then
+                  cmp.complete({ reason = cmp.ContextReason.Manual })
+                else
+                  fallback()
+                end
+              end,
+              { "i", "s", "c" }
+            ),
           }),
           sources = {
             { name = "buffer" },
@@ -88,6 +102,34 @@ function mpletion.setup(use)
           }
         }
       )
+      -- Set configuration for specific filetype.
+      cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources({
+          { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+        }, {
+          { name = 'buffer' },
+        })
+      })
+
+      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
+
+      -- see also lspconfig, which loads after nvim-cmp, and sets up the nvim-cmp lsp source
     end
   }
 end

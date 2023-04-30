@@ -13,15 +13,34 @@ function other.setup(use)
     end,
   })
   use "samjwill/nvim-unception"
+  use "tpope/vim-repeat"
   use {
-    "tami5/sqlite.lua",
+    "tyru/open-browser.vim",
     config = function()
-      local lattice_local = require "lattice_local"
-      vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
+      vim.cmd [[
+          " misc mappings
+          nnoremap Q @@
+          nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
+          nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
+          nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
+          nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>
+          nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+
+          " Paste-mode shenanigans
+          function! TogglePaste()
+              if(&paste == 0)
+                  set paste
+                  echo "Paste Mode Enabled"
+              else
+                  set nopaste
+                  echo "Paste Mode Disabled"
+              endif
+          endfunction
+          map <leader>p :call TogglePaste()<cr>
+
+      ]]
     end
   }
-  use "tpope/vim-repeat"
-  use "tyru/open-browser.vim"
   use {
     'stevearc/resession.nvim',
     config = function()
@@ -32,28 +51,6 @@ function other.setup(use)
       vim.keymap.set('n', '<leader>sd', resession.delete)
     end
   }
-  vim.cmd [[
-      " misc mappings
-      nnoremap Q @@
-      nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
-      nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
-      nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
-      nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>
-      nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
-
-      " Paste-mode shenanigans
-      function! TogglePaste()
-          if(&paste == 0)
-              set paste
-              echo "Paste Mode Enabled"
-          else
-              set nopaste
-              echo "Paste Mode Disabled"
-          endif
-      endfunction
-      map <leader>p :call TogglePaste()<cr>
-
-  ]]
 end
 
 return other

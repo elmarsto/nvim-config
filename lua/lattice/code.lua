@@ -10,7 +10,13 @@ function code.setup(use)
   use "bfredl/nvim-luadev"
   use "David-Kunz/jester"
   use "dmix/elvish.vim"
-  use { "github/copilot.vim", after = { "nvim-treesitter", "nvim-cmp", "nvim-lspconfig" } }
+  use { "github/copilot.vim",
+    after = { "nvim-treesitter", "nvim-cmp", "nvim-lspconfig" },
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    end
+  }
   -- use { "mfussenegger/nvim-dap",
   --   requires = {
   --     "rcarriga/nvim-dap-ui",

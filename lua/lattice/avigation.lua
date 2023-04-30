@@ -2,10 +2,11 @@ local avigation = {}
 function avigation.setup(use)
   use {
     'abecodes/tabout.nvim',
+    after = { 'nvim-cmp', 'nvim-treesitter' }, -- if a completion plugin is using tabs load it before
     config = function()
       require('tabout').setup {
-        tabkey = '<Tab>',
-        backwards_tabkey = '<S-Tab>',
+        tabkey = '<C-Space>',
+        backwards_tabkey = '<C-S-Space>',
         act_as_tab = false,       -- shift content if tab out is not possible
         act_as_shift_tab = false, -- reverse shift content if tab out is not possible
         enable_backwards = true,  -- well ...
@@ -22,8 +23,6 @@ function avigation.setup(use)
         exclude = {} -- tabout will ignore these filetypes
       }
     end,
-    requires = { 'nvim-treesitter/nvim-treesitter' }, -- or require if not used so far
-    after = { 'nvim-cmp' }                            -- if a completion plugin is using tabs load it before
   }
   use {
     "cbochs/portal.nvim",

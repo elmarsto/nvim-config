@@ -8,7 +8,7 @@ set autoread
 set backspace=indent,eol,start
 set expandtab
 set foldlevel=3
-set laststatus=2 
+set laststatus=2
 set list
 set listchars=precedes:«,extends:»
 set mouse=a

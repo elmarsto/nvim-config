@@ -44,17 +44,6 @@ function repl.setup(use)
       vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
     end
   }
-  use { "GCBallesteros/vim-textobj-hydrogen",
-    requires = {
-      'kana/vim-textobj-user',
-      'kana/vim-textobj-line',
-    },
-    config = function()
-      vim.cmd [[
-           nmap ]x ctrih/^# %%<CR><CR> 
-        ]]
-    end
-  }
   use {
     "GCBallesteros/jupytext.vim",
     config = function()

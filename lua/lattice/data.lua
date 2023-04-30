@@ -1,9 +1,20 @@
 local data = {}
 
 function data.setup(use)
-  use "kristijanhusak/vim-dadbod-ui"
+  use {
+    "kristijanhusak/vim-dadbod-ui",
+    after = { "vim-dadbod" }
+  }
+  use {
+    "tami5/sqlite.lua",
+    config = function()
+      local lattice_local = require "lattice_local"
+      vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
+    end
+  }
   use {
     "kristijanhusak/vim-dadbod-completion",
+    after = { "vim-dadbod", "nvim-cmp" },
     config = function()
       vim.api.nvim_exec(
         [[

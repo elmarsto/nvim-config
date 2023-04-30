@@ -1,45 +1,16 @@
 local treesitter = {}
 function treesitter.setup(use)
   use {
-    "drybalka/tree-climber.nvim",
-    config = function()
-      local keyopts = { noremap = true, silent = true }
-      vim.keymap.set({ 'n', 'v', 'o' }, '<m-h>', require('tree-climber').goto_parent, keyopts)
-      vim.keymap.set({ 'n', 'v', 'o' }, '<m-l>', require('tree-climber').goto_child, keyopts)
-      vim.keymap.set({ 'n', 'v', 'o' }, '<m-j>', require('tree-climber').goto_next, keyopts)
-      vim.keymap.set({ 'n', 'v', 'o' }, '<m-k>', require('tree-climber').goto_prev, keyopts)
-      vim.keymap.set({ 'v', 'o' }, 'in', require('tree-climber').select_node, keyopts)
-      vim.keymap.set('n', '<c-k>', require('tree-climber').swap_prev, keyopts)
-      vim.keymap.set('n', '<c-j>', require('tree-climber').swap_next, keyopts)
-      vim.keymap.set('n', '<c-h>', require('tree-climber').highlight_node, keyopts)
-    end
-  }
-  use {
-    "mfussenegger/nvim-ts-hint-textobject",
-    config = function()
-      vim.api.nvim_set_keymap("o", "m", "<cmd><C-U>lua require('tsht').nodes()<CR>", {})
-      vim.api.nvim_set_keymap("v", "m", "<cmd>lua require('tsht').nodes()<CR>", {})
-    end
-  }
-  use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     requires = {
       "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-textsubjects",
-      "andymass/vim-matchup", -- TODO: config as https://github.com/andymass/vim-matchup/
-      "danymat/neogen",
-      "m-demare/hlargs.nvim",
-      "mfussenegger/nvim-treehopper",
       "nvim-treesitter/nvim-treesitter-context",
       "nvim-treesitter/nvim-treesitter-refactor",
-      "p00f/nvim-ts-rainbow",
-      "theHamsta/nvim-treesitter-pairs",
-      "windwp/nvim-ts-autotag"
+      "windwp/nvim-ts-autotag",
     },
     config = function()
-      require "neogen".setup {}
-      require "hlargs".setup {}
       require "nvim-treesitter.configs".setup {
         highlight = {
           enable = true, -- false will disable the whole extension
@@ -87,10 +58,10 @@ function treesitter.setup(use)
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<leader>gnn",
-            node_incremental = "<leader>grn",
-            scope_incremental = "<leader>grc",
-            node_decremental = "<leader>grm"
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm"
           }
         },
         autotag = {
@@ -106,17 +77,17 @@ function treesitter.setup(use)
           smart_rename = {
             enable = true,
             keymaps = {
-              smart_rename = "<leader>gsr"
+              smart_rename = "gsr"
             }
           },
           navigation = {
             enable = true,
             keymaps = {
-              goto_definition = "<leader>gnd",
-              list_definitions = "<leader>gnD",
-              list_definitions_toc = "<leader>gO",
-              goto_next_usage = "<leader><a-*>",
-              goto_previous_usage = "<leader><a-#>"
+              goto_definition = "gnd",
+              list_definitions = "gnD",
+              list_definitions_toc = "gO",
+              goto_next_usage = "<a-*>",
+              goto_previous_usage = "<a-#>"
             }
           }
         },
@@ -130,22 +101,38 @@ function treesitter.setup(use)
           enable = true,
           prev_selection = ',',
           keymaps = {
-            ["<leader>g."] = "textsubjects-smart",
-            ["<leader>g;"] = "textsubjects-container-outer",
-            ["<leader>gi;"] = "textsubjects-container-inner"
+            ["."] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
+            ["i;"] = "textsubjects-container-inner"
           }
-        },
-        rainbow = {
-          enable = true,
-          extended_mode = true,
-          max_file_lines = nil
         },
       }
       vim.cmd [[
           set foldmethod=expr
           set foldexpr=nvim_treesitter#foldexpr()
-          set nofoldenable                     " Disable folding at startup.
+          set nofoldenable                     " disable folding at startup.
         ]]
+    end
+  }
+  use {
+    "danymat/neogen",
+    after = "nvim-treesitter",
+    config = function()
+      require "neogen".setup {}
+    end
+  }
+  use {
+    "m-demare/hlargs.nvim",
+    after = "nvim-treesitter",
+    config = function()
+      require "hlargs".setup {}
+    end
+  }
+  use {
+    "andymass/vim-matchup",
+    after = "nvim-treesitter",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   }
 end
