@@ -61,6 +61,9 @@ function mpletion.setup(use)
               end,
               { "i", "s" }
             ),
+            ["<c-space>"] = cmp.mapping {
+              i = cmp.mapping.complete { reason = cmp.ContextReason.Auto },
+            }
           },
           sources = {
             { name = "buffer" },
