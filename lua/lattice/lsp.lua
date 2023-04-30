@@ -8,7 +8,6 @@ function lsp.setup(use)
       require "trouble".setup {}
     end
   }
-  use "hrsh7th/cmp-nvim-lsp"
   use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -49,6 +48,7 @@ function lsp.setup(use)
   }
   use {
     "neovim/nvim-lspconfig",
+    after = { "null-ls.nvim", "cmp-nvim-lsp", "nvim-cmp" },
     requires = {
       { "b0o/schemastore.nvim" },
       { "lukas-reineke/lsp-format.nvim" },
@@ -135,7 +135,7 @@ function lsp.setup(use)
             message = "${message} [${ruleId}]",
             security = "severity"
           },
-          securities = { [2] = "error",[1] = "warning" }
+          securities = { [2] = "error", [1] = "warning" }
         }
       }
       local formatters = {

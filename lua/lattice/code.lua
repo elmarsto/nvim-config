@@ -10,7 +10,7 @@ function code.setup(use)
   use "bfredl/nvim-luadev"
   use "David-Kunz/jester"
   use "dmix/elvish.vim"
-  use "github/copilot.vim"
+  use { "github/copilot.vim", after = { "nvim-treesitter", "nvim-cmp", "nvim-lspconfig" } }
   -- use { "mfussenegger/nvim-dap",
   --   requires = {
   --     "rcarriga/nvim-dap-ui",
@@ -51,6 +51,7 @@ function code.setup(use)
   }
   use {
     "simrat39/rust-tools.nvim",
+    after = { "nvim-cmp", "nvim-lspconfig" },
     config = function()
       require("rust-tools").setup(
         {
