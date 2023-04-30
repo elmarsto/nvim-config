@@ -3,7 +3,17 @@ local mpletion = {}
 function mpletion.setup(use)
   use {
     "hrsh7th/nvim-cmp",
-    requires = { "L3MON4D3/LuaSnip", "kristijanhusak/vim-dadbod-completion" },
+    requires = {
+      "L3MON4D3/LuaSnip",
+      "lukas-reineke/cmp-rg",
+      "petertriho/cmp-git",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "dmitmel/cmp-digraphs",
+    },
     config = function()
       local luasnip = require "luasnip"
       local cmp = require "cmp"
@@ -21,7 +31,7 @@ function mpletion.setup(use)
               require("luasnip").lsp_expand(args.body)
             end
           },
-          mapping = {
+          mapping = cmp.mapping.preset.insert({
             ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
             ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
             ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -62,24 +72,19 @@ function mpletion.setup(use)
               { "i", "s" }
             ),
             ["<c-space>"] = cmp.mapping {
-              i = cmp.mapping.complete { reason = cmp.ContextReason.Auto },
+              i = cmp.mapping.complete { reason = cmp.ContextReason.Manual },
             }
-          },
+          }),
           sources = {
             { name = "buffer" },
             { name = "cmp_git" },
-            { name = "vim-dadbod-completion" },
-            {
-              name = "dictionary",
-              keyword_length = 2
-            },
+            { name = "cmp_treesitter" },
             { name = "digraphs" },
             { name = "emoji" },
             { name = "luasnip" },
-            { name = "neorg" },
             { name = "nvim_lsp" },
             { name = "rg" },
-            { name = "spell" }
+            { name = "path" }
           }
         }
       )
@@ -87,9 +92,6 @@ function mpletion.setup(use)
       vim.opt.spelllang = { "en_us" }
     end
   }
-  use "lukas-reineke/cmp-rg"
-  use "petertriho/cmp-git"
-  use "ray-x/cmp-treesitter"
 end
 
 return mpletion
