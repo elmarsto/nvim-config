@@ -68,6 +68,7 @@ function prose.setup(use)
       vim.api.nvim_set_keymap('n', '<leader>v', ":lua Toggle_venn()<CR>", { noremap = true })
     end
   }
+  use "kana/vim-textobj-user"
   use {
     'NFrid/due.nvim',
     config = function()
@@ -75,6 +76,34 @@ function prose.setup(use)
     end
   }
   use "preservim/vim-pencil"
+  use { "preservim/vim-textobj-quote",
+    after = { "vim-textobj-user" },
+    config = function()
+      -- from https://github.com/preservim/vim-textobj-quote README.md
+      vim.cmd [[
+          filetype plugin on
+          augroup textobj_quote
+            autocmd!
+            autocmd FileType markdown call textobj#quote#init()
+            autocmd FileType textile call textobj#quote#init()
+            autocmd FileType text call textobj#quote#init({'educate': 0})
+          augroup END
+        ]]
+    end
+  }
+  use { "preservim/vim-textobj-sentence",
+    after = { "vim-textobj-user" },
+    config = function()
+      -- from https://github.com/preservim/vim-textobj-sentence README.md
+      vim.cmd [[
+          filetype plugin indent on
+          augroup textobj_sentence
+            autocmd!
+            autocmd FileType markdown call textobj#sentence#init()
+            autocmd FileType textile call textobj#sentence#init()
+          augroup END
+        ]]
+    end }
   use "preservim/vim-wordy"
   use "pirmd/gemini.vim"
   use {

@@ -115,13 +115,6 @@ function treesitter.setup(use)
     end
   }
   use {
-    "danymat/neogen",
-    after = "nvim-treesitter",
-    config = function()
-      require "neogen".setup {}
-    end
-  }
-  use {
     "m-demare/hlargs.nvim",
     after = "nvim-treesitter",
     config = function()

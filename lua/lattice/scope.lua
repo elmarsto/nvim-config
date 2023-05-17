@@ -15,8 +15,8 @@ function scope.setup(use)
       "nvim-telescope/telescope-frecency.nvim",
       "nvim-telescope/telescope-project.nvim",
       "protex/better-digraphs.nvim",
-      "tami5/sqlite.lua", -- IDEA: do as `after {...}` rule
     },
+    after = "tami5/sqlite.lua",
     config = function()
       local tscope = require("telescope")
       local ll = require("lattice_local")
@@ -49,7 +49,6 @@ function scope.setup(use)
           nnoremap r<C-k><C-k> <Cmd>lua require'better-digraphs'.digraphs("normal")<CR>
           vnoremap r<C-k><C-k> <ESC><Cmd>lua require'better-digraphs'.digraphs("visual")<CR>
         ]]
-
     end
   }
   use "tversteeg/registers.nvim"

@@ -8,6 +8,7 @@ function repl.setup(use)
         config = {
           scratch_repl = true,
           repl_definition = {
+            -- TODO: add other repls here: lua, node, deno, etc.
             sh = {
               command = { "nsh" }
             },
@@ -53,6 +54,7 @@ function repl.setup(use)
         ]]
     end
   }
+  use "rafcamlet/nvim-luapad"
 end
 
 return repl

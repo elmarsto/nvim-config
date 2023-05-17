@@ -48,7 +48,6 @@ function code.setup(use)
   --     end
   --   end
   -- }
-  use "rafcamlet/nvim-luapad"
   use {
     "smjonas/inc-rename.nvim",
     config = function()

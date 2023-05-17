@@ -91,7 +91,7 @@ function bunt.setup(use)
   }
   use {
     "nvim-lualine/lualine.nvim",
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    after = { 'grapple.nvim', 'nvim-web-devicons' },
     config = function()
       require("lualine").setup({
         options = {
@@ -111,6 +111,22 @@ function bunt.setup(use)
               newfile = '⊛',
             }
           } },
+          lualine_y = {
+            "progress",
+            {
+              function()
+                local key = require("grapple").key()
+                return "  [" .. key .. "]"
+              end,
+              cond = require("grapple").exists,
+            }
+          },
+          lualine_z = {
+            "location",
+            function()
+              return tostring(vim.fn.wordcount().words)
+            end,
+          }
         }
       })
     end

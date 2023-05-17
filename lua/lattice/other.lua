@@ -3,7 +3,14 @@ local other = {}
 function other.setup(use)
   use "gbprod/stay-in-place.nvim"
   use "nvim-lua/plenary.nvim"
-  use "famiu/bufdelete.nvim"
+  use { "famiu/bufdelete.nvim",
+    config = function()
+      vim.cmd [[
+        nnoremap <silent> <leader>bd :Bdelete<CR>
+        nnoremap <silent> <leader>bw :Bwipeout<CR>
+      ]]
+    end
+  }
   use({
     "olimorris/persisted.nvim",
     --module = "persisted", -- For lazy loading
@@ -43,6 +50,7 @@ function other.setup(use)
   }
   use {
     'stevearc/resession.nvim',
+    after = { 'grapple.nvim' },
     config = function()
       local resession = require 'resession'
       resession.setup({ extensions = { grapple = {} } })

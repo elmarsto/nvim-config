@@ -26,20 +26,23 @@ function avigation.setup(use)
   }
   use {
     "cbochs/portal.nvim",
-    requires = { "cbochs/grapple.nvim" },
     config = function()
       local portal = require 'portal'
       portal.setup()
-      local grapple = require 'grapple'
-      grapple.setup({ integrations = { resession = true } })
 
       vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
       vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
+    end
+  }
+  use {
+    "cbochs/grapple.nvim",
+    config = function()
+      local grapple = require 'grapple'
+      grapple.setup({ integrations = { resession = true } })
       vim.keymap.set("n", "<leader>m", grapple.toggle)
       vim.keymap.set("n", "<leader>j", function()
         grapple.select({ key = "{name}" })
       end)
-
       vim.keymap.set("n", "<leader>J", function()
         grapple.toggle({ key = "{name}" })
       end)
