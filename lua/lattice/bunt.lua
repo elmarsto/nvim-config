@@ -98,15 +98,19 @@ function bunt.setup(use)
           theme = "everforest"
         },
         sections = {
-          lualine_b = {
-            {
-              function()
-                local key = require("grapple").key()
-                return "  [" .. key .. "]"
-              end,
-              cond = require("grapple").exists,
+          lualine_c = { {
+            'filename',
+            file_status = true,
+            newfile_status = false,
+            path = 1,
+            shorting_target = 40,
+            symbols = {
+              modified = '⊙',
+              readonly = '⊘',
+              unnamed = '⊚',
+              newfile = '⊛',
             }
-          }
+          } },
         }
       })
     end
