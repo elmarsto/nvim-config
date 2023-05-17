@@ -1,6 +1,11 @@
 local prose = {}
 
 function prose.setup(use)
+  use { "chrisgrieser/nvim-various-textobjs",
+    config = function()
+      require("various-textobjs").setup({ useDefaultKeymaps = true })
+    end
+  }
   use "ellisonleao/glow.nvim"
   use {
     "epwalsh/obsidian.nvim",

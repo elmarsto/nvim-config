@@ -15,8 +15,9 @@ function scope.setup(use)
       "nvim-telescope/telescope-frecency.nvim",
       "nvim-telescope/telescope-project.nvim",
       "protex/better-digraphs.nvim",
+      "tami5/sqlite.lua",
+      "nvim-lua/plenary.nvim",
     },
-    after = "tami5/sqlite.lua",
     config = function()
       local tscope = require("telescope")
       local ll = require("lattice_local")
