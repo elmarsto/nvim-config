@@ -101,7 +101,7 @@ function bunt.setup(use)
           lualine_c = { {
             'filename',
             file_status = true,
-            newfile_status = false,
+            newfile_status = true,
             path = 1,
             shorting_target = 40,
             symbols = {
