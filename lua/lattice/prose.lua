@@ -47,6 +47,12 @@ function prose.setup(use)
     end
   }
   use {
+    "jalvesaq/dict.nvim",
+    config = function()
+      vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("dict").lookup()<CR>')
+    end
+  }
+  use {
     "jbyuki/venn.nvim",
     config = function()
       -- venn.nvim: enable or disable keymappings

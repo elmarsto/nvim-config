@@ -12,6 +12,7 @@ function avigation.setup(use)
         enable_backwards = true,  -- well ...
         completion = true,        -- if the tabkey is used in a completion pum
         tabouts = {
+          -- TODO: add smart quotes
           { open = "'", close = "'" },
           { open = '"', close = '"' },
           { open = '`', close = '`' },
@@ -39,6 +40,7 @@ function avigation.setup(use)
     config = function()
       local grapple = require 'grapple'
       grapple.setup({ integrations = { resession = true } })
+
       vim.keymap.set("n", "<leader>m", grapple.toggle)
       vim.keymap.set("n", "<leader>j", function()
         grapple.select({ key = "{name}" })
