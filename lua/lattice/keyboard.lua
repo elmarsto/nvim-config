@@ -55,7 +55,7 @@ function keyboard.setup(use)
             },
 
             -- Buffer, tab, session, project mgmt on F2
-            { "<F2>",           ":Telescope buffers<cr>",                   description = "Telescope Buffers" },
+            { "<F2>",           ":Telescope frecency<cr>",                  description = "Telescope Buffers" },
             { "<S-F2>",         ":Telescope telescope-tabs list_tabs<cr>",  description = "Telescope Tabs" },
             { "<C-F2>",         ":Telescope sessions_picker<cr>",           description = "Telescope Sessions" },
             { "<leader><F2>",   ":Telescope project<cr>",                   description = "Telescope Projects" },
@@ -136,7 +136,7 @@ function keyboard.setup(use)
               description = "Telescope Emojis"
             },
             { "<F12>",         ":Telescope<cr>",             description = "Telescope alone" },
-            { "<leader><Tab>", ":Telescope frecency<cr>",    description = "Telescope frecency" },
+            { "<leader><Tab>", ":Telescope buffers<cr>",     description = "Telescope buffer" },
             { "<leader>z",     ":Telescope zoxide list<cr>", description = "Telescope zoxide" }
           },
           commands = {},
