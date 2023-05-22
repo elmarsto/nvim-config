@@ -17,6 +17,7 @@ function keyboard.setup(use)
                 { "<C-Space>",         ":Legendary<cr>",         description = "Legendary (Meta!)" },
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
+                { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" },
               }
             },
             {
@@ -44,10 +45,84 @@ function keyboard.setup(use)
               description = 'Use tabs',
               icon = '▬',
               keymaps = {
-                { "<M-Down>",  ":tablast<cr>",  description = "Last Tab" },
-                { "<M-Left>",  ":tabprev<cr>",  description = "Prev Tab" },
-                { "<M-Right>", ":tabnext<cr>",  description = "Next Tab" },
-                { "<M-Up>",    ":tabfirst<cr>", description = "First Tab" },
+                {
+                  "<leader>t",
+                  ":Telescope telescope-tabs list_tabs theme=dropdown<cr>",
+                  description =
+                  "Browse tabs"
+                },
+                {
+                  "<leader>tn",
+                  ":tabnew<cr>",
+                  description =
+                  "New Tab"
+                },
+                {
+                  "<leader>td",
+                  ":tabclose<cr>",
+                  description =
+                  "Del Tab"
+                },
+                {
+                  "<M-Home>",
+                  ":tabfirst<cr>",
+                  description =
+                  "First Tab"
+                },
+                {
+                  "<M-PageUp>",
+                  ":tabprev<cr>",
+                  description =
+                  "Prev Tab"
+                },
+                {
+                  "<M-PageDown>",
+                  ":tabnext<cr>",
+                  description =
+                  "Next Tab"
+                },
+                {
+                  "<leader>to",
+                  ":tabonly<cr>",
+                  description =
+                  "Only Tab"
+                },
+                {
+                  "<leader>tc",
+                  ":tabedit %<cr>",
+                  description =
+                  "Clone Tab"
+                },
+                {
+                  "<M-End>",
+                  ":tablast<cr>",
+                  description =
+                  "Last Tab"
+                },
+                {
+                  "<M-S-PageUp>",
+                  ":-tabmove<cr>",
+                  description =
+                  "Move Tab -"
+                },
+                {
+                  "<M-S-PageDown>",
+                  ":+tabmove<cr>",
+                  description =
+                  "Move Tab +"
+                },
+                {
+                  "<M-S-Home>",
+                  ":tabmove 0<cr>",
+                  description =
+                  "Move Tab ^"
+                },
+                {
+                  "<M-S-Home>",
+                  ":tabmove $<cr>",
+                  description =
+                  "Move Tab ^"
+                },
               }
             },
             {
@@ -97,7 +172,7 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 { "<F8>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
-                { "<leader>t",   ":TroubleToggle<cr>",                    description = "Open Trouble" },
+                { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble" },
                 { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
                 { "[d",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
                 { "]d",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
@@ -132,6 +207,15 @@ function keyboard.setup(use)
               keymaps = {
                 { "<F1>",         ":Telescope persisted<cr>", description = "Browse Sessions" },
                 { "<leader><F1>", ":Telescope project<cr>",   description = "Browse Projects" },
+                { "<leader>s",    ":Telescope persisted<cr>", description = "Browse Sessions" },
+                { "<leader>sv",   ":SessionSave<cr>",         description = "Save Session" },
+                { "<leader>so",   ":SessionStop<cr>",         description = "Stop Session" },
+                { "<leader>sa",   ":SessionStart<cr>",        description = "Start Session" },
+                { "<leader>st",   ":SessionToggle<cr>",       description = "Toggle Session" },
+                { "<leader>sd",   ":SessionDelete<cr>",       description = "Delete Session" },
+                { "<leader>sl",   ":SessionLoad<cr>",         description = "Load Session" },
+                { "<leader>sla",  ":SessionLoadLast<cr>",     description = "Load Last Session" },
+                { "<leader>slf",  ":SessionLoadFromFile<cr>", description = "Load Session from File" },
               }
             },
 
@@ -191,10 +275,21 @@ function keyboard.setup(use)
               description = 'Manage a repl or terminal',
               icon = '',
               keymaps = {
-                { "<leader>rs", ":IronRepl<cr>",    description = "Start Repl" },
-                { "<leader>rr", ":IronRestart<cr>", description = "Restart Repl" },
-                { "<leader>rf", ":IronFocus<cr>",   description = "Focus Repl" },
-                { "<leader>rh", ":IronHide<cr>",    description = "Hide Repl" },
+                { "<leader>rs", ":IronRepl<cr>",  description = "Start Repl" },
+                {
+                  "<leader>rr",
+                  ":IronRestart<cr>",
+                  description =
+                  "Restart Repl"
+                },
+                { "<leader>rf", ":IronFocus<cr>", description = "Focus Repl" },
+                { "<leader>rh", ":IronHide<cr>",  description = "Hide Repl" },
+                {
+                  "<C-z>",
+                  ":split | wincmd j | resize 20 | startinsert | terminal<cr>",
+                  description =
+                  "Open terminal"
+                },
               }
             },
             {

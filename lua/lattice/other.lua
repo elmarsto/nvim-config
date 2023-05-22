@@ -5,7 +5,7 @@ function other.setup(use)
   use "nvim-lua/plenary.nvim"
   use { "famiu/bufdelete.nvim",
     config = function()
-          -- TODO: move to keyboard.lua
+      -- TODO: move to keyboard.lua
       vim.cmd [[
         nnoremap <silent> <leader>bd :Bdelete<CR>
         nnoremap <silent> <leader>bw :Bwipeout<CR>
@@ -16,7 +16,11 @@ function other.setup(use)
     "olimorris/persisted.nvim",
     -- module = "persisted", -- For lazy loading
     config = function()
-      require("persisted").setup()
+      require("persisted").setup({
+        autoload = true,
+        use_git_branch = true,
+        follow_cwd = false,
+      })
       require("telescope").load_extension("persisted") -- To load the telescope extension
     end,
   })
@@ -25,7 +29,7 @@ function other.setup(use)
   use {
     "tyru/open-browser.vim",
     config = function()
-          -- TODO: move to keyboard.lua
+      -- TODO: move to keyboard.lua
       vim.cmd [[
           " misc mappings
           nnoremap Q @@

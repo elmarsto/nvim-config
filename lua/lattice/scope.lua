@@ -33,6 +33,13 @@ function scope.setup(use)
       tscope.load_extension "zoxide"
     end
   }
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require 'telescope-tabs'.setup()
+    end
+  }
 end
 
 return scope
