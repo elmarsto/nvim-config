@@ -144,7 +144,6 @@ function mpletion.setup(use)
           }
         })
       })
-
       -- see also lspconfig, which loads after nvim-cmp, and sets up the nvim-cmp lsp source
     end
   }

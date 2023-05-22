@@ -56,6 +56,7 @@ function keyboard.setup(use)
               icon = '🏀',
               keymaps = {
                 { "<leader>j", ":Telescope jumplist<cr>", description = "Browse Jumps" },
+                { "<leader><tab>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
                 { "[j",        "<C-I>",                   description = "Prev Jump" },
                 { "]j",        "<C-O>",                   description = "Next Jump" },
               }
