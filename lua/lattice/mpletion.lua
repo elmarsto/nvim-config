@@ -1,20 +1,28 @@
 local mpletion = {}
 
 function mpletion.setup(use)
+  use { "github/copilot.vim",
+    after = { "nvim-lspconfig", "nvim-cmp" },
+    config = function()
+      vim.g.copilot_no_tab_map = true
+    end
+  }
   use {
     "hrsh7th/nvim-cmp",
     after = { "nvim-treesitter", "LuaSnip" },
     requires = {
-      "dmitmel/cmp-digraphs",
+      "L3MON4D3/cmp-luasnip-choice",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "lukas-reineke/cmp-rg",
       "ray-x/cmp-treesitter",
+      "saadparwaiz1/cmp_luasnip",
+      "uga-rosa/cmp-dictionary",
     },
     config = function()
+      require('cmp_luasnip_choice').setup();
       local luasnip = require "luasnip"
       local cmp = require "cmp"
       local has_words_before = function()
@@ -23,6 +31,7 @@ function mpletion.setup(use)
       end
       local insert = cmp.SelectBehavior.Insert
       local replace = cmp.SelectBehavior.replace
+      local modes = { 'i', 's', 'c' }
       cmp.setup(
         {
           completion = {
@@ -34,16 +43,18 @@ function mpletion.setup(use)
             end
           },
           mapping = cmp.mapping.preset.insert({
-            ["<C-n>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-p>"] = cmp.mapping.scroll_docs(4),
             ["<C-c>"] = cmp.mapping.close(),
             ["<Escape>"] = cmp.mapping.close(),
-            ["<CR>"] = cmp.mapping.confirm(
+            ["<CR>"] = cmp.mapping.confirm( -- TODO: somehow integrate with copilot?
               {
                 behavior = replace,
                 select = true
               }
             ),
+            ['<C-j>'] = cmp.mapping(function()
+              vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)),
+                'n', true)
+            end),
             ["<Tab>"] = cmp.mapping(
               function(fallback)
                 if cmp.visible() then
@@ -56,7 +67,7 @@ function mpletion.setup(use)
                   fallback()
                 end
               end,
-              { "i", "s", "c" }
+              modes
             ),
             ["<S-Tab>"] = cmp.mapping(
               function(fallback)
@@ -68,16 +79,42 @@ function mpletion.setup(use)
                   fallback()
                 end
               end,
-              { "i", "s", "c" }
+              modes
+            ),
+            -- these two force the completion menu to appear (needed for luasnip_choice)
+            ["<leader><Tab>"] = cmp.mapping(
+              function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item({ behavior = insert })
+                else
+                  fallback()
+                end
+              end,
+              modes
+            ),
+            ["<leader><S-Tab>"] = cmp.mapping(
+              function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item({ behavior = insert })
+                else
+                  fallback()
+                end
+              end,
+              modes
             ),
           }),
+          experimental = {
+            ghost_text = false -- a default, but needed for copilot compat, so made explicit as per docs for cmp
+          },
           sources = {
-            { name = "emoji" },
-            { name = "digraphs" },
+            { name = "luasnip" },
+            { name = "luasnip_choice" },
             { name = "nvim_lsp" },
             { name = "cmp_treesitter" },
             { name = "rg" },
-            { name = "path" }
+            { name = "path" },
+            { name = "buffer" },
+            { name = "dictionary" }
           }
         }
       )
@@ -107,6 +144,26 @@ function mpletion.setup(use)
 
       -- see also lspconfig, which loads after nvim-cmp, and sets up the nvim-cmp lsp source
     end
+  }
+  use {
+    "protex/better-digraphs.nvim",
+    config = function()
+      vim.keymap.set("i", "<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('insert')<CR>")
+      vim.keymap.set("n", "r<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('normal')<CR>")
+      vim.keymap.set("v", "r<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('visual')<CR>")
+    end
+  }
+  use {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true,
+      })
+      vim.keymap.set("i", "<C-k><C-i>", "<Cmd>IconPickerInsert<CR>")
+      vim.keymap.set("n", "r<C-k><C-i>", "<Cmd>IconPickerNormal<CR>")
+      vim.keymap.set("v", "r<C-k><C-i>", "<Cmd>IconPickerNormal<CR>")
+    end
+
   }
 end
 
