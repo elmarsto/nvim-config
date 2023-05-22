@@ -5,8 +5,8 @@ function other.setup(use)
   use "nvim-lua/plenary.nvim"
   use { "famiu/bufdelete.nvim",
     config = function()
+          -- TODO: move to keyboard.lua
       vim.cmd [[
-          --TODO: move to keyboard.lua
         nnoremap <silent> <leader>bd :Bdelete<CR>
         nnoremap <silent> <leader>bw :Bwipeout<CR>
       ]]
@@ -14,7 +14,7 @@ function other.setup(use)
   }
   use({
     "olimorris/persisted.nvim",
-    --module = "persisted", -- For lazy loading
+    -- module = "persisted", -- For lazy loading
     config = function()
       require("persisted").setup()
       require("telescope").load_extension("persisted") -- To load the telescope extension
@@ -25,9 +25,9 @@ function other.setup(use)
   use {
     "tyru/open-browser.vim",
     config = function()
+          -- TODO: move to keyboard.lua
       vim.cmd [[
           " misc mappings
-          --TODO: move to keyboard.lua
           nnoremap Q @@
           nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
           nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>

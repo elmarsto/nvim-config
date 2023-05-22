@@ -95,6 +95,7 @@ function keyboard.setup(use)
               description = 'Use the list of diagnostics',
               icon = '',
               keymaps = {
+                { "<F8>",   ":TroubleToggle<cr>",            description = "Open trouble" },
                 { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
                 { "[d",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
                 { "]d",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
