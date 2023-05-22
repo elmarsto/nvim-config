@@ -26,31 +26,6 @@ function avigation.setup(use)
     end,
   }
   use {
-    "cbochs/portal.nvim",
-    config = function()
-      local portal = require 'portal'
-      portal.setup()
-
-      vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
-      vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
-    end
-  }
-  use {
-    "cbochs/grapple.nvim",
-    config = function()
-      local grapple = require 'grapple'
-      grapple.setup({ integrations = { resession = true } })
-
-      vim.keymap.set("n", "<leader>m", grapple.toggle)
-      vim.keymap.set("n", "<leader>j", function()
-        grapple.select({ key = "{name}" })
-      end)
-      vim.keymap.set("n", "<leader>J", function()
-        grapple.toggle({ key = "{name}" })
-      end)
-    end
-  }
-  use {
     "ggandor/leap.nvim",
     requires = { "ggandor/flit.nvim", "ggandor/leap-spooky.nvim" },
     config = function()
@@ -69,12 +44,6 @@ function avigation.setup(use)
         number_only = false,         -- Peek only when the command is only a number instead of when it starts with a number
         centered_peeking = true,     -- Peeked line will be centered relative to window
       }
-    end
-  }
-  use {
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      require("symbols-outline").setup()
     end
   }
 end

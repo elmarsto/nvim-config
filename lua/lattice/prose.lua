@@ -1,11 +1,6 @@
 local prose = {}
 
 function prose.setup(use)
-  use { "chrisgrieser/nvim-various-textobjs",
-    config = function()
-      require("various-textobjs").setup({ useDefaultKeymaps = true })
-    end
-  }
   use "ellisonleao/glow.nvim"
   use {
     "epwalsh/obsidian.nvim",
@@ -47,12 +42,6 @@ function prose.setup(use)
     end
   }
   use {
-    "jalvesaq/dict.nvim",
-    config = function()
-      vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("dict").lookup()<CR>')
-    end
-  }
-  use {
     "jbyuki/venn.nvim",
     config = function()
       -- venn.nvim: enable or disable keymappings
@@ -87,49 +76,7 @@ function prose.setup(use)
     end
   }
   use "preservim/vim-pencil"
-  use { "preservim/vim-textobj-quote",
-    after = { "vim-textobj-user" },
-    config = function()
-      -- from https://github.com/preservim/vim-textobj-quote README.md
-      vim.cmd [[
-          filetype plugin on
-          augroup textobj_quote
-            autocmd!
-            autocmd FileType markdown call textobj#quote#init()
-            autocmd FileType textile call textobj#quote#init()
-            autocmd FileType text call textobj#quote#init({'educate': 0})
-          augroup END
-        ]]
-    end
-  }
-  use { "preservim/vim-textobj-sentence",
-    after = { "vim-textobj-user" },
-    config = function()
-      -- from https://github.com/preservim/vim-textobj-sentence README.md
-      vim.cmd [[
-          filetype plugin indent on
-          augroup textobj_sentence
-            autocmd!
-            autocmd FileType markdown call textobj#sentence#init()
-            autocmd FileType textile call textobj#sentence#init()
-          augroup END
-        ]]
-    end }
-  use "preservim/vim-wordy"
   use "pirmd/gemini.vim"
-  use {
-    "ziontee113/icon-picker.nvim",
-    after = { "dressing.nvim" },
-    config = function()
-      require("icon-picker").setup({
-        disable_legacy_commands = true
-      })
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
-      vim.keymap.set("n", "<Leader><Leader>y", "<cmd>IconPickerYank<cr>", opts)
-      vim.keymap.set("i", "<Leader>i", "<cmd>IconPickerInsert<cr>", opts)
-    end
-  }
   vim.cmd [[
     autocmd BufWinEnter *.html iabbrev --- &mdash;
     autocmd BufWinEnter *.svelte iabbrev --- &mdash;

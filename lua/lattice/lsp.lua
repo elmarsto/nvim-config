@@ -1,7 +1,6 @@
 local lsp = {}
 
 function lsp.setup(use)
-  use "folke/lsp-colors.nvim"
   use {
     "folke/trouble.nvim",
     config = function()
@@ -38,9 +37,6 @@ function lsp.setup(use)
         {
           sources = {
             nullAction
-            -- require("null-ls").builtins.formatting.stylua,
-            -- require("null-ls").builtins.diagnostics.eslint,
-            -- require("null-ls").builtins.completion.spell
           }
         }
       )
@@ -56,14 +52,6 @@ function lsp.setup(use)
     config = function()
       local lattice_local = require "lattice_local"
       local nvim_lsp = require("lspconfig")
-      _G.lsp_organize_imports = function()
-        local params = {
-          command = "_typescript.organizeImports",
-          arguments = { vim.api.nvim_buf_get_name(0) },
-          title = ""
-        }
-        vim.lsp.buf.execute_command(params)
-      end
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
       vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -87,31 +75,14 @@ function lsp.setup(use)
         vim.keymap.set("n", "<leader>K", vim.lsp.buf.hover, bufopts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
         vim.keymap.set("n", "<leader><C-k>", vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set(
-          "n",
-          "<space>wl",
-          function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end,
-          bufopts
-        )
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set(
-          "n",
-          "<space>f",
-          function()
-            vim.lsp.buf.format { async = true }
-          end,
-          bufopts
-        )
       end
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      -- TODO: determine if this next variable is correct still? I know we use tsserver not eslint
       local filetypes = {
         javascript = "eslint",
         javascriptreact = "eslint",
@@ -158,7 +129,7 @@ function lsp.setup(use)
           formatters = formatters,
           formatFiletypes = formatFiletypes
         }
-      } -- end diagnosticls
+      }
       nvim_lsp.bashls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
@@ -183,10 +154,6 @@ function lsp.setup(use)
       --   capabilities = capabilities,
       --   cmd = {lattice_local.dotls.bin}
       -- }
-      -- nvim_lsp.eslint.setup {
-      --   capabilities = capabilities,
-      --   cmd = {lattice_local.eslint.bin, "--stdio"}
-      -- }
       nvim_lsp.graphql.setup {
         capabilities = capabilities,
         cmd = { lattice_local.graphql.bin, "server", "-m", "stream" }
@@ -205,18 +172,11 @@ function lsp.setup(use)
           validate = { enable = true }
         }
       }
-      -- nvim_lsp.powershell_es.setup {
-      --   capabilities = capabilities,
-      --   bundle = {lattice_local.powershell_es.bundle, "--stdio"}
-      -- }
       nvim_lsp.prosemd_lsp.setup {
         on_attach = on_attach,
         capabilities = capabilities,
         cmd = { lattice_local.prosemd.bin, "--stdio" },
         filetypes = { "markdown" },
-        -- root_dir = function(fname)
-        --   return vim.lsp.util.find_git_ancestor(fname) or vim.fn.getcwd()
-        -- end,
         settings = {}
       }
       nvim_lsp.pyright.setup {

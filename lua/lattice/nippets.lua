@@ -3,6 +3,8 @@ local nippets = {}
 function nippets.setup(use)
   use {
     "L3MON4D3/LuaSnip",
+    tag = "v1.*",
+    run = "make install_jsregexp",
     config = function()
       require "luasnip".config.set_config(
         {

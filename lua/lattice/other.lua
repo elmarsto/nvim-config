@@ -48,17 +48,6 @@ function other.setup(use)
       ]]
     end
   }
-  use {
-    'stevearc/resession.nvim',
-    after = { 'grapple.nvim' },
-    config = function()
-      local resession = require 'resession'
-      resession.setup({ extensions = { grapple = {} } })
-      vim.keymap.set('n', '<leader>ss', resession.save)
-      vim.keymap.set('n', '<leader>sl', resession.load)
-      vim.keymap.set('n', '<leader>sd', resession.delete)
-    end
-  }
 end
 
 return other

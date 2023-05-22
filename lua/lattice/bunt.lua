@@ -72,7 +72,7 @@ function bunt.setup(use)
       ]]
     end
   }
-  use { "kyazdani42/nvim-web-devicons" }
+  use "kyazdani42/nvim-web-devicons"
   use {
     "karb94/neoscroll.nvim",
     config = function()
@@ -91,7 +91,7 @@ function bunt.setup(use)
   }
   use {
     "nvim-lualine/lualine.nvim",
-    after = { 'grapple.nvim', 'nvim-web-devicons' },
+    after = 'nvim-web-devicons',
     config = function()
       require("lualine").setup({
         options = {
@@ -113,13 +113,6 @@ function bunt.setup(use)
           } },
           lualine_y = {
             "progress",
-            {
-              function()
-                local key = require("grapple").key()
-                return "  [" .. key .. "]"
-              end,
-              cond = require("grapple").exists,
-            }
           },
           lualine_z = {
             "location",
