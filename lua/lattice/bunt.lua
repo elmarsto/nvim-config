@@ -100,6 +100,12 @@ function bunt.setup(use)
           theme = "everforest"
         },
         sections = {
+          lualine_b = {
+            'vim.loop.cwd()',
+            'branch',
+            'diff',
+            'diagnostics',
+          },
           lualine_c = { {
             'filename',
             file_status = true,
