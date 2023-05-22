@@ -6,6 +6,7 @@ function other.setup(use)
   use { "famiu/bufdelete.nvim",
     config = function()
       vim.cmd [[
+          --TODO: move to keyboard.lua
         nnoremap <silent> <leader>bd :Bdelete<CR>
         nnoremap <silent> <leader>bw :Bwipeout<CR>
       ]]
@@ -26,6 +27,7 @@ function other.setup(use)
     config = function()
       vim.cmd [[
           " misc mappings
+          --TODO: move to keyboard.lua
           nnoremap Q @@
           nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
           nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>

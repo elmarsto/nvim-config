@@ -1,7 +1,12 @@
 local repl = {}
 
 function repl.setup(use)
-  -- https://www.maxwellrules.com/misc/nvim_jupyter.html
+  use { "akinsho/toggleterm.nvim", tag = '*',
+    config = function()
+      require 'toggleterm'.setup()
+    end
+  }
+  -- TODO: add quarto-nvim
   use { "hkupty/iron.nvim",
     config = function()
       require 'iron.core'.setup {
@@ -39,10 +44,6 @@ function repl.setup(use)
         },
         ignore_blank_lines = true,
       }
-      vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-      vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-      vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-      vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
     end
   }
   use {

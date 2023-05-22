@@ -16,6 +16,7 @@ function data.setup(use)
   --   "kristijanhusak/vim-dadbod-completion",
   --   after = { "vim-dadbod", "nvim-cmp" },
   --   config = function()
+  --    -- TODO: this looks wrong?
   --     vim.api.nvim_exec(
   --       [[
   --           autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })

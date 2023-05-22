@@ -58,6 +58,7 @@ function treesitter.setup(use)
         incremental_selection = {
           enable = true,
           keymaps = {
+            -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
             init_selection = "<CR>",
             node_incremental = "<CR>",
             scope_incremental = "<Tab>",
@@ -77,12 +78,14 @@ function treesitter.setup(use)
           smart_rename = {
             enable = true,
             keymaps = {
+              -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
               smart_rename = "gsr"
             }
           },
           navigation = {
             enable = true,
             keymaps = {
+              -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
               goto_definition = "gnd",
               list_definitions = "gnD",
               list_definitions_toc = "gO",
@@ -101,6 +104,7 @@ function treesitter.setup(use)
           enable = true,
           prev_selection = ',',
           keymaps = {
+            -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
             ["."] = "textsubjects-smart",
             [";"] = "textsubjects-container-outer",
             ["i;"] = "textsubjects-container-inner"

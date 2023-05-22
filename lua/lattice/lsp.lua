@@ -2,12 +2,6 @@ local lsp = {}
 
 function lsp.setup(use)
   use {
-    "folke/trouble.nvim",
-    config = function()
-      require "trouble".setup {}
-    end
-  }
-  use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local nls = require "null-ls"
@@ -52,11 +46,6 @@ function lsp.setup(use)
     config = function()
       local lattice_local = require "lattice_local"
       local nvim_lsp = require("lspconfig")
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-      vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
       require 'lsp-format'.setup {}
       -- declare local in this scope so we don't `require` every run of on_attach below
@@ -70,15 +59,6 @@ function lsp.setup(use)
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "<leader>K", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "<leader><C-k>", vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
       end
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -150,10 +130,6 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.cssls.bin, "--stdio" }
       }
-      -- nvim_lsp.dotls.setup {
-      --   capabilities = capabilities,
-      --   cmd = {lattice_local.dotls.bin}
-      -- }
       nvim_lsp.graphql.setup {
         capabilities = capabilities,
         cmd = { lattice_local.graphql.bin, "server", "-m", "stream" }
@@ -252,6 +228,12 @@ function lsp.setup(use)
         cmd = { lattice_local.yamlls.bin }
       }
     end
+  }
+  use {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup()
+    end,
   }
 end
 

@@ -1,16 +1,13 @@
 local mpletion = {}
 
 function mpletion.setup(use)
-  use { "github/copilot.vim",
-    after = { "nvim-lspconfig", "nvim-cmp" },
-    config = function()
-      vim.g.copilot_no_tab_map = true
-    end
-  }
   use {
     "hrsh7th/nvim-cmp",
-    after = { "nvim-treesitter", "LuaSnip" },
+    after = { "nvim-treesitter", "LuaSnip", "plenary.nvim", "lspkind.nvim" },
     requires = {
+      -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
+      -- TODO: maybe kristijanhusak/vim-dadbod-completion if we reenable dadbod
+      "David-Kunz/cmp-npm",
       "L3MON4D3/cmp-luasnip-choice",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
@@ -20,9 +17,13 @@ function mpletion.setup(use)
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
+      "zbirenbaum/copilot-cmp",
     },
     config = function()
       require('cmp_luasnip_choice').setup();
+      require('cmp-npm').setup(); -- TODO: - -> _ ?
+      require('copilot_cmp').setup();
+      local lspkind = require "lspkind"
       local luasnip = require "luasnip"
       local cmp = require "cmp"
       local has_words_before = function()
@@ -45,16 +46,12 @@ function mpletion.setup(use)
           mapping = cmp.mapping.preset.insert({
             ["<C-c>"] = cmp.mapping.close(),
             ["<Escape>"] = cmp.mapping.close(),
-            ["<CR>"] = cmp.mapping.confirm( -- TODO: somehow integrate with copilot?
+            ["<CR>"] = cmp.mapping.confirm(
               {
                 behavior = replace,
                 select = true
               }
             ),
-            ['<C-j>'] = cmp.mapping(function()
-              vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)),
-                'n', true)
-            end),
             ["<Tab>"] = cmp.mapping(
               function(fallback)
                 if cmp.visible() then
@@ -103,10 +100,8 @@ function mpletion.setup(use)
               modes
             ),
           }),
-          experimental = {
-            ghost_text = false -- a default, but needed for copilot compat, so made explicit as per docs for cmp
-          },
           sources = {
+            { name = "copilot" },
             { name = "luasnip" },
             { name = "luasnip_choice" },
             { name = "nvim_lsp" },
@@ -114,7 +109,15 @@ function mpletion.setup(use)
             { name = "rg" },
             { name = "path" },
             { name = "buffer" },
-            { name = "dictionary" }
+            { name = "dictionary" },
+            { name = "npm",           keyword_length = 4 }
+          },
+          formatting = {
+            format = lspkind.cmp_format({
+              mode = 'symbol',
+              maxwidth = 50,
+              ellipsis_char = '‥',
+            })
           }
         }
       )
@@ -164,6 +167,16 @@ function mpletion.setup(use)
       vim.keymap.set("v", "r<C-k><C-i>", "<Cmd>IconPickerNormal<CR>")
     end
 
+  }
+  use { "zbirenbaum/copilot.lua", -- FIXME: not currently working?
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
   }
 end
 
