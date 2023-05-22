@@ -55,10 +55,10 @@ function keyboard.setup(use)
               description = 'Use the jumplist',
               icon = '🏀',
               keymaps = {
-                { "<leader>j", ":Telescope jumplist<cr>", description = "Browse Jumps" },
+                { "<leader>j",     ":Telescope jumplist<cr>",           description = "Browse Jumps" },
                 { "<leader><tab>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
-                { "[j",        "<C-I>",                   description = "Prev Jump" },
-                { "]j",        "<C-O>",                   description = "Next Jump" },
+                { "[j",            "<C-I>",                             description = "Prev Jump" },
+                { "]j",            "<C-O>",                             description = "Next Jump" },
               }
             },
             {
@@ -96,7 +96,8 @@ function keyboard.setup(use)
               description = 'Use the list of diagnostics',
               icon = '',
               keymaps = {
-                { "<F8>",   ":TroubleToggle<cr>",            description = "Open trouble" },
+                { "<F8>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
+                { "<leader>t",   ":TroubleToggle<cr>",                    description = "Open Trouble" },
                 { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
                 { "[d",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
                 { "]d",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
@@ -190,7 +191,6 @@ function keyboard.setup(use)
               description = 'Manage a repl or terminal',
               icon = '',
               keymaps = {
-                { "<leader>t",  ":ToggleTerm <cr>", description = "Toggle Terminal" },
                 { "<leader>rs", ":IronRepl<cr>",    description = "Start Repl" },
                 { "<leader>rr", ":IronRestart<cr>", description = "Restart Repl" },
                 { "<leader>rf", ":IronFocus<cr>",   description = "Focus Repl" },

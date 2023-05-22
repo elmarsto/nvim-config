@@ -1,5 +1,5 @@
 vim.cmd [[
-" this is how I do it
+" this is how I do it. Kept in vim (instead of lua) so I can use this config on openbsd, etc.
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 au TermOpen * setlocal scrollback=-1
@@ -55,8 +55,7 @@ packer.startup {
     require 'lattice/treesitter'.setup(use)
   end
 }
-
--- Set up minimal terminal environment, esp. useful on Windows
+-- Windows compat
 local lls = require "lattice_local".shell
 vim.o.shell = lls.bin
 vim.o.shellredir = lls.redir
@@ -65,6 +64,3 @@ vim.o.shellpipe = lls.pipe
 vim.o.shellquote = lls.quote
 vim.o.shellxquote = lls.xquote
 vim.wo.foldlevel = 6
-if vim.fn.has("win32") == 1 then
-  vim.api.nvim_set_keymap("n", "", "<CMD>terminal <cr>", {})
-end

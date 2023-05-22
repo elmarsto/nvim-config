@@ -1,11 +1,12 @@
 local repl = {}
 
 function repl.setup(use)
-  use { "akinsho/toggleterm.nvim", tag = '*',
-    config = function()
-      require 'toggleterm'.setup()
-    end
-  }
+  -- Buggy as of 2023-05-22
+  -- use { "akinsho/toggleterm.nvim", tag = '*',
+  --   config = function()
+  --     require 'toggleterm'.setup()
+  --   end
+  -- }
   -- TODO: add quarto-nvim
   use { "hkupty/iron.nvim",
     config = function()
