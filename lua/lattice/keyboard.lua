@@ -305,51 +305,42 @@ function keyboard.setup(use)
               description = 'Language-aware commands (LSP & Treesitter)',
               icon = '',
               keymaps = {
-
                 -- LSP: Rename
-                { "<F9>",          ":IncRename<cr>",                                   description = "LSP IncRename" },
-                -- TODO: add treesitter rename thing as <leader> alt
-
-                -- LSP: References
-                { "<F10>",         ":Telescope lsp_references theme=cursor<cr>",       description = "LSP References" },
-
-                -- LSP: definitions and implementations
-                { "<F11>",         ":Telescope lsp_definitions theme=cursor<cr>",      description = "LSP Definitions" },
-                { "<S-F11>",       ":Telescope lsp_type_definitions theme=cursor<cr>", description = "LSP Typedef" },
-                { "<leader><F11>", ":Telescope lsp_implementations theme=cursor<cr>",  description = "LSP Impl" },
+                { "gR", ":IncRename<cr>",                             description = "LSP IncRename" },
+                { "gr", ":Telescope lsp_references theme=cursor<cr>", description = "LSP References" },
                 {
                   "gD",
-                  ":lua vim.lsp.buf.declaration()",
+                  ":lua vim.lsp.buf.declaration()<cr>",
                   description =
                   "Go to symbol declaration"
                 },
                 {
                   "gd",
-                  ":lua vim.lsp.buf.definition()",
+                  ":lua vim.lsp.buf.definition()<cr>",
                   description =
                   "Go to symbol definition"
                 },
                 {
                   "gi",
-                  ":lua vim.lsp.buf.implementation()",
+                  ":lua vim.lsp.buf.implementation()<cr>",
                   description =
                   "Go to symbol implementation"
                 },
                 {
                   "gtd",
-                  ":lua vim.lsp.buf.type_definition()",
+                  ":lua vim.lsp.buf.type_definition()<cr>",
                   description =
                   "Go to type definition"
                 },
                 {
-                  "<leader>?",
-                  ":lua vim.lsp.buf.hover()",
+                  "g?",
+                  ":lua vim.lsp.buf.hover()<cr>",
                   description =
                   "Show (hover) info for current symbol"
                 },
                 {
-                  "<leader>!",
-                  ":lua vim.lsp.buf.code_action()",
+                  "g!",
+                  ":lua vim.lsp.buf.code_action()<cr>",
                   description =
                   "Do code action for current symbol"
                 },
