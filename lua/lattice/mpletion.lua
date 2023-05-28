@@ -6,7 +6,7 @@ function mpletion.setup(use)
     after = { "nvim-treesitter", "LuaSnip", "plenary.nvim", "lspkind.nvim" },
     requires = {
       -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
-      -- TODO: maybe kristijanhusak/vim-dadbod-completion if we reenable dadbod
+      -- TODO: maybe kristijanhusak/vim-dadbod-completion if we reënable dadbod
       "David-Kunz/cmp-npm",
       "f3fora/cmp-spell",
       "L3MON4D3/cmp-luasnip-choice",
@@ -161,9 +161,9 @@ function mpletion.setup(use)
   use {
     "protex/better-digraphs.nvim",
     config = function()
-      vim.keymap.set("i", "<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('insert')<CR>")
-      vim.keymap.set("n", "r<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('normal')<CR>")
-      vim.keymap.set("v", "r<C-k><C-k>", "<Cmd>lua require'better-digraphs'.digraphs('visual')<CR>")
+      vim.keymap.set("i", "<C-k><C-k>", "<Cmd>lua require 'better-digraphs'.digraphs('insert')<CR>")
+      vim.keymap.set("n", "r<C-k><C-k>", "<Cmd>lua require 'better-digraphs'.digraphs('normal')<CR>")
+      vim.keymap.set("v", "r<C-k><C-k>", "<Cmd>lua require 'better-digraphs'.digraphs('visual')<CR>")
     end
   }
   use {

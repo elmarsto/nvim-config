@@ -62,7 +62,7 @@ function other.setup(use)
           '%',                    -- already provided
           'iv', 'av', 'ik', 'ak', -- about key/value pairs; not language-sensitive AFAICT. JSON?
           'im',
-          'am',                   -- conflicts with treesitter? I think? anyways not sure what 'chainMember' is, sounds language specific
+          'am',                   -- conflicts with treesitter? I think? Anyways not sure what 'chainMember' is, sounds language specific
           'ic', 'ac',             -- css-specific
           'ix', 'ax',             -- html-specific
           'i/', 'a/',             -- js-specific

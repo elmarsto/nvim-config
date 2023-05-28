@@ -30,14 +30,14 @@ function keyboard.setup(use)
                 { '<C-W>m',    ":WinShift<cr>",       description = "Activate Winshift Mode" },
                 { '<C-W>x',    ":WinShift swap<cr>",  description = "Swap two windows" },
                 { '<C-M-H>',   ":WinShift left<cr>",  description = "Shift window left" },
-                { '<C-M-J>',   ":WinShift down<cr>",  description = "Shfift window down" },
+                { '<C-M-J>',   ":WinShift down<cr>",  description = "Shift window down" },
                 { '<C-M-K>',   ":WinShift up<cr>",    description = "Shift window up" },
                 { '<C-M-L>',   ":WinShift right<cr>", description = "Shift window right" },
                 { "<C-Left>",  ":wincmd h<cr>",       description = "Select window on the left" },
                 { "<C-Down>",  ":wincmd j<cr>",       description = "Select window on the light" },
                 { "<C-Up>",    ":wincmd k<cr>",       description = "Select window above" },
                 { "<C-Right>", ":wincmd l<cr>",       description = "Select window below" },
-                -- not shown: M-j etc. all works for resizing thanks to smart-splits (see bunt.lua)
+                -- not shown: M-j etc. All works for resizing thanks to smart-splits (see bunt.lua)
               }
             },
             {
@@ -344,7 +344,7 @@ function keyboard.setup(use)
                   description =
                   "Do code action for current symbol"
                 },
-                -- TODO: add treesitter shortcuts here and remove from tresitter.lua
+                -- TODO: add treesitter shortcuts here and remove from treesitter.lua
               }
             },
 
@@ -357,7 +357,7 @@ function keyboard.setup(use)
                 if venn_enabled == "nil" then
                   vim.b.venn_enabled = true
                   vim.cmd [[setlocal ve=all]]
-                  -- draw a line on HJKL keystokes
+                  -- draw a line on HJKL keystrokes
                   vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
                   vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
                   vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
