@@ -64,7 +64,8 @@ function prose.setup(use)
     config = function()
       local ll = require "lattice_local"
       require 'vale'.setup({
-        bin = ll.vale.bin
+        bin = ll.vale.bin,
+        vale_config_path = ll.vale.ini
       })
     end
   }

@@ -14,7 +14,7 @@ function keyboard.setup(use)
               description = 'Commands about commands',
               icon = '🤘',
               keymaps = {
-                { "<C-Space>",         ":Legendary<cr>",         description = "Legendary (Meta!)" },
+                { "<leader><CR>",      ":Legendary<cr>",         description = "Legendary (Meta!)" },
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
                 { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" },
