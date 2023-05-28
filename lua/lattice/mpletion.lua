@@ -8,6 +8,7 @@ function mpletion.setup(use)
       -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
       -- TODO: maybe kristijanhusak/vim-dadbod-completion if we reenable dadbod
       "David-Kunz/cmp-npm",
+      "f3fora/cmp-spell",
       "L3MON4D3/cmp-luasnip-choice",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
@@ -33,6 +34,8 @@ function mpletion.setup(use)
       local insert = cmp.SelectBehavior.Insert
       local replace = cmp.SelectBehavior.replace
       local modes = { 'i', 's', 'c' }
+      vim.opt.spell = true            -- needed for cmp-spell
+      vim.opt.spelllang = { 'en_us' } -- needed for cmp-spel
       cmp.setup(
         {
           completion = {
@@ -110,7 +113,15 @@ function mpletion.setup(use)
             { name = "path" },
             { name = "buffer" },
             { name = "dictionary" },
-            { name = "npm",           keyword_length = 4 }
+            { name = "npm",           keyword_length = 4 },
+            {
+              name = 'spell',
+              option = {
+                enable_in_context = function()
+                  return require('cmp.config.context').in_treesitter_capture('spell')
+                end,
+              }
+            }
           },
           formatting = {
             format = lspkind.cmp_format({
