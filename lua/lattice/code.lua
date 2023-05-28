@@ -10,7 +10,7 @@ function code.setup(use)
   use "bfredl/nvim-luadev"
   use "David-Kunz/jester"
   use "dmix/elvish.vim"
-  use  { "folke/trouble.nvim", after = "nvim-web-devicons" }
+  use { "folke/trouble.nvim", after = "nvim-web-devicons" }
   -- use { "mfussenegger/nvim-dap",
   --   requires = {
   --     "rcarriga/nvim-dap-ui",
@@ -67,7 +67,6 @@ function code.setup(use)
   --     )
   --   end
   -- }
-  use "tpope/vim-surround"
   use {
     "windwp/nvim-autopairs",
     config = function()

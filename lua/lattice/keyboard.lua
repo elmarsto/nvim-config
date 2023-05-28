@@ -390,6 +390,7 @@ function keyboard.setup(use)
         })
     end
   }
+  use "tpope/vim-repeat"
 end
 
 return keyboard

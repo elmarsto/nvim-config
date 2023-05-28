@@ -43,6 +43,16 @@ function prose.setup(use)
     end
   }
   use {
+    "jalvesaq/dict.nvim",
+    config = function()
+      local dict_dir = require "lattice_local".dict_dir
+      require 'dict'.setup({
+        dict_dir = dict_dir,
+      })
+      vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("dict").lookup()<CR>')
+    end
+  }
+  use {
     "jbyuki/venn.nvim",
     config = function()
       -- see keyboard.lua (using legendary for its clarity)

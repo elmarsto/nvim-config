@@ -132,6 +132,11 @@ function treesitter.setup(use)
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   }
+  use({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter"
+  })
 end
 
 return treesitter

@@ -2,6 +2,17 @@ local other = {}
 
 function other.setup(use)
   use "gbprod/stay-in-place.nvim"
+  use {
+    "kylechui/nvim-surround",
+    after = {
+      "nvim-treesitter",
+      "nvim-treesitter-textobjects",
+    },
+    tag = "*",
+    config = function()
+      require "nvim-surround".setup()
+    end
+  }
   use "nvim-lua/plenary.nvim"
   use { "famiu/bufdelete.nvim",
     config = function()
@@ -25,7 +36,6 @@ function other.setup(use)
     end,
   })
   use "samjwill/nvim-unception"
-  use "tpope/vim-repeat"
   use {
     "tyru/open-browser.vim",
     config = function()
@@ -52,6 +62,13 @@ function other.setup(use)
           map <leader>p :call TogglePaste()<cr>
 
       ]]
+    end
+  }
+  use "XXiaoA/ns-textobject.nvim"
+  use {
+    "chrisgrieser/nvim-various-textobjs",
+    config = function()
+      require("various-textobjs").setup({ useDefaultKeymaps = true })
     end
   }
 end
