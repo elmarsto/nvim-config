@@ -135,7 +135,16 @@ function treesitter.setup(use)
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter"
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true
+          }
+        } }
+    end
   })
 end
 
