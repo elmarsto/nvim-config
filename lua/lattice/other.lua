@@ -2,17 +2,6 @@ local other = {}
 
 function other.setup(use)
   use "gbprod/stay-in-place.nvim"
-  use {
-    "kylechui/nvim-surround",
-    after = {
-      "nvim-treesitter",
-      "nvim-treesitter-textobjects",
-    },
-    tag = "*",
-    config = function()
-      require "nvim-surround".setup()
-    end
-  }
   use "nvim-lua/plenary.nvim"
   use { "famiu/bufdelete.nvim",
     config = function()
@@ -64,11 +53,21 @@ function other.setup(use)
       ]]
     end
   }
-  use "XXiaoA/ns-textobject.nvim"
   use {
     "chrisgrieser/nvim-various-textobjs",
     config = function()
-      require("various-textobjs").setup({ useDefaultKeymaps = true })
+      require("various-textobjs").setup({
+        -- treesitter-textobjects provides better solutions to the following
+        disabledKeymaps = {
+          '%',                    -- already provided
+          'iv', 'av', 'ik', 'ak', -- about key/value pairs; not language-sensitive AFAICT. JSON?
+          'im',
+          'am',                   -- conflicts with treesitter? I think? anyways not sure what 'chainMember' is, sounds language specific
+          'ic', 'ac',             -- css-specific
+          'ix', 'ax',             -- html-specific
+          'i/', 'a/',             -- js-specific
+        }
+      })
     end
   }
 end
