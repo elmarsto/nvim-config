@@ -60,6 +60,15 @@ function prose.setup(use)
   }
   use "kana/vim-textobj-user"
   use {
+    "marcelofern/vale.nvim",
+    config = function()
+      local ll = require "lattice_local"
+      require 'vale'.setup({
+        bin = ll.vale.bin
+      })
+    end
+  }
+  use {
     'NFrid/due.nvim',
     config = function()
       require('due_nvim').setup {}
