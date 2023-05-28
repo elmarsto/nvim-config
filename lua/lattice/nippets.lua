@@ -163,9 +163,9 @@ function nippets.setup(use)
             "Xx",
             {
               t "- [",
-              i(0),
+              i(1),
               t "] ",
-              i(1)
+              i(0)
             }
           ),
           s(
