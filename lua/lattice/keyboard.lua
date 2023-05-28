@@ -333,7 +333,7 @@ function keyboard.setup(use)
                   "Go to type definition"
                 },
                 {
-                  "g?",
+                  "<leader>K",
                   ":lua vim.lsp.buf.hover()<cr>",
                   description =
                   "Show (hover) info for current symbol"
