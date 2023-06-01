@@ -10,7 +10,7 @@ function keyboard.setup(use)
           keymaps = {
             -- Legends, keymaps on spacebar
             {
-              itemgroup = 'meta',
+              itemgroup = 'meta & existential',
               description = 'Commands about commands',
               icon = '🤘',
               keymaps = {
@@ -18,6 +18,18 @@ function keyboard.setup(use)
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
                 { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" },
+                {
+                  "ZZ",
+                  ":wqa<cr>",
+                  description =
+                  "Close everything but keep tabs and windows in sesh"
+                },
+                {
+                  "ZQ",
+                  ":qa!<cr>",
+                  description =
+                  "Close everything and don't save, but keep tabs and windows in sesh"
+                },
               }
             },
             {
@@ -195,9 +207,14 @@ function keyboard.setup(use)
               icon = '🔍',
               keymaps = {
                 -- TODO: git grep (plugin opportunity??)
-                { "<M-/>",         ":Telescope live_grep prompt_prefix=🔍<cr>", description = "Ripgrep" },
-                { "<M-.>",         ":Telescope find_files<cr>",                   description = "Find Files" },
-                { "<leader><M-.>", ":Telescope git_files<cr>",                    description = "Find Files (Git)" },
+                { "<M-/>", ":Telescope live_grep theme=ivy prompt_prefix=🔍<cr>", description = "Ripgrep" },
+                { "<M-.>", ":Telescope find_files theme=ivy<cr>",                   description = "Find Files" },
+                {
+                  "<leader><M-.>",
+                  ":Telescope git_files theme=ivy<cr>",
+                  description =
+                  "Find Files (Git)"
+                },
               }
             },
             {
