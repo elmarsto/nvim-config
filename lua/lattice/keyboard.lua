@@ -17,7 +17,7 @@ function keyboard.setup(use)
                 { "<leader><CR>",      ":Legendary<cr>",         description = "Legendary (Meta!)" },
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
-                { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" },
+                { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" }, -- TODO: see FIXME below on autocmd, same problem here
                 {
                   "ZZ",
                   ":wqa<cr>",
@@ -399,7 +399,21 @@ function keyboard.setup(use)
               itemgroup = 'lsp'
             }
           },
-          autocmds = {},
+          autocmds = {
+            -- FIXME: this next thing does not work and I do not know why.
+            -- I think the problem is that there are two things that need to happen, 1. lua reload and 2. packer recompile
+            -- This code AFAIK just recompiles the already loaded lua, without refresh.
+            -- {
+            --   'BufWritePost',
+            --   function()
+            --     require 'packer'.compile()
+            --   end,
+            --   opts = {
+            --     pattern = { '/home/lattice/lattice-nix/nvim-config/lua/lattice/*.lua' }
+            --   },
+            --   description = 'Recompile lua config upon ch-ch-changes',
+            -- },
+          },
           extensions = {
             diffview = true,
             smart_splits = {},

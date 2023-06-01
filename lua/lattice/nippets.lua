@@ -19,17 +19,44 @@ function nippets.setup(use)
           store_selection_keys = "<Tab>"
         }
       )
+      vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
+      vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
+      vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
+      vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
+      vim.api.nvim_set_keymap("i", "<C-u>", "<cmd>lua require('luasnip.extras.select_choice')()", {})
+
       local ls = require("luasnip")
       local s = ls.snippet
       local sn = ls.snippet_node
+      -- local isn = ls.indent_snippet_node
       local t = ls.text_node
       local i = ls.insert_node
-      local f = ls.function_node
+      -- local f = ls.function_node
+      local c = ls.choice_node
       local d = ls.dynamic_node
+      -- local r = ls.restore_node
+      -- local events = require("luasnip.util.events")
+      -- local ai = require("luasnip.nodes.absolute_indexer")
+      -- local extras = require("luasnip.extras")
+      -- local l = extras.lambda
+      -- local rep = extras.rep
+      -- local p = extras.partial
+      -- local m = extras.match
+      -- local n = extras.nonempty
+      -- local dl = extras.dynamic_lambda
+      -- local fmt = require("luasnip.extras.fmt").fmt
+      -- local fmta = require("luasnip.extras.fmt").fmta
+      -- local conds = require("luasnip.extras.expand_conditions")
+      -- local postfix = require("luasnip.extras.postfix").postfix
+      -- local types = require("luasnip.util.types")
+      -- local parse = require("luasnip.util.parser").parse_snippet
+      -- local ms = ls.multi_snippet
+      -- local k = require("luasnip.nodes.key_indexer").new_key
+
       local date_input = function(_, _, fmt)
         local form = fmt or "%Y-%m-%d"
         return sn(nil, i(1, os.date(form)))
-      end
+      end --
       -- TODO: dry out; can we have the user choose the register
       ls.add_snippets(
         "all",
@@ -39,122 +66,10 @@ function nippets.setup(use)
             "ln",
             {
               t "[",
-              i(1),
+              -- i(1),
+              c(1, { t "foo", t "bar", t "baz" }),
               t("]("),
               i(2),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln.",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  local dotreg = vim.fn.getreg(".") or "."
-                  return vim.fn.getreg(dotreg) or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln*",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg("*") or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln-",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg("-") or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln/",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg("/") or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln0",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg("0") or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            "ln+",
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg("+") or {}
-                end,
-                {}
-              ),
-              t(")"),
-              i(0)
-            }
-          ),
-          s(
-            'ln"',
-            {
-              t "[",
-              i(1),
-              t("]("),
-              f(
-                function(_)
-                  return vim.fn.getreg('"') or {}
-                end,
-                {}
-              ),
               t(")"),
               i(0)
             }
@@ -168,22 +83,6 @@ function nippets.setup(use)
               i(0)
             }
           ),
-          s(
-            "ln://",
-            {
-              t('<a href="'),
-              f(
-                function(_, snip)
-                  return snip.env.TM_SELECTED_TEXT[1] or {}
-                end,
-                {}
-              ),
-              t('">'),
-              i(1),
-              t("</a>"),
-              i(0)
-            }
-          )
         }
       )
     end

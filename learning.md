@@ -1,9 +1,9 @@
-# Vim learnings 2022-12-11j
+# Vim learnings 2022-12-11
  1. ciw and diw are pretty cool. you don't have to hop back to the word boundary, you can just delete or change the word. You get yiw too, etc etc.
- 2. `#` aend `*` over a word will highlight all occurrences of that word and move backward and forward
+ 2. `#` and `*` over a word will highlight all occurrences of that word and move backward and forward
  3. t/T and f/F are for hop, basically, and t stops before, f stops on, the character.
  4. `C-r` is redo
- 5. Don't forget `o` and `O`, which open a line abovebelow
+ 5. Don't forget `o` and `O`, which open a line above (below)
  6. A gets you to the end of the line and into insert mode
  7. Remember to use your old friends `^` and `$` and their additional buddy `0`
  8. the `%` character in normal mode lets you hop to a bracket's pair
