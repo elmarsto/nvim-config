@@ -1,6 +1,9 @@
 local lsp = {}
 
 function lsp.setup(use)
+  use { "j-hui/fidget.nvim", config = function()
+    require "fidget".setup()
+  end }
   use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -34,6 +37,13 @@ function lsp.setup(use)
           }
         }
       )
+    end
+  }
+  use {
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
+    config = function()
+      require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
     end
   }
   use {

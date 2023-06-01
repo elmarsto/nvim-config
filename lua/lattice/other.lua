@@ -1,6 +1,10 @@
 local other = {}
 
 function other.setup(use)
+  use { "AckslD/muren.nvim", config = function()
+    require "muren".setup()
+  end
+  }
   use "gbprod/stay-in-place.nvim"
   use "nvim-lua/plenary.nvim"
   use { "famiu/bufdelete.nvim",
@@ -12,6 +16,7 @@ function other.setup(use)
       ]]
     end
   }
+  use 'jghauser/mkdir.nvim'
   use({
     "olimorris/persisted.nvim",
     -- module = "persisted", -- For lazy loading
@@ -32,7 +37,7 @@ function other.setup(use)
       vim.cmd [[
           " misc mappings
           nnoremap Q @@
-          nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
+          nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("cfile")  <cr>
           nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
           nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
           nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>

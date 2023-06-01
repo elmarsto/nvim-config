@@ -186,8 +186,8 @@ function keyboard.setup(use)
                 { "<F8>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
                 { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble" },
                 { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
-                { "[d",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
-                { "]d",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
+                { "[g",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
+                { "]g",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
                 { "<leader>d2l", ":lua vim.diagnostic.set_loclist()<cr>", description = "Diagnostics -> Ll" },
               }
             },

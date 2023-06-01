@@ -72,6 +72,7 @@ function treesitter.setup(use)
     after = {
       "nvim-treesitter",
       "nvim-treesitter-textobjects",
+      "leap.nvim" -- TODO: confirm this works (we want surround to own the keysequence 'ds*')
     },
     tag = "*",
     config = function()
@@ -280,6 +281,12 @@ function treesitter.setup(use)
       }
     end
   })
+  use { "Wansmer/treesj",
+    after = "nvim-treesitter",
+    config = function()
+      require('treesj').setup()
+    end
+  }
 end
 
 return treesitter

@@ -10,8 +10,7 @@ packer.startup {
   function(use)
     use "nvim-lua/plenary.nvim"
     use "neomake/neomake"
-    use "tpope/vim-abolish"
-    use "tpope/vim-surround"
+    use "tpope/vim-surround"     -- TODO: replace with nvim-surround
     use "wbthomason/packer.nvim" -- self-control
   end
 }

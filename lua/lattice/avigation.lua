@@ -1,11 +1,27 @@
 local avigation = {}
 function avigation.setup(use)
+  use "elihunter173/dirbuf.nvim"
   use {
     "ggandor/leap.nvim",
+    requires = {
+      "ggandor/leap-spooky.nvim",
+      "ggandor/flit.nvim",
+    },
+    after = "vim-repeat",
     config = function()
+      -- TODO: fix keybindings not to interfere with surround
       require('leap').add_default_mappings()
+      require('leap-spooky').setup()
+      require('flit').setup()
     end
   }
+  use { "lukas-reineke/indent-blankline.nvim",
+    configure = function()
+      require("indent_blankline").setup()
+    end
+  }
+  use "kiyoon/treesitter-indent-object.nvim"
+  use "tommcdo/vim-ninja-feet"
   use "mbbill/undotree"
   use { "nacro90/numb.nvim",
     config = function()
@@ -17,6 +33,18 @@ function avigation.setup(use)
         centered_peeking = true,     -- Peeked line will be centered relative to window
       }
     end
+  }
+  use {
+    "SmiteshP/nvim-navbuddy",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+    },
+    after = {
+      "nui.nvim",
+      "Comment.nvim",
+      "telescope.nvim"
+    }
   }
 end
 
