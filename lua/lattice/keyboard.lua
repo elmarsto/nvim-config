@@ -17,9 +17,11 @@ function keyboard.setup(use)
                 { "<leader><CR>",      ":Legendary<cr>",         description = "Legendary (Meta!)" },
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
-                { "<leader>C",         ":PackerCompile<cr>",     description = "Telescope" }, -- TODO: see FIXME below on autocmd, same problem here
+                { "<leader>L",         ":luafile %<cr>",         description = "Reload current luafile" },
+                { "<leader>C",         ":PackerCompile<cr>",     description = "Compile packer" },
                 {
                   "ZZ",
+
                   ":wqa<cr>",
                   description =
                   "Close everything but keep tabs and windows in sesh"

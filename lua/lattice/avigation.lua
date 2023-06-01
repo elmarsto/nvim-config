@@ -34,18 +34,6 @@ function avigation.setup(use)
       }
     end
   }
-  use {
-    "SmiteshP/nvim-navbuddy",
-    requires = {
-      "neovim/nvim-lspconfig",
-      "SmiteshP/nvim-navic",
-    },
-    after = {
-      "nui.nvim",
-      "Comment.nvim",
-      "telescope.nvim"
-    }
-  }
 end
 
 return avigation

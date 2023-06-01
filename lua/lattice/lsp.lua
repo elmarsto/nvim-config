@@ -50,8 +50,11 @@ function lsp.setup(use)
     "neovim/nvim-lspconfig",
     after = { "null-ls.nvim", "cmp-nvim-lsp", "nvim-cmp" },
     requires = {
-      { "b0o/schemastore.nvim" },
-      { "lukas-reineke/lsp-format.nvim" },
+      "SmiteshP/nvim-navbuddy",
+      "SmiteshP/nvim-navic",  -- transitive on navbuddy
+      "MunifTanjim/nui.nvim", -- transitive on navbuddy
+      "b0o/schemastore.nvim",
+      "lukas-reineke/lsp-format.nvim",
     },
     config = function()
       local lattice_local = require "lattice_local"
@@ -61,6 +64,7 @@ function lsp.setup(use)
       -- declare local in this scope so we don't `require` every run of on_attach below
       local formatAttach = require "lsp-format".on_attach
       local on_attach = function(client, bufnr)
+        require 'nvim-navbuddy'.attach(client, bufnr)
         client.server_capabilities.document_formatting = true
         formatAttach(client)
 
