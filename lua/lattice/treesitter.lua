@@ -72,7 +72,7 @@ function treesitter.setup(use)
     after = {
       "nvim-treesitter",
       "nvim-treesitter-textobjects",
-      "leap.nvim" -- TODO: confirm this works (we want surround to own the keysequence 'ds*')
+      "leap.nvim" -- This needs to be here so that nvim-surround gets precedence over leap for 'ds*' sequences
     },
     tag = "*",
     config = function()
