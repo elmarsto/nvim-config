@@ -5,20 +5,21 @@ function mpletion.setup(use)
     "hrsh7th/nvim-cmp",
     after = { "nvim-treesitter", "LuaSnip", "plenary.nvim", "lspkind.nvim" },
     requires = {
-      -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
-      -- TODO: maybe kristijanhusak/vim-dadbod-completion if we reënable dadbod
       "David-Kunz/cmp-npm",
-      "f3fora/cmp-spell",
       "L3MON4D3/cmp-luasnip-choice",
+      "PhilRunninger/cmp-rpncalc",
+      "f3fora/cmp-spell",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      -- "kristijanhusak/vim-dadbod-completion",
       "lukas-reineke/cmp-rg",
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
       "zbirenbaum/copilot-cmp",
+      -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
     },
     config = function()
       require('cmp_luasnip_choice').setup();
@@ -104,6 +105,7 @@ function mpletion.setup(use)
             ),
           }),
           sources = {
+            { name = "rpncalc" },
             { name = "copilot" },
             { name = "luasnip" },
             { name = "luasnip_choice" },
