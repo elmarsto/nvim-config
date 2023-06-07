@@ -77,15 +77,15 @@ function prose.setup(use)
   }
   use "preservim/vim-pencil"
   use "pirmd/gemini.vim"
-  use { "renerocksai/telekasten.nvim", config = function()
-    require 'telekasten'.setup({
-      home = vim.fn.expand("~/navaruk")
-    })
-  end }
+  use "tpope/vim-abolish"
   vim.cmd [[
+    autocmd BufWinEnter *.html iabbrev -- &ndash;
     autocmd BufWinEnter *.html iabbrev --- &mdash;
-    autocmd BufWinEnter *.svelte iabbrev --- &mdash;
+    autocmd BufWinEnter *.jsx iabbrev -- &ndash;
     autocmd BufWinEnter *.jsx iabbrev --- &mdash;
+    autocmd BufWinEnter *.svelte iabbrev -- &ndash;
+    autocmd BufWinEnter *.svelte iabbrev --- &mdash;
+    autocmd BufWinEnter *.tsx iabbrev -- &ndash;
     autocmd BufWinEnter *.tsx iabbrev --- &mdash;
     autocmd BufWinEnter *.norg inoremap <M-CR> <End><CR>- [ ]
     autocmd BufWinEnter *.md inoremap <M-CR> <End><CR>- [ ]

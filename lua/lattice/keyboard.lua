@@ -14,14 +14,23 @@ function keyboard.setup(use)
               description = 'Commands about commands',
               icon = '🤘',
               keymaps = {
-                { "<leader><CR>",      ":Legendary<cr>",         description = "Legendary (Meta!)" },
+                { "<leader><CR>",      ":Legendary<cr>",         description = "Legendary (Metal!)" },
                 { "<leader><C-Space>", ":Telescope keymaps<cr>", description = "Telescope Keymap" },
                 { "<leader>T",         ":Telescope<cr>",         description = "Telescope" },
                 { "<leader>L",         ":luafile %<cr>",         description = "Reload current luafile" },
-                { "<leader>C",         ":PackerCompile<cr>",     description = "Compile packer" },
+                {
+                  "ZC",
+                  function()
+                    vim.
+                        vim.cmd [[
+                     luafile /home/lattice/lattice-nix/nvim-config/init.lua
+                     PackerCompile
+                    ]]
+                  end,
+                  description = "Close everything but keep tabs and windows in sesh"
+                },
                 {
                   "ZZ",
-
                   ":wqa<cr>",
                   description =
                   "Close everything but keep tabs and windows in sesh"

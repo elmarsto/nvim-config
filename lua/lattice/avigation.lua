@@ -34,6 +34,17 @@ function avigation.setup(use)
       }
     end
   }
+  use { "stevearc/oil.nvim",
+    config = function()
+      require "oil".setup({
+        columns = {
+          "icon",
+          "permissions",
+        }
+      })
+      vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+    end
+  }
 end
 
 return avigation
