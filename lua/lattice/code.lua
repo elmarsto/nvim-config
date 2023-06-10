@@ -44,7 +44,7 @@ function code.setup(use)
             name = "Chrome Launch",
           },
         }
-        require("nvim-dap-virtual-text").setup()
+        require("nvim-dap-virtual-text").setup({})
         require "dapui".setup()
       end
       -- one-small-step

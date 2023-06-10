@@ -1,43 +1,45 @@
 local scope = {}
 
 function scope.setup(use)
-  use { "axkirillov/easypick.nvim", after = "telescope.nvim", config = function()
-    local easypick = require("easypick")
+  use { "axkirillov/easypick.nvim",
+    after = "telescope.nvim",
+    config = function()
+      local easypick = require("easypick")
 
-    -- only required for the example to work
-    local base_branch = "main"
+      -- only required for the example to work
+      local base_branch = "main"
 
-    easypick.setup({
-      pickers = {
-        -- add your custom pickers here
-        -- below you can find some examples of what those can look like
+      easypick.setup({
+        pickers = {
+          -- add your custom pickers here
+          -- below you can find some examples of what those can look like
 
-        -- list files inside current folder with default previewer
-        {
-          -- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
-          name = "ls",
-          -- the command to execute, output has to be a list of plain text entries
-          command = "ls",
-          -- specify your custom previwer, or use one of the easypick.previewers
-          previewer = easypick.previewers.default()
-        },
+          -- list files inside current folder with default previewer
+          {
+            -- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
+            name = "ls",
+            -- the command to execute, output has to be a list of plain text entries
+            command = "ls",
+            -- specify your custom previwer, or use one of the easypick.previewers
+            previewer = easypick.previewers.default()
+          },
 
-        -- diff current branch with base_branch and show files that changed with respective diffs in preview
-        {
-          name = "changed_files",
-          command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
-          previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
-        },
+          -- diff current branch with base_branch and show files that changed with respective diffs in preview
+          {
+            name = "changed_files",
+            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
+            previewer = easypick.previewers.branch_diff({ base_branch = base_branch })
+          },
 
-        -- list files that have conflicts with diffs in preview
-        {
-          name = "conflicts",
-          command = "git diff --name-only --diff-filter=U --relative",
-          previewer = easypick.previewers.file_diff()
-        },
-      }
-    })
-  end }
+          -- list files that have conflicts with diffs in preview
+          {
+            name = "conflicts",
+            command = "git diff --name-only --diff-filter=U --relative",
+            previewer = easypick.previewers.file_diff()
+          },
+        }
+      })
+    end }
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -54,7 +56,6 @@ function scope.setup(use)
       local tscope = require("telescope")
       local ll = require("lattice_local")
       tscope.setup {
-        pickers = {},
         extensions = {
           media_files = {
             filetypes = { "png", "webp", "jpg", "jpeg" },
