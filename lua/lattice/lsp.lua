@@ -1,7 +1,7 @@
 local lsp = {}
 
 function lsp.setup(use)
-  use { "j-hui/fidget.nvim", config = function() require "fidget".setup() end }
+  use { "j-hui/fidget.nvim", tag = "legacy", config = function() require "fidget".setup() end }
   use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()

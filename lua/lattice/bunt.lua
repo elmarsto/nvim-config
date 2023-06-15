@@ -200,17 +200,15 @@ function bunt.setup(use)
       })
     end
   }
-  use "petertriho/nvim-scrollbar"
+  use {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+    end
+  }
   use {
     "stevearc/dressing.nvim",
     after = { "telescope.nvim", "nui.nvim" },
-  }
-  use { "wfxr/minimap.vim",
-    config = function()
-      vim.g["minimap_width"] = 10
-      vim.g["minimap_auto_start"] = 1
-      vim.g["minimap_auto_start"] = 1
-    end
   }
 end
 
