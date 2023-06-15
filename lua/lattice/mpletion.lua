@@ -18,13 +18,13 @@ function mpletion.setup(use)
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
-      "zbirenbaum/copilot-cmp",
+      -- "zbirenbaum/copilot-cmp",
       -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
     },
     config = function()
       require('cmp_luasnip_choice').setup();
       require('cmp-npm').setup(); -- TODO: - -> _ ?
-      require('copilot_cmp').setup();
+      -- require('copilot_cmp').setup();
       local lspkind = require "lspkind"
       local luasnip = require "luasnip"
       local cmp = require "cmp"
@@ -106,7 +106,7 @@ function mpletion.setup(use)
           }),
           sources = {
             { name = "rpncalc" },
-            { name = "copilot" },
+            -- { name = "copilot" },
             { name = "luasnip" },
             { name = "luasnip_choice" },
             { name = "nvim_lsp" },
@@ -180,16 +180,16 @@ function mpletion.setup(use)
     end
 
   }
-  use { "zbirenbaum/copilot.lua", -- FIXME: not currently working?
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
-  }
+  -- use { "zbirenbaum/copilot.lua", -- I stopped paying for this
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --     })
+  --   end,
+  -- }
 end
 
 return mpletion

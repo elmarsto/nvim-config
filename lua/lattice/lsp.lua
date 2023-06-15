@@ -240,7 +240,18 @@ function lsp.setup(use)
       nvim_lsp.yamlls.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
-        cmd = { lattice_local.yamlls.bin }
+        cmd = { lattice_local.yamlls.bin, "--stdio" },
+        settings = {
+          yaml = {
+            format = {
+              enable = true,
+              singleQuote = false,
+              bracketSpacing = true
+            },
+            validate = true,
+            completion = true
+          }
+        }
       }
     end
   }

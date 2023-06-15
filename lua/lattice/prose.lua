@@ -76,6 +76,19 @@ function prose.setup(use)
     end
   }
   use "preservim/vim-pencil"
+  use { "preservim/vim-textobj-quote",
+    config = function()
+      vim.cmd [[
+      let g:textobj#quote#educate = 1
+      augroup textobj_quote
+        autocmd!
+        autocmd FileType markdown call textobj#quote#init()
+        autocmd FileType textile call textobj#quote#init()
+        autocmd FileType text call textobj#quote#init({'educate': 0})
+      augroup END
+      ]]
+    end
+  }
   use "pirmd/gemini.vim"
   use "tpope/vim-abolish"
   vim.cmd [[

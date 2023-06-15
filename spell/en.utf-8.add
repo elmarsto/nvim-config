@@ -26,10 +26,12 @@ FTW
 Fediverse
 FerretDB
 FileType
+Firstname
 FixCursorHold
 FreeSkool
 GCBallesteros
 GMail
+GPL
 GraphQL
 HJKL
 Horiz
@@ -51,6 +53,7 @@ JoosepAlviste
 Kayil
 Keymap
 Kunz
+Lastname
 LinkedIn
 LspDiagnosticsDefaultError
 LspDiagnosticsDefaultHint
@@ -65,6 +68,7 @@ MunifTanjim
 NFrid
 Nix
 NixOS
+Nostr
 ObsidianFollowLink
 OpenBSD
 OpenBrowser
@@ -79,6 +83,7 @@ Podman
 Prev
 RRethy
 Raindropped
+Reddit
 Repl
 Ripgrep
 SecondaryStory
@@ -90,6 +95,7 @@ SessionSave
 SessionStart
 SessionStop
 SessionToggle
+ShareAlike
 SmiteshP
 SmoothCursor
 Substack
@@ -128,6 +134,7 @@ aletheia
 all
 alvarez
 amsterdam
+analytics
 andymass
 anonymise
 anonymize
@@ -139,6 +146,7 @@ apollo
 archlinux
 async
 attice
+augroup
 autocmd
 autolink
 autopairs
@@ -172,6 +180,7 @@ bw
 ccn
 ccpp
 cd
+centric
 cfg
 cfile
 chainMember
@@ -181,6 +190,7 @@ checkOnSave
 cheesily
 chrisgrieser
 cis
+className
 classnames
 cli
 cloudflare
@@ -190,6 +200,7 @@ cmdline
 cmp
 cn
 codemirror
+codepath
 codesandbox
 colorizer
 colorscheme
@@ -230,14 +241,17 @@ dl
 dmix
 dockerfile
 dom
+drilldown
 dropdown
 ds
+eLizabeth
 easypick
 edluffy
 edu
 eldritch
 elias
 elizabeth
+eliziate
 ellisonleao
 elmarsto
 endColumn
@@ -245,6 +259,7 @@ endLine
 endfunction
 endif
 env
+epistemically
 epwalsh
 eslint
 etymonline
@@ -253,6 +268,7 @@ everforest
 expr
 extraArgs
 famiu
+favicon
 favourite
 fedoraproject
 ferretdb
@@ -268,10 +284,12 @@ foldexpr
 foldmethod
 folke
 fontawesome
+foo
 fortawesome
 fourcade
 freeskool
 fromLizmars
+frowners
 fts
 fucksocial
 gD
@@ -286,6 +304,8 @@ gbprod
 gd
 gemini
 gemoji
+gendering
+genderspace
 gf
 gfm
 ggandor
@@ -322,10 +342,12 @@ iabbrev
 ic
 ik
 im
+imageAttribution
 img
 immer
 immers
 india
+init
 inoremap
 integrations
 io
@@ -393,10 +415,12 @@ marston
 matchup
 mathjax
 matomo
+maximalist
 mbbill
 mc
 md
 mdash
+mdx
 menuBarMenus
 metaethics
 mfussenegger
@@ -409,6 +433,7 @@ mongo
 mongodb
 mr
 msg
+mtime
 muren
 mx
 mxsdev
@@ -428,6 +453,7 @@ nixos
 nixpkg
 nixpkgs
 nlua
+nmap
 nnoremap
 noEmit
 nodemailer
@@ -437,6 +463,7 @@ nopaste
 norcalli
 norg
 nosql
+nostr
 nowrap
 npm
 npx
@@ -475,6 +502,7 @@ postinstall
 practicaltypography
 preservim
 prev
+programmatically
 protex
 psql
 pwa
@@ -495,9 +523,12 @@ rehype
 reineke
 relativenumber
 renerocksai
+repatterning
 repl
 repls
+repping
 repurposed
+require
 resizing
 reënable
 rf
@@ -585,6 +616,7 @@ todo
 toggleterm
 toml
 tommcdo
+tone
 topline
 tpope
 transphobia
@@ -604,7 +636,9 @@ uga
 ui
 uic
 unception
+uncontroversially
 undotree
+unescape
 unicode
 unknown
 unoptimized
@@ -618,10 +652,13 @@ vancouver
 ve
 venn
 vercel
+vh
 vimkind
+virilized
 vpn
 vscode
 vue
+vw
 wastebin
 webp
 wikimedia

@@ -11,7 +11,12 @@ function git.setup(use)
       require("gitsigns").setup()
     end
   }
-  use "sindrets/diffview.nvim"
+  use {
+    "sindrets/diffview.nvim",
+    config = function()
+      require "diffview".setup()
+    end
+  }
   use "tpope/vim-fugitive"
 end
 

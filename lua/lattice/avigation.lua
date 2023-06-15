@@ -39,6 +39,8 @@ function avigation.setup(use)
         columns = {
           "icon",
           "permissions",
+          "size",
+          "mtime",
         },
         view_options = {
           show_hidden = true

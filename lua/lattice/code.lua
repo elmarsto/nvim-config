@@ -94,7 +94,7 @@ function code.setup(use)
   use {
     "windwp/nvim-autopairs",
     config = function()
-      require('nvim-autopairs').setup({ disable_filetype = { "TelescopePrompt", "vim" } })
+      require('nvim-autopairs').setup({ disable_filetype = { "TelescopePrompt", "vim", "markdown" } })
     end
   }
 end
