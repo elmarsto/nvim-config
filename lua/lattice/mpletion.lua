@@ -40,7 +40,8 @@ function mpletion.setup(use)
       cmp.setup(
         {
           completion = {
-            autocomplete = false
+            autocomplete = false,
+            completeopt = "menu,menuone,preview"
           },
           snippet = {
             expand = function(args)

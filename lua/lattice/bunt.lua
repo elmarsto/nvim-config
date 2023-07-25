@@ -65,12 +65,10 @@ function bunt.setup(use)
     end
   }
   use {
-    "glepnir/zephyr-nvim",
+    "folke/tokyonight.nvim",
     requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
     config = function()
-      vim.cmd [[
-        colorscheme zephyr
-      ]]
+      vim.cmd [[ colorscheme tokyonight-moon ]]
     end
   }
   use "kyazdani42/nvim-web-devicons"

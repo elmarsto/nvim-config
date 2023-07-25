@@ -37,10 +37,7 @@ function avigation.setup(use)
     config = function()
       require "oil".setup({
         columns = {
-          "icon",
-          "permissions",
-          "size",
-          "mtime",
+          "icon"
         },
         view_options = {
           show_hidden = true

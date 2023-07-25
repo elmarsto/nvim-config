@@ -163,6 +163,10 @@ function lsp.setup(use)
           validate = { enable = true }
         }
       }
+      nvim_lsp.marksman.setup {
+        capabilities = capabilities,
+        cmd = { lattice_local.marksman.bin, "server" }
+      }
       nvim_lsp.prosemd_lsp.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
@@ -173,7 +177,7 @@ function lsp.setup(use)
       nvim_lsp.pyright.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
-        cmd = { lattice_local.prosemd.bin, "--stdio" }
+        cmd = { lattice_local.pyls.bin, "--stdio" }
       }
       nvim_lsp.rnix.setup {
         on_attach = standard_on_attach,

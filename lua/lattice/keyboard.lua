@@ -160,6 +160,15 @@ function keyboard.setup(use)
               }
             },
             {
+              itemgroup = 'Frecency',
+              description = 'Use the Frecencer',
+              icon = '📶',
+              keymaps = {
+                { "<leader>f", ":Telescope frecency",               description = "Browse Frecency" },
+                { "<M-,>",     ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency" },
+              }
+            },
+            {
               itemgroup = 'buffer',
               description = 'Use the buffer list',
               icon = '',
