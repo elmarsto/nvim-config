@@ -43,6 +43,10 @@ function prose.setup(use)
     end
   }
   use {
+    "rawnly/gist.nvim",
+    config = function() require("gist").setup() end,
+  }
+  use {
     "jalvesaq/dict.nvim",
     config = function()
       local dict_dir = require "lattice_local".dict_dir

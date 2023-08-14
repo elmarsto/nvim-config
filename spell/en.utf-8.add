@@ -944,3 +944,5 @@ BufWritePost
 recompiles
 tokyonight
 lockfileVersion
+nixify
+thunderbird
