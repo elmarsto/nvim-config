@@ -36,7 +36,7 @@ function prose.setup(use)
     end
   }
   use {
-    "jakewvincent/mkdnflow.nvim", rocks = 'luautf8',
+    "jakewvincent/mkdnflow.nvim", 
     config = function()
       vim.cmd("autocmd Filetype markdown set autowriteall")
       require("mkdnflow").setup()
