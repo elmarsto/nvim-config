@@ -36,7 +36,7 @@ function prose.setup(use)
     end
   }
   use {
-    "jakewvincent/mkdnflow.nvim", 
+    "jakewvincent/mkdnflow.nvim",
     config = function()
       vim.cmd("autocmd Filetype markdown set autowriteall")
       require("mkdnflow").setup()

@@ -39,10 +39,6 @@ function mpletion.setup(use)
       vim.opt.spelllang = { 'en_us' } -- needed for cmp-spel
       cmp.setup(
         {
-          completion = {
-            autocomplete = false,
-            completeopt = "menu,menuone,preview"
-          },
           snippet = {
             expand = function(args)
               require("luasnip").lsp_expand(args.body)
