@@ -3,7 +3,7 @@ local mpletion = {}
 function mpletion.setup(use)
   use {
     "hrsh7th/nvim-cmp",
-    after = { "nvim-treesitter", "LuaSnip", "plenary.nvim", "lspkind.nvim" },
+    after = { "nvim-treesitter", "LuaSnip", "plenary.nvim", "lspkind.nvim", "mkdnflow.nvim" },
     requires = {
       "David-Kunz/cmp-npm",
       "L3MON4D3/cmp-luasnip-choice",
@@ -13,6 +13,7 @@ function mpletion.setup(use)
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      "kvngvikram/cmp-mkdnflow",
       -- "kristijanhusak/vim-dadbod-completion",
       "lukas-reineke/cmp-rg",
       "ray-x/cmp-treesitter",
@@ -108,6 +109,7 @@ function mpletion.setup(use)
             { name = "luasnip_choice" },
             { name = "nvim_lsp" },
             { name = "cmp_treesitter" },
+            { name = 'mkdnflow' },
             { name = "rg" },
             { name = "path" },
             { name = "buffer" },
