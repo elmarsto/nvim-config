@@ -41,7 +41,15 @@ function prose.setup(use)
     rocks = 'luautf8',
     config = function()
       vim.cmd("autocmd Filetype markdown set autowriteall")
-      require("mkdnflow").setup()
+      require("mkdnflow").setup({
+        links = {
+          transform_explicit = function(text)
+            text = text:gsub(" ", "-")
+            text = text:lower()
+            return (text)
+          end
+        }
+      })
     end
   }
   use {

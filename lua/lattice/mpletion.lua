@@ -39,12 +39,13 @@ function mpletion.setup(use)
       vim.opt.spelllang = { 'en_us' } -- needed for cmp-spel
       cmp.setup(
         {
-          snippet = {
+          completion = { autocomplete = false },
+          snippet    = {
             expand = function(args)
               require("luasnip").lsp_expand(args.body)
             end
           },
-          mapping = cmp.mapping.preset.insert({
+          mapping    = cmp.mapping.preset.insert({
             ["<C-c>"] = cmp.mapping.close(),
             ["<Escape>"] = cmp.mapping.close(),
             ["<CR>"] = cmp.mapping.confirm(
@@ -101,7 +102,7 @@ function mpletion.setup(use)
               modes
             ),
           }),
-          sources = {
+          sources    = {
             { name = "rpncalc" },
             -- { name = "copilot" },
             { name = "luasnip" },
