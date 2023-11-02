@@ -13,7 +13,6 @@ function mpletion.setup(use)
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
-      "kvngvikram/cmp-mkdnflow",
       -- "kristijanhusak/vim-dadbod-completion",
       "lukas-reineke/cmp-rg",
       "ray-x/cmp-treesitter",
