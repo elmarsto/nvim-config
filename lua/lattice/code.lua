@@ -1,6 +1,7 @@
 local code = {}
 
 function code.setup(use)
+  use "averms/black-nvim"
   use {
     "numToStr/Comment.nvim",
     config = function()

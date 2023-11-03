@@ -109,10 +109,32 @@ function lsp.setup(use)
           command = lattice_local.prettier.bin,
           args = { "--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2" }
         }
+        -- TODO: add black here (for python)
       }
       local formatFiletypes = {
         typescript = "prettier",
         typescriptreact = "prettier"
+        -- TODO: python = "black"
+      }
+      nvim_lsp.bashls.setup {
+        on_attach = on_attach_w_navbuddy,
+        capabilities = capabilities,
+        cmd = { lattice_local.bashls.bin, "start" }
+      }
+      nvim_lsp.ccls.setup {
+        on_attach = on_attach_w_navbuddy,
+        capabilities = capabilities,
+        cmd = { lattice_local.ccls.bin }
+      }
+      nvim_lsp.cmake.setup {
+        on_attach = on_attach_w_navbuddy,
+        capabilities = capabilities,
+        cmd = { lattice_local.cmake.bin }
+      }
+      nvim_lsp.cssls.setup {
+        on_attach = on_attach_w_navbuddy,
+        capabilities = capabilities,
+        cmd = { lattice_local.cssls.bin, "--stdio" }
       }
       nvim_lsp.diagnosticls.setup {
         on_attach = standard_on_attach,
@@ -125,37 +147,24 @@ function lsp.setup(use)
           formatFiletypes = formatFiletypes
         }
       }
-      nvim_lsp.bashls.setup {
+      nvim_lsp.efm.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
-        cmd = { lattice_local.bashls.bin, "start" }
-      }
-      nvim_lsp.ccls.setup {
-        on_attach = standard_on_attach,
-        capabilities = capabilities,
-        cmd = { lattice_local.ccls.bin }
-      }
-      nvim_lsp.cmake.setup {
-        on_attach = standard_on_attach,
-        capabilities = capabilities,
-        cmd = { lattice_local.cmake.bin }
-      }
-      nvim_lsp.cssls.setup {
-        on_attach = standard_on_attach,
-        capabilities = capabilities,
-        cmd = { lattice_local.cssls.bin, "--stdio" }
+        init_options = { documentFormatting = true },
+        filetypes = { 'python' },
+        cmd = { lattice_local.efm.bin }
       }
       nvim_lsp.graphql.setup {
         capabilities = capabilities,
         cmd = { lattice_local.graphql.bin, "server", "-m", "stream" }
       }
       nvim_lsp.html.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.htmlls.bin, "--stdio" }
       }
       nvim_lsp.jsonls.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.jsonls.bin, "--stdio" },
         settings = {
@@ -168,14 +177,14 @@ function lsp.setup(use)
         cmd = { lattice_local.marksman.bin, "server" }
       }
       nvim_lsp.prosemd_lsp.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.prosemd.bin, "--stdio" },
         filetypes = { "markdown" },
         settings = {}
       }
       nvim_lsp.pyright.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.pyls.bin, "--stdio" }
       }
@@ -207,7 +216,7 @@ function lsp.setup(use)
         }
       }
       nvim_lsp.sqlls.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         cmd = { lattice_local.sqlls.bin },
         settings = {
           sqlls = {
@@ -216,14 +225,17 @@ function lsp.setup(use)
         }
       }
       nvim_lsp.svelte.setup {
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.sveltels.bin }
       }
       nvim_lsp.taplo.setup {
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.taplo.bin, "lsp", "stdio" }
       }
       nvim_lsp.tsserver.setup {
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.tsls.bin, "--stdio" },
         filetypes = {
@@ -234,7 +246,6 @@ function lsp.setup(use)
           "typescriptreact",
           "typescript.tsx"
         },
-        on_attach = on_attach_w_navbuddy,
       }
       nvim_lsp.vimls.setup {
         on_attach = standard_on_attach,
@@ -242,7 +253,7 @@ function lsp.setup(use)
         cmd = { lattice_local.vimls.bin }
       }
       nvim_lsp.yamlls.setup {
-        on_attach = standard_on_attach,
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         cmd = { lattice_local.yamlls.bin, "--stdio" },
         settings = {
