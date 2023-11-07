@@ -26,6 +26,7 @@ function other.setup(use)
           replace_all = "<leader><cr>",
         },
       }
+      vim.keymap.set({ "n", "x" }, "<leader>sr", function() require("ssr").open() end)
     end
   }
   use "gbprod/stay-in-place.nvim"
@@ -66,10 +67,8 @@ function other.setup(use)
       vim.cmd [[
           " misc mappings
           nnoremap Q @@
-          nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("cfile")  <cr>
+          nnoremap gH :execute "OpenBrowser" "https://github.com/" . expand("<cfile>")  <cr>
           nnoremap gN :execute "OpenBrowser" "https://search.nixos.org/packages?query=" . expand("<cfile>")  <cr>
-          nnoremap gFs :execute "OpenBrowser" "https://flathub.org/apps/search/" . expand("<cfile>")  <cr>
-          nnoremap gFd :execute "OpenBrowser" "https://flathub.org/apps/details/" . expand("<cfile>")  <cr>
           nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 
           " Paste-mode shenanigans
