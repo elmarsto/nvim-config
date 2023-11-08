@@ -42,8 +42,8 @@ function bunt.setup(use)
           CONTEXT = { icon = "🌐", color = "info" },
           CHALLENGE = { icon = "👊", color = "default" },
           PITCH = { icon = "✍️", color = "default" },
-          FIX = { icon = "⚕️", color = "success" }, -- default ladybug emoji
-          FEAT = { icon = "🏆", color = "success" }, -- default ladybug emoji
+          FIX = { icon = "⚕️", color = "success" },
+          FEAT = { icon = "🏆", color = "success" },
           NOTE = { color = "info" }
         },
         merge_keywords = true, -- when true, custom keywords will be merged with the defaults

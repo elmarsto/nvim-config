@@ -27,7 +27,7 @@ function keyboard.setup(use)
                      PackerCompile
                     ]]
                   end,
-                  description = "Close everything but keep tabs and windows in sesh"
+                  description = "Recompile neovim packages"
                 },
                 {
                   "ZZ",
@@ -164,7 +164,7 @@ function keyboard.setup(use)
               description = 'Use the Frecencer',
               icon = '📶',
               keymaps = {
-                { "<leader>f", ":Telescope frecency",               description = "Browse Frecency" },
+                { "<leader>f", ":Telescope frecency<cr>",           description = "Browse Frecency" },
                 { "<M-,>",     ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency" },
               }
             },
