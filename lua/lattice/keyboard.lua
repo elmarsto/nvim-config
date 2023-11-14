@@ -308,36 +308,6 @@ function keyboard.setup(use)
 
 
             {
-              itemgroup = 'repl',
-              description = 'Manage a repl or terminal',
-              icon = '',
-              keymaps = {
-                { "<leader>rs", ":IronRepl<cr>",  description = "Start Repl" },
-                {
-                  "<leader>rr",
-                  ":IronRestart<cr>",
-                  description =
-                  "Restart Repl"
-                },
-                { "<leader>rf", ":IronFocus<cr>", description = "Focus Repl" },
-                { "<leader>rh", ":IronHide<cr>",  description = "Hide Repl" },
-                {
-                  "<C-z>",
-                  ":split | wincmd j | resize 20 | startinsert | terminal<cr>",
-                  description =
-                  "Open terminal"
-                },
-              }
-            },
-            {
-              itemgroup = 'draw',
-              description = 'Ascii art',
-              icon = '🎨',
-              keymaps = {
-                { "<leader>v", ":VennToggle<cr>", description = "Toggle Venn diagram mode" }
-              }
-            },
-            {
               itemgroup = 'lsp',
               description = 'Language-aware commands (LSP & Treesitter)',
               icon = '',
@@ -387,37 +357,37 @@ function keyboard.setup(use)
 
           },
           commands = {
-            {
-              ':VennToggle', -- based on code in README
-              function()
-                local venn_enabled = vim.inspect(vim.b.venn_enabled)
-                if venn_enabled == "nil" then
-                  vim.b.venn_enabled = true
-                  vim.cmd [[setlocal ve=all]]
-                  -- draw a line on HJKL keystrokes
-                  vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
-                  vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
-                  vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
-                  vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true })
-                  -- draw a box by pressing "f" with visual selection
-                  vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
-                else
-                  -- TODO: clean up
-                  vim.cmd [[setlocal ve=]]
-                  vim.cmd [[mapclear <buffer>]]
-                  vim.b.venn_enabled = nil
-                end
-              end
-            }
+            -- {
+            --   ':VennToggle', -- based on code in README
+            --   function()
+            --     local venn_enabled = vim.inspect(vim.b.venn_enabled)
+            --     if venn_enabled == "nil" then
+            --       vim.b.venn_enabled = true
+            --       vim.cmd [[setlocal ve=all]]
+            --       -- draw a line on HJKL keystrokes
+            --       vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
+            --       vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
+            --       vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
+            --       vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true })
+            --       -- draw a box by pressing "f" with visual selection
+            --       vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
+            --     else
+            --       -- TODO: clean up
+            --       vim.cmd [[setlocal ve=]]
+            --       vim.cmd [[mapclear <buffer>]]
+            --       vim.b.venn_enabled = nil
+            --     end
+            --   end
+            -- }
           },
           funcs = {
-            {
-              function()
-                require("notify")("hello world")
-              end,
-              description = "Hello world!",
-              itemgroup = 'lsp'
-            }
+            -- {
+            --   function()
+            --     require("notify")("hello world")
+            --   end,
+            --   description = "Hello world!",
+            --   itemgroup = 'lsp'
+            -- }
           },
           autocmds = {
             -- FIXME: this next thing does not work and I do not know why.
