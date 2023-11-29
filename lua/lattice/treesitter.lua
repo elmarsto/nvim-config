@@ -160,17 +160,6 @@ function treesitter.setup(use)
       }
     end
   }
-  use { "JoosepAlviste/nvim-ts-context-commentstring",
-    after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require 'nvim-treesitter.configs'.setup {
-        context_commentstring = {
-          enable = true
-        }
-      }
-    end
-  }
   use { "windwp/nvim-ts-autotag",
     after = "nvim-treesitter",
     requires = "nvim-treesitter/nvim-treesitter",
