@@ -2,6 +2,7 @@ local bunt = {}
 
 function bunt.setup(use)
   use "MunifTanjim/nui.nvim"
+  use "amadeus/vim-convert-color-to"
   use {
     "edluffy/specs.nvim",
     config = function()
@@ -28,25 +29,30 @@ function bunt.setup(use)
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup {
-        signs = true, -- show icons in the signs column
+        signs = true,                -- show icons in the signs column
+        merge_keywords = true,       -- when true, custom keywords will be merged with the defaults
         keywords = {
-          DONE = { icon = " ", color = "success" },
-          TODO = { icon = "⭕", color = "warning" },
-          IDEA = { icon = "💡", color = "idea" },
-          RND = { icon = "🧪", color = "idea" },
-          FIXME = { color = "error" }, -- default ladybug emoji
-          BUG = { color = "error" },   -- default ladybug emoji
-          WARNING = { icon = "⚠️", color = "warning" },
-          WARN = { icon = "⚠️", color = "warning" },
-          YIKES = { icon = "💢", color = "warning" },
-          CONTEXT = { icon = "🌐", color = "info" },
+          BUG = { color = "error" }, -- default ladybug emoji
           CHALLENGE = { icon = "👊", color = "default" },
-          PITCH = { icon = "✍️", color = "default" },
-          FIX = { icon = "⚕️", color = "success" },
+          CONTEXT = { icon = "🌐", color = "info" },
+          DONE = { icon = " ", color = "success" },
           FEAT = { icon = "🏆", color = "success" },
-          NOTE = { color = "info" }
+          FIX = { icon = "⚕️", color = "success" },
+          FIXME = { color = "error" }, -- default ladybug emoji
+          HUMOUR = { color = "idea" },
+          HUMOR = { color = "idea" },
+          IDEA = { icon = "💡", color = "idea" },
+          JUSTIFICATION = { color = "info" },
+          NOMENCLATURE = { color = "info" },
+          NOTE = { color = "info" },
+          PITCH = { icon = "✍️", color = "default" },
+          PROMISE = { color = "info" },
+          RESEARCH = { icon = "⭕", color = "warning" },
+          TODO = { icon = "⭕", color = "warning" },
+          WARN = { icon = "⚠️", color = "warning" },
+          WARNING = { icon = "⚠️", color = "warning" },
+          YIKES = { icon = "💢", color = "warning" }
         },
-        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
         colors = {
           idea = { "IdeaMsg", "#FDFF74" },
           success = { "SuccessMsg", "#10B981" },
