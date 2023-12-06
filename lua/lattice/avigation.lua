@@ -41,7 +41,28 @@ function avigation.setup(use)
         },
         view_options = {
           show_hidden = true
-        }
+        },
+        keymaps = {
+          ["-"] = "actions.parent",
+          ["<C-c>"] = "actions.close",
+          ["<C-h>"] = "actions.select_split",
+          ["<C-l>"] = "actions.refresh",
+          ["<C-p>"] = "actions.preview",
+          ["<C-s>"] = "actions.select_vsplit",
+          ["<C-t>"] = "actions.select_tab",
+          ["<CR>"] = "actions.select",
+          ["_"] = "actions.open_cwd",
+          ["`"] = "actions.tcd",
+          ["g."] = "actions.toggle_hidden",
+          ["g?"] = "actions.show_help",
+          ["g\\"] = "actions.toggle_trash",
+          ["gs"] = "actions.change_sort",
+          ["gx"] = "actions.open_external",
+          ["y"] = "actions.copy_entry_path",
+          ["~"] = "actions.open_terminal",
+          [";"] = "actions.open_cmdline",
+          [":"] = "actions.open_cmdline_dir",
+        },
       })
       vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
     end
