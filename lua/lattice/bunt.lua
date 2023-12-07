@@ -51,7 +51,7 @@ function bunt.setup(use)
           REASON = { icon = "∵", color = "argumentation" },
           RESEARCH = { icon = "⚗", color = "actionItem" },
           SECTION = { icon = "§", color = "info" },
-          TODO = { icon = "✰", color = "actionItem" },
+          TODO = { icon = "★", color = "actionItem" },
           THEREFORE = { icon = "∴", color = "argumentation" },
           QED = { icon = "∴", color = "argumentation" },
           WARN = { icon = "⚠️", color = "warning" },
