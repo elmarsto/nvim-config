@@ -29,38 +29,43 @@ function bunt.setup(use)
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup {
-        signs = true,                -- show icons in the signs column
-        merge_keywords = true,       -- when true, custom keywords will be merged with the defaults
+        signs = true,          -- show icons in the signs column
+        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
         keywords = {
+          BECAUSE = { icon = "∵", color = "argumentation" },
           BUG = { color = "error" }, -- default ladybug emoji
-          CHALLENGE = { icon = "👊", color = "default" },
-          CONTEXT = { icon = "🌐", color = "info" },
-          DONE = { icon = " ", color = "success" },
-          FEAT = { icon = "🏆", color = "success" },
-          FIX = { icon = "⚕️", color = "success" },
+          CHALLENGE = { icon = "🏆", color = "actionItem" },
+          CONTEXT = { icon = "❄", color = "info" },
+          CONCLUSION = { icon = "∴", color = "default" },
+          DEF = { icon = "∆", color = "info" },
+          DEFINITION = { icon = "∆", color = "info" },
+          EXPLANATION = { icon = "∵", color = "argumentation" },
           FIXME = { color = "error" }, -- default ladybug emoji
-          HUMOUR = { color = "idea" },
-          HUMOR = { color = "idea" },
-          IDEA = { icon = "💡", color = "idea" },
-          JUSTIFICATION = { color = "info" },
-          NOMENCLATURE = { color = "info" },
-          NOTE = { color = "info" },
-          PITCH = { icon = "✍️", color = "default" },
-          PROMISE = { color = "info" },
-          RESEARCH = { icon = "⭕", color = "warning" },
-          TODO = { icon = "⭕", color = "warning" },
+          IDEA = { icon = "☀", color = "idea" },
+          JUSTIFICATION = { icon = "∵", color = "info" },
+          LOOKUP = { icon = "⚯", color = "actionItem" },
+          NOMENCLATURE = { icon = "∆", color = "info" },
+          NOTE = { icon = "✍️", color = "info" },
+          PITCH = { icon = "♮", color = "argumentation" },
+          PROMISE = { icon = "✪", color = "actionItem" },
+          RESEARCH = { icon = "⚗", color = "actionItem" },
+          SECTION = { icon = "§", color = "info" },
+          TODO = { icon = "✰", color = "actionItem" },
+          THEREFORE = { icon = "∴", color = "argumentation" },
+          QED = { icon = "∴", color = "argumentation" },
           WARN = { icon = "⚠️", color = "warning" },
           WARNING = { icon = "⚠️", color = "warning" },
-          YIKES = { icon = "💢", color = "warning" }
+          WORRY = { icon = "⌇", color = "warning" },
+          YIKES = { icon = "⁉", color = "error" }
         },
         colors = {
-          idea = { "IdeaMsg", "#FDFF74" },
-          success = { "SuccessMsg", "#10B981" },
+          actionItem = { "Identifier", "#A000A0" },
+          argumentation = { "Identifier", "#90aC00" },
+          default = { "Identifier", "#AAAAAA" },
           error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
-          warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+          idea = { "IdeaMsg", "#FDFF74" },
           info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
-          hint = { "LspDiagnosticsDefaultHint", "#10B981" },
-          default = { "Identifier", "#7C3AED" }
+          warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FB8F24" },
         }
       }
     end

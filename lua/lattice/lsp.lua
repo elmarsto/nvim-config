@@ -131,11 +131,15 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.cmake.bin }
       }
-      nvim_lsp.cssls.setup {
-        on_attach = on_attach_w_navbuddy,
-        capabilities = capabilities,
-        cmd = { lattice_local.cssls.bin, "--stdio" }
-      }
+      -- FIXME: 2023-12-07 disabled because cssls in nix is way behind.
+      -- It uses https://github.com/vscode-langservers/vscode-css-languageserver-bin (deprecated/archived circa early 2021)
+      -- instead of https://github.com/microsoft/vscode-css-languageservice
+      -- nvim_lsp.cssls.setup {
+      --   on_attach = on_attach_w_navbuddy,
+      --   capabilities = capabilities,
+      --   cmd = { lattice_local.cssls.bin, "--stdio" }
+      -- }
+      -- TODO: convert https://archlinux.org/packages/extra/any/vscode-css-languageserver/ to nix package
       nvim_lsp.diagnosticls.setup {
         on_attach = standard_on_attach,
         filetypes = vim.tbl_keys(filetypes),
