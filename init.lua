@@ -27,7 +27,6 @@ set wrap
 ]]
 
 -- Cross-platform compat, and support for diverse shells
--- disabled 2023-12-07: REASON: tracking down bug
 local lls = require "lattice_local".shell
 vim.o.shell = lls.bin
 
