@@ -60,9 +60,9 @@ function bunt.setup(use)
           YIKES = { icon = "⁉", color = "error" }
         },
         colors = {
-          actionItem = { "Identifier", "#A000A0" },
-          argumentation = { "Identifier", "#90aC00" },
-          default = { "Identifier", "#AAAAAA" },
+          actionItem = { "Identifier", "#A0CC00" },
+          argumentation = { "Identifier", "#8C268C" },
+          default = { "Identifier", "#999999" },
           error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
           idea = { "IdeaMsg", "#FDFF74" },
           info = { "LspDiagnosticsDefaultInformation", "#2563EB" },

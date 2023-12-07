@@ -53,14 +53,13 @@ function other.setup(use)
       require("telescope").load_extension("persisted") -- To load the telescope extension
     end,
   })
-  -- disabled 2023-12-07. REASON: searching down hang when terminal opened with oil
-  -- use {
-  --   "samjwill/nvim-unception",
-  --   config =
-  --       function()
-  --         vim.g.unception_block_while_host_edits = true
-  --       end
-  -- }
+  use {
+    "samjwill/nvim-unception",
+    config =
+        function()
+          vim.g.unception_block_while_host_edits = true
+        end
+  }
   use {
     "tyru/open-browser.vim",
     config = function()
