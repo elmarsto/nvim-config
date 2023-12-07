@@ -27,14 +27,11 @@ set wrap
 ]]
 
 -- Cross-platform compat, and support for diverse shells
+-- disabled 2023-12-07: REASON: tracking down bug
 local lls = require "lattice_local".shell
 vim.o.shell = lls.bin
-vim.o.shellredir = lls.redir
-vim.o.shellcmdflag = lls.cmdflag
-vim.o.shellpipe = lls.pipe
-vim.o.shellquote = lls.quote
-vim.o.shellxquote = lls.xquote
-vim.wo.foldlevel = 6
+
+vim.o.foldlevel = 6
 
 
 -- packer and packages
