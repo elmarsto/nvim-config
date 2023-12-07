@@ -45,7 +45,7 @@ function bunt.setup(use)
           JUSTIFICATION = { icon = "∵", color = "argumentation" },
           LOOKUP = { icon = "⚯", color = "actionItem" },
           NOMENCLATURE = { icon = "∆", color = "info" },
-          NOTE = { icon = "✍️", color = "info" },
+          NOTE = { icon = "❦", color = "info" },
           PITCH = { icon = "♮", color = "argumentation" },
           PROMISE = { icon = "✪", color = "actionItem" },
           REASON = { icon = "∵", color = "argumentation" },

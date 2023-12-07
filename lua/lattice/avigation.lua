@@ -62,7 +62,7 @@ function avigation.setup(use)
           ["y"] = "actions.copy_entry_path",
           ["!"] = "actions.open_terminal",
           [";"] = "actions.open_cmdline",
-          [":"] = "actions.open_cmdline_dir",
+          ["g:"] = "actions.open_cmdline_dir",
         },
       })
       vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
