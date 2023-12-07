@@ -26,9 +26,6 @@ set undofile
 set wrap
 ]]
 
--- Cross-platform compat, and support for diverse shells
-local lls = require "lattice_local".shell
-vim.o.shell = lls.bin
 
 vim.o.foldlevel = 6
 
