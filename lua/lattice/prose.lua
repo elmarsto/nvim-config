@@ -24,22 +24,11 @@ function prose.setup(use)
     config = function() require("gist").setup() end,
   }
   use {
-    "jalvesaq/dict.nvim",
-    config = function()
-      local dict_dir = require "lattice_local".dict_dir
-      require 'dict'.setup({
-        dict_dir = dict_dir,
-      })
-      vim.keymap.set('n', '<Leader>d', '<Cmd>lua require("dict").lookup()<CR>')
-    end
-  }
-  use {
     "jbyuki/venn.nvim",
     config = function()
       -- see keyboard.lua (using legendary for its clarity)
     end
   }
-  use "kana/vim-textobj-user"
   use {
     "marcelofern/vale.nvim",
     config = function()
@@ -70,7 +59,6 @@ function prose.setup(use)
       ]]
     end
   }
-  use "pirmd/gemini.vim"
   use "tpope/vim-abolish"
   vim.cmd [[
     let g:markdown_folding=1

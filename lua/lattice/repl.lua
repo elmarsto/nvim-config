@@ -22,18 +22,18 @@ function repl.setup(use)
           repl_open_cmd = require('iron.view').bottom(40),
         },
         keymaps = {
-          send_motion = "<space>sc",
-          visual_send = "<space>sc",
-          send_file = "<space>sf",
-          send_line = "<space>sl",
-          send_mark = "<space>sm",
-          mark_motion = "<space>mc",
-          mark_visual = "<space>mc",
-          remove_mark = "<space>md",
-          cr = "<space>s<cr>",
-          interrupt = "<space>s<space>",
-          exit = "<space>sq",
-          clear = "<space>cl",
+          send_motion = "<leader>sc",
+          visual_send = "<leader>sc",
+          send_file = "<leader>sf",
+          send_line = "<leader>sl",
+          send_mark = "<leader>sm",
+          mark_motion = "<leader>mc",
+          mark_visual = "<leader>mc",
+          remove_mark = "<leader>md",
+          cr = "<leader>s<cr>",
+          interrupt = "<leader>s<space>",
+          exit = "<leader>sq",
+          clear = "<leader>cl",
         },
         highlight = {
           italic = true
@@ -42,15 +42,15 @@ function repl.setup(use)
       }
     end
   }
-  use {
-    "GCBallesteros/jupytext.vim",
-    config = function()
-      vim.cmd [[
-          let g:jupytext_fmt = 'py'
-          let g:jupytext_style = 'hydrogen'
-        ]]
-    end
-  }
+  -- use {
+  --   "GCBallesteros/jupytext.vim",
+  --   config = function()
+  --     vim.cmd [[
+  --         let g:jupytext_fmt = 'py'
+  --         let g:jupytext_style = 'hydrogen'
+  --       ]]
+  --   end
+  -- }
   use "rafcamlet/nvim-luapad"
 end
 

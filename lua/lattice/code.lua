@@ -10,13 +10,7 @@ function code.setup(use)
   }
   use "bfredl/nvim-luadev"
   use "David-Kunz/jester"
-  use "dmix/elvish.vim"
   use { "folke/trouble.nvim", after = "nvim-web-devicons" }
-  use { "jose-elias-alvarez/typescript.nvim", after = "nvim-lspconfig",
-    config = function()
-      require "typescript".setup({})
-    end
-  }
   use { "mfussenegger/nvim-dap",
     requires = { -- TODO: break up into separate use blocks
       "rcarriga/nvim-dap-ui",
