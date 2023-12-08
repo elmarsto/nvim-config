@@ -153,7 +153,7 @@ function keyboard.setup(use)
               description = 'Use the jumplist',
               icon = '🏀',
               keymaps = {
-                { "<leader>j",     ":Telescope jumplist<cr>",           description = "Browse Jumps" },
+                { "<F1>",          ":Telescope jumplist<cr>",           description = "Browse Jumps" },
                 { "<leader><tab>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
                 { "[j",            "<C-I>",                             description = "Prev Jump" },
                 { "]j",            "<C-O>",                             description = "Next Jump" },
@@ -228,7 +228,7 @@ function keyboard.setup(use)
               keymaps = {
                 -- TODO: git grep (plugin opportunity??)
                 { "<M-/>", ":Telescope live_grep theme=ivy prompt_prefix=🔍<cr>", description = "Ripgrep" },
-                { "<M-.>", ":Telescope find_files theme=ivy<cr>",                   description = "Find Files" },
+                { "<M-.>", ":Telescope find_files theme=ivy<cr>", description = "Find Files" },
                 {
                   "<leader><M-.>",
                   ":Telescope git_files theme=ivy<cr>",
@@ -237,35 +237,16 @@ function keyboard.setup(use)
                 },
               }
             },
-            {
-              itemgroup = 'sesh',
-              description = 'Browse sessions and projects',
-              icon = '📽️',
-              keymaps = {
-                { "<F1>",         ":Telescope persisted<cr>", description = "Browse Sessions" },
-                { "<leader><F1>", ":Telescope project<cr>",   description = "Browse Projects" },
-                { "<leader>s",    ":Telescope persisted<cr>", description = "Browse Sessions" },
-                { "<leader>sv",   ":SessionSave<cr>",         description = "Save Session" },
-                { "<leader>so",   ":SessionStop<cr>",         description = "Stop Session" },
-                { "<leader>sa",   ":SessionStart<cr>",        description = "Start Session" },
-                { "<leader>st",   ":SessionToggle<cr>",       description = "Toggle Session" },
-                { "<leader>sd",   ":SessionDelete<cr>",       description = "Delete Session" },
-                { "<leader>sl",   ":SessionLoad<cr>",         description = "Load Session" },
-                { "<leader>sla",  ":SessionLoadLast<cr>",     description = "Load Last Session" },
-                { "<leader>slf",  ":SessionLoadFromFile<cr>", description = "Load Session from File" },
-              }
-            },
 
             {
               itemgroup = 'files',
               description = 'Browse files and directories',
               icon = '',
               keymaps = {
-                { "<F2>",         ":Telescope file_browser<cr>", description = "Browse files" },
-                { "<leader><F2>", ":Telescope zoxide list<cr>",  description = "Browse directories" },
+                { "<F2>",         ":Telescope file_browser %:h<cr>", description = "Browse directory of current file" },
+                { "<leader><F2>", ":Telescope file_browser .<cr>",   description = "Browse CWD" },
               }
             },
-
             {
               itemgroup = 'file_history',
               description = 'Browse history of current file',
@@ -275,7 +256,6 @@ function keyboard.setup(use)
                 { "<leader><F3>", ":UndotreeToggle<cr>",        description = "Undo History" },
               }
             },
-
             {
               itemgroup = 'branch_history',
               description = 'Browse history of current branch',

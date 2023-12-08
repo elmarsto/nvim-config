@@ -44,7 +44,6 @@ function scope.setup(use)
     "nvim-telescope/telescope.nvim",
     requires = {
       "elmarsto/telescope-nodescripts.nvim",
-      "jvgrootveld/telescope-zoxide",
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-frecency.nvim",
@@ -70,7 +69,6 @@ function scope.setup(use)
       tscope.load_extension "frecency"
       tscope.load_extension "nodescripts"
       tscope.load_extension "project"
-      tscope.load_extension "zoxide"
     end
   }
   use {
