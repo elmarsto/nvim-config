@@ -235,8 +235,8 @@ function keyboard.setup(use)
               description = 'Browse files and directories',
               icon = '',
               keymaps = {
-                { "<F2>",         ":Telescope file_browser %:h<cr>", description = "Browse directory of current file" },
-                { "<leader><F2>", ":Telescope file_browser .<cr>",   description = "Browse CWD" },
+                { "<F2>",         ":Telescope file_browser path=%:p:h select_buffer=true<cr>", description = "Browse directory of current file" },
+                { "<leader><F2>", ":Telescope file_browser<cr>",                               description = "Browse CWD" },
               }
             },
             {

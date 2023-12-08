@@ -61,6 +61,10 @@ function scope.setup(use)
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg"
           },
+          file_browser = {
+            theme = "ivy",
+            hijack_netrw = true
+          },
           project = ll.project
         }
       }
