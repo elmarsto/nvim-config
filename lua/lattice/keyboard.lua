@@ -207,7 +207,7 @@ function keyboard.setup(use)
               description = 'Nodescripts',
               icon = '🩹',
               keymaps = {
-                { "F9", ":Telescope nodescripts<cr>", description = "Nodescripts" },
+                { "<F10>", ":Telescope nodescripts<cr>", description = "Nodescripts" },
               }
             },
             -- TODO: keybindings for walking TODOs as per https://github.com/folke/todo-comments.nvim
