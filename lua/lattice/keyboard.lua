@@ -293,8 +293,8 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 -- LSP: Rename
-                { "gR", ":IncRename<cr>",                             description = "LSP IncRename" },
-                { "gr", ":Telescope lsp_references theme=cursor<cr>", description = "LSP References" },
+                { "<leader><F7>",   ":IncRename<cr>",                             description = "LSP IncRename" },
+                { "<F7>", ":Telescope lsp_references theme=cursor<cr>", description = "LSP References" },
                 {
                   "gD",
                   ":lua vim.lsp.buf.declaration()<cr>",
