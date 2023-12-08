@@ -149,69 +149,6 @@ function keyboard.setup(use)
               }
             },
             {
-              itemgroup = 'buffer',
-              description = 'Use the buffer list',
-              icon = '',
-              keymaps = {
-                { "<leader><Tab>", ":Telescope buffers<cr>", description = "Browse Buffers" },
-                { "<leader>b",     ":Telescope buffers<cr>", description = "Browse Buffers (syn)" },
-                { "]b",            ":bp<cr>",                description = "Prev Buffer" },
-                { "[b",            ":bn<cr>",                description = "Next Buffer" },
-              }
-            },
-            {
-              itemgroup = 'jump',
-              description = 'Use the jumplist',
-              icon = '🏀',
-              keymaps = {
-                { "<F1>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
-                { "[j",   "<C-I>",                             description = "Prev Jump" },
-                { "]j",   "<C-O>",                             description = "Next Jump" },
-              }
-            },
-            {
-              itemgroup = 'Frecency',
-              description = 'Use the Frecencer',
-              icon = '📶',
-              keymaps = {
-                { "<leader>f", ":Telescope frecency<cr>",           description = "Browse Frecency" },
-                { "<M-,>",     ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency (syn)" },
-              }
-            },
-            {
-              itemgroup = 'diagnostics',
-              description = 'Use the list of diagnostics',
-              icon = '',
-              keymaps = {
-                { "<F9>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
-                { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble (syn)" },
-                { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
-                { "[g",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
-                { "]g",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
-                { "<leader>d2l", ":lua vim.diagnostic.set_loclist()<cr>", description = "Diagnostics -> Ll" },
-              }
-            },
-            {
-              itemgroup = 'quickfix',
-              description = 'Use the quickfix list',
-              icon = '🩹',
-              keymaps = {
-                { "<leader><F9>", ":Telescope quickfix<cr>", description = "Browse CList" },
-                { "<leader>c",    ":Telescope quickfix<cr>", description = "Browse CList (syn)" },
-                { "[c",           ":cp<cr>",                 description = "Prev Quickfix" },
-                { "]c",           ":cn<cr>",                 description = "Next Quickfix" },
-              }
-            },
-            {
-              itemgroup = 'Node',
-              description = 'Nodescripts',
-              icon = '🩹',
-              keymaps = {
-                { "<F10>", ":Telescope nodescripts<cr>", description = "Nodescripts" },
-              }
-            },
-            -- TODO: keybindings for walking TODOs as per https://github.com/folke/todo-comments.nvim
-            {
               itemgroup = 'quot',
               description = 'Use registers and marks',
               icon = '®',
@@ -238,11 +175,33 @@ function keyboard.setup(use)
               }
             },
             {
+              itemgroup = 'buffer',
+              description = 'Use the buffer list',
+              icon = '',
+              keymaps = {
+                { "<leader><Tab>", ":Telescope buffers<cr>", description = "Browse Buffers" },
+                { "<leader>b",     ":Telescope buffers<cr>", description = "Browse Buffers (syn)" },
+                { "]b",            ":bp<cr>",                description = "Prev Buffer" },
+                { "[b",            ":bn<cr>",                description = "Next Buffer" },
+              }
+            },
+            {
+              itemgroup = 'jump',
+              description = 'Use the jumplist',
+              icon = '🏀',
+              keymaps = {
+                { "<F1>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
+                { "[j",   "<C-I>",                             description = "Prev Jump" },
+                { "]j",   "<C-O>",                             description = "Next Jump" },
+              }
+            },
+            {
               itemgroup = 'files',
               description = 'Browse files and directories',
               icon = '',
               keymaps = {
-                { "<F2>", ":e .<cr>", description = "Browse CWD" },
+                { "<F2>",  ":Telescope frecency<cr>",           description = "Browse Frecency" },
+                { "<M-,>", ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency (syn)" },
               }
             },
             {
@@ -283,8 +242,6 @@ function keyboard.setup(use)
                 { "<leader><S-F6>", ":Telescope git_stash<space>",    description = "Git Stash" },
               }
             },
-
-
             {
               itemgroup = 'lsp',
               description = 'LSP',
@@ -339,60 +296,36 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 { "<F8>", ":Telescope treesitter<cr>", description = "Treesitter" },
-                -- TODO: add treesitter shortcuts here and remove from treesitter.lua
+              },
+            },
+            {
+              itemgroup = 'diagnostics',
+              description = 'Use the list of diagnostics',
+              icon = '',
+              keymaps = {
+                { "<F9>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
+                { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble (syn)" },
+                { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
+                { "[g",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
+                { "]g",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
+                { "<leader>d2l", ":lua vim.diagnostic.set_loclist()<cr>", description = "Diagnostics -> Ll" },
               }
             },
-
-
+            {
+              itemgroup = 'quickfix',
+              description = 'Use the quickfix list',
+              icon = '🩹',
+              keymaps = {
+                { "<leader><F9>", ":Telescope quickfix<cr>", description = "Browse CList" },
+                { "<leader>c",    ":Telescope quickfix<cr>", description = "Browse CList (syn)" },
+                { "[c",           ":cp<cr>",                 description = "Prev Quickfix" },
+                { "]c",           ":cn<cr>",                 description = "Next Quickfix" },
+              }
+            },
           },
-          commands = {
-            -- {
-            --   ':VennToggle', -- based on code in README
-            --   function()
-            --     local venn_enabled = vim.inspect(vim.b.venn_enabled)
-            --     if venn_enabled == "nil" then
-            --       vim.b.venn_enabled = true
-            --       vim.cmd [[setlocal ve=all]]
-            --       -- draw a line on HJKL keystrokes
-            --       vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
-            --       vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
-            --       vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
-            --       vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true })
-            --       -- draw a box by pressing "f" with visual selection
-            --       vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
-            --     else
-            --       -- TODO: clean up
-            --       vim.cmd [[setlocal ve=]]
-            --       vim.cmd [[mapclear <buffer>]]
-            --       vim.b.venn_enabled = nil
-            --     end
-            --   end
-            -- }
-          },
-          funcs = {
-            -- {
-            --   function()
-            --     require("notify")("hello world")
-            --   end,
-            --   description = "Hello world!",
-            --   itemgroup = 'lsp'
-            -- }
-          },
-          autocmds = {
-            -- FIXME: this next thing does not work and I do not know why.
-            -- I think the problem is that there are two things that need to happen, 1. lua reload and 2. packer recompile
-            -- This code AFAIK just recompiles the already loaded lua, without refresh.
-            -- {
-            --   'BufWritePost',
-            --   function()
-            --     require 'packer'.compile()
-            --   end,
-            --   opts = {
-            --     pattern = { '/home/lattice/lattice-nix/nvim-config/lua/lattice/*.lua' }
-            --   },
-            --   description = 'Recompile lua config upon ch-ch-changes',
-            -- },
-          },
+          commands = {},
+          funcs = {},
+          autocmds = {},
           extensions = {
             diffview = true,
             smart_splits = {},
