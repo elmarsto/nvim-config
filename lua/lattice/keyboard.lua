@@ -284,14 +284,14 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 -- LSP: Rename
-                { "<F7>",  ":Telescope lsp_references<cr>",        description = "LSP References" },
-                { "<F7>s", ":Telescope lsp_document_symbols<cr>",  description = "LSP Symbols (document)" },
-                { "<F7>S", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
-                { "<F7>d", ":Telescope lsp_definitions<cr>",       description = "LSP Definitions" },
-                { "<F7>D", ":Telescope lsp_type_definitions<cr>",  description = "LSP Definitions (type)" },
-                { "<F7>c", ":Telescope lsp_declarations<cr>",      description = "LSP Declarations" },
-                { "<F7>i", ":Telescope lsp_implementations<cr>",   description = "LSP Implementations" },
-                { "gr",    ":IncRename<cr>",                       description = "IncRename" },
+                { "<F7>",         ":Telescope lsp_document_symbols<cr>",  description = "LSP Symbols (document)" },
+                { "<leader><F7>", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
+                { "<F7>r",        ":Telescope lsp_references<cr>",        description = "LSP References" },
+                { "<F7>d",        ":Telescope lsp_definitions<cr>",       description = "LSP Definitions" },
+                { "<F7>D",        ":Telescope lsp_type_definitions<cr>",  description = "LSP Definitions (type)" },
+                { "<F7>c",        ":Telescope lsp_declarations<cr>",      description = "LSP Declarations" },
+                { "<F7>i",        ":Telescope lsp_implementations<cr>",   description = "LSP Implementations" },
+                { "gr",           ":IncRename<cr>",                       description = "IncRename" },
                 {
                   "gD",
                   ":lua vim.lsp.buf.declaration()<cr>",
