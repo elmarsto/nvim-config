@@ -322,6 +322,14 @@ function keyboard.setup(use)
                 { "]c",           ":cn<cr>",                 description = "Next Quickfix" },
               }
             },
+            {
+              itemgroup = 'symbols',
+              description = 'Use the symbol thingy',
+              icon = 'æ',
+              keymaps = {
+                { "<F10>", ":Telescope symbols theme=cursor<cr>", description = "Browse CList" },
+              }
+            },
           },
           commands = {},
           funcs = {},

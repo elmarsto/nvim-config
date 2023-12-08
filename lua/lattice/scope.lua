@@ -39,12 +39,14 @@ function scope.setup(use)
           },
         }
       })
-    end }
+    end
+  }
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-frecency.nvim",
+      "nvim-telescope/telescope-symbols.nvim",
       "tami5/sqlite.lua",
       "nvim-lua/plenary.nvim",
     },
