@@ -202,6 +202,14 @@ function keyboard.setup(use)
                 { "]c",           ":cn<cr>",                 description = "Next Quickfix" },
               }
             },
+            {
+              itemgroup = 'Node',
+              description = 'Nodescripts',
+              icon = '🩹',
+              keymaps = {
+                { "F9", ":Telescope nodescripts<cr>", description = "Nodescripts" },
+              }
+            },
             -- TODO: keybindings for walking TODOs as per https://github.com/folke/todo-comments.nvim
             {
               itemgroup = 'quot',
@@ -234,8 +242,7 @@ function keyboard.setup(use)
               description = 'Browse files and directories',
               icon = '',
               keymaps = {
-                { "<F2>",         ":Telescope file_browser path=%:p:h select_buffer=true<cr>", description = "Browse directory of current file" },
-                { "<leader><F2>", ":Telescope file_browser<cr>",                               description = "Browse CWD" },
+                { "<F2>", ":e .<cr>", description = "Browse CWD" },
               }
             },
             {
@@ -306,7 +313,7 @@ function keyboard.setup(use)
                   "Go to symbol implementation"
                 },
                 {
-                  "gld",
+                  "gldt",
                   ":Telescope lsp_type_definitions theme=cursor<cr>",
                   description =
                   "Go to type definition"

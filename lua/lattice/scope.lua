@@ -44,7 +44,6 @@ function scope.setup(use)
     "nvim-telescope/telescope.nvim",
     requires = {
       "elmarsto/telescope-nodescripts.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-frecency.nvim",
       "tami5/sqlite.lua",
@@ -61,15 +60,10 @@ function scope.setup(use)
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg"
           },
-          file_browser = {
-            theme = "ivy",
-            hijack_netrw = true
-          },
           project = ll.project
         }
       }
       vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
-      tscope.load_extension "file_browser"
       tscope.load_extension "frecency"
       tscope.load_extension "nodescripts"
       tscope.load_extension "project"
