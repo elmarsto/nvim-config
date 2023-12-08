@@ -154,9 +154,21 @@ function keyboard.setup(use)
               icon = '🏀',
               keymaps = {
                 { "<F1>",          ":Telescope jumplist<cr>",           description = "Browse Jumps" },
-                { "<leader><tab>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps" },
+                { "<leader>j",     ":Telescope jumplist<cr>",           description = "Browse Jumps (syn)" },
+                { "<leader><tab>", ":Telescope jumplist theme=ivy<cr>", description = "Browse Jumps (syn)" },
                 { "[j",            "<C-I>",                             description = "Prev Jump" },
                 { "]j",            "<C-O>",                             description = "Next Jump" },
+              }
+            },
+            {
+              itemgroup = 'buffer',
+              description = 'Use the buffer list',
+              icon = '',
+              keymaps = {
+                { "<leader><F1>", ":Telescope buffers<cr>", description = "Browse Buffers" },
+                { "<leader>b",    ":Telescope buffers<cr>", description = "Browse Buffers (syn)" },
+                { "]b",           ":bp<cr>",                description = "Prev Buffer" },
+                { "[b",           ":bn<cr>",                description = "Next Buffer" },
               }
             },
             {
@@ -165,37 +177,7 @@ function keyboard.setup(use)
               icon = '📶',
               keymaps = {
                 { "<leader>f", ":Telescope frecency<cr>",           description = "Browse Frecency" },
-                { "<M-,>",     ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency" },
-              }
-            },
-            {
-              itemgroup = 'buffer',
-              description = 'Use the buffer list',
-              icon = '',
-              keymaps = {
-                { "<leader>b", ":Telescope buffers<cr>", description = "Browse Buffers" },
-                { "]b",        ":bp<cr>",                description = "Prev Buffer" },
-                { "[b",        ":bn<cr>",                description = "Next Buffer" },
-              }
-            },
-            {
-              itemgroup = 'quickfix',
-              description = 'Use the quickfix list',
-              icon = '🩹',
-              keymaps = {
-                { "<leader>c", ":Telescope quickfix<cr>", description = "Browse CList" },
-                { "[c",        ":cp<cr>",                 description = "Prev Quickfix" },
-                { "]c",        ":cn<cr>",                 description = "Next Quickfix" },
-              }
-            },
-            {
-              itemgroup = 'loclist',
-              description = 'Use the loclist',
-              icon = '',
-              keymaps = {
-                { "<leader>l", ":Telescope loclist<cr>", description = "Browse Loclist" },
-                { "[l",        ":lp<cr>",                description = "Prev Loclist" },
-                { "]l",        ":ln<cr>",                description = "Next Loclist" },
+                { "<M-,>",     ":Telescope frecency theme=ivy<cr>", description = "Browse Frecency (syn)" },
               }
             },
             {
@@ -204,11 +186,22 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 { "<F8>",        ":TroubleToggle<cr>",                    description = "Open Trouble" },
-                { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble" },
+                { "<leader>T",   ":TroubleToggle<cr>",                    description = "Open Trouble (syn)" },
                 { "<leader>d",   ":Telescope diagnostics<cr>",            description = "Browse Diagnostics" },
                 { "[g",          ":lua vim.diagnostic.goto_prev()<cr>",   description = "Prev Diagnostic" },
                 { "]g",          ":lua vim.diagnostic.goto_next()<cr>",   description = "Next Diagnostic" },
                 { "<leader>d2l", ":lua vim.diagnostic.set_loclist()<cr>", description = "Diagnostics -> Ll" },
+              }
+            },
+            {
+              itemgroup = 'quickfix',
+              description = 'Use the quickfix list',
+              icon = '🩹',
+              keymaps = {
+                { "<leader><F8>", ":Telescope quickfix<cr>", description = "Browse CList" },
+                { "<leader>c",    ":Telescope quickfix<cr>", description = "Browse CList (syn)" },
+                { "[c",           ":cp<cr>",                 description = "Prev Quickfix" },
+                { "]c",           ":cn<cr>",                 description = "Next Quickfix" },
               }
             },
             -- TODO: keybindings for walking TODOs as per https://github.com/folke/todo-comments.nvim
@@ -237,7 +230,6 @@ function keyboard.setup(use)
                 },
               }
             },
-
             {
               itemgroup = 'files',
               description = 'Browse files and directories',
@@ -252,8 +244,7 @@ function keyboard.setup(use)
               description = 'Browse history of current file',
               icon = '',
               keymaps = {
-                { "<F3>",         ":DiffviewFileHistory %<cr>", description = "Git History (file)" },
-                { "<leader><F3>", ":UndotreeToggle<cr>",        description = "Undo History" },
+                { "<F3>", ":UndotreeToggle<cr>", description = "Undo History" },
               }
             },
             {
@@ -261,7 +252,8 @@ function keyboard.setup(use)
               description = 'Browse history of current branch',
               icon = '',
               keymaps = {
-                { "<F4>", ":DiffviewFileHistory<cr>", description = "Git History (branch)" },
+                { "<F4>",         ":DiffviewFileHistory %<cr>",   description = "Git History (file)" },
+                { "<leader><F4>", ":DiffviewFileHistory %:h<cr>", description = "Git History (directory of current file)" },
               }
             },
             {
@@ -293,8 +285,8 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 -- LSP: Rename
-                { "<leader><F7>",   ":IncRename<cr>",                             description = "LSP IncRename" },
                 { "<F7>", ":Telescope lsp_references theme=cursor<cr>", description = "LSP References" },
+                { "gr",   ":IncRename<cr>",                             description = "LSP IncRename" },
                 {
                   "gD",
                   ":lua vim.lsp.buf.declaration()<cr>",
