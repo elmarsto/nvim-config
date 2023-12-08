@@ -286,44 +286,39 @@ function keyboard.setup(use)
                 -- LSP: Rename
                 { "<F7>",         ":Telescope lsp_document_symbols<cr>",  description = "LSP Symbols (document)" },
                 { "<leader><F7>", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
-                { "<F7>r",        ":Telescope lsp_references<cr>",        description = "LSP References" },
-                { "<F7>d",        ":Telescope lsp_definitions<cr>",       description = "LSP Definitions" },
-                { "<F7>D",        ":Telescope lsp_type_definitions<cr>",  description = "LSP Definitions (type)" },
-                { "<F7>c",        ":Telescope lsp_declarations<cr>",      description = "LSP Declarations" },
-                { "<F7>i",        ":Telescope lsp_implementations<cr>",   description = "LSP Implementations" },
-                { "gr",           ":IncRename<cr>",                       description = "IncRename" },
+                { "glr",          ":IncRename<cr>",                       description = "IncRename" },
                 {
-                  "gD",
-                  ":lua vim.lsp.buf.declaration()<cr>",
+                  "glD",
+                  ":Telescope lsp_declarations theme=cursor<cr>",
                   description =
                   "Go to symbol declaration"
                 },
                 {
-                  "gd",
-                  ":lua vim.lsp.buf.definition()<cr>",
+                  "gld",
+                  ":Telescope lsp_definitions theme=cursor<cr>",
                   description =
                   "Go to symbol definition"
                 },
                 {
-                  "gi",
-                  ":lua vim.lsp.buf.implementation()<cr>",
+                  "gli",
+                  ":Telescope lsp_implementations theme=cursor<cr>",
                   description =
                   "Go to symbol implementation"
                 },
                 {
-                  "gtd",
-                  ":lua vim.lsp.buf.type_definition()<cr>",
+                  "gld",
+                  ":Telescope lsp_type_definitions theme=cursor<cr>",
                   description =
                   "Go to type definition"
                 },
                 {
-                  "<leader>k",
+                  "glk",
                   ":lua vim.lsp.buf.hover()<cr>",
                   description =
                   "Show (hover) info for current symbol"
                 },
                 {
-                  "g!",
+                  "gl!",
                   ":lua vim.lsp.buf.code_action()<cr>",
                   description =
                   "Do code action for current symbol"

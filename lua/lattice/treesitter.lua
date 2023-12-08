@@ -119,7 +119,8 @@ function treesitter.setup(use)
             init_selection = "<CR>",
             node_incremental = "<CR>",
             scope_incremental = "<Tab>",
-            node_decremental = "<S-Tab>"
+            scope_decremental = "<S-Tab>",
+            node_decremental = "<S-CR>"
           }
         }
       }
@@ -160,17 +161,6 @@ function treesitter.setup(use)
       }
     end
   }
-  use { "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require 'nvim-treesitter.configs'.setup {
-        autotag = {
-          enable = true
-        }
-      }
-    end
-  }
   use { "nvim-treesitter/nvim-treesitter-context",
     after = "nvim-treesitter",
     requires = "nvim-treesitter/nvim-treesitter",
@@ -207,18 +197,18 @@ function treesitter.setup(use)
             enable = true,
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              smart_rename = "gsr"
+              smart_rename = "gtr"
             }
           },
           navigation = {
             enable = true,
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              goto_definition = "gnd",
-              list_definitions = "gnD",
-              list_definitions_toc = "gO",
-              goto_next_usage = "<a-*>",
-              goto_previous_usage = "<a-#>"
+              goto_definition = "gtd",
+              list_definitions = "gtD",
+              list_definitions_toc = "gto",
+              goto_next_usage = "gt*",
+              goto_previous_usage = "gt#"
             }
           }
         },
@@ -228,13 +218,6 @@ function treesitter.setup(use)
       }
     end
   }
-  -- use {
-  --   "m-demare/hlargs.nvim",
-  --   after = "nvim-treesitter",
-  --   config = function()
-  --     require "hlargs".setup {}
-  --   end
-  -- }
   use {
     "andymass/vim-matchup",
     after = "nvim-treesitter",
@@ -323,10 +306,10 @@ function treesitter.setup(use)
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>a"] = "@parameter.inner",
+              ["gts"] = "@parameter.inner",
             },
             swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
+              ["gtS"] = "@parameter.inner",
             },
           },
         }
@@ -337,6 +320,10 @@ function treesitter.setup(use)
     after = "nvim-treesitter",
     config = function()
       require('treesj').setup()
+      vim.keymap.set('n', 'gtm', require('treesj').toggle)
+      vim.keymap.set('n', 'gtM', function()
+        require('treesj').toggle({ split = { recursive = true } })
+      end)
     end
   }
 end
