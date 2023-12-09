@@ -18,7 +18,7 @@ function other.setup(use)
     end,
   })
   use {
-    "samjwill/nvim-unception",
+    "samjwill/nvim-unception", -- used by Rawnly/gist.nvim
     config =
         function()
           vim.g.unception_block_while_host_edits = true
