@@ -87,6 +87,11 @@ function bunt.setup(use)
         let g:aurora_darker = 1
 
         colorscheme aurora
+        "  My fixes
+        hi SpellBad guifg=#999999 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE guisp=#999999
+        hi Boolean guifg=#c4a2ff ctermfg=203 gui=NONE cterm=NONE
+        hi @constant.builtin guifg=#c4a2ff ctermfg=167 gui=NONE cterm=NONE
+        hi @repeat guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
 
         " " customize your own highlight with lua
         " lua <<EOF
