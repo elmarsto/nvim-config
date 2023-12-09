@@ -92,6 +92,9 @@ function bunt.setup(use)
         hi Boolean guifg=#c4a2ff ctermfg=203 gui=NONE cterm=NONE
         hi @constant.builtin guifg=#c4a2ff ctermfg=167 gui=NONE cterm=NONE
         hi @repeat guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
+        hi @keyword guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
+        hi @keyword.return guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
+        hi @keyword.operator guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
 
         " " customize your own highlight with lua
         " lua <<EOF
