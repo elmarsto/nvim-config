@@ -381,6 +381,14 @@ function keyboard.setup(use)
                   },
                   description = "Symbols"
                 },
+                {
+                  itemgroup = 'Copilot',
+                  description = 'Treesitter',
+                  icon = '🤖',
+                  keymaps = {
+                    { "<F11>", ":Copilot panel<cr>", description = "Copilot panel" },
+                  },
+                },
               }
             },
             {
