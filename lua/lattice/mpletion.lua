@@ -186,7 +186,7 @@ function mpletion.setup(use)
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        panel = { auto_refresh = true, layout = { position = "top" } },
+        panel = { auto_refresh = true, layout = { position = "top", ratio = 0.2 } },
         suggestion = { auto_trigger = false },
       })
     end,
