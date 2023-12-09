@@ -21,8 +21,7 @@ function keyboard.setup(use)
                 {
                   "ZC",
                   function()
-                    vim.
-                        vim.cmd [[
+                    vim.cmd [[
                      luafile /home/lattice/lattice-nix/nvim-config/init.lua
                      PackerCompile
                     ]]
@@ -327,7 +326,43 @@ function keyboard.setup(use)
               description = 'Use the symbol thingy',
               icon = 'æ',
               keymaps = {
-                { "<F10>", ":Telescope symbols theme=cursor<cr>", description = "Browse CList" },
+                {
+                  "<F10>",
+                  {
+                    n = function()
+                      -- Wow this was disappointing. It almost worked. Leaving it here as a future enticement
+                      -- local LizGroup = vim.api.nvim_create_augroup('LizGroup', { clear = true })
+                      -- vim.api.nvim_create_autocmd(
+                      --   "BufLeave",
+                      --   {
+                      --     pattern = "*",
+                      --     group = LizGroup,
+                      --     callback = function(events)
+                      --       local ft = vim.api.nvim_buf_get_option(events.buf, 'filetype')
+                      --       if ft == 'TelescopePrompt' then
+                      --   🦶      vim.notify("should def have worked")
+                      --       end
+                      --     end
+                      --   }
+                      -- )
+                      --
+                      vim.cmd("Telescope symbols theme=dropdown")
+                    end,
+                    i = "<C-O>:Telescope symbols theme=cursor<cr>",
+                    v = "d:Telescope symbols theme=cursor<cr>"
+                  },
+                  description = "Symbols"
+                },
+              }
+            },
+            {
+              itemgroup = 'cut/copy/paste',
+              description = 'system clipboard integration',
+              icon = '✂️',
+              keymaps = {
+                { "<leader>c", { x = '"+y' }, description = "Cut" },
+                { "<leader>x", { x = '"+d' }, description = "Copy" },
+                { "<leader>v", { n = '"+p' }, description = "Paste" }
               }
             },
           },

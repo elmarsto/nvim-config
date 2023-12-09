@@ -11,6 +11,7 @@ function mpletion.setup(use)
       "f3fora/cmp-spell",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       -- "kristijanhusak/vim-dadbod-completion",
@@ -18,7 +19,7 @@ function mpletion.setup(use)
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "uga-rosa/cmp-dictionary",
-      -- "zbirenbaum/copilot-cmp",
+      "zbirenbaum/copilot-cmp",
       -- TODO: tzachar/cmp-fuzzy-buffer tzachar/cmp-ai tzachar/cmp-fuzzy-path
     },
     config = function()
@@ -104,7 +105,8 @@ function mpletion.setup(use)
           }),
           sources    = {
             { name = "rpncalc" },
-            -- { name = "copilot" },
+            { name = "copilot" },
+            { name = "emoji" },
             { name = "luasnip" },
             { name = "luasnip_choice" },
             { name = "nvim_lsp" },
@@ -179,16 +181,16 @@ function mpletion.setup(use)
     end
 
   }
-  -- use { "zbirenbaum/copilot.lua", -- I stopped paying for this
-  --   cmd = "Copilot",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup({
-  --       suggestion = { enabled = false },
-  --       panel = { enabled = false },
-  --     })
-  --   end,
-  -- }
+  use { "zbirenbaum/copilot.lua", -- I stopped paying for this
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  }
 end
 
 return mpletion
