@@ -25,7 +25,7 @@ function mpletion.setup(use)
     config = function()
       require('cmp_luasnip_choice').setup();
       require('cmp-npm').setup(); -- TODO: - -> _ ?
-      -- require('copilot_cmp').setup();
+      require('copilot_cmp').setup();
       local lspkind = require "lspkind"
       local luasnip = require "luasnip"
       local cmp = require "cmp"
@@ -186,8 +186,8 @@ function mpletion.setup(use)
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
+        suggestion = { auto_refresh = true, layout = { position = "top" } },
+        panel = { auto_trigger = false },
       })
     end,
   }
