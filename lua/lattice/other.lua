@@ -4,6 +4,7 @@ function other.setup(use)
   use "gbprod/stay-in-place.nvim"
   use "nvim-lua/plenary.nvim"
   use 'jghauser/mkdir.nvim'
+  use "jmattaa/regedit.vim"
   use({
     "olimorris/persisted.nvim",
     -- module = "persisted", -- For lazy loading
