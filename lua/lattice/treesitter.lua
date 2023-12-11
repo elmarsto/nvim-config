@@ -197,7 +197,7 @@ function treesitter.setup(use)
             enable = true,
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              smart_rename = "gr"
+              smart_rename = "gR"
             }
           },
           navigation = {
