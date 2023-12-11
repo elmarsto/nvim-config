@@ -279,12 +279,6 @@ function keyboard.setup(use)
                 { "<leader><F7>", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
                 { "gr",           ":IncRename<cr>",                       description = "IncRename" },
                 {
-                  "gD",
-                  ":Telescope lsp_declarations theme=cursor<cr>",
-                  description =
-                  "Go to symbol declaration"
-                },
-                {
                   "gd",
                   ":Telescope lsp_definitions theme=cursor<cr>",
                   description =
