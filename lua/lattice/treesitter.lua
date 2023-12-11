@@ -197,18 +197,18 @@ function treesitter.setup(use)
             enable = true,
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              smart_rename = "gtr"
+              smart_rename = "gr"
             }
           },
           navigation = {
             enable = true,
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              goto_definition = "gtd",
-              list_definitions = "gtD",
-              list_definitions_toc = "gto",
-              goto_next_usage = "gt*",
-              goto_previous_usage = "gt#"
+              goto_definition = "gdt",
+              list_definitions = "gDt",
+              list_definitions_toc = "got",
+              goto_next_usage = "g*",
+              goto_previous_usage = "g#"
             }
           }
         },
@@ -306,10 +306,10 @@ function treesitter.setup(use)
           swap = {
             enable = true,
             swap_next = {
-              ["gts"] = "@parameter.inner",
+              ["gs"] = "@parameter.inner",
             },
             swap_previous = {
-              ["gtS"] = "@parameter.inner",
+              ["gS"] = "@parameter.inner",
             },
           },
         }
@@ -320,8 +320,12 @@ function treesitter.setup(use)
     after = "nvim-treesitter",
     config = function()
       require('treesj').setup()
-      vim.keymap.set('n', 'gtm', require('treesj').toggle)
-      vim.keymap.set('n', 'gtM', function()
+      vim.keymap.set(
+        'n',
+        'gm',
+        require('treesj').toggle
+      )
+      vim.keymap.set('n', 'gM', function()
         require('treesj').toggle({ split = { recursive = true } })
       end)
     end

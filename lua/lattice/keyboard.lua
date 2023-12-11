@@ -277,39 +277,39 @@ function keyboard.setup(use)
                 -- LSP: Rename
                 { "<F7>",         ":Telescope lsp_document_symbols<cr>",  description = "LSP Symbols (document)" },
                 { "<leader><F7>", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
-                { "glr",          ":IncRename<cr>",                       description = "IncRename" },
+                { "gr",           ":IncRename<cr>",                       description = "IncRename" },
                 {
-                  "glD",
+                  "gD",
                   ":Telescope lsp_declarations theme=cursor<cr>",
                   description =
                   "Go to symbol declaration"
                 },
                 {
-                  "gld",
+                  "gd",
                   ":Telescope lsp_definitions theme=cursor<cr>",
                   description =
                   "Go to symbol definition"
                 },
                 {
-                  "gli",
+                  "gi",
                   ":Telescope lsp_implementations theme=cursor<cr>",
                   description =
                   "Go to symbol implementation"
                 },
                 {
-                  "gldt",
+                  "gy",
                   ":Telescope lsp_type_definitions theme=cursor<cr>",
                   description =
                   "Go to type definition"
                 },
                 {
-                  "glk",
+                  "<leader>k",
                   ":lua vim.lsp.buf.hover()<cr>",
                   description =
                   "Show (hover) info for current symbol"
                 },
                 {
-                  "gl!",
+                  "g!",
                   ":lua vim.lsp.buf.code_action()<cr>",
                   description =
                   "Do code action for current symbol"
