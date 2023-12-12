@@ -205,7 +205,7 @@ function treesitter.setup(use)
             keymaps = {
               -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
               goto_definition = "gD",
-              list_definitions = "gf",
+              list_definitions = "gF",
               list_definitions_toc = "go",
               goto_next_usage = "g*",
               goto_previous_usage = "g#"
