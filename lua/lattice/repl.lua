@@ -13,10 +13,10 @@ function repl.setup(use)
             sh = {
               command = { "bash" }
             },
-            python = {
-              command = { "ipython" },
-              format = require("iron.fts.common").bracketed_paste
-            }
+            -- python = {
+            --   command = { "ipython" },
+            --   format = require("iron.fts.common").bracketed_paste
+            -- }
 
           },
           repl_open_cmd = require('iron.view').bottom(40),

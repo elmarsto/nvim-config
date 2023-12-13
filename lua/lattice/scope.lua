@@ -47,6 +47,7 @@ function scope.setup(use)
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-frecency.nvim",
       "nvim-telescope/telescope-symbols.nvim",
+      "fdschmidt93/telescope-egrepify.nvim",
       "tami5/sqlite.lua",
       "nvim-lua/plenary.nvim",
     },
@@ -67,6 +68,7 @@ function scope.setup(use)
       vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
       tscope.load_extension "frecency"
       tscope.load_extension "project"
+      tscope.load_extension "egrepify"
     end
   }
   use {

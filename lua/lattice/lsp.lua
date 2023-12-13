@@ -181,7 +181,7 @@ function lsp.setup(use)
         cmd = { lattice_local.marksman.bin, "server" }
       }
       nvim_lsp.prosemd_lsp.setup {
-        on_attach = on_attach_w_navbuddy,
+        on_attach = standard_on_attach,
         capabilities = capabilities,
         cmd = { lattice_local.prosemd.bin, "--stdio" },
         filetypes = { "markdown" },
@@ -278,6 +278,12 @@ function lsp.setup(use)
     "smjonas/inc-rename.nvim",
     config = function()
       require("inc_rename").setup()
+    end,
+  }
+  use {
+    "stevanmilic/nvim-lspimport",
+    config = function()
+      vim.keymap.set("n", "<leader>a", require("lspimport").import, { noremap = true })
     end,
   }
 end

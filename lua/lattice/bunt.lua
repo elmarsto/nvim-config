@@ -29,33 +29,46 @@ function bunt.setup(use)
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup {
-        signs = true,          -- show icons in the signs column
-        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+        signs = true,           -- show icons in the signs column
+        merge_keywords = false, -- use only these
         keywords = {
           BECAUSE = { icon = "∵", color = "argumentation" },
-          BUG = { color = "error" }, -- default ladybug emoji
-          CHALLENGE = { icon = "🏆", color = "actionItem" },
-          CONTEXT = { icon = "❄", color = "info" },
+          BUG = { icon = "", color = "error" },
+          BAD = { icon = "󰇸", color = "default" },
+          BROKEN = { icon = "󰋮", color = "error" },
+          CHALLENGE = { icon = "", color = "actionItem" },
+          CLAIM = { icon = "➰", color = "argumentation" },
           CONCLUSION = { icon = "∴", color = "default" },
+          CONTEXT = { icon = "❄", color = "info" },
           DEF = { icon = "∆", color = "info" },
           DEFINITION = { icon = "∆", color = "info" },
+          DISABLED = { icon = "", color = "default" },
+          DOC = { icon = "", color = "info" },
+          DOCUMENTATION = { icon = "", color = "info" },
           EXPLANATION = { icon = "∵", color = "argumentation" },
-          FIXME = { color = "error" }, -- default ladybug emoji
+          FIXME = { "", color = "error" }, -- default ladybug emoji
           IDEA = { icon = "☀", color = "idea" },
           JUSTIFICATION = { icon = "∵", color = "argumentation" },
-          LOOKUP = { icon = "⚯", color = "actionItem" },
+          LOOKUP = { icon = "󰊪", color = "actionItem" },
           NOMENCLATURE = { icon = "∆", color = "info" },
           NOTE = { icon = "❦", color = "info" },
+          NICE = { icon = "", color = "idea" },
           PITCH = { icon = "♮", color = "argumentation" },
           PROMISE = { icon = "✪", color = "actionItem" },
-          REASON = { icon = "∵", color = "argumentation" },
-          RESEARCH = { icon = "⚗", color = "actionItem" },
-          SECTION = { icon = "§", color = "info" },
-          TODO = { icon = "★", color = "actionItem" },
-          THEREFORE = { icon = "∴", color = "argumentation" },
           QED = { icon = "∴", color = "argumentation" },
-          WARN = { icon = "⚠️", color = "warning" },
-          WARNING = { icon = "⚠️", color = "warning" },
+          REASON = { icon = "∵", color = "argumentation" },
+          REF = { icon = "", color = "info" },
+          REFERENCE = { icon = "", color = "info" },
+          RESEARCH = { icon = "⚗", color = "actionItem" },
+          SAD = { icon = "󰋔", color = "default" },
+          SECTION = { icon = "§", color = "info" },
+          SRC = { icon = "", color = "info" },
+          THEREFORE = { icon = "∴", color = "argumentation" },
+          TIP = { icon = "󰓠", color = "argumentation" },
+          TODO = { icon = "★", color = "actionItem" },
+          URL = { icon = "", color = "info" },
+          WARN = { icon = "󰀦", color = "warning" },
+          WARNING = { icon = "󰀦", color = "warning" },
           WORRY = { icon = "⌇", color = "warning" },
           YIKES = { icon = "⁉", color = "error" }
         },

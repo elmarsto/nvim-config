@@ -275,9 +275,8 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 -- LSP: Rename
-                { "<F7>",         ":Telescope lsp_document_symbols<cr>",  description = "LSP Symbols (document)" },
-                { "<leader><F7>", ":Telescope lsp_workspace_symbols<cr>", description = "LSP Symbols (workspace)" },
-                { "gr",           ":IncRename<cr>",                       description = "IncRename" },
+                { "<F7>", ":Navbuddy<cr>",  description = "LSP Symbols (document)" },
+                { "gr",   ":IncRename<cr>", description = "IncRename" },
                 {
                   "gd",
                   ":Telescope lsp_definitions theme=cursor<cr>",
@@ -312,11 +311,11 @@ function keyboard.setup(use)
               }
             },
             {
-              itemgroup = 'treesitter',
-              description = 'Treesitter',
-              icon = '',
+              itemgroup = 'navigator',
+              description = 'Navigator',
+              icon = '',
               keymaps = {
-                { "<F8>", ":Telescope treesitter<cr>", description = "Treesitter" },
+                { "<F8>", "Navigator<cr>", description = "Navigator" },
               },
             },
             {
@@ -390,9 +389,9 @@ function keyboard.setup(use)
               description = 'system clipboard integration',
               icon = '✂️',
               keymaps = {
-                { "<leader>c", { x = '"+y' }, description = "Copy" },
-                { "<leader>x", { x = '"+d' }, description = "Cut" },
-                { "<leader>v", { n = '"+p' }, description = "Paste" },
+                { "<leader>c", { x = '"+y' },                                                                           description = "Copy" },
+                { "<leader>x", { x = '"+d' },                                                                           description = "Cut" },
+                { "<leader>v", { n = '<leader>p"+p<leader>p', i = '<C-o><leader>p<C-o>"+p<C-o><leader>p', x = 'd"+p' }, description = "Paste" },
               }
             },
           },

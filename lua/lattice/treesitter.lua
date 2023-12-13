@@ -317,6 +317,13 @@ function treesitter.setup(use)
       }
     end
   })
+  use({
+    'ray-x/navigator.lua',
+    requires = {
+      { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
+      { 'neovim/nvim-lspconfig' },
+    },
+  })
   use { "Wansmer/treesj",
     after = "nvim-treesitter",
     config = function()
