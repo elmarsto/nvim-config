@@ -1,7 +1,7 @@
 vim.cmd [[
 " this is how I do it. Kept in vim (instead of lua) so I can use this config on openbsd, etc.
-au CursorHold,CursorHoldI * checktime
-au FocusGained,BufEnter * :checktime
+au CursorHold,CursorHoldI * :silent! checktime
+au FocusGained,BufEnter * :silent! checktime
 au TermOpen * setlocal scrollback=-1
 let &showbreak = '⮩'
 set autoread
