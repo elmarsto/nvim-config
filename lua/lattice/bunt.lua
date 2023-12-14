@@ -40,6 +40,7 @@ function bunt.setup(use)
           CLAIM = { icon = "➰", color = "argumentation" },
           CONCLUSION = { icon = "∴", color = "default" },
           CONTEXT = { icon = "❄", color = "info" },
+          DECIDE = { icon = "" color = "actionItem" },
           DEF = { icon = "∆", color = "info" },
           DEFINITION = { icon = "∆", color = "info" },
           DISABLED = { icon = "", color = "default" },

@@ -81,27 +81,29 @@ function mpletion.setup(use)
               end,
               modes
             ),
-            -- these two force the completion menu to appear (needed for luasnip_choice)
-            ["<leader><Tab>"] = cmp.mapping(
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item({ behavior = insert })
-                else
-                  fallback()
-                end
-              end,
-              modes
-            ),
-            ["<leader><S-Tab>"] = cmp.mapping(
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item({ behavior = insert })
-                else
-                  fallback()
-                end
-              end,
-              modes
-            ),
+            -- DISABLED: 2023-12-13 for interference with typing backslashes.
+            -- DECIDE: another keystroke
+            -- -- these two force the completion menu to appear (needed for luasnip_choice)
+            -- ["<leader><Tab>"] = cmp.mapping(
+            --   function(fallback)
+            --     if cmp.visible() then
+            --       cmp.select_next_item({ behavior = insert })
+            --     else
+            --       fallback()
+            --     end
+            --   end,
+            --   modes
+            -- ),
+            -- ["<leader><S-Tab>"] = cmp.mapping(
+            --   function(fallback)
+            --     if cmp.visible() then
+            --       cmp.select_prev_item({ behavior = insert })
+            --     else
+            --       fallback()
+            --     end
+            --   end,
+            --   modes
+            -- ),
           }),
           sources    = {
             { name = "rpncalc" },

@@ -391,7 +391,7 @@ function keyboard.setup(use)
               keymaps = {
                 { "<leader>c", { x = '"+y' },                                                                           description = "Copy" },
                 { "<leader>x", { x = '"+d' },                                                                           description = "Cut" },
-                { "<leader>v", { n = '<leader>p"+p<leader>p', i = '<C-o><leader>p<C-o>"+p<C-o><leader>p', x = 'd"+p' }, description = "Paste" },
+                { "<leader>v", { n = '<leader>p"+p<leader>p', x = 'd"+p' }, description = "Paste" },
               }
             },
           },
