@@ -306,14 +306,17 @@ function treesitter.setup(use)
       }
     end
   })
+  -- FIXME: this causes collapse to the point where packer stops working. see https://github.com/ray-x/navigator.lua/issues/170
   use({
     'ray-x/navigator.lua',
     requires = {
-      { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
-      { 'neovim/nvim-lspconfig' },
+      { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' }
     },
+    after = { "nvim-lspconfig" },
     config = function()
-      require('navigator').setup()
+      require('navigator').setup({
+        lsp = { enable = false},
+      })
     end
   })
   use { "Wansmer/treesj",
