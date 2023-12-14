@@ -82,12 +82,6 @@ function code.setup(use)
   --     )
   --   end
   -- }
-  use {
-    "soulis-1256/hoverhints.nvim",
-    config = function()
-      require("hoverhints").setup({})
-    end
-  }
   use { "t-troebst/perfanno.nvim", config = function()
     require "perfanno".setup()
   end

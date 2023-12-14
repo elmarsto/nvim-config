@@ -191,7 +191,7 @@ function keyboard.setup(use)
               keymaps = {
                 -- TODO: git grep (plugin opportunity??)
                 { "<M-/>", ":Telescope current_buffer_fuzzy_find theme=ivy prompt_prefix=🔍<cr>", description = "Ripgrep" },
-                { "<M-?>", ":Telescope live_grep theme=ivy prompt_prefix=🔍<cr>", description = "Ripgrep" },
+                { "<M-?>", ":Telescope egrepify theme=ivy prompt_prefix=🔍<cr>", description = "Ripgrep" },
                 { "<M-.>", ":Telescope find_files theme=ivy prompt_prefix=🔍<cr>", description = "Find Files" },
                 {
                   "<leader><M-.>",

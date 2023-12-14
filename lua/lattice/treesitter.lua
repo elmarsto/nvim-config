@@ -194,20 +194,9 @@ function treesitter.setup(use)
           highlight_current_scope = {
             enable = true
           },
-          smart_rename = {
-            enable = true,
-            keymaps = {
-              -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              smart_rename = "gR"
-            }
-          },
           navigation = {
             enable = true,
             keymaps = {
-              -- TODO: figure out how to move these into keyboard.lua (look up function associated?)
-              goto_definition = "gD",
-              list_definitions = "gF",
-              list_definitions_toc = "go",
               goto_next_usage = "g*",
               goto_previous_usage = "g#"
             }
@@ -307,10 +296,10 @@ function treesitter.setup(use)
           swap = {
             enable = true,
             swap_next = {
-              ["gs"] = "@parameter.inner",
+              ["gx"] = "@parameter.inner",
             },
             swap_previous = {
-              ["gS"] = "@parameter.inner",
+              ["gX"] = "@parameter.inner",
             },
           },
         }
