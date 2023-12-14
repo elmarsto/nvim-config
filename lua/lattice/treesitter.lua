@@ -306,20 +306,21 @@ function treesitter.setup(use)
       }
     end
   })
-  use({
-    'ray-x/navigator.lua',
-    requires = {
-      { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
-    },
-    after = { "nvim-lspconfig" },
-    config = function()
-      require('navigator').setup({
-        lsp = { enable = false },
-      })
-      vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
-      vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")
-    end
-  })
+  -- DISABLED: with regret 2023-12-14 due to missing warnings/errors (LSP config override problem)
+  -- use({
+  --   'ray-x/navigator.lua',
+  --   requires = {
+  --     { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
+  --   },
+  --   after = { "nvim-lspconfig" },
+  --   config = function()
+  --     require('navigator').setup({
+  --       lsp = { enable = false },
+  --     })
+  --     vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
+  --     vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")
+  --   end
+  -- })
   use { "Wansmer/treesj",
     after = "nvim-treesitter",
     config = function()
