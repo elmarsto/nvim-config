@@ -48,7 +48,7 @@ function bunt.setup(use)
           DOCUMENTATION = { icon = "", color = "info" },
           EXPLANATION = { icon = "∵", color = "argumentation" },
           FIXME = { icon = "", color = "error" },
-          HACK = { icon = "", color = "info" },
+          HACK = { icon = "󰣈", color = "info" },
           IDEA = { icon = "☀", color = "idea" },
           JUSTIFICATION = { icon = "∵", color = "argumentation" },
           LOOKUP = { icon = "󰊪", color = "actionItem" },
