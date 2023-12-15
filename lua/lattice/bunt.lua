@@ -51,6 +51,7 @@ function bunt.setup(use)
           IDEA = { icon = "☀", color = "idea" },
           JUSTIFICATION = { icon = "∵", color = "argumentation" },
           LOOKUP = { icon = "󰊪", color = "actionItem" },
+          MAYBE = { icon = "󱍊", color = "idea" },
           NOMENCLATURE = { icon = "∆", color = "info" },
           NOTE = { icon = "❦", color = "info" },
           NICE = { icon = "", color = "idea" },
@@ -71,7 +72,8 @@ function bunt.setup(use)
           WARN = { icon = "󰀦", color = "warning" },
           WARNING = { icon = "󰀦", color = "warning" },
           WORRY = { icon = "⌇", color = "warning" },
-          YIKES = { icon = "⁉", color = "error" }
+          YIKES = { icon = "⁉", color = "error" },
+          WHAA = { icon = "⁇", color = "default" },
         },
         colors = {
           actionItem = { "ActionItem", "#A0CC00" },
