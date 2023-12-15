@@ -311,11 +311,22 @@ function keyboard.setup(use)
               }
             },
             {
-              itemgroup = 'navigator',
-              description = 'Navigator',
-              icon = '',
+              itemgroup = 'todo',
+              description = 'Todos',
+              icon = '',
               keymaps = {
-                { "<F8>", "Navigator<cr>", description = "Navigator" },
+                { "<F8>",         ":TodoTelescope keywords=CHALLENGE,DECIDE,FIXME,LOOKUP,RESEARCH,TODO<cr>", description = "Telescope todos" },
+                { "<leader><F8>", ":TodoTrouble keywords=CHALLENGE,DECIDE,FIXME,LOOKUP,RESEARCH,TODO<cr>",   description = "Trouble todos" },
+                { "]t",
+                  function()
+                    require("todo-comments").jump_next({ keywords = { "CHALLENGE", "DECIDE", "FIXME", "LOOKUP", "RESEARCH", "TODO" } })
+                  end
+                },
+                { "[t",
+                  function()
+                    require("todo-comments").jump_prev({ keywords = { "CHALLENGE", "DECIDE", "FIXME", "LOOKUP", "RESEARCH", "TODO" } })
+                  end
+                },
               },
             },
             {
@@ -389,8 +400,8 @@ function keyboard.setup(use)
               description = 'system clipboard integration',
               icon = '✂️',
               keymaps = {
-                { "<leader>c", { x = '"+y' },                                                                           description = "Copy" },
-                { "<leader>x", { x = '"+d' },                                                                           description = "Cut" },
+                { "<leader>c", { x = '"+y' },                               description = "Copy" },
+                { "<leader>x", { x = '"+d' },                               description = "Cut" },
                 { "<leader>v", { n = '<leader>p"+p<leader>p', x = 'd"+p' }, description = "Paste" },
               }
             },

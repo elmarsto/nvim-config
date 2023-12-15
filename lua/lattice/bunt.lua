@@ -47,7 +47,8 @@ function bunt.setup(use)
           DOC = { icon = "", color = "info" },
           DOCUMENTATION = { icon = "", color = "info" },
           EXPLANATION = { icon = "∵", color = "argumentation" },
-          FIXME = { "", color = "error" }, -- default ladybug emoji
+          FIXME = { icon = "", color = "error" },
+          HACK = { icon = "", color = "info" },
           IDEA = { icon = "☀", color = "idea" },
           JUSTIFICATION = { icon = "∵", color = "argumentation" },
           LOOKUP = { icon = "󰊪", color = "actionItem" },
@@ -104,13 +105,14 @@ function bunt.setup(use)
 
         colorscheme aurora
         "  My fixes
-        hi SpellBad guifg=#999999 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE guisp=#999999
-        hi Boolean guifg=#c4a2ff ctermfg=203 gui=NONE cterm=NONE
-        hi @constant.builtin guifg=#c4a2ff ctermfg=167 gui=NONE cterm=NONE
-        hi @repeat guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
-        hi @keyword guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
-        hi @keyword.return guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
-        hi @keyword.operator guifg=#EE82EE ctermfg=167 gui=NONE cterm=NONE
+        hi SpellBad guifg=#999999 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE guisp=#999999
+        hi Boolean guifg=#c4a2ff gui=NONE cterm=NONE
+        hi @constant.builtin guifg=#c4a2ff gui=NONE cterm=NONE
+        hi @repeat guifg=#EE82EE gui=NONE cterm=NONE
+        hi @keyword guifg=#EE82EE gui=NONE cterm=NONE
+        hi @keyword.return guifg=#EE82EE gui=NONE cterm=NONE
+        hi @keyword.operator guifg=#EE82EE gui=NONE cterm=NONE
+        hi @label.json guifg=#EE82EE gui=NONE cterm=NONE
 
         " " customize your own highlight with lua
         " lua <<EOF

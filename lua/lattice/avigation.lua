@@ -45,10 +45,10 @@ function avigation.setup(use)
         keymaps = {
           ["-"] = "actions.parent",
           ["<C-c>"] = "actions.close",
-          ["<C-h>"] = "actions.select_split",
+          ['<C-">'] = "actions.select_split",
           ["<C-l>"] = "actions.refresh",
           ["<C-p>"] = "actions.preview",
-          ["<C-s>"] = "actions.select_vsplit",
+          ["<C-%>"] = "actions.select_vsplit",
           ["<C-t>"] = "actions.select_tab",
           ["<CR>"] = "actions.select",
           ["_"] = "actions.open_cwd",
