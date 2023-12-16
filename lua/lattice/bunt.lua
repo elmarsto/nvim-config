@@ -115,6 +115,7 @@ function bunt.setup(use)
         hi @keyword.return guifg=#EE82EE gui=NONE cterm=NONE
         hi @keyword.operator guifg=#EE82EE gui=NONE cterm=NONE
         hi @label.json guifg=#EE82EE gui=NONE cterm=NONE
+        hi @label.jsonc guifg=#EE82EE gui=NONE cterm=NONE
 
         " " customize your own highlight with lua
         " lua <<EOF
