@@ -79,11 +79,6 @@ function other.setup(use)
           vim.g.unception_block_while_host_edits = true
         end
   }
-  use { "TobinPalmer/Tip.nvim",
-    config = function()
-      require("tip").setup({ seconds = 2, title = "󰓠", url = "https://vtip.43z.one" })
-    end
-  }
   use {
     "tyru/open-browser.vim",
     config = function()
