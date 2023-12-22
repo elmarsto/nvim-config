@@ -228,6 +228,15 @@ function lsp.setup(use)
           }
         }
       }
+      nvim_lsp.stylelint_lsp.setup {
+        on_attach = standard_on_attach,
+        -- Nix has no stylelint-lsp package ;_;
+        cmd = { "npx", "stylelint-lsp", "--stdio" },
+        settings = {
+          stylelintplus = {
+          }
+        }
+      }
       nvim_lsp.svelte.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
