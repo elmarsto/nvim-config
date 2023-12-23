@@ -276,35 +276,54 @@ function keyboard.setup(use)
               icon = '',
               keymaps = {
                 -- LSP: Rename
-                { "<F7>", ":Navbuddy<cr>",  description = "LSP Symbols (document)" },
-                { "gr",   ":IncRename<cr>", description = "IncRename" },
+                { "<F7>", ":Navbuddy<cr>",     description = "LSP Symbols (document)" },
+                { "gr",   ":LspUI rename<cr>", description = "IncRename" },
+                { "gri",  ":IncRename<cr>",    description = "IncRename" },
+                {
+                  "grf",
+                  ":LspUI reference<cr>",
+                  description =
+                  "Go to symbol definition"
+                },
                 {
                   "gd",
-                  ":Telescope lsp_definitions theme=cursor<cr>",
+                  ":LspUI definition<cr>",
+                  description =
+                  "Go to symbol definition"
+                },
+                {
+                  "gdi",
+                  ":LspUI diagnostic<cr>",
+                  description =
+                  "Go to symbol definition"
+                },
+                {
+                  "gde",
+                  ":LspUI declaration<cr>",
                   description =
                   "Go to symbol definition"
                 },
                 {
                   "gi",
-                  ":Telescope lsp_implementations theme=cursor<cr>",
+                  ":LspUI implementation<cr>",
                   description =
                   "Go to symbol implementation"
                 },
                 {
                   "gy",
-                  ":Telescope lsp_type_definitions theme=cursor<cr>",
+                  ":LspUI type_definition<cr>",
                   description =
                   "Go to type definition"
                 },
                 {
                   "<leader>k",
-                  ":lua vim.lsp.buf.hover()<cr>",
+                  ":LspUI hover<cr>",
                   description =
                   "Show (hover) info for current symbol"
                 },
                 {
                   "g!",
-                  ":lua vim.lsp.buf.code_action()<cr>",
+                  ":LspUI code_action<cr>",
                   description =
                   "Do code action for current symbol"
                 },
