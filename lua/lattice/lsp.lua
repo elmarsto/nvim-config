@@ -7,38 +7,6 @@ function lsp.setup(use)
   end
   }
   use {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local nls = require "null-ls"
-      -- this seemingly-pointless stanza keeps LSP from complaining
-      -- in LSP-supported editing sessions where the dominant LS
-      -- does not offer Code Actions, e.g. JSON.
-      -- Suppresses recurrent/annoying error msg.
-
-      local nullAction = {
-        name = "null-action",
-        filetypes = {}, -- all filetypes
-        method = nls.methods.CODE_ACTION,
-        generator = {
-          fn = function()
-            return {
-              {
-                title = "do-nothing"
-              }
-            }
-          end
-        }
-      }
-      require("null-ls").setup(
-        {
-          sources = {
-            nullAction
-          }
-        }
-      )
-    end
-  }
-  use {
     'kosayoda/nvim-lightbulb',
     requires = 'antoinemadec/FixCursorHold.nvim',
     config = function()
@@ -54,7 +22,7 @@ function lsp.setup(use)
   }
   use {
     "neovim/nvim-lspconfig",
-    after = { "null-ls.nvim", "cmp-nvim-lsp", "nvim-cmp" },
+    after = { "cmp-nvim-lsp", "nvim-cmp" },
     requires = {
       "SmiteshP/nvim-navbuddy",
       "SmiteshP/nvim-navic",  -- transitive on navbuddy
@@ -80,45 +48,6 @@ function lsp.setup(use)
       end
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-      -- TODO: determine if this next variable is correct still? I know we use tsserver not eslint
-      local filetypes = {
-        javascript = "eslint",
-        javascriptreact = "eslint",
-        typescript = "eslint",
-        typescriptreact = "eslint",
-        json = "eslint"
-      }
-      local linters = {
-        eslint = {
-          sourceName = "eslint",
-          command = lattice_local.eslint.bin,
-          rootPatterns = { "package-lock.json", "yarn.lock" },
-          debounce = 100,
-          args = { "--stdin", "--stdin-filename", "%filepath", "--format", "json" },
-          parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity"
-          },
-          securities = { [2] = "error", [1] = "warning" }
-        }
-      }
-      local formatters = {
-        prettier = {
-          command = lattice_local.prettier.bin,
-          args = { "--stdin-filepath", "%filepath", "--use-tabs", "false", "--tab-width", "2" }
-        }
-        -- TODO: add black here (for python)
-      }
-      local formatFiletypes = {
-        typescript = "prettier",
-        typescriptreact = "prettier"
-        -- TODO: python = "black"
-      }
       nvim_lsp.bashls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
@@ -134,25 +63,10 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.cmake.bin }
       }
-      -- FIXME: 2023-12-07 disabled because cssls in nix is way behind.
-      -- It uses https://github.com/vscode-langservers/vscode-css-languageserver-bin (deprecated/archived circa early 2021)
-      -- instead of https://github.com/microsoft/vscode-css-languageservice
-      -- nvim_lsp.cssls.setup {
-      --   on_attach = on_attach_w_navbuddy,
-      --   capabilities = capabilities,
-      --   cmd = { lattice_local.cssls.bin, "--stdio" }
-      -- }
-      -- TODO: convert https://archlinux.org/packages/extra/any/vscode-css-languageserver/ to nix package
-      nvim_lsp.diagnosticls.setup {
-        on_attach = standard_on_attach,
-        filetypes = vim.tbl_keys(filetypes),
+      nvim_lsp.cssls.setup {
+        on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        init_options = {
-          filetypes = filetypes,
-          linters = linters,
-          formatters = formatters,
-          formatFiletypes = formatFiletypes
-        }
+        cmd = { lattice_local.cssls.bin, "--stdio" }
       }
       nvim_lsp.efm.setup {
         on_attach = standard_on_attach,
@@ -160,6 +74,18 @@ function lsp.setup(use)
         init_options = { documentFormatting = true },
         filetypes = { 'python' },
         cmd = { lattice_local.efm.bin }
+      }
+      nvim_lsp.eslint.setup {
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+          standard_on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+        init_options = { documentFormatting = true },
+        cmd = { lattice_local.eslint.bin, "--stdio" }
       }
       nvim_lsp.graphql.setup {
         capabilities = capabilities,
@@ -233,11 +159,10 @@ function lsp.setup(use)
       }
       nvim_lsp.stylelint_lsp.setup {
         on_attach = standard_on_attach,
-        -- Nix has no stylelint-lsp package ;_;
         cmd = { "npx", "stylelint-lsp", "--stdio" },
+        filetypes = { "css" },
         settings = {
-          stylelintplus = {
-          }
+          stylelintplus = {}
         }
       }
       nvim_lsp.svelte.setup {
@@ -271,9 +196,13 @@ function lsp.setup(use)
       nvim_lsp.yamlls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
+        filetypes = { "yaml", "yml" },
         cmd = { lattice_local.yamlls.bin, "--stdio" },
         settings = {
           yaml = {
+            schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            },
             format = {
               enable = true,
               singleQuote = false,
