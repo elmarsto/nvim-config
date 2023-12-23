@@ -2,6 +2,10 @@ local lsp = {}
 
 function lsp.setup(use)
   use { "j-hui/fidget.nvim", tag = 'legacy', config = function() require "fidget".setup({}) end }
+  use { "jinzhongjia/LspUI.nvim", branch = 'main', config = function()
+    require('LspUI').setup()
+  end
+  }
   use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -34,21 +38,20 @@ function lsp.setup(use)
       )
     end
   }
-  -- FIXME: this does tofu with the current font? also it doesn't let me configure the symbol for the gutter?
-  -- use {
-  --   'kosayoda/nvim-lightbulb',
-  --   requires = 'antoinemadec/FixCursorHold.nvim',
-  --   config = function()
-  --     require('nvim-lightbulb').setup({
-  --       virtual_text = {
-  --         enabled = true,
-  --       },
-  --       autocmd = {
-  --         enabled = true,
-  --       }
-  --     })
-  --   end
-  -- }
+  use {
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
+    config = function()
+      require('nvim-lightbulb').setup({
+        virtual_text = {
+          enabled = true,
+        },
+        autocmd = {
+          enabled = true,
+        }
+      })
+    end
+  }
   use {
     "neovim/nvim-lspconfig",
     after = { "null-ls.nvim", "cmp-nvim-lsp", "nvim-cmp" },

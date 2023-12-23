@@ -236,7 +236,8 @@ function keyboard.setup(use)
               description = 'Browse history of current file',
               icon = '',
               keymaps = {
-                { "<F3>", ":UndotreeToggle<cr>", description = "Undo History" },
+                { "<F3>",         ":Telescope undo<cr>", description = "Undo History" },
+                { "<leader><F3>", ":UndotreeToggle<cr>", description = "Undo History" },
               }
             },
             {

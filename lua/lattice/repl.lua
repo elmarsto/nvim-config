@@ -14,7 +14,7 @@ function repl.setup(use)
               command = { "bash" }
             },
             -- python = {
-            --   command = { "ipython" },
+            --   sommand = { "ipython" },
             --   format = require("iron.fts.common").bracketed_paste
             -- }
 

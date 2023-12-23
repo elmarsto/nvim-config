@@ -9,7 +9,6 @@ function code.setup(use)
     end
   }
   use "bfredl/nvim-luadev"
-  use "David-Kunz/jester"
   use { "folke/trouble.nvim", after = "nvim-web-devicons" }
   use { "mfussenegger/nvim-dap",
     requires = { -- TODO: break up into separate use blocks
@@ -86,6 +85,7 @@ function code.setup(use)
     require "perfanno".setup()
   end
   }
+  use "vim-test/vim-test"
   use {
     "windwp/nvim-autopairs",
     config = function()
