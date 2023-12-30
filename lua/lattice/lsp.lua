@@ -68,13 +68,6 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.cssls.bin, "--stdio" }
       }
-      nvim_lsp.efm.setup {
-        on_attach = standard_on_attach,
-        capabilities = capabilities,
-        init_options = { documentFormatting = true },
-        filetypes = { 'python' },
-        cmd = { lattice_local.efm.bin }
-      }
       nvim_lsp.eslint.setup {
         on_attach = function(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
@@ -115,11 +108,6 @@ function lsp.setup(use)
         cmd = { lattice_local.prosemd.bin, "--stdio" },
         filetypes = { "markdown" },
         settings = {}
-      }
-      nvim_lsp.pyright.setup {
-        on_attach = on_attach_w_navbuddy,
-        capabilities = capabilities,
-        cmd = { lattice_local.pyls.bin, "--stdio" }
       }
       nvim_lsp.rnix.setup {
         on_attach = standard_on_attach,
@@ -164,11 +152,6 @@ function lsp.setup(use)
         settings = {
           stylelintplus = {}
         }
-      }
-      nvim_lsp.svelte.setup {
-        on_attach = on_attach_w_navbuddy,
-        capabilities = capabilities,
-        cmd = { lattice_local.sveltels.bin }
       }
       nvim_lsp.taplo.setup {
         on_attach = on_attach_w_navbuddy,
