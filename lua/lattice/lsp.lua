@@ -102,13 +102,14 @@ function lsp.setup(use)
         capabilities = capabilities,
         cmd = { lattice_local.marksman.bin, "server" }
       }
-      nvim_lsp.prosemd_lsp.setup {
-        on_attach = standard_on_attach,
-        capabilities = capabilities,
-        cmd = { lattice_local.prosemd.bin, "--stdio" },
-        filetypes = { "markdown" },
-        settings = {}
-      }
+      -- TODO: make nix package for prosemd, add to neovim.nix
+      -- nvim_lsp.prosemd_lsp.setup {
+      --   on_attach = standard_on_attach,
+      --   capabilities = capabilities,
+      --   cmd = { lattice_local.prosemd.bin, "--stdio" },
+      --   filetypes = { "markdown" },
+      --   settings = {}
+      -- }
       nvim_lsp.rnix.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
@@ -171,6 +172,14 @@ function lsp.setup(use)
           "typescript.tsx"
         },
       }
+      -- TODO: make nix package for vale, add to neovim.nix
+      -- nvim_lsp.vale_ls.setup {
+      --   on_attach = standard_on_attach,
+      --   capabilities = capabilities,
+      --   cmd = { lattice_local.valels.bin, "--stdio" },
+      --   filetypes = { "markdown" },
+      --   settings = {}
+      -- }
       nvim_lsp.vimls.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
