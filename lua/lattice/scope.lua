@@ -52,21 +52,16 @@ function scope.setup(use)
       "tami5/sqlite.lua",
       "nvim-lua/plenary.nvim",
     },
-    -- TODO: this appeared not work, why?
-    -- after = { "plenary.nvim", "sqlite.lua" },
     config = function()
       local tscope = require("telescope")
-      local ll = require("lattice_local")
       tscope.setup {
         extensions = {
           media_files = {
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg"
           },
-          project = ll.project
         }
       }
-      vim.g.sqlite_clib_path = require "lattice_local".sqlite.lib
       tscope.load_extension "egrepify"
       tscope.load_extension "frecency"
       tscope.load_extension "project"

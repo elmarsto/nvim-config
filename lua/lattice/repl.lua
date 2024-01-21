@@ -8,8 +8,6 @@ function repl.setup(use)
         config = {
           scratch_repl = true,
           repl_definition = {
-            -- TODO: add other repls here: lua, node, deno, etc.
-            -- TODO: hook this up to lattice_local
             sh = {
               command = { "bash" }
             },

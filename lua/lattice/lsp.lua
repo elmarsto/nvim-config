@@ -31,7 +31,6 @@ function lsp.setup(use)
       "lukas-reineke/lsp-format.nvim",
     },
     config = function()
-      local lattice_local = require "lattice_local"
       local nvim_lsp = require("lspconfig")
 
       require 'lsp-format'.setup {}
@@ -51,7 +50,6 @@ function lsp.setup(use)
       nvim_lsp.bashls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.bashls.bin, "start" }
       }
       nvim_lsp.ccls.setup {
         on_attach = on_attach_w_navbuddy,
@@ -64,7 +62,6 @@ function lsp.setup(use)
       nvim_lsp.cssls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.cssls.bin, "--stdio" }
       }
       nvim_lsp.eslint.setup {
         on_attach = function(client, bufnr)
@@ -76,21 +73,17 @@ function lsp.setup(use)
         end,
         capabilities = capabilities,
         init_options = { documentFormatting = true },
-        cmd = { lattice_local.eslint.bin, "--stdio" }
       }
       nvim_lsp.graphql.setup {
         capabilities = capabilities,
-        cmd = { lattice_local.graphql.bin, "server", "-m", "stream" }
       }
       nvim_lsp.html.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.htmlls.bin, "--stdio" }
       }
       nvim_lsp.jsonls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.jsonls.bin, "--stdio" },
         settings = {
           schemas = require "schemastore".json.schemas(),
           validate = { enable = true }
@@ -99,14 +92,6 @@ function lsp.setup(use)
       nvim_lsp.marksman.setup {
         capabilities = capabilities,
       }
-      -- TODO: make nix package for prosemd, add to neovim.nix
-      -- nvim_lsp.prosemd_lsp.setup {
-      --   on_attach = standard_on_attach,
-      --   capabilities = capabilities,
-      --   cmd = { lattice_local.prosemd.bin, "--stdio" },
-      --   filetypes = { "markdown" },
-      --   settings = {}
-      -- }
       nvim_lsp.rnix.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
@@ -136,7 +121,7 @@ function lsp.setup(use)
         on_attach = on_attach_w_navbuddy,
         settings = {
           sqlls = {
-            connections = { lattice_local.sqlls.config }
+            connections = { vim.g.lattice.sqlls.config }
           }
         }
       }
@@ -163,24 +148,14 @@ function lsp.setup(use)
           "typescript.tsx"
         },
       }
-      -- TODO: make nix package for vale, add to neovim.nix
-      -- nvim_lsp.vale_ls.setup {
-      --   on_attach = standard_on_attach,
-      --   capabilities = capabilities,
-      --   cmd = { lattice_local.valels.bin, "--stdio" },
-      --   filetypes = { "markdown" },
-      --   settings = {}
-      -- }
       nvim_lsp.vimls.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
-        cmd = { lattice_local.vimls.bin }
       }
       nvim_lsp.yamlls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
         filetypes = { "yaml", "yml" },
-        cmd = { lattice_local.yamlls.bin, "--stdio" },
         settings = {
           yaml = {
             schemas = {

@@ -29,16 +29,6 @@ function prose.setup(use)
     end
   }
   use {
-    "marcelofern/vale.nvim",
-    config = function()
-      local ll = require "lattice_local"
-      require 'vale'.setup({
-        bin = ll.vale.bin,
-        vale_config_path = ll.vale.ini
-      })
-    end
-  }
-  use {
     'NFrid/due.nvim',
     config = function()
       require('due_nvim').setup {}

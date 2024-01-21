@@ -8,8 +8,7 @@ function data.setup(use)
   use {
     "tami5/sqlite.lua",
     config = function()
-      local lattice_local = require "lattice_local"
-      vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
+      -- vim.g.sqlite_clib_path = lattice_local.sqlite.lib -- I also set this below (race condition?)
     end
   }
   use {
