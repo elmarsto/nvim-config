@@ -56,12 +56,10 @@ function lsp.setup(use)
       nvim_lsp.ccls.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.ccls.bin }
       }
       nvim_lsp.cmake.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.cmake.bin }
       }
       nvim_lsp.cssls.setup {
         on_attach = on_attach_w_navbuddy,
@@ -100,7 +98,6 @@ function lsp.setup(use)
       }
       nvim_lsp.marksman.setup {
         capabilities = capabilities,
-        cmd = { lattice_local.marksman.bin, "server" }
       }
       -- TODO: make nix package for prosemd, add to neovim.nix
       -- nvim_lsp.prosemd_lsp.setup {
@@ -113,11 +110,9 @@ function lsp.setup(use)
       nvim_lsp.rnix.setup {
         on_attach = standard_on_attach,
         capabilities = capabilities,
-        cmd = { lattice_local.rnix.bin }
       }
       nvim_lsp.lua_ls.setup {
         on_attach = on_attach_w_navbuddy,
-        cmd = { lattice_local.luals.bin },
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -139,7 +134,6 @@ function lsp.setup(use)
       }
       nvim_lsp.sqlls.setup {
         on_attach = on_attach_w_navbuddy,
-        cmd = { lattice_local.sqlls.bin },
         settings = {
           sqlls = {
             connections = { lattice_local.sqlls.config }
@@ -148,7 +142,6 @@ function lsp.setup(use)
       }
       nvim_lsp.stylelint_lsp.setup {
         on_attach = standard_on_attach,
-        cmd = { "npx", "stylelint-lsp", "--stdio" },
         filetypes = { "css" },
         settings = {
           stylelintplus = {}
@@ -157,12 +150,10 @@ function lsp.setup(use)
       nvim_lsp.taplo.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.taplo.bin, "lsp", "stdio" }
       }
       nvim_lsp.tsserver.setup {
         on_attach = on_attach_w_navbuddy,
         capabilities = capabilities,
-        cmd = { lattice_local.tsls.bin, "--stdio" },
         filetypes = {
           "javascript",
           "javascriptreact",
